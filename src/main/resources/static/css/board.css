@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+th.title {
+	font-size: 18px;
+	font-family: malgun;
+	color: #FFFFFF;
+	background-color: #146C94;
+	text-align: center;
+	border: 1px solid #3ca3ff;
+}
+
+td.content01 {
+	font-size: 16px;
+	font-family: malgun;
+	color: #000000;
+	background-color: #d6eefa;
+	text-align: center;
+	border: 1px solid #3ca3ff;
+	font-weight: lighter;
+}
+
+td.content02 {
+	font-size: 16px;
+	font-family: malgun;
+	color: #000000;
+	background-color: #d6eefa;
+	text-align: left;
+	border: 1px solid #3ca3ff;
+	font-weight: lighter;
+}
+
