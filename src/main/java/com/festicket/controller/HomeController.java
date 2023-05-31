@@ -84,14 +84,14 @@ public class HomeController {
 		return "adminList";
 	}
 	
-	@RequestMapping(value = "/adminList")
+	@RequestMapping(value = "/adminAddEvent")
 	public String adminList(Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		model.addAttribute("event", dao.eventListDao());
 		
-		return "adminList";
+		return "adminAddEvent";
 	}
 	
 	@RequestMapping(value = "/adminModify")
