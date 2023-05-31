@@ -1,11 +1,7 @@
 package com.festicket.controller;
 
-<<<<<<< Updated upstream
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-=======
-import java.util.List;
->>>>>>> Stashed changes
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.festicket.dao.IDao;
-<<<<<<< Updated upstream
 import com.festicket.dto.EventDto;
-=======
->>>>>>> Stashed changes
 
 @Controller
 public class HomeController {
@@ -76,7 +69,6 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/adminList")
-<<<<<<< Updated upstream
 	public String adminList(HttpSession session, HttpServletRequest request, Model model) {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
@@ -88,31 +80,31 @@ public class HomeController {
 		if(sessionId != null) {
 			model.addAttribute("eventDto", eventDto);
 		}
-=======
+		
+		return "adminList";
+	}
+	
+	@RequestMapping(value = "/adminList")
 	public String adminList(Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		model.addAttribute("event", dao.eventListDao());
->>>>>>> Stashed changes
 		
 		return "adminList";
 	}
 	
-<<<<<<< Updated upstream
 	@RequestMapping(value = "/adminModify")
 	public String adminModify(HttpSession session, Model model) {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
 		
-		
-		
 		return "adminModify";
-=======
+	}
+	
 	@RequestMapping(value = "/adminEventAdd")
 	public String adminEventAdd() {
 		return "adminEventAdd";
->>>>>>> Stashed changes
 	}
 	
 	

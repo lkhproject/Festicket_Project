@@ -14,7 +14,6 @@
 						WHERE PAGE=#{param2}
 	</select>
 	
-<<<<<<< Updated upstream
 	<select id="contentViewDao" resultType="com.festicket.dto.BoardDto">
 		SELECT * FROM web_board WHERE eventNum=${param1}
 	</select>
@@ -22,7 +21,7 @@
 	<delete id="deleteDao">
 		DELETE FROM web_board WHERE eventNum=${param1}
 	</delete>
-=======
+	
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
 		SELECT * FROM event ORDER BY eventNum DESC
 	</select>
@@ -30,6 +29,5 @@
 	<select id="totalEventCountDao" resultType="int">
 		SELECT COUNT(*) FROM event
 	</select>
->>>>>>> Stashed changes
 	
 </mapper>
