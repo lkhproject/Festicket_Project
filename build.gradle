@@ -31,6 +31,10 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl'
 	
+	// file 업로드 관련
+	implementation 'org.apache.commons:commons-lang3:3.0'
+    implementation 'commons-io:commons-io:2.5'
+	
 }
 
 tasks.named('test') {
