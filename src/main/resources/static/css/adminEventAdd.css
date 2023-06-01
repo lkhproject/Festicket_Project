@@ -5,3 +5,43 @@ div {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
 }
+
+h2.adminTitle {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 35px;
+	padding-top: 50px;
+}
+
+input[type="submit"] {
+	background: #6800b8;
+	color: white;
+	padding: 6px 40px;
+	border-radius : 0.8em;
+	border: none;
+	font-size: 16px;
+}
+
+input[type="button"] {
+	background: gray;
+	color: white;
+	padding: 6px 40px;
+	border-radius : 0.8em;
+	border: none;
+	font-size: 16px;
+	margin: 10px 0px 0px 3px;
+}
+
+div.container_1 {
+	padding: 50px 0px;
+}
+
+div.container_2 {
+	background-color: white;
+	margin: 0px 170px;
+	padding: 0px 50px 120px;
+	border-radius: 0.8em;
+}
+
+#detail_form {
+	margin: 50px 0px 10px;
+}

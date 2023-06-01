@@ -9,6 +9,7 @@ div {
 h2.adminTitle {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 35px;
+	padding-top: 60px
 }
 
 #pagingNum {
@@ -28,6 +29,7 @@ input[type="button"] {
 
 #adminTable {
 	line-height: 3rem;
+	margin-top: 40px;
 }
 
 input.search_box_little {
@@ -52,4 +54,5 @@ div.search_btn_img_little {
 	padding-right: 50px;
 	padding-left: 50px;
 	border-radius: 0.8em;
+	padding-bottom: 50px;
 }

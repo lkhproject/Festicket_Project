@@ -5,46 +5,136 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
+	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/adminEventAdd.css">
+	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: #eeeeee;">
 <!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
 <!-- 헤더 끝 -->
 
-<!-- 행사 리스트 6개 -->
-<div class="container" style="padding-top: 50px; padding-bottom: 50px">
-<div class="container" id="admin_page_form" style="padding-bottom: 50px">
-	<h2 id="adminTitle" style="padding-top: 60px">관리자 페이지</h2>
-	<table class="table table-hover" id="adminTable" style="margin-top: 40px">
-	  <thead style="background-color: #eeeeee">
-	    <tr id="trline">
-	      <th scope="col">번호</th>
-	      <th scope="col">장소</th>
-	      <th scope="col">행사명</th>
-	      <th scope="col">행사기간</th>
-	    </tr>
-	  </thead>
-	  <tbody class="table-group-divider">
-		  <c:forEach items="${event }" var="event"  begin="0" end="5">
-		    <tr id="trline">
-		      <th scope="row">${event.eventNum }</th>
-		      <td>서울/${event.gunName }</td>
-		      <td><a href="#">${event.title }</a></td>
-		      <td>${event.eventDate }</td>
-		    </tr>
-		  </c:forEach>
-	  </tbody>
-	</table>
-<!-- 행사 리스트 끝 -->
-
-<!-- 검색, 등록 -->
-	<div class="container">
-		<input class="search_box_little" type=text>
-		<input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
-		<input type="button" class="btn" style="float: right;" onclick="script:window.location.href='adminEventAdd'" value="등록">
+<!--  -->
+<div class="container">
+	<div class="container_1" >
+	
+	<div class="container_2" >
+		<h2 class="adminTitle" style="font-size: 25px; font-weight: bold">관리자 페이지</h2>
+			<form action="" id="detail_form">
+		<!-- 행사 디테일 폼 입력 -->
+				<div class="input-group mb-3">
+				  <label class="input-group-text" for="inputGroupSelect01">행사분류</label>
+				  <select class="form-select" id="inputGroupSelect01">
+				    <option selected>Choose...</option>
+				    <option value="1">페스티벌</option>
+				    <option value="2">전시</option>
+				  </select>
+				</div>
+				
+				<div class="input-group has-validation">
+				  <span class="input-group-text">행사명</span>
+				  <div class="form-floating is-invalid">
+				    <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
+				    <label for="floatingInputGroup2">Username</label>
+				  </div>
+				  <div class="invalid-feedback">
+				    Please choose a username.
+				  </div>
+				</div>
+				
+				<div class="row g-2">
+				  <div class="col-md">
+					    <div class="input-group has-validation">
+					  <span class="input-group-text">시작일</span>
+					  <div class="form-floating is-invalid">
+					    <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
+					    <label for="floatingInputGroup2">Username</label>
+					  </div>
+					  <div class="invalid-feedback">
+					    Please choose a username.
+					  </div>
+					</div>
+				  </div>
+				  <div class="col-md">
+				    <div class="form-floating">
+						      <div class="input-group has-validation">
+						  <span class="input-group-text">종료일</span>
+						  <div class="form-floating is-invalid">
+						    <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
+						    <label for="floatingInputGroup2">Username</label>
+						  </div>
+						  <div class="invalid-feedback">
+						    Please choose a username.
+						  </div>
+						</div>
+				    </div>
+				  </div>
+				</div>
+					
+				
+				<div class="input-group has-validation">
+				  <span class="input-group-text">장소</span>
+				  <div class="form-floating is-invalid">
+				    <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
+				    <label for="floatingInputGroup2">Username</label>
+				  </div>
+				  <div class="invalid-feedback">
+				    Please choose a username.
+				  </div>
+				</div>
+				
+				<div class="input-group mb-3">
+				  <span class="input-group-text" id="basic-addon1">기관명</span>
+				  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+				</div>
+				
+				<div class="input-group mb-3">
+				  <span class="input-group-text" id="basic-addon1">이용대상</span>
+				  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+				</div>
+				
+				<div class="input-group mb-3">
+				  <span class="input-group-text" id="basic-addon1">출연자정보</span>
+				  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+				</div>
+				
+				<div class="input-group has-validation">
+				  <span class="input-group-text">홈페이지주소</span>
+				  <div class="form-floating is-invalid">
+				    <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
+				    <label for="floatingInputGroup2">Username</label>
+				  </div>
+				  <div class="invalid-feedback">
+				    Please choose a username.
+				  </div>
+				</div>
+				
+				<div class="input-group mb-3">
+				  <span class="input-group-text" id="basic-addon1">이용요금</span>
+				  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+				</div>
+				
+				<div class="input-group mb-3">
+				  <span class="input-group-text" id="basic-addon1">대표이미지</span>
+				  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+				</div>
+				
+				<div class="form-floating">
+				  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px"></textarea>
+				  <label for="floatingTextarea2">프로그램 소개</label>
+				</div>
+		<!-- 행사 디테일 폼 입력 끝 -->
+			</form>
+		<!-- 등록, 취소 버튼 -->
+				<div style="float: right">
+					<input type="submit" class="btn" form="detail_form" value="등록">
+					<input type="button" class="btn" onclick="script:window.location.href='adminList'" value="취소">
+				</div>
+		<!-- 등록, 취소 버튼 끝 -->
+			
+		</div>
 	</div>
-<!-- 검색, 등록 끝 -->
-</div>
 </div>
 
 <!-- 푸터 -->

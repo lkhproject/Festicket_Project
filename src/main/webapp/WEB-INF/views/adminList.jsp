@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/adminList.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/adminEvent.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
@@ -19,12 +20,13 @@
 <!-- 헤더 끝 -->
 
 <!-- 행사 리스트 6개 -->
-<div class="container" style="padding-top: 50px; padding-bottom: 50px">
-<div class="container" id="admin_page_form" style="padding-bottom: 50px">
-	<h2 id="adminTitle" style="padding-top: 60px">관리자 페이지</h2>
-	<table class="table table-hover" id="adminTable" style="margin-top: 40px">
+<div class="container">
+<div class="container_1">
+<div id="admin_page_form">
+	<h2 class="adminTitle">관리자 페이지</h2>
+	<table class="table table-hover" id="adminTable">
 	  <thead style="background-color: #eeeeee">
-	    <tr id="trline">
+	    <tr>
 	      <th scope="col">번호</th>
 	      <th scope="col">장소</th>
 	      <th scope="col">행사명</th>
@@ -33,7 +35,7 @@
 	  </thead>
 	  <tbody class="table-group-divider">
 		  <c:forEach items="${event }" var="event"  begin="0" end="5">
-		    <tr id="trline">
+		    <tr>
 		      <th scope="row">${event.eventNum }</th>
 		      <td>서울/${event.gunName }</td>
 		      <td><a href="#">${event.title }</a></td>
@@ -83,7 +85,8 @@
 	</div>
 	
 <!-- 페이징 끝 -->
-</div>
+	</div>
+	</div>
 </div>
 
 <!-- 푸터 -->
