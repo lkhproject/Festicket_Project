@@ -1,15 +1,13 @@
 @charset "UTF-8";
-@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
 
 div {
-	font-family: 'NanumSquare', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
-	font-weight: 500;
-	transform: skew(-0.5deg);
 }
 
 h2.adminTitle {
-	font-family: 'NanumSquare', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 35px;
 }
 
@@ -41,6 +39,12 @@ input.search_box_little {
 	outline: none;
 	font-size: 15px;
 	color: #999;
+}
+
+div.search_btn_img_little {
+	position:absolute;
+	bottom:44px;
+	left:540px;
 }
 
 #admin_page_form {

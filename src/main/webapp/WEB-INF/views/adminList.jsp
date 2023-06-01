@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/adminList.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
@@ -47,7 +47,9 @@
 <!-- 검색, 등록 -->
 	<div class="container">
 		<input class="search_box_little" type=text>
-		<input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
+		<div class="search_btn_img_little">
+			<input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
+		</div>
 		<input type="button" class="btn" style="float: right;" onclick="script:window.location.href='adminEventAdd'" value="등록">
 	</div>
 <!-- 검색, 등록 끝 -->
@@ -83,5 +85,10 @@
 <!-- 페이징 끝 -->
 </div>
 </div>
+
+<!-- 푸터 -->
+	<%@ include file="include/footer.jsp" %>
+<!-- 푸터 끝 -->
+
 </body>
 </html>

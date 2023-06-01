@@ -59,6 +59,9 @@
 	</div>
 <!-- 이미지, 디테일 넘김 끝 -->
 
+<!-- 푸터 -->
+	<%@ include file="include/footer.jsp" %>
+<!-- 푸터 끝 -->
 
 </body>
 </html>
