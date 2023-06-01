@@ -1,0 +1,106 @@
+@charset "UTF-8";
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div.headerline {
+	height: 200px;
+}
+
+tr.top_menu {
+	margin-top: 15px;
+    float: center;
+    display: flex;
+}
+
+td.toptext {
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'NanumSquare', sans-serif;
+    color: #7c7c7c;
+}
+
+td.margin01 {
+	width: 75%;
+}
+
+td.margin02 {
+	width: 2%;
+}
+
+hr.line {
+	background: #d6d6d6;
+    height:1px;
+    border:0;
+}
+
+div.categoryline {
+	margin-left: 60px;
+}
+
+img.logo {
+	padding-right: 50px;
+	width: 220px;
+}
+
+ul.category {
+	padding: 0;
+	display: flex;
+	list-style: none;
+}
+
+li.categorytext {
+	margin-right: 20px;
+	padding: 17px;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: 'NanumSquare', sans-serif;
+    color: #535353;
+}
+
+form.search {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+input.search_box {
+	width:500px;
+	height:50px;  
+	padding:0 20px;
+	border:1px solid #e0e0e0;
+	border-radius:30px;
+	outline: none;
+	font-size:15px;
+	color:#999;
+	}
+	
+div.search_btn {
+	vertical-align:top;
+	position:relative;
+}
+	
+div.search_btn_img {
+	position:absolute;
+	top:4px;
+	left:490px;
+}
+
+a:link {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	color: #6800b8;
+	font-weight: bolder;
+}
