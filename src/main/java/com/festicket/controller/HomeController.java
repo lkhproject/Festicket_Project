@@ -69,27 +69,27 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/adminList")
-	public String adminList(HttpSession session, HttpServletRequest request, Model model) {
-		
-		String sessionId = (String)session.getAttribute("sessionId");
+	public String adminList(HttpServletRequest request, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		EventDto eventDto = dao.contentViewDao(request.getParameter("eventNum"));
-		
-		if(sessionId != null) {
-			model.addAttribute("eventDto", eventDto);
-		}
+		model.addAttribute("event", dao.eventListDao());
 		
 		return "adminList";
 	}
 	
 	@RequestMapping(value = "/adminAddEvent")
-	public String adminList(Model model) {
+	public String adminList(Model model, HttpSession session, HttpServletRequest request) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("event", dao.eventListDao());
+//		EventDto eventDto = dao.contentViewDao(request.getParameter("eventNum"));
+//		
+//		if(sessionId != null) {
+//			model.addAttribute("eventDto", eventDto);
+//		}
 		
 		return "adminAddEvent";
 	}

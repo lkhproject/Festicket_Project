@@ -6,8 +6,9 @@
 	
 <mapper namespace="com.festicket.dao.IDao">
 
+<!-- 
 	<select id="getEventListDao" resultType="com.festicket.dto.EventDto">
-		SELECT * FROM <!-- param1 = amount는 한 페이지당 보이는 글의 개수 -->
+		SELECT * FROM param1 = amount는 한 페이지당 보이는 글의 개수
 			(SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1)PAGE, ROWNUM
 				FROM
 					(SELECT * from event ORDER BY eventNum DESC)A)
@@ -15,12 +16,13 @@
 	</select>
 	
 	<select id="contentViewDao" resultType="com.festicket.dto.EventDto">
-		SELECT * FROM web_board WHERE eventNum=${param1}
+		SELECT * FROM event WHERE eventNum=${param1}
 	</select>
 	
 	<delete id="deleteDao">
-		DELETE FROM web_board WHERE eventNum=${param1}
+		DELETE FROM event WHERE eventNum=${param1}
 	</delete>
+!-->
 	
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
 		SELECT * FROM event ORDER BY eventNum DESC

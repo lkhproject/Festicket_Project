@@ -6,16 +6,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>페스 티켓</title>
 </head>
 <body>
 
-	<p items="${eventDto }" var="dto">${dto.eventNum == 1 }</p>
-	<p>${dto.type }</p>
-	<p>${dto.gunName }</p>
-	<p>${dto.title }</p>
-	<p>${dto.eventDate }</p>
-	
+
+<!-- 행사 리스트 6개 -->
+	<div>
+		<c:forEach items="${event }" var="event"  begin="0" end="5">
+			<div>
+				<ul>
+					<li>${event.eventNum }</li>
+					<li>${event.gunName }</li>
+					<li>${event.title }</li>
+					<li>${event.eventDate }</li>
+				</ul>
+			</div>
+	    </c:forEach>
+	</div>
+<!-- 행사 리스트 끝 -->
 	
 </body>
 </html>
