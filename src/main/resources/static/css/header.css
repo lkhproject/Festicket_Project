@@ -7,7 +7,7 @@ body {
 }
 
 div.headerline {
-	height: 200px;
+	height: 220px;
 }
 
 tr.top_menu {
@@ -61,7 +61,7 @@ li.categorytext {
     color: #535353;
 }
 
-form.search {
+div.search {
 	margin-top: 30px;
 	display: flex;
 	justify-content: center;
@@ -77,17 +77,19 @@ input.search_box {
 	outline: none;
 	font-size:15px;
 	color:#999;
+	display: flex;
 	}
 	
 div.search_btn {
 	vertical-align:top;
 	position:relative;
+	
 }
 	
 div.search_btn_img {
 	position:absolute;
 	top:4px;
-	left:490px;
+	left:450px;
 }
 
 a:link {

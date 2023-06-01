@@ -5,12 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/csBoardWrite.css">
 <title>페스티켓</title>
 </head>
 <body>
+	<%@ include file="include/header.jsp" %>
 	
-	<form action="csWrite">
+	<div class="category_name"><h1>고객센터</h1></div>
+	
+	<form class="board_content" action="csWrite">
 		<div style="float:left; width:100px; height:24px; padding:13px 15px; background:#eee;">
 			제목
 		</div>
@@ -32,8 +36,9 @@
 		<div style="margin-top:10px; border:1px solid #ccc; width:775px;">
 			<textarea style="width:745px; height:200px; border:none; font-size:15px; color:#313131; line-height:22px; padding:15px; resize: none;" name="bbs_review" placeholder="문의사항을 입력해주세요" required></textarea>
 		</div>
-	
 	</form>
+	<input class="submit_btn" type="button" value="등록" style="">
 	
+	<%@ include file="include/footer.jsp" %>
 </body>
 </html>

@@ -46,14 +46,16 @@
 			</ul>
 		</div>
 		
-		<form class="search" method='get' action='' onSubmit="return">
-		  <div class="search_btn">
-		    <input class="search_box" type=text id="search_word" placeholder='검색어를 입력하세요.'>
-		    <div class="search_btn_img">
-		      <input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
-		    </div>
-		  </div>
-		</form>
+		<div class="search">
+			<form class="search" method='get' action='' onSubmit="return">
+			  <div class="search_btn">
+			    <input class="search_box" type=text id="search_word" placeholder='검색어를 입력하세요.'>
+			    <div class="search_btn_img">
+			      <input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
+			    </div>
+			  </div>
+			</form>
+		</div>
     </div>
 </body>
 </html>
