@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>페스티켓</title>
 </head>
 <body>
-
+	adminEventAdd로 이동!!!
 </body>
 </html>

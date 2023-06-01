@@ -3,5 +3,49 @@
 
 div {
 	font-family: 'NanumSquare', sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	transform: skew(-0.5deg);
 }
 
+h2.adminTitle {
+	font-family: 'NanumSquare', sans-serif;
+	font-size: 35px;
+}
+
+#pagingNum {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+}
+
+input[type="button"] {
+	background: #6800b8;
+	color: white;
+	padding: 5px 40px;
+	border-radius : 0.8em;
+}
+
+#adminTable {
+	line-height: 3rem;
+}
+
+input.search_box_little {
+	width: 220px;
+	height: 40px;  
+	padding:0 20px;
+	border: 1px solid #e0e0e0;
+	border-radius: 0.8em;
+	outline: none;
+	font-size: 15px;
+	color: #999;
+}
+
+#admin_page_form {
+	background-color: white;
+	padding-right: 50px;
+	padding-left: 50px;
+	border-radius: 0.8em;
+}

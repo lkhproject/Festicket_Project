@@ -6,25 +6,82 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>페스 티켓</title>
+<title>페스티켓</title>
+	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
-<body>
-
+<body style="background-color: #eeeeee;">
+<!-- 헤더 -->
+	<%@ include file="include/header.jsp" %>
+<!-- 헤더 끝 -->
 
 <!-- 행사 리스트 6개 -->
-	<div>
-		<c:forEach items="${event }" var="event"  begin="0" end="5">
-			<div>
-				<ul>
-					<li>${event.eventNum }</li>
-					<li>${event.gunName }</li>
-					<li>${event.title }</li>
-					<li>${event.eventDate }</li>
-				</ul>
-			</div>
-	    </c:forEach>
-	</div>
+<div class="container" style="padding-top: 50px; padding-bottom: 50px">
+<div class="container" id="admin_page_form" style="padding-bottom: 50px">
+	<h2 id="adminTitle" style="padding-top: 60px">관리자 페이지</h2>
+	<table class="table table-hover" id="adminTable" style="margin-top: 40px">
+	  <thead style="background-color: #eeeeee">
+	    <tr id="trline">
+	      <th scope="col">번호</th>
+	      <th scope="col">장소</th>
+	      <th scope="col">행사명</th>
+	      <th scope="col">행사기간</th>
+	    </tr>
+	  </thead>
+	  <tbody class="table-group-divider">
+		  <c:forEach items="${event }" var="event"  begin="0" end="5">
+		    <tr id="trline">
+		      <th scope="row">${event.eventNum }</th>
+		      <td>서울/${event.gunName }</td>
+		      <td><a href="#">${event.title }</a></td>
+		      <td>${event.eventDate }</td>
+		    </tr>
+		  </c:forEach>
+	  </tbody>
+	</table>
 <!-- 행사 리스트 끝 -->
+
+<!-- 검색, 등록 -->
+	<div class="container">
+		<input class="search_box_little" type=text>
+		<input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
+		<input type="button" class="btn" style="float: right;" onclick="script:window.location.href='adminEventAdd'" value="등록">
+	</div>
+<!-- 검색, 등록 끝 -->
+
+<!-- 페이징 -->
+	<div class="container" id="pagingNum">
+		
+			<c:out value="${'<' }"></c:out>
+			 1 2 3 4 5 
+			<c:out value="${'>' }"></c:out>
+		<!-- 
+		<c:if test="${pageMaker.prev }">
+			<a href="list?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+		</c:if>
+		
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+			<c:choose>
+				<c:when test="${currPage == num }">
+					<span style="color: #FFFFFF; background-color: #000000; font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+				</c:when>
+				<c:otherwise>
+					<a href="list?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<c:if test="${pageMaker.next }">
+			<a href="list?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+		</c:if>
+		 -->
+	</div>
 	
+<!-- 페이징 끝 -->
+</div>
+</div>
 </body>
 </html>
