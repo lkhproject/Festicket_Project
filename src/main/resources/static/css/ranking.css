@@ -61,4 +61,9 @@ div.eventListScroll {
 	font-weight: bold;
 	font-size: 12px;
 }
+h1.rankingCount {
+	color: white;
+	font-weight: 900;
+	text-shadow: -1px 0px blue, 0px 1px blue, 1px 0px blue, 0px -1px blue;
+}
 

@@ -41,7 +41,7 @@
 <!-- 페스티벌 5개 이미지, 자치구, 행사분류, 행사명 넘김 -->
 	<div class="container" id="card_container">
 <div class="top5">
-	페스티벌(Festival)
+	페스티벌
 </div>
 	<div class="card-group center-block" id="cardBox">
 		<div class="row justify-content-center">
@@ -64,8 +64,8 @@
 
 <!-- 전시 5개 이미지, 자치구, 행사분류, 행사명 넘김 -->
 	<div class="container" id="card_container">
-<div class="top5" style="margin-left: 16px">
-	전시(Exhibition)
+<div class="top5">
+	전시
 </div>
 	<div class="card-group center-block" id="cardBox">
 		<div class="row justify-content-center">

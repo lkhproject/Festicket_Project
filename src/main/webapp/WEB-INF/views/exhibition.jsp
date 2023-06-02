@@ -21,7 +21,7 @@
 <div class="container_1">
 <div class="continer_select">
   <div style="float: left;">
-	<h2 class="title">전시(Exhibition)</h2>
+	<h2 class="title">전시</h2>
 	<div class="totalNum">총 100건</div> <!-- 총 개수 넣어줘야함 -->
   </div>
 	<div class="selector">

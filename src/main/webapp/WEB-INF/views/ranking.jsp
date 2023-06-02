@@ -29,7 +29,7 @@
 		    <div class="card" id="rankingList">
 			      <img src="${event.main_img }" class="card-img-top" id="cardImg">
 			      	<div class="card-img-overlay" id="overlayText">
-			      		<h1>${status.count }</h1>
+			      		<h1 class="rankingCount">${status.count }</h1>
 			      	</div>
 		      <div class="card-body" style="padding: 14px 0px">
 		        <h5 class="card-title" id="cardTitle">${event.title }</h5>
@@ -50,8 +50,8 @@
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="#" id="ongoingEventTitle">
 	      <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-	      현재 진행중인 행사
-	    </a>
+	      현재 진행중인 행사&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 총 100건   
+	    </a> <!-- 건수 오른쪽으로 정렬 -->
 	  </div>
 	</nav>
 

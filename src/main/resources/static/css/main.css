@@ -19,7 +19,8 @@ div {
 div.top5 {
 	font-size: 23px;
 	font-weight: bold;
-	float: left;
+	margin-left: 100px;
+	margin-bottom: 20px;
 }
 
 #cardBox {
