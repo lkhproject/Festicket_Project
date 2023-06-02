@@ -51,7 +51,7 @@
 			  <div class="search_btn">
 			    <input class="search_box" type=text id="search_word" placeholder='검색어를 입력하세요.'>
 			    <div class="search_btn_img">
-			      <input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기'>
+			      <input type="image" src='/resources/img/search_btn.png' alt='검색하기'>
 			    </div>
 			  </div>
 			</form>

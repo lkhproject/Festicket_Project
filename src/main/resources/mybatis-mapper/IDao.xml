@@ -6,6 +6,9 @@
 	
 <mapper namespace="com.festicket.dao.IDao">
 	
+	<select id="CSboardDao" resultType="com.festicket.dto.CSboardDto">
+		SELECT * FROM eventCSboard ORDER BY c_idx DESC
+	</select>
 	
 	
 </mapper>

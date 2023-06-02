@@ -89,6 +89,7 @@ div.search_btn {
 	
 div.search_btn_img {
 	position:absolute;
+	padding: 8px;
 	top:4px;
 	left:450px;
 }

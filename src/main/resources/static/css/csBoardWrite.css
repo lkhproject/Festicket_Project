@@ -1,15 +1,25 @@
 @charset "UTF-8";
-@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
 
 body {
+	height: 100%;
 	margin: 0;
 	padding: 0;
+	height: 100%;
 	background: #eeeeee;
 }
 
-div.category_name {
-	
-	font-family: 'NanumSquare', sans-serif;
+div.container {
+	padding: 20px;
+	width: 60%;
+	float: center;
+	border-radius: 25px;
+	background: #ffffff;
+}
+
+div.csBoard_title {
+	padding-top: 60px;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bolder;
 	color: #535353;
 }
@@ -18,7 +28,7 @@ div.category_name {
 	outline: none;
 	background: #6800b8;
 	color: white;
-	font-family: 'NanumSquare', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	padding: 5px 40px;
 	border-radius : 0.8em
 }
