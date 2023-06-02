@@ -21,8 +21,9 @@
 <div class="continer_select">
   <div style="float: left;">
 	<h2 class="title">페스티벌(Festival)</h2>
+	<div class="totalNum">총 100건</div> <!-- 총 개수 넣어줘야함 -->
   </div>
-	<div style="float: right;">
+	<div class="selector">
 		<select class="form-select form-select-sm" aria-label=".form-select-sm example">
 		  <option selected>정렬선택</option>
 		  <option value="1">One</option>
@@ -31,27 +32,23 @@
 		</select>
 	</div>
 </div>
+
 <!-- 페스티벌 리스트 시작 -->
 	<div class="container_2">
 		<table class="table">
 			<tbody>
 			  <c:forEach items="${event }" var="event"  begin="0" end="5">
 			    <tr>
-			      <td scope="row" rowspan="4" id="eventImgCell"><img src="${event.main_img }" class="listImg"></td> <!-- 이미지로 바꾸기 -->
-			      <th id="eventTitle">${event.title }</th>
-			      <td rowspan="4" colspan="4" id="reserve"><input type="button" value="예매하기"></td>
+			      <td scope="row" id="eventImgCell"><img src="${event.main_img }" class="listImg"></td> <!-- 이미지로 바꾸기 -->
+			      <td id="tableCenter">
+			      	<p id="eventTitle">${event.title }</p>
+			      	<p id="eventDetail"><b>장 소:</b> ${event.place }</p>
+				  	<p id="eventDetail"><b>기 간:</b> ${event.eventDate }</p>
+				  	<p id="eventDetail"><b>관람가:</b> ${event.eventPrice }</p>
+			      </td>
+			      <td id="reserve"><input type="button" value="예매하기"></td>
 			    </tr>
-			    <tr>
-				  <td id="eventDetail" rowspan="3"><b>장 소:</b> ${event.place }
-				  	<br><b>기 간:</b> ${event.eventDate }
-				  	<br><b>관람가:</b> ${event.eventPrice }</td>
-			    </tr>
-			    <tr>
-			      <td></td>
-			    </tr>
-			    <tr>
-			      <td></td>
-			    </tr>
+			    
 			  </c:forEach>
 			</tbody>
 		</table>

@@ -49,7 +49,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/exhibition")
-	public String exhibition() {
+	public String exhibition(HttpServletRequest request, Model model) {
+
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("event", dao.eventListDao());
+		
 		return "exhibition";
 	}
 	
