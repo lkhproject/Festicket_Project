@@ -38,13 +38,40 @@
 </div>
 <!-- 롤링배너 끝-->
 
-<!-- 이벤트 5개 이미지, 자치구, 행사분류, 행사명 넘김 -->
-	<div class="container">
-	<div class="card-group center-block" style="padding: 60px">
+<!-- 페스티벌 5개 이미지, 자치구, 행사분류, 행사명 넘김 -->
+	<div class="container" id="card_container">
+<div class="top5">
+	페스티벌(Festival)
+</div>
+	<div class="card-group center-block" id="cardBox">
 		<div class="row justify-content-center">
 		<c:forEach items="${event }" var="event"  begin="0" end="4">
 	  <div class="col" style="float: none; margin 0 auto">
-	    <div class="card" style="width: 200px; height: 400px">
+	    <div class="card" id="cardList">
+	      <img src="${event.main_img }" class="card-img-top" style="width: 200px; height:250px">
+	      <div class="card-body">
+	        <h5 class="card-title">${event.title }</h5>
+	        <h6 class="card-subtitle">서울/${event.gunName }</h6>
+			<p class="card-text"><small class="text-muted">${event.type }</small></p>
+	      </div>
+	    </div>
+	  </div>
+	  </c:forEach>
+	 </div>
+	 </div>
+	</div>
+<!-- 이미지, 디테일 넘김 끝 -->
+
+<!-- 전시 5개 이미지, 자치구, 행사분류, 행사명 넘김 -->
+	<div class="container" id="card_container">
+<div class="top5" style="margin-left: 16px">
+	전시(Exhibition)
+</div>
+	<div class="card-group center-block" id="cardBox">
+		<div class="row justify-content-center">
+		<c:forEach items="${event }" var="event"  begin="0" end="4">
+	  <div class="col" style="float: none; margin 0 auto">
+	    <div class="card" id="cardList">
 	      <img src="${event.main_img }" class="card-img-top" style="width: 200px; height:250px">
 	      <div class="card-body">
 	        <h5 class="card-title">${event.title }</h5>

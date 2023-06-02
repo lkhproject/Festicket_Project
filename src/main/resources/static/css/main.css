@@ -5,3 +5,26 @@ div {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
 }
+
+#cardList {
+	 width: 200px;
+	 height: 400px;
+}
+
+#card_container {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+div.top5 {
+	font-size: 23px;
+	font-weight: bold;
+	float: left;
+}
+
+#cardBox {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
