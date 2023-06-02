@@ -19,7 +19,7 @@
 							<center>
 							<img src = "/resources/img/festicket_logo.png" width="30%"> 
 							<br><br>
-								<h5><b> 회원 가입 </b></h5>
+								<h5><b> 회원가입 </b></h5>
 								<table border="0" cellspacing="0" cellpadding="10">
 									<form action="joinOk" method="post" name="join_frm">
 									<tr>
