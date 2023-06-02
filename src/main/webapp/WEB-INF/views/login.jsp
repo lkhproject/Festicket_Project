@@ -29,7 +29,7 @@
                     <input type="email" name="logid" class="login_box" placeholder="아이디" id="logid" autocomplete="off">
                   
                   
-                    <input type="password" name="logpass" class="login_box" placeholder="・・・・" id="logpass" autocomplete="off"></input> 
+                    <input type="password" name="logpass" class="login_box" placeholder="・・・・" id="logpass" autocomplete="off">
              		
                    
                     <input class="login-button" type="submit" value="로그인"></input>
