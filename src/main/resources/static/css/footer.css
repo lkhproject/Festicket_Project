@@ -1,0 +1,19 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+
+div.footer {
+	position: Sticky;
+ 	left: 0;
+  	bottom: 0;
+    width: 100%;
+    height: 11%;
+    padding: 15px;
+    margin-top: 15px;
+    clear: both;
+    line-height: 20px;
+    text-align: center;
+    background: #ffffff;
+    color: #333;
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+}

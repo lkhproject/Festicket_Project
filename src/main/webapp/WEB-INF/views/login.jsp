@@ -22,21 +22,13 @@
 					<td class="contentbox">
 					<center>
 						<table border="0" cellspacing="0" cellpadding="10">
-                  	
                     <img src = "/resources/img/festicket_logo.png" width="25%">
-                    
-                    
                     <input type="email" name="logid" class="login_box" placeholder="아이디" id="logid" autocomplete="off">
-                  
-                  
                     <input type="password" name="logpass" class="login_box" placeholder="・・・・" id="logpass" autocomplete="off">
-             		
-                   
                     <input class="login-button" type="submit" value="로그인"></input>
                  	<br>
                     <div class="joinpage"><a  href=""><b>아이디/비밀번호찾기</b></a></div>
 					<div class="joinpage"><a  href="">처음이신가요?<b>회원가입</b></a></div>
-					
 						</table>
 					</center>
 					</td>

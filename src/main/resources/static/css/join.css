@@ -1,0 +1,63 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #eeeeee;
+}
+
+td.contentbox {
+	background-color: #ffffff ;
+	height : 500px;
+	text-align: center;
+	border-radius: 8px;
+}
+
+input.inputbox01 {
+	width:500px;
+	height:45px;  
+	padding:0 10px;
+	margin: 0px;
+	border:1px solid #e0e0e0;
+	border-radius:5px;
+	outline: none;
+	font-size:15px;
+	color:#999;
+	display: flex;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+td.content_text {
+	font-family: 'Noto Sans KR', sans-serif;
+	
+}
+
+input.content_btn01{
+	width:200px;
+	height:50px;  
+	padding:0 20px;
+	margin: 1px;
+	border:1px solid #6800b8;
+	border-radius:20px;
+	outline: none;
+	font-size:20px;
+	color:#ffffff;
+	background: #6800b8;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+input.content_btn02{
+	width:200px;
+	height:50px;  
+	padding:0 20px;
+	margin: 1px;
+	border:1px solid #808080;
+	border-radius:20px;
+	outline: none;
+	font-size:20px;
+	color:#ffffff;
+	background: #808080;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
