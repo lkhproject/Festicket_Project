@@ -26,6 +26,5 @@ public class EventDto {
    private String end_date; // 종료일
    private String eventPrice; // 이용요금
    private int ticketCount; // 총 티켓 개수
-   private String regAdmin; // 이벤트 등록 관리자
    
 }

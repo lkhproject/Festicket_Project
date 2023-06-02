@@ -54,7 +54,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/festival")
-	public String festival() {
+	public String festival(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("event", dao.eventListDao());
+		
 		return "festival";
 	}
 	
