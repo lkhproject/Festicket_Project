@@ -20,7 +20,7 @@
 <div class="container_1">
 <div class="continer_select">
   <div style="float: left;">
-	<h2 class="title">티켓 검색결과</h2>
+	<h2 class="title">페스티벌(Festival)</h2>
   </div>
 	<div style="float: right;">
 		<select class="form-select form-select-sm" aria-label=".form-select-sm example">
