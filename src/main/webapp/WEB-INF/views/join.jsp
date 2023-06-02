@@ -51,7 +51,7 @@
 									<tr>
 										<td colspan="2" align="center">
 											<input class="content_btn01" type="button" value="가입완료" onclick="joinCheck()">&nbsp;&nbsp;
-											<input class="content_btn02" type="button" value="로그인" onclick="script:window.location.href='login'">
+											<input class="content_btn02" type="button" value="취소" >
 										</td>										
 									</tr>
 									</form>

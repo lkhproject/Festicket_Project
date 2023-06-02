@@ -20,7 +20,7 @@ input.inputbox01 {
 	padding:0 10px;
 	margin: 0px;
 	border:1px solid #e0e0e0;
-	border-radius:5px;
+	border-radius:3px;
 	outline: none;
 	font-size:15px;
 	color:#999;
@@ -39,7 +39,7 @@ input.content_btn01{
 	padding:0 20px;
 	margin: 1px;
 	border:1px solid #6800b8;
-	border-radius:20px;
+	border-radius:10px;
 	outline: none;
 	font-size:20px;
 	color:#ffffff;
@@ -53,7 +53,7 @@ input.content_btn02{
 	padding:0 20px;
 	margin: 1px;
 	border:1px solid #808080;
-	border-radius:20px;
+	border-radius:10px;
 	outline: none;
 	font-size:20px;
 	color:#ffffff;
