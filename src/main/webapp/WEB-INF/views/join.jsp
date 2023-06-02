@@ -24,27 +24,27 @@
 									<form action="joinOk" method="post" name="join_frm">
 									<tr>
 										<td class="content_text">아이디
-										<input class="inputbox01" type="text" name="mid"></td>
+										<input class="inputbox01" type="text" name="mid" placeholder="아이디"></td>
 									</tr>
 									<tr>
 										<td class="content_text">비밀번호
-										<input class="inputbox01" type="password" name="mpw"></td>
+										<input class="inputbox01" type="password" name="mpw" placeholder="비밀번호"></td>
 									</tr>
 									<tr>
 										<td class="content_text">비밀번호확인
-										<input class="inputbox01" type="password" name="mpw_check"></td>
+										<input class="inputbox01" type="password" name="mpw_check" placeholder="비밀번호확인"></td>
 									</tr>
 									<tr>
 										<td class="content_text">이름
-										<input class="inputbox01" type="text" name="mname"></td>
+										<input class="inputbox01" type="text" name="mname" placeholder="이름"></td>
 									</tr>
 									<tr>
 										<td class="content_text">이메일
-										<input class="inputbox01" type="text" name="memail"></td>
+										<input class="inputbox01" type="text" name="memail" placeholder="이메일"></td>
 									</tr>
 									<tr>
 										<td class="content_text">휴대폰번호
-										<input class="inputbox01" type="text" name="memail"></td>
+										<input class="inputbox01" type="text" name="memail" placeholder="휴대폰번호"></td>
 									</tr>
 									
 									
