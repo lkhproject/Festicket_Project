@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/footer.css">
+<title>페스티켓</title>
 </head>
 <body>
-
+	<div class="footer">
+		<div class="footerText">(주)페스티켓</div>
+		<div class="footerText">Hosting by Festicket Team | Copyright @ Festicket All Rights Reserved</div>
+    </div>
 </body>
 </html>
