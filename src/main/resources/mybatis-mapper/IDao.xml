@@ -10,5 +10,4 @@
 		SELECT * FROM eventCSboard ORDER BY c_idx DESC
 	</select>
 	
-	
 </mapper>

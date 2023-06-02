@@ -68,7 +68,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/csBoardWrite")
 	public String csBoardWrite() {
-		return "csBoardWrite";
+		return "redirect:csBoardList";
 	}
 	
 	

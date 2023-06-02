@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/csBoardList.css">
 <script src="/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
@@ -34,15 +38,55 @@
 				      <th scope="row">${csList.c_idx }</th>
 				      <td><a href="#">${csList.c_title }</a></td>
 				      <td>${csList.c_userId }</td>
-				      <td>${csList.c_writeDate }</td>
+				      <td>
+						<fmt:formatDate value="${csList.c_writeDate }" pattern="yyyy-MM-dd"/>
+				      </td>
 				      <td>${csList.c_hit }</td>
 				    </tr>
 			  	</c:forEach>
 	  		</tbody>
 	  	</table>	  		
 	 <!-- 게시글 리스트 끝 -->
-	
+	 
+	 <!-- 검색, 등록 -->
+	<div class="container" style="padding-top: 10px">
+		<input class="search_box_little" type=text>
+		<div class="search_btn_img_little">
+			<input type="image" src='/resources/img/boardSearch_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
+		</div>
+		<input type="button" class="btn" style="float: right;" onclick="script:window.location.href=''" value="등록">
 	</div>
+	<!-- 검색, 등록 끝 -->
+	
+	<!-- 페이징 -->
+	<div class="container" id="pagingNum">
+		
+			<c:out value="${'<' }"></c:out>
+			 1 2 3 4 5 
+			<c:out value="${'>' }"></c:out>
+		<!-- 
+		<c:if test="${pageMaker.prev }">
+			<a href="list?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+		</c:if>
+		
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+			<c:choose>
+				<c:when test="${currPage == num }">
+					<span style="color: #FFFFFF; background-color: #000000; font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+				</c:when>
+				<c:otherwise>
+					<a href="list?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<c:if test="${pageMaker.next }">
+			<a href="list?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+		</c:if>
+		 -->
+	</div>
+	<!-- 페이징 끝 -->
+
 	</div>
 	</div>
 	

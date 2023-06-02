@@ -9,10 +9,8 @@
 </head>
 <body>
 	<div class="footer">
-		<p>
-			(주)페스티켓<br>
-			Hosting by Festicket Team | Copyright @ Festicket All Rights Reserved<br>
-        </p>
+		<div class="footerText">(주)페스티켓</div>
+		<div class="footerText">Hosting by Festicket Team | Copyright @ Festicket All Rights Reserved</div>
     </div>
 </body>
 </html>

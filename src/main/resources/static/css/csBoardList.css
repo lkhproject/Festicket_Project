@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #eeeeee;
+}
+
+div {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px;
+}
+
+h2.csBoardTitle {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 35px;
+	padding-top: 60px
+}
+
+div.container_1 {
+	padding: 50px 0px;
+}
+
+div.container_2 {
+	background-color: white;
+	margin: 0px 170px;
+	padding: 0px 50px 120px;
+	border-radius: 0.8em;
+}
+
+#pagingNum {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+}
+
+input[type="button"] {
+	background: #6800b8;
+	color: white;
+	padding: 5px 40px;
+	border-radius : 0.8em;
+}
+
+#adminTable {
+	line-height: 3rem;
+	margin-top: 40px;
+}
+
+input.search_box_little {
+	width: 220px;
+	height: 40px;  
+	padding:0 20px;
+	border: 1px solid #e0e0e0;
+	border-radius: 0.8em;
+	outline: none;
+	font-size: 15px;
+	color: #999;
+}
+
+div.search_btn_img_little {
+	position:absolute;
+	bottom:30px;
+	left:540px;
+}
+
+#admin_page_form {
+	background-color: white;
+	padding-right: 50px;
+	padding-left: 50px;
+	border-radius: 0.8em;
+	padding-bottom: 50px;
+}
