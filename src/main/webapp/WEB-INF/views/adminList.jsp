@@ -11,7 +11,6 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/adminList.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/adminEvent.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
@@ -47,7 +46,7 @@
 <!-- 행사 리스트 끝 -->
 
 <!-- 검색, 등록 -->
-	<div class="container">
+	<div class="container" style="padding-top: 10px">
 		<input class="search_box_little" type=text>
 		<div class="search_btn_img_little">
 			<input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
