@@ -7,6 +7,14 @@ body {
 	background: #eeeeee;
 }
 
+thead {
+	background-color: #eeeeee
+}
+
+th, td {
+	text-align: center;
+}
+
 div.container {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
@@ -17,7 +25,7 @@ h2.csBoardTitle {
 	font-size: 35px;
 	font-weight: bold;
 	padding-top: 60px;
-	color: #323232;
+	color: #404040;
 }
 
 div.container_1 {
@@ -80,9 +88,11 @@ input.search_board_img {
 }
 
 #csBoard_page_form {
-	background-color: white;
-	padding-right: 50px;
+	width: 90%;
 	padding-left: 50px;
-	border-radius: 0.8em;
+	padding-right: 50px;
 	padding-bottom: 50px;
+	border-radius: 0.8em;
+	background-color: white;
+	margin: auto;
 }
