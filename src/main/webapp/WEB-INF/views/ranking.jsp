@@ -24,16 +24,16 @@
 	</div>
 	<div class="card-group center-block" id="rankingCardBox">
 			<div class="row justify-content-center">
-			<c:forEach items="${event }" var="event"  begin="0" end="4" varStatus="status">
+			<c:forEach items="${topfiveEvent }" var="topfiveEvent"  begin="0" end="4" varStatus="status">
 		  <div class="col" style="float: none; margin 0 auto">
 		    <div class="card" id="rankingList">
-			      <img src="${event.main_img }" class="card-img-top" id="cardImg">
+			      <img src="${topfiveEvent.main_img }" class="card-img-top" id="cardImg">
 			      	<div class="card-img-overlay" id="overlayText">
 			      		<h1 class="rankingCount">${status.count }</h1>
 			      	</div>
 		      <div class="card-body" style="padding: 14px 0px">
-		        <h5 class="card-title" id="cardTitle">${event.title }</h5>
-		        <h6 class="card-subtitle text-muted" id="cardDate">${event.eventDate }</h6>
+		        <h5 class="card-title" id="cardTitle">${topfiveEvent.title }</h5>
+		        <h6 class="card-subtitle text-muted" id="cardDate">${topfiveEvent.eventDate }</h6>
 		      </div>
 		    </div>
 		  </div>
@@ -59,9 +59,9 @@
 <div class="container">
 	<div class="eventListScroll">
 		    <div id="list-example" class="list-group">
-		    <c:forEach items="${event }" var="event" begin="0" end="12">
+		    <c:forEach items="${ongoingEvent }" var="ongoingEvent" begin="0" end="10">
 			    <div class="row">
-			      <a class="list-group-item list-group-item-action" href="#">${event.title }</a>
+			      <a class="list-group-item list-group-item-action" href="#">${ongoingEvent.title }</a>
 				</div>
 		    </c:forEach>
 		    </div>
@@ -69,8 +69,10 @@
 	<div class="col-8">
 	    <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
 	      <div id="item-1">
-	        <h4>설명</h4>
-	        <p>...</p>
+	        <h4>${ongoingEvent.place }</h4>
+	        <p>${ongoingEvent.program }</p>
+	        <p>${ongoingEvent.rgstDate }</p>
+	        <p>${ongoingEvent.end_date }</p>
 	      </div>
 	    </div>
 	</div>

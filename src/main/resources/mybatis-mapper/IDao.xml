@@ -33,6 +33,7 @@
 		SELECT COUNT(*) FROM event
 	</select>
 	
+	<!-- 예매 수가 같을경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->
 	<select id="getTopFiveEventsDao" resultType="com.festicket.dto.EventDto">
 		SELECT main_img, title, eventDate
 		FROM (
