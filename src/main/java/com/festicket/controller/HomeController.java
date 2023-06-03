@@ -1,6 +1,7 @@
 package com.festicket.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,45 @@ public class HomeController {
 	@RequestMapping(value = "/festival")
 	public String festival() {
 		return "festival";
+	}
+	
+	@RequestMapping(value = "/adminList")
+	public String adminList(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("event", dao.eventListDao());
+		
+		return "adminList";
+	}
+	
+	@RequestMapping(value = "/adminAddEvent")
+	public String adminList(Model model, HttpSession session, HttpServletRequest request) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+//		EventDto eventDto = dao.contentViewDao(request.getParameter("eventNum"));
+//		
+//		if(sessionId != null) {
+//			model.addAttribute("eventDto", eventDto);
+//		}
+		
+		return "adminAddEvent";
+	}
+	
+	@RequestMapping(value = "/adminModify")
+	public String adminModify(HttpSession session, Model model) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		return "adminModify";
+	}
+	
+	@RequestMapping(value = "/adminEventAdd")
+	public String adminEventAdd() {
+		return "adminEventAdd";
 	}
 	
 	@RequestMapping(value = "/csBoardList")

@@ -5,9 +5,24 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.festicket.dao.IDao">
+
+	<!-- 행사 관련 -->
+	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
+		SELECT * FROM event ORDER BY eventNum DESC
+	</select>
 	
+	<select id="totalEventCountDao" resultType="int">
+		SELECT COUNT(*) FROM event
+	</select>
+	
+	<!-- 고객센터 관련 -->
 	<select id="CSboardDao" resultType="com.festicket.dto.CSboardDto">
 		SELECT * FROM eventCSboard ORDER BY c_idx DESC
 	</select>
+	
+	<insert id="CSwriteDao">
+		INSERT INTO eventCSboard(c_idx, c_userId, c_title, c_content) 
+			VALUES(ecs_seq.nextval, #{param1}, #{param2}, #{param3})
+	</insert>
 	
 </mapper>

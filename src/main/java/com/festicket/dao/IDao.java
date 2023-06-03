@@ -13,5 +13,5 @@ public interface IDao {
 	
 	// 고객센터
 	public List<CSboardDto> CSboardDao(); // 게시판 글목록 모두 가져오기
-	
+	public void CSwriteDao(String c_userId, String c_title, String c_content); // 게시판 글쓰기
 }

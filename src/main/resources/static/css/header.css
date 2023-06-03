@@ -24,6 +24,11 @@ td.toptext {
     color: #7c7c7c;
 }
 
+td.toptext:hover {
+	color: #6800b8 ;
+	font-weight: bolder;
+}
+
 td.margin01 {
 	width: 75%;
 }
@@ -60,6 +65,11 @@ li.categorytext {
 	font-weight: bold;
 	font-family: 'Noto Sans KR', sans-serif;
     color: #535353;
+}
+
+li.categorytext:hover {
+	color: #6800b8 ;
+	font-weight: bolder;
 }
 
 div.search {
@@ -102,9 +112,4 @@ a:link {
 a:visited {
 	text-decoration: none;
 	color: inherit;
-}
-
-a:hover {
-	color: #6800b8;
-	font-weight: bolder;
 }

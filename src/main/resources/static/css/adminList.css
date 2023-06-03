@@ -1,11 +1,6 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
 
-body {
-	margin: 0;
-	padding: 0;
-}
-
 div {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
@@ -38,7 +33,7 @@ div.container_2 {
 
 input[type="button"] {
 	background: #6800b8;
-	color: #6800b8;
+	color: white;
 	padding: 5px 40px;
 	border-radius : 0.8em;
 }

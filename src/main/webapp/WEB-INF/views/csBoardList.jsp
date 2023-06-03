@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -22,8 +23,8 @@
 	<div class="container_1">
 	<div id="csBoard_page_form">
 		<h2 class="csBoardTitle">고객센터</h2>
-		<table class="table table-hover" id="adminTable">
-			<thead style="background-color: #eeeeee">
+		<table class="table table-hover" id="csListTable">
+			<thead>
 				<tr>
 			      <th scope="col">번호</th>
 			      <th scope="col">제목</th>
@@ -33,14 +34,12 @@
 	    		</tr>
 	  		</thead>
 	  		<tbody class="table-group-divider">
-		  		<c:forEach items="${csList }" var="csList"  begin="0" end="1">
+		  		<c:forEach items="${csList }" var="csList"  begin="0" end="11">
 				    <tr>
 				      <th scope="row">${csList.c_idx }</th>
 				      <td><a href="#">${csList.c_title }</a></td>
 				      <td>${csList.c_userId }</td>
-				      <td>
-						<fmt:formatDate value="${csList.c_writeDate }" pattern="yyyy-MM-dd"/>
-				      </td>
+				      <td><fmt:formatDate value="${csList.c_writeDate }" pattern="yyyy-MM-dd"/></td>
 				      <td>${csList.c_hit }</td>
 				    </tr>
 			  	</c:forEach>
@@ -49,17 +48,19 @@
 	 <!-- 게시글 리스트 끝 -->
 	 
 	 <!-- 검색, 등록 -->
-	<div class="container" style="padding-top: 10px">
-		<input class="search_box_little" type=text>
-		<div class="search_btn_img_little">
-			<input type="image" src='/resources/img/boardSearch_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
-		</div>
-		<input type="button" class="btn" style="float: right;" onclick="script:window.location.href=''" value="등록">
-	</div>
-	<!-- 검색, 등록 끝 -->
+	 <div class="container_bottom">
+	 <div class="search">
+	 	<input class="board_search_box" type="text">
+		<input class="board_search_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
+	 </div>
+	 <div class="button">
+		<input type="button" class="btn" onclick="script:window.location.href='csBoardWirte'" value="등록">
+	 </div>
+	 </div>
+	 <!-- 검색, 등록 끝 -->
 	
-	<!-- 페이징 -->
-	<div class="container" id="pagingNum">
+	 <!-- 페이징 -->
+	 <div class="container" id="pagingNum">
 		
 			<c:out value="${'<' }"></c:out>
 			 1 2 3 4 5 
@@ -89,8 +90,8 @@
 
 	</div>
 	</div>
+	</div>
 	
-
 	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
