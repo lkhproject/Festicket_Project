@@ -44,7 +44,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/ranking")
-	public String ranking() {
+	public String ranking(HttpServletRequest request, Model model) {
+
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+//		model.addAttribute("ongoingEvent", dao.getOngoingEventDao());
+		model.addAttribute("topfiveEvent", dao.getTopFiveEventsDao());
+		
 		return "ranking";
 	}
 	
@@ -53,7 +59,8 @@ public class HomeController {
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("event", dao.eventListDao());
+		model.addAttribute("totalExhibition", dao.countTotalExhibitionDao());
+		model.addAttribute("exhibitionList", dao.ExhibitionListDao());
 		
 		return "exhibition";
 	}
@@ -63,7 +70,8 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("event", dao.eventListDao());
+		model.addAttribute("totalFestival", dao.countTotalFestivalDao());
+		model.addAttribute("festivalList", dao.festivalListDao());
 		
 		return "festival";
 	}

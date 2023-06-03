@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +23,15 @@
 <div class="continer_select">
   <div style="float: left;">
 	<h2 class="title">페스티벌</h2>
-	<div class="totalNum">총 100건</div> <!-- 총 개수 넣어줘야함 -->
+	<div class="totalNum">총 ${totalFestival }건</div> <!-- 총 개수 넣어줘야함 -->
   </div>
+  <!-- 선택하면 정렬 기능 추가 필요 -->
 	<div class="selector">
 		<select class="form-select form-select-sm" aria-label=".form-select-sm example">
 		  <option selected>정렬선택</option>
-		  <option value="1">One</option>
-		  <option value="2">Two</option>
-		  <option value="3">Three</option>
+		  <option value="1" >시작 날짜 순</option>
+		  <option value="2">종료 날짜 늦은??? 순</option>
+		  <option value="3">관람가 낮은 순</option>
 		</select>
 	</div>
 </div>
@@ -37,19 +40,29 @@
 	<div class="container_2">
 		<table class="table">
 			<tbody>
-			  <c:forEach items="${event }" var="event"  begin="0" end="5">
-			    <tr>
-			      <td scope="row" id="eventImgCell"><img src="${event.main_img }" class="listImg"></td> <!-- 이미지로 바꾸기 -->
-			      <td id="tableCenter">
-			      	<p id="eventTitle">${event.title }</p>
-			      	<p id="eventDetail"><b>장 소:</b> ${event.place }</p>
-				  	<p id="eventDetail"><b>기 간:</b> ${event.eventDate }</p>
-				  	<p id="eventDetail"><b>관람가:</b> ${event.eventPrice }</p>
-			      </td>
-			      <td id="reserve"><input type="button" value="예매하기"></td>
-			    </tr>
-			    
-			  </c:forEach>
+				<c:choose>
+					<c:when test="${fn:length(festivalList) > 0 }">
+					  <c:forEach items="${festivalList }" var="festival"  begin="0" end="5">
+					    <tr>
+					      <td scope="row" id="eventImgCell"><img src="${festival.main_img }" class="listImg"></td> <!-- 이미지로 바꾸기 -->
+					      <td id="tableCenter">
+					      	<p id="eventTitle">${festival.title }</p>
+					      	<p id="eventDetail"><b>장 소:</b> ${festival.place }</p>
+						  	<p id="eventDetail"><b>기 간:</b> ${festival.eventDate }</p>
+						  	<p id="eventDetail"><b>관람가:</b> ${festival.eventPrice }</p>
+						  	<input type="hidden" value="${festival.eventNum }">
+					      </td>
+					      <!-- eventNum이랑 userId 넘기기 -->
+					      <td id="reserve"><input type="button" value="예매하기"></td>
+					    </tr>
+					  </c:forEach>
+			  		</c:when>
+			  		<c:otherwise>
+		                <tr>
+		                    <td id="noResult">조회된 결과가 없습니다.</td>
+		                </tr>
+		            </c:otherwise>
+			  	</c:choose>
 			</tbody>
 		</table>
 		

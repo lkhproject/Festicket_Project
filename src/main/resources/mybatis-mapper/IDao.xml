@@ -24,6 +24,7 @@
 	</delete>
 !-->
 	
+	<!-- 행사 관련 -->
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
 		SELECT * FROM event ORDER BY eventNum DESC
 	</select>
@@ -31,5 +32,55 @@
 	<select id="totalEventCountDao" resultType="int">
 		SELECT COUNT(*) FROM event
 	</select>
+	
+	<select id="getTopFiveEventsDao" resultType="com.festicket.dto.EventDto">
+		SELECT main_img, title, eventDate
+		FROM (
+		    SELECT e.main_img, e.title, e.eventDate, e.ticketCount,
+		           RANK() OVER (ORDER BY COUNT(er.re_eventNum) DESC, e.ticketCount ASC) AS rnk
+		    FROM event e
+		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+		    GROUP BY e.main_img, e.title, e.eventDate, e.ticketCount
+		)
+		WHERE rnk <![CDATA[<]]>= 5
+	</select>
+	
+	<!-- 날짜비교 
+	<select id="getOngoingEventDao" resultMap="com.festicket.dto.EventDto">
+		SELECT title, place, rgstDate, end_date
+		  FROM event
+		WHERE end_date <![CDATA[>]]>= SYSDATE and
+		start_date <![CDATA[<]]>= SYSDATE and
+		rgstDate <![CDATA[<]]>= SYSDATE
+	</select>
+	 -->
+	 
+	 <!-- 축제 페이지 -->
+	 <select id="countTotalFestivalDao" resultType="int">
+	 	SELECT COUNT(*)
+	 	FROM event
+	 	WHERE UPPER(type) LIKE '축제%'
+	 </select>
+	 
+	 <select id="festivalListDao" resultType="com.festicket.dto.EventDto">
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+	 	FROM event
+	 	WHERE UPPER(type)
+	 	LIKE '축제%'
+	 </select>
+	 
+	<!-- 전시 페이지 -->
+	<select id="countTotalExhibitionDao" resultType="int">
+	 	SELECT COUNT(*)
+	 	FROM event
+	 	WHERE UPPER(type) LIKE '전시%'
+	 </select>
+	 
+	 <select id="ExhibitionListDao" resultType="com.festicket.dto.EventDto">
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+	 	FROM event
+	 	WHERE UPPER(type)
+	 	LIKE '전시%'
+	 </select>
 	
 </mapper>

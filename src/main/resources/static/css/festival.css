@@ -88,3 +88,9 @@ p {
 #eventDetail {
 	font-size: 13px;
 }
+
+#noResult {
+	font-size: 18px;
+	font-weight: bold;
+	
+}
