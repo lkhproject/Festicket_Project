@@ -59,7 +59,6 @@ div.container_bottom {
 div.search_board {
 	position: relative;
 	width: 220px;
-	transform: translate(0, -75%);
 }
 
 input.search_board_box {
