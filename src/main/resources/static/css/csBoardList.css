@@ -56,13 +56,13 @@ div.container_bottom {
 	justify-content: space-between;
 }
 
-div.search {
+div.search_board {
 	position: relative;
 	width: 220px;
 	transform: translate(0, -75%);
 }
 
-input.board_search_box {
+input.search_board_box {
 	width: 100%;
 	height: 40px;
 	border: 1px solid #e0e0e0;
@@ -72,7 +72,7 @@ input.board_search_box {
 	color: #999;
 }
 
-input.board_search_img {
+input.search_board_img {
 	position : absolute;
 	width: 20px;
 	top: 10px;

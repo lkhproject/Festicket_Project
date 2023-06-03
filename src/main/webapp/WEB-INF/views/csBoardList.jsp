@@ -49,9 +49,9 @@
 	 
 	 <!-- 검색, 등록 -->
 	 <div class="container_bottom">
-	 <div class="search">
-	 	<input class="board_search_box" type="text">
-		<input class="board_search_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
+	 <div class="search_board">
+	 	<input class="search_board_box" type="text">
+		<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
 	 </div>
 	 <div class="button">
 		<input type="button" class="btn" onclick="script:window.location.href='csBoardWirte'" value="등록">
