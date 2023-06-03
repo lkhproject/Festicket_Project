@@ -33,10 +33,18 @@ div.container_1 {
 }
 
 input[type="button"] {
+	font-weight: 500;
 	background: #6800b8;
 	color: white;
 	padding: 5px 40px;
 	border-radius : 0.8em;
+	border-color: active-border;
+}
+
+input[type="button"]:hover {
+	background: #5c00a2;
+	color: white;
+    
 }
 
 #csListTable {
