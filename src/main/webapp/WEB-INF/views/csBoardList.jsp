@@ -48,13 +48,15 @@
 	 <!-- 게시글 리스트 끝 -->
 	 
 	 <!-- 검색, 등록 -->
-	 <div class="container_bottom">
+	 <div class="container" style="padding-top: 10px">
+	 <div class="search_board_area">
 	 <div class="search_board">
 	 	<input class="search_board_box" type="text">
 		<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
 	 </div>
 	 <div class="button">
 		<input type="button" class="btn" onclick="script:window.location.href='csBoardWirte'" value="등록">
+	 </div>
 	 </div>
 	 </div>
 	 <!-- 검색, 등록 끝 -->

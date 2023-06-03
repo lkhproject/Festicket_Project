@@ -51,7 +51,7 @@ input[type="button"] {
 	margin-top: 40px;
 }
 
-div.container_bottom {
+div.search_board_area {
 	display: flex;
 	justify-content: space-between;
 }
