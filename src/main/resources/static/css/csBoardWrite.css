@@ -55,7 +55,7 @@ div.button_cancel {
 }
 
 #button_submit {
-	font-weight: 500;
+	font-weight: bold;
 	background: #6800b8;
 	color: white;
 	padding: 5px 40px;
@@ -68,7 +68,7 @@ div.button_cancel {
 }
 
 #button_cancel {
-	font-weight: 500;
+	font-weight: bold;
 	background: #818181;
 	color: white;
 	padding: 5px 40px;

@@ -41,7 +41,7 @@ div.container_1 {
 }
 
 input[type="button"] {
-	font-weight: 500;
+	font-weight: bold;
 	background: #6800b8;
 	color: white;
 	padding: 5px 40px;
