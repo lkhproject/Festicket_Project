@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/csBoardList.css">
 <script src="/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
@@ -55,7 +54,7 @@
 		<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
 	 </div>
 	 <div class="button">
-		<input type="button" class="btn" onclick="script:window.location.href='csBoardWirte'" value="등록">
+		<input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
 	 </div>
 	 </div>
 	 </div>
