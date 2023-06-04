@@ -12,13 +12,13 @@ div.headerline {
 }
 
 tr.top_menu {
-	margin-top: 15px;
+	margin-top: 12px;
     float: center;
     display: flex;
 }
 
 td.toptext {
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: bold;
 	font-family: 'Noto Sans KR', sans-serif;
     color: #7c7c7c;
@@ -41,14 +41,15 @@ hr.line {
 	background: #d6d6d6;
     height:1px;
     border:0;
+    margin: 8px;
 }
 
 div.categoryline {
-	margin-left: 60px;
+	margin-left: 150px;
 }
 
 img.logo {
-	width: 220px;
+	width: 240px;
 	padding-right: 50px;
 }
 
