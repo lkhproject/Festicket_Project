@@ -18,30 +18,25 @@
 	<!-- 모든 이벤트 리스트 -->
 	<!-- 이벤트 이미지, 자치구, 행사분류, 행사명 넘김 -->
 	<div class="container">
-	<div class="container_1">
-	
 	<div id="reservation_page">
 		<h2 class="rvTitle">예매</h2>
+		<div class="totalNum">총 ${totalCount }건</div> <!-- 총 개수 넣어줘야함 -->
 		<div class="card-group center-block" id="cardBox">
-		<div class="row justify-content-center">
+		<div class="row">
 		<c:forEach items="${event }" var="event" >
-	  <div class="col" style="float: none; margin 0 auto">
-	  <input type="hidden" value="${event.eventNum }">
-	    <div class="card" id="cardList">
-	      <img src="${event.main_img }" class="card-img-top" id="card_img"
-	      		onclick="script:window.location.href=''"><!-- 상세페이지로 이동 -->
-	      <div class="card-body" onclick="script:window.location.href=''">
-	        <h5 class="card-title">${event.title }</h5>
-	        <h6 class="card-subtitle">서울/${event.gunName }</h6>
-			<p class="card-text"><small class="text-muted">${event.type }</small></p>
-	      </div>
-	    </div>
-	  </div>
+		  <input type="hidden" value="${event.eventNum }">
+		    <div class="card" id="cardList">
+		      <img src="${event.main_img }" class="card-img-top" id="card_img"
+		      		onclick="script:window.location.href=''" style="cursor:pointer"><!-- 상세페이지로 이동 -->
+		      <div class="card-body" onclick="script:window.location.href=''" style="cursor:pointer">
+		        <h5 class="card-title">${event.title }</h5>
+		        <h6 class="card-subtitle">서울/${event.gunName }</h6>
+				<p class="card-text"><small class="text-muted">${event.type }</small></p>
+		      </div>
+		    </div>
 		 </c:forEach>
+		 </div>s
 		 </div>
-		 </div>
-	</div>
-	
 	</div>
 	</div>
 	<!-- 모든 이벤트 리스트 끝 -->

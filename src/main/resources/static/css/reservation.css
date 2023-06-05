@@ -17,7 +17,20 @@ h2.rvTitle {
 	font-size: 35px;
 	font-weight: bold;
 	padding-top: 60px;
+	margin: 10px;
+	margin-left: 34px;
 	color: #404040;
+}
+
+div.totalNum {
+	font-weight: 600;
+	margin-left: 37px;
+	margin-bottom: 20px;
+}
+
+div.row {
+	justify-content: left;
+	margin-left: 15px;
 }
 
 div.card-body {
@@ -31,6 +44,7 @@ h5.card-title {
 }
 
 #cardList {
+	margin: 10px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	width: 250px;
@@ -45,16 +59,11 @@ h5.card-title {
 	border-radius: 0.5em;
 }
 
-#card_container {
-	margin-top: 50px;
-	margin-bottom: 50px;
-}
-
 #cardBox {
-	display: flex;
-	flex-direction: column;
-    align-items: left;
-    justify-content: left;
+   	display: flex;
+  	flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #reservation_page {
