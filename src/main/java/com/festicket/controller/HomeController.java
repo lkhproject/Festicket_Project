@@ -127,5 +127,15 @@ public class HomeController {
 		return "adminEventAdd";
 	}
 	
+	@RequestMapping(value = "/search")
+	public String searchResult(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("totalFestival", dao.countTotalFestivalDao());
+		model.addAttribute("festivalList", dao.festivalListDao());
+		
+		return "searchResult";
+	}
 	
 }
