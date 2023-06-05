@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,16 @@
 		      <img src="${event.main_img }" class="card-img-top" id="card_img"
 		      		onclick="script:window.location.href=''" style="cursor:pointer"><!-- 상세페이지로 이동 -->
 		      <div class="card-body" onclick="script:window.location.href=''" style="cursor:pointer">
-		        <h5 class="card-title">${event.title }</h5>
+		        <h5 class="card-title">
+					<c:choose>
+						<c:when test="${fn:length(event.title) > 19}">
+							${fn:substring(event.title, 0, 18)}...
+						</c:when>
+						<c:otherwise>
+							${event.title}
+						</c:otherwise>
+					</c:choose>
+		        </h5>
 		        <h6 class="card-subtitle">서울/${event.gunName }</h6>
 				<p class="card-text"><small class="text-muted">${event.type }</small></p>
 		      </div>
