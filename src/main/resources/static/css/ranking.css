@@ -25,6 +25,12 @@ div.top5 {
 	font-weight: bold;
 }
 
+#search_btn {
+	width: "25";
+	height: "25";
+	float: left;
+}
+
 #rankingList {
 	background-color: #eeeeee;
 	width: 200px;
@@ -49,10 +55,21 @@ div.top5 {
 	 border-radius: 0.8em;
 }
 
-div.eventListScroll {
+#ongoinEvent_container {
+	 padding: 50px;
+}
+
+div.eventListScroll_left {
 	 overflow: auto;
 	 height: 400px;
-	 width: 400px;
+	 width: 40%;
+	 float: left;
+}
+
+div.eventListScroll_right {
+	 overflow: auto;
+	 height: 400px;
+	 width: 60%;
 	 float: left;
 }
 

@@ -27,7 +27,8 @@
 			<c:forEach items="${topfiveEvent }" var="topfiveEvent"  begin="0" end="4" varStatus="status">
 		  <div class="col" style="float: none; margin 0 auto">
 		    <div class="card" id="rankingList">
-			      <img src="${topfiveEvent.main_img }" class="card-img-top" id="cardImg">
+			      <img src="${topfiveEvent.main_img }" class="card-img-top" id="cardImg"
+			      	onclick="script:window.location.href=''"><!-- 상세페이지로 이동 -->
 			      	<div class="card-img-overlay" id="overlayText">
 			      		<h1 class="rankingCount">${status.count }</h1>
 			      	</div>
@@ -47,33 +48,37 @@
 <!-- 현재 진행중인 행사 배너 -->
 <div class="container" style="padding-bottom: 400px">
 	<nav class="navbar bg-light">
-	  <div class="container-fluid">
-	    <a class="navbar-brand" href="#" id="ongoingEventTitle">
-	      <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-	      현재 진행중인 행사&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 총 100건   
-	    </a> <!-- 건수 오른쪽으로 정렬 -->
+	  <div class="container-fluid" id="ongoingEventTitle">
+	    <div class="navbar-brand">
+	      <img src="resources/img/search_board_btn.png" id="search_btn" class="d-inline-block align-text-top">
+	      <div style="float: left;">&nbsp;현재 진행중인 행사</div>
+	    </div>
+	    <div style="float: right;">총 100건</div>
 	  </div>
 	</nav>
 
 <!-- 행사 리스트 -->
-<div class="container">
-	<div class="eventListScroll">
-		    <div id="list-example" class="list-group">
-		    <c:forEach items="${ongoingEvent }" var="ongoingEvent" begin="0" end="10">
+<div class="container" style="margin-bottom: 50px">
+	<div class="eventListScroll_left">
+		 <div id="list-example" class="list-group">
+		    <c:forEach items="${event }" var="event" begin="0" end="10">
 			    <div class="row">
-			      <a class="list-group-item list-group-item-action" href="#">${ongoingEvent.title }</a>
+			      <a class="list-group-item list-group-item-action" href="#">${event.title }</a>
 				</div>
 		    </c:forEach>
-		    </div>
-		  </div>
-	<div class="col-8">
-	    <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
-	      <div id="item-1">
-	        <h4>${ongoingEvent.place }</h4>
-	        <p>${ongoingEvent.program }</p>
-	        <p>${ongoingEvent.rgstDate }</p>
-	        <p>${ongoingEvent.end_date }</p>
-	      </div>
+	    </div>
+	  </div>
+	<div class="eventListScroll_right">
+		  <div id="list-example" class="list-group">
+	    <!-- 수정필요 --> 
+	    <c:forEach items="${event }" var="event" begin="0" end="10">
+		      <div id="item-1">
+		        <h4>${event.place }</h4>
+		        <p>${event.program }</p>
+		        <p>${event.rgstDate }</p>
+		        <p>${event.end_date }</p>
+		      </div>
+	     </c:forEach>
 	    </div>
 	</div>
 </div>

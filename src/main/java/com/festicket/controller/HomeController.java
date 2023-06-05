@@ -51,6 +51,7 @@ public class HomeController {
 		
 //		model.addAttribute("ongoingEvent", dao.getOngoingEventDao());
 		model.addAttribute("topfiveEvent", dao.getTopFiveEventsDao());
+		model.addAttribute("event", dao.eventListDao());
 		
 		return "ranking";
 	}
