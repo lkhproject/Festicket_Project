@@ -47,6 +47,21 @@ public class HomeController {
 		return "ranking";
 	}
 	
+	@RequestMapping(value = "/reservation")
+	public String reservation(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("event", dao.eventListDao());
+		
+		return "reservation";
+	}
+	
+	@RequestMapping(value = "/rvView")
+	public String rvView() {
+		return "rvView";
+	}
+	
 	@RequestMapping(value = "/exhibition")
 	public String exhibition() {
 		return "exhibition";
