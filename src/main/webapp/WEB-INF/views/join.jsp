@@ -61,10 +61,6 @@
 					</tr>
 				</table>
 				</center>
-			</td>
-		</tr>	
-	</table>
-	</center>
 	
 	<%@ include file="include/footer.jsp" %>
 </body>

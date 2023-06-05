@@ -43,6 +43,11 @@ public class HomeController {
 		return "myPage";
 	}
 	
+	@RequestMapping(value = "/myPageModify")
+	public String myPageModify() {
+		return "myPageModify";
+	}
+	
 	@RequestMapping(value = "/ranking")
 	public String ranking() {
 		return "ranking";
