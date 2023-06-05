@@ -9,7 +9,6 @@
 <title>페스티켓</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/adminList.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
@@ -23,7 +22,7 @@
 <div class="container_1">
 <div id="admin_page_form">
 	<h2 class="adminTitle">관리자 페이지</h2>
-	<table class="table table-hover" id="adminTable">
+	<table class="table table-hover" id="adminListTable">
 	  <thead style="background-color: #eeeeee">
 	    <tr>
 	      <th scope="col">번호</th>
@@ -47,12 +46,16 @@
 
 <!-- 검색, 등록 -->
 	<div class="container" style="padding-top: 10px">
-		<input class="search_box_little" type=text>
-		<div class="search_btn_img_little">
-			<input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기' onfocus="this.blur();" >
-		</div>
-		<input type="button" class="btn" style="float: right;" onclick="script:window.location.href='adminEventAdd'" value="등록">
-	</div>
+	 <div class="search_board_area">
+	 <div class="search_board">
+	 	<input class="search_board_box" type="text">
+		<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
+	 </div>
+	 <div class="button">
+		<input type="button" class="btn" onclick="script:window.location.href='adminEventAdd'" value="등록">
+	 </div>
+	 </div>
+	 </div>
 <!-- 검색, 등록 끝 -->
 
 <!-- 페이징 -->

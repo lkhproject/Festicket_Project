@@ -20,7 +20,7 @@
 	<div class="container_1" >
 	
 	<div class="container_2" >
-		<h2 class="adminTitle" style="font-size: 25px; font-weight: bold">관리자 페이지</h2>
+		<h2 class="adminTitle">관리자 페이지</h2>
 			<form action="" id="detail_form">
 		<!-- 행사 디테일 폼 입력 -->
 				<div class="input-group mb-3">

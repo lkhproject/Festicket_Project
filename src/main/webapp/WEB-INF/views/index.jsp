@@ -45,14 +45,16 @@
 </div>
 	<div class="card-group center-block" id="cardBox">
 		<div class="row justify-content-center">
-		<c:forEach items="${event }" var="event"  begin="0" end="4">
+		<c:forEach items="${festival_5 }" var="festival"  begin="0" end="4">
 	  <div class="col" style="float: none; margin 0 auto">
+	  <input type="hidden" value="${festival.eventNum }">
 	    <div class="card" id="cardList">
-	      <img src="${event.main_img }" class="card-img-top" style="width: 200px; height:250px">
+	      <img src="${festival.main_img }" class="card-img-top" id="card_img"
+	      		onclick="script:window.location.href=''"><!-- 상세페이지로 이동 -->
 	      <div class="card-body">
-	        <h5 class="card-title">${event.title }</h5>
-	        <h6 class="card-subtitle">서울/${event.gunName }</h6>
-			<p class="card-text"><small class="text-muted">${event.type }</small></p>
+	        <h5 class="card-title">${festival.title }</h5>
+	        <h6 class="card-subtitle">서울/${festival.gunName }</h6>
+			<p class="card-text"><small class="text-muted">${festival.type }</small></p>
 	      </div>
 	    </div>
 	  </div>
@@ -69,14 +71,16 @@
 </div>
 	<div class="card-group center-block" id="cardBox">
 		<div class="row justify-content-center">
-		<c:forEach items="${event }" var="event"  begin="0" end="4">
+		<c:forEach items="${exhibition_5 }" var="exhibition"  begin="0" end="4">
 	  <div class="col" style="float: none; margin 0 auto">
 	    <div class="card" id="cardList">
-	      <img src="${event.main_img }" class="card-img-top" style="width: 200px; height:250px">
+	    <input type="hidden" value="${exhibition.eventNum }">
+	      <img src="${exhibition.main_img }" class="card-img-top" id="card_img"
+	      	onclick="script:window.location.href=''"><!-- 상세페이지로 이동 -->
 	      <div class="card-body">
-	        <h5 class="card-title">${event.title }</h5>
-	        <h6 class="card-subtitle">서울/${event.gunName }</h6>
-			<p class="card-text"><small class="text-muted">${event.type }</small></p>
+	        <h5 class="card-title">${exhibition.title }</h5>
+	        <h6 class="card-subtitle">서울/${exhibition.gunName }</h6>
+			<p class="card-text"><small class="text-muted">${exhibition.type }</small></p>
 	      </div>
 	    </div>
 	  </div>

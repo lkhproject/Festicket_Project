@@ -6,6 +6,34 @@
 	
 <mapper namespace="com.festicket.dao.IDao">
 
+	<!-- ***메인 페이지(index)*** -->
+	
+	<!-- 페스티벌 탑5 리스트 / 예매율 = (예매된 티켓 수 / 전체 좌석 수) * 100-->
+	<select id="top5FestivalListDao" resultType="com.festicket.dto.EventDto">
+		SELECT eventNum, main_img, title, gunName, type
+		FROM (
+		    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount,
+		           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / e.ticketCount)*100 DESC) AS rnk
+		    FROM event e
+		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+		    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
+		)
+		WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '축제%'
+	</select>
+	
+	<!-- 전시 탑5 리스트 -->
+	<select id="top5ExhibitionListDao" resultType="com.festicket.dto.EventDto">
+		SELECT eventNum, main_img, title, gunName, type
+		FROM (
+		    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount,
+		           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / e.ticketCount)*100 DESC) AS rnk
+		    FROM event e
+		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+		    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
+		)
+		WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '전시%'
+	</select>
+
 <!-- 
 	<select id="getEventListDao" resultType="com.festicket.dto.EventDto">
 		SELECT * FROM param1 = amount는 한 페이지당 보이는 글의 개수

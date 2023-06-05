@@ -63,6 +63,7 @@ div.search_board_area {
 	justify-content: space-between;
 }
 
+/* 작은 검색창 */
 div.search_board {
 	position: relative;
 	width: 220px;
@@ -85,6 +86,7 @@ input.search_board_img {
 	right: 12px;
 	margin: 0;
 }
+/* 작은 검색창 끝 */
 
 #csBoard_page_form {
 	width: 80%;

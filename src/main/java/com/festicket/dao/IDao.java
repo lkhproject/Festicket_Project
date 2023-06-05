@@ -18,11 +18,12 @@ public interface IDao {
 	// 페스티벌
 	public int countTotalFestivalDao(); // 총 페스티벌(축제)의 개수
 	public List<EventDto> festivalListDao(); // 페스티벌 리스트
+	public List<EventDto> top5FestivalListDao(); // 페스티벌 탑5 리스트
 	
 	// 전시
 	public int countTotalExhibitionDao(); // 총 전시의 개수
 	public List<EventDto> ExhibitionListDao(); // 전시 리스트
-	
+	public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트
 	
 }
 

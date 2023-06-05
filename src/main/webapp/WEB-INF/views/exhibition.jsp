@@ -45,23 +45,22 @@
 					<c:when test="${fn:length(exhibitionList) > 0 }">
 			
 					  <c:forEach items="${exhibitionList }" var="exhibition"  begin="0" end="5">
+					  <!-- eventNum 넘기기 -->
+					  <input type="hidden" value="${exhibition.eventNum }">
 					    <tr>
-					      <td scope="row" id="eventImgCell"><img src="${exhibition.main_img }" class="listImg"></td> <!-- 이미지로 바꾸기 -->
+					      <td scope="row" id="eventImgCell"><img src="${exhibition.main_img }" class="listImg"
+					      	onclick="script:window.location.href=''"></td><!-- 상세페이지로 이동 -->
 					      <td id="tableCenter">
 					      	<p id="eventTitle">${exhibition.title }</p>
 					      	<p id="eventDetail"><b>장 소:</b> ${exhibition.place }</p>
 						  	<p id="eventDetail"><b>기 간:</b> ${exhibition.eventDate }</p>
 						  	<p id="eventDetail"><b>관람가:</b> ${exhibition.eventPrice }</p>
 					      </td>
-					      <!-- eventNum이랑 userId 넘기기 -->
-					      <td id="reserve"><input type="button" value="예매하기"></td>
 					    </tr>
 			  		</c:forEach>
 			  		</c:when>
 			  		<c:otherwise>
-		                <tr>
-		                    <td id="noResult">조회된 결과가 없습니다.</td>
-		                </tr>
+	                    <div id="noResult">조회된 결과가 없습니다.</div>
 		            </c:otherwise>
 			  	</c:choose>
 			</tbody>

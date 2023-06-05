@@ -23,7 +23,8 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("event", dao.eventListDao());
+		model.addAttribute("festival_5", dao.top5FestivalListDao());
+		model.addAttribute("exhibition_5", dao.top5ExhibitionListDao());
 		
 		return "index";
 	}

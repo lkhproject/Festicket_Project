@@ -11,6 +11,11 @@ div {
 	 height: 400px;
 }
 
+#card_img {
+	width: 200px;
+	height:250px;
+}
+
 #card_container {
 	margin-top: 50px;
 	margin-bottom: 50px;

@@ -17,7 +17,7 @@
 					String sessionId = (String)session.getAttribute("sessionId");
 					if(sessionId == null) {
 				%>
-				<td class="toptext"><a href="">로그인</a></td>
+				<td class="toptext"><a href="login">로그인</a></td>
 				<%
 					} else {
 				%>
@@ -26,11 +26,11 @@
 					}
 				%>
 				<td class="margin02">&nbsp;</td>
-				<td class="toptext"><a href="">회원가입</a></td>
+				<td class="toptext"><a href="join">회원가입</a></td>
 				<td class="margin02">&nbsp;</td>
-				<td class="toptext"><a href="">마이페이지</a></td>
+				<td class="toptext"><a href="myPage">마이페이지</a></td>
 				<td class="margin02">&nbsp;</td>
-				<td class="toptext"><a href="">고객센터</a></td>
+				<td class="toptext"><a href="csBoardList">고객센터</a></td>
 				<td class="margin02">&nbsp;</td>
 			</tr>
 		</table>
@@ -51,7 +51,7 @@
 			  <div class="search_btn">
 			    <input class="search_box" type=text id="search_word" placeholder='검색어를 입력하세요.'>
 			    <div class="search_btn_img">
-			      <input type="image" src='/resources/img/search_btn.png' style="padding: 8px;" alt='검색하기'>
+			      <input type="image" src='/resources/img/search_btn.png' alt='검색하기'>
 			    </div>
 			  </div>
 			</form>
