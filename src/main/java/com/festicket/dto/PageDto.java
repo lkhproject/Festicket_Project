@@ -21,12 +21,12 @@ public class PageDto {
 		this.criteria = criteria;
 		this.total = total;
 		
-		this.endPage = (int) (Math.ceil((criteria.getPageNum() / (criteria.getAmount()*1.0))) * criteria.getAmount()); // ceil->올림
+		this.endPage = (int) (Math.ceil((criteria.getPageNum() / (criteria.getCountPage()*1.0))) * criteria.getCountPage()); // ceil->올림
 		this.startPage = this.endPage - 4;
 		
 		// 실제 끝 페이지 계산(총 글의 수 / 한 페이지당 출력될 글의 수 = 올림한 정수)
 		// ex. 글이 53개면 53/5=10.6 = 올림(11) -> 실제 끝 페이지 수
-		int realEndPage = (int)Math.ceil(total*1.0 / criteria.getAmount());
+		int realEndPage = (int)Math.floor(total*1.0 / criteria.getCountPage());
 		
 		if(realEndPage < this.endPage) {
 			this.endPage = realEndPage;
@@ -37,6 +37,7 @@ public class PageDto {
 		this.prev = this.startPage > 1;
 		// 마지막 페이지 번호가 실제 페이지 번호보다 작은 경우에만 next 존재해야 함
 		this.next = this.endPage < realEndPage;
+		
 	}
 	
 }

@@ -9,10 +9,7 @@
 <title>페스티켓</title>
 </head>
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/festival.css">
-	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
 <!-- 헤더 -->
@@ -42,9 +39,9 @@
 		<table class="table">
 			<tbody>
 				<c:choose>
-					<c:when test="${fn:length(exhibitionList) > 0 }">
+					<c:when test="${totalCount > 0 }">
 			
-					  <c:forEach items="${exhibitionList }" var="exhibition"  begin="0" end="5">
+					  <c:forEach items="${exhibitionDtos }" var="exhibition"  begin="0" end="5">
 					  <!-- eventNum 넘기기 -->
 					  <input type="hidden" value="${exhibition.eventNum }">
 					    <tr>
@@ -69,10 +66,6 @@
 <!-- 페이징 -->
 	<div class="container" id="festPagingNum">
 		
-			<c:out value="${'<' }"></c:out>
-			 1 2 3 4 5 
-			<c:out value="${'>' }"></c:out>
-		<!-- 
 		<c:if test="${pageMaker.prev }">
 			<a href="list?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
 		</c:if>
@@ -91,7 +84,6 @@
 		<c:if test="${pageMaker.next }">
 			<a href="list?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
 		</c:if>
-		 -->
 	</div>
 	
 <!-- 페이징 끝 -->

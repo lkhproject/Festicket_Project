@@ -71,7 +71,7 @@
 	<div class="eventListScroll_right">
 		  <div id="list-example" class="list-group">
 	    <!-- 수정필요 --> 
-	    <c:forEach items="${event }" var="event" begin="0" end="10">
+	    <c:forEach items="${event }" var="event" begin="0" end="0">
 		      <div id="item-1">
 		        <h4>${event.place }</h4>
 		        <p>${event.program }</p>

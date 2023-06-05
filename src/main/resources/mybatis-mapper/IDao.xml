@@ -42,15 +42,17 @@
 		WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '전시%'
 	</select>
 
-<!-- 
-	<select id="getEventListDao" resultType="com.festicket.dto.EventDto">
-		SELECT * FROM param1 = amount는 한 페이지당 보이는 글의 개수
+<!-- 페이징
+	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
+		SELECT * FROM
 			(SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1)PAGE, ROWNUM
 				FROM
 					(SELECT * from event ORDER BY eventNum DESC)A)
 						WHERE PAGE=#{param2}
 	</select>
-	
+-->
+
+<!--
 	<select id="contentViewDao" resultType="com.festicket.dto.EventDto">
 		SELECT * FROM event WHERE eventNum=${param1}
 	</select>
@@ -58,7 +60,7 @@
 	<delete id="deleteDao">
 		DELETE FROM event WHERE eventNum=${param1}
 	</delete>
-!-->
+-->
 	
 	<!-- 행사 관련 -->
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
@@ -94,11 +96,22 @@
 	 
 	 <!-- 축제 페이지 -->
 	 <select id="festivalListDao" resultType="com.festicket.dto.EventDto">
-	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice 
-	 	FROM event
-	 	WHERE UPPER(type)
-	 	LIKE '축제%'
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	            FROM event
+	            WHERE UPPER(type) LIKE '축제%'
+	            ORDER BY eventNum DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param2}
 	 </select>
+	 
+	 <select id="totalFestivalCountDao" resultType="int">
+		SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '축제%'
+	</select>
 	 
 	<!-- 전시 페이지 -->
 	 <select id="ExhibitionListDao" resultType="com.festicket.dto.EventDto">
@@ -107,5 +120,9 @@
 	 	WHERE UPPER(type)
 	 	LIKE '전시%'
 	 </select>
+	 
+	 <select id="totalExhibitionCountDao" resultType="int">
+		SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '축제%'
+	</select>
 	
 </mapper>

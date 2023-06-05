@@ -1,56 +1,63 @@
 @charset "UTF-8";
-@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+body {
+	margin: 0;
+	padding: 0;
+	background: #eeeeee;
+}
 
 a:hover {
 	color: #6800b8;
 	font-weight: bolder;
-	font-family: 'NanumSquare', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 input.login_box {
 	width:500px;
-	height:50px;  
+	height:65px;  
 	padding:0 20px;
+	margin: 10px;
 	border:1px solid #e0e0e0;
-	border-radius:15px;
+	border-radius:20px;
 	outline: none;
 	font-size:15px;
 	color:#999;
-	font-family: 'NanumSquare', sans-serif;
+	display: flex;
+	
 }	
-
-td.contentbox {
-	background-color:  #eeeeee ;
-	height : 400px;
-	text-align: center;
-	border-radius: 8px;
-}
 
 input.login-button {
     width:500px;
-	height:50px;  
+	height:65px;  
 	padding:0 20px;
+	margin: 1px;
 	border:1px solid #6800b8;
-	border-radius:15px;
+	border-radius:20px;
 	outline: none;
-	font-size:15px;
+	font-size:20px;
 	color:#ffffff;
 	background: #6800b8;
-	font-family: 'NanumSquare', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
+	
     }
+    
+td.contentbox {
+	background-color: #ffffff ;
+	height : 500px;
+	text-align: center;
+	border-radius: 8px;
+	
+}
 
-div.join {
-	font-size:17px;
+div.joinpage {
+	font-size:15px;
 	color:#999;
-	font-family: 'NanumSquare', sans-serif;
-	margin: 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 1px;
 	padding: 10px;
 	display: inline-block;
 }
 
-div.form-group {
-	margin: 5px;
-	padding: 10px;
-}
+
 
 

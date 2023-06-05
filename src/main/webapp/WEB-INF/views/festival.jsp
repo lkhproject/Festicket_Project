@@ -39,20 +39,18 @@
 		<table class="table">
 			<tbody>
 				<c:choose>
-					<c:when test="${fn:length(festivalList) > 0 }">
-					  <c:forEach items="${festivalList }" var="festival"  begin="0" end="5">
-					  <!-- eventNum 넘기기 -->
+					<c:when test="${totalCount > 0 }">
+					  <c:forEach items="${festivalDtos }" var="festival" begin="0">
 					  <input type="hidden" value="${festival.eventNum }">
 					    <tr>
 					      <td scope="row" id="eventImgCell"><img src="${festival.main_img }" class="listImg"
-					      	onclick="script:window.location.href=''"></td><!-- 상세페이지로 이동 -->
+					      	onclick="script:window.location.href=''"></td>
 					      <td id="tableCenter">
 					      	<p id="eventTitle">${festival.title }</p>
 					      	<p id="eventDetail"><b>장 소:</b> ${festival.place }</p>
 						  	<p id="eventDetail"><b>기 간:</b> ${festival.eventDate }</p>
 						  	<p id="eventDetail"><b>관람가:</b> ${festival.eventPrice }</p>
 					      </td>
-					      <!-- eventNum이랑 userId 넘기기 -->
 					      <td id="reserve"><input type="button" value="예매하기"></td>
 					    </tr>
 					  </c:forEach>
@@ -63,33 +61,29 @@
 			  	</c:choose>
 			</tbody>
 		</table>
-		
+<!-- 페스티벌 리스트 끝 -->
+
 <!-- 페이징 -->
 	<div class="container" id="festPagingNum">
 		
-			<c:out value="${'<' }"></c:out>
-			 1 2 3 4 5 
-			<c:out value="${'>' }"></c:out>
-		<!-- 
 		<c:if test="${pageMaker.prev }">
-			<a href="list?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+			<a href="festival?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
 		</c:if>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
 			<c:choose>
 				<c:when test="${currPage == num }">
-					<span style="color: #FFFFFF; background-color: #000000; font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>
-					<a href="list?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+					<a href="festival?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next }">
-			<a href="list?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+			<a href="festival?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
 		</c:if>
-		 -->
 	</div>
 	
 <!-- 페이징 끝 -->
