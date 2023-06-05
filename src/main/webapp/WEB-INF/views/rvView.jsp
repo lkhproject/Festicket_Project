@@ -23,11 +23,9 @@
 		<table>
 			<h5 class="eventTitle">Dear Next Generation, 유다빈밴드(YUDABINBAND)</h5>
 		</table>
-	
 	</div>
 	</div>
 	</div>
-	
 	<!-- 예매 영역 끝 -->
 	
 	
