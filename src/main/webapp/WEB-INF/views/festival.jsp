@@ -8,8 +8,6 @@
 <meta charset="UTF-8">
 <title>페스티켓</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/festival.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
@@ -23,7 +21,7 @@
 <div class="continer_select">
   <div style="float: left;">
 	<h2 class="title">페스티벌</h2>
-	<div class="totalNum">총 ${totalFestival }건</div> <!-- 총 개수 넣어줘야함 -->
+	<div class="totalNum">총 ${totalCount }건</div> <!-- 총 개수 넣어줘야함 -->
   </div>
   <!-- 선택하면 정렬 기능 추가 필요 -->
 	<div class="selector">

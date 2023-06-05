@@ -61,8 +61,8 @@ public class HomeController {
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("totalExhibition", dao.countTotalExhibitionDao());
 		model.addAttribute("exhibitionList", dao.ExhibitionListDao());
+		model.addAttribute("totalCount", dao.ExhibitionListDao().size());
 		
 		return "exhibition";
 	}
@@ -72,8 +72,8 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("totalFestival", dao.countTotalFestivalDao());
 		model.addAttribute("festivalList", dao.festivalListDao());
+		model.addAttribute("totalCount", dao.festivalListDao().size());
 		
 		return "festival";
 	}
@@ -132,8 +132,12 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("totalFestival", dao.countTotalFestivalDao());
-		model.addAttribute("festivalList", dao.festivalListDao());
+		String keyword = request.getParameter("keyword");
+		
+		request.setAttribute("search_word", keyword);
+		
+		model.addAttribute("searchList", dao.getSearchResult(keyword));
+		model.addAttribute("totalCount", dao.getSearchResult(keyword).size());
 		
 		return "searchResult";
 	}

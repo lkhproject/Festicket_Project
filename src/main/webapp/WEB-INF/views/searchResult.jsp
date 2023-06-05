@@ -19,7 +19,7 @@
 <div class="container_1">
 <div class="continer_select">
   <div style="float: left;">
-	<h2 class="title">'<b>${totalFestival }</b>' 에 대한 검색결과는 총 <b>${totalFestival }</b>건 입니다.</h2>
+	<h2 class="title">'<b>${search_word }</b>' 에 대한 검색결과는 총 <b>${totalCount }</b>건 입니다.</h2>
   </div>
   <!-- 선택하면 정렬 기능 추가 필요 -->
 	<div class="selector">
@@ -37,18 +37,18 @@
 		<table class="table">
 			<tbody>
 				<c:choose>
-					<c:when test="${fn:length(festivalList) > 0 }">
-					  <c:forEach items="${festivalList }" var="festival"  begin="0" end="5">
+					<c:when test="${fn:length(searchList) > 0 }">
+					  <c:forEach items="${searchList }" var="search"  begin="0" end="5">
 					  <!-- eventNum 넘기기 -->
-					  <input type="hidden" value="${festival.eventNum }">
+					  <input type="hidden" value="${search.eventNum }">
 					    <tr>
-					      <td scope="row" id="eventImgCell"><img src="${festival.main_img }" class="listImg"
+					      <td scope="row" id="eventImgCell"><img src="${search.main_img }" class="listImg"
 					      	onclick="script:window.location.href=''"></td><!-- 상세페이지로 이동 -->
 					      <td id="tableCenter">
-					      	<p id="eventTitle">${festival.title }</p>
-					      	<p id="eventDetail"><b>장 소:</b> ${festival.place }</p>
-						  	<p id="eventDetail"><b>기 간:</b> ${festival.eventDate }</p>
-						  	<p id="eventDetail"><b>관람가:</b> ${festival.eventPrice }</p>
+					      	<p id="eventTitle">${search.title }</p>
+					      	<p id="eventDetail"><b>장 소:</b> ${search.place }</p>
+						  	<p id="eventDetail"><b>기 간:</b> ${search.eventDate }</p>
+						  	<p id="eventDetail"><b>관람가:</b> ${search.eventPrice }</p>
 					      </td>
 					      <!-- eventNum이랑 userId 넘기기 -->
 					      <td id="reserve"><input type="button" value="예매하기"></td>
@@ -56,7 +56,7 @@
 					  </c:forEach>
 			  		</c:when>
 			  		<c:otherwise>
-	                    <div id="noResult">'<b>${totalFestival }</b>'에 대한 검색결과가 없습니다.</div>
+	                    <div id="noResult">'<b>${search_word }</b>'에 대한 검색결과가 없습니다.</div>
 		            </c:otherwise>
 			  	</c:choose>
 			</tbody>
