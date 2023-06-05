@@ -35,7 +35,7 @@
 		      </div>
 		    </div>
 		 </c:forEach>
-		 </div>s
+		 </div>
 		 </div>
 	</div>
 	</div>
