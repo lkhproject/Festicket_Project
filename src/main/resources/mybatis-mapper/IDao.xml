@@ -10,10 +10,24 @@
 	
 	<!-- 검색 결과 가져오기 -->
 	<select id="getSearchResult" resultType="com.festicket.dto.EventDto">
-		SELECT eventNum, main_img, title, place, eventDate, eventPrice 
-	 	FROM event
-	 	WHERE UPPER(title)
-	 	LIKE '%' || #{param1} || '%'
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+			 	FROM event
+			 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+			 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
+	</select>
+	
+	<select id="totalSearchResultCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM event
+	    WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+	    OR UPPER(type) LIKE '%' || #{param1} || '%'
 	</select>
 	
 	<!-- 페스티벌 탑5 리스트 / 예매율 = (예매된 티켓 수 / 전체 좌석 수) * 100-->
@@ -114,15 +128,22 @@
 	</select>
 	 
 	<!-- 전시 페이지 -->
-	 <select id="ExhibitionListDao" resultType="com.festicket.dto.EventDto">
-	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice 
-	 	FROM event
-	 	WHERE UPPER(type)
-	 	LIKE '전시%'
+	 <select id="exhibitionListDao" resultType="com.festicket.dto.EventDto">
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	            FROM event
+	            WHERE UPPER(type) LIKE '전시%'
+	            ORDER BY eventNum DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param2}
 	 </select>
 	 
 	 <select id="totalExhibitionCountDao" resultType="int">
-		SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '축제%'
+		SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '전시%'
 	</select>
 	
 </mapper>

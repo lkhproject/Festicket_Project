@@ -21,7 +21,7 @@
 <div class="continer_select">
   <div style="float: left;">
 	<h2 class="title">전시</h2>
-	<div class="totalNum">총 ${totalCount }건</div> <!-- 총 개수 넣어줘야함 -->
+	<div class="totalNum">총 ${totalCount }건</div>
   </div>
   <!-- 선택하면 정렬 기능 추가 필요 -->
 	<div class="selector">
@@ -34,14 +34,14 @@
 	</div>
 </div>
 
-<!-- 페스티벌 리스트 시작 -->
+<!-- 전시 리스트 시작 -->
 	<div class="container_2">
 		<table class="table">
 			<tbody>
 				<c:choose>
 					<c:when test="${totalCount > 0 }">
 			
-					  <c:forEach items="${exhibitionDtos }" var="exhibition"  begin="0" end="5">
+					  <c:forEach items="${exhibitionDtos }" var="exhibition">
 					  <!-- eventNum 넘기기 -->
 					  <input type="hidden" value="${exhibition.eventNum }">
 					    <tr>
@@ -53,6 +53,7 @@
 						  	<p id="eventDetail"><b>기 간:</b> ${exhibition.eventDate }</p>
 						  	<p id="eventDetail"><b>관람가:</b> ${exhibition.eventPrice }</p>
 					      </td>
+					      <td id="reserve"><input type="button" value="예매하기"></td>
 					    </tr>
 			  		</c:forEach>
 			  		</c:when>
@@ -67,29 +68,29 @@
 	<div class="container" id="festPagingNum">
 		
 		<c:if test="${pageMaker.prev }">
-			<a href="list?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+			<a href="exhibition?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
 		</c:if>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
 			<c:choose>
 				<c:when test="${currPage == num }">
-					<span style="color: #FFFFFF; background-color: #000000; font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>
-					<a href="list?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+					<a href="exhibition?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next }">
-			<a href="list?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+			<a href="exhibition?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
 		</c:if>
 	</div>
 	
 <!-- 페이징 끝 -->
 		
 	</div>
-<!-- 페스티벌 리스트 끝 -->
+<!-- 전시 리스트 끝 -->
 
 
 	</div>

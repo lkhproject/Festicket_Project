@@ -26,7 +26,7 @@ public class PageDto {
 		
 		// 실제 끝 페이지 계산(총 글의 수 / 한 페이지당 출력될 글의 수 = 올림한 정수)
 		// ex. 글이 53개면 53/5=10.6 = 올림(11) -> 실제 끝 페이지 수
-		int realEndPage = (int)Math.floor(total*1.0 / criteria.getCountPage());
+		int realEndPage = (int)Math.ceil(total*1.0 / criteria.getCountList());
 		
 		if(realEndPage < this.endPage) {
 			this.endPage = realEndPage;

@@ -81,7 +81,7 @@ public class HomeController {
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);
 		
-		List<EventDto> exhibitionDtos = dao.festivalListDao(criteria.getCountList(), pageNum);
+		List<EventDto> exhibitionDtos = dao.exhibitionListDao(criteria.getCountList(), pageNum);
 		
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
@@ -171,19 +171,10 @@ public class HomeController {
 		return "adminEventAdd";
 	}
 	
-	@RequestMapping(value = "/search")
+	@RequestMapping(value = "/searchResult")
 	public String searchResult(HttpServletRequest request, Model model, Criteria criteria) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		String keyword = request.getParameter("keyword");
-		
-		request.setAttribute("search_word", keyword);
-		
-		int totalResult = dao.getSearchResult(keyword).size(); // 모든 글의 개수
-		
-		model.addAttribute("searchList", dao.getSearchResult(keyword));
-		model.addAttribute("totalCount", totalResult);
 		
 		// 페이징
 		int pageNum = 0;
@@ -197,15 +188,20 @@ public class HomeController {
 			criteria.setPageNum(pageNum);
 		}
 		
-		int totalCount = dao.totalFestivalCountDao();
+
+		String keyword = request.getParameter("keyword");
 		
-		PageDto pageDto = new PageDto(criteria, totalCount);
+		request.setAttribute("search_word", keyword);
 		
-		List<EventDto> festivalDtos = dao.festivalListDao(criteria.getCountList(), pageNum);
+		int totalResult = dao.totalSearchResultCount(keyword); // 모든 글의 개수
 		
-		request.setAttribute("totalCount", totalCount);
+		PageDto pageDto = new PageDto(criteria, totalResult);
+		
+		List<EventDto> searchListDtos = dao.getSearchResult(keyword, criteria.getCountList(), pageNum);
+		
+		model.addAttribute("totalCount", totalResult);
 		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("festivalDtos", festivalDtos);
+		model.addAttribute("searchListDtos", searchListDtos);
 		model.addAttribute("currPage", pageNum);
 		
 		return "searchResult";
