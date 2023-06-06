@@ -47,7 +47,7 @@
 		</div>
 		
 		<div class="search">
-			<form class="search" method='get' action='search'>
+			<form class="search" method='get' action='searchResult'>
 			  <div class="search_btn">
 			    <input class="search_box" type="text" id="search_word" name="keyword" placeholder='검색어를 입력하세요.'>
 			    <div class="search_btn_img">
