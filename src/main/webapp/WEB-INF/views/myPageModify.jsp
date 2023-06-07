@@ -74,8 +74,8 @@
     </li>
 </ul>      
 	</div>
-			<center>
-				<table border="0" cellspacing="0" cellpadding="20" width="40%">	
+			
+				<table border="0" cellspacing="0" cellpadding="0" width="0">	
 					<tr>
 						
 						<td class="contentbox">
@@ -123,7 +123,7 @@
 						</td>
 					</tr>
 				</table>
-				</center>
+		
 	</div>
 	
 	<%@ include file="include/footer.jsp" %>

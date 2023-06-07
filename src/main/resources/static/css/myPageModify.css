@@ -9,12 +9,13 @@ body {
 
 td.contentbox {
 	float: center;
-    width: 1120px;
+    width: 1000px;
     padding: 38px 59px 100px 60px;
     box-sizing: border-box;
     background-color: #ffffff ;
 	height : 500px;
 	text-align: center;
+	
 }
 div.inner{
 	padding-top: 50px;
@@ -137,6 +138,7 @@ div.help_cont{
 	border: 1px solid #ecedf2;
     background: #ffffff;
     width: 260px;
+    height : 850px;
   	float: left;
 }
 ul.help_lmenu{
@@ -161,4 +163,6 @@ span.help_submenu_tit{
 
 ul.help_submenu{
 	list-style: none;
+	font-family: 'Noto Sans KR', sans-serif;
+	padding: 10px;
 }
