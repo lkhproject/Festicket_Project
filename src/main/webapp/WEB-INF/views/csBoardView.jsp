@@ -39,8 +39,6 @@
 				</div>
 			</form>
 	
-	<!-- 게시글 작성 끝 -->
-	
 	<!-- 등록, 취소 버튼 -->
 	<div class="container" style="padding-top: 10px">
 	<div class="button_area">
@@ -56,7 +54,7 @@
 		</div>
 		</div>
 	</div>
-
+	<!-- 게시글 작성 끝 -->
 	
 	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>

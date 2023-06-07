@@ -18,4 +18,5 @@ public class CSboardDto {
 	private Date c_writeDate; // 글쓴날
 	private Date c_modifyDate; // 글수정날
 	private int c_hit; // 조회수
+	private int c_replyCount; // 댓글개수
 }

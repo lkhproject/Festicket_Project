@@ -137,7 +137,7 @@ public class HomeController {
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);	
 		
-		List<CSboardDto> CSboardDtos = dao.CSListDao(criteria.getCountList(), pageNum);
+		List<CSboardDto> CSboardDtos = dao.csListDao(criteria.getCountList(), pageNum);
 		
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
@@ -153,7 +153,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/csBoardWriteOk")
-	public String questionOk(HttpServletRequest request) {
+	public String csBoardWriteOk(HttpServletRequest request) {
 		
 		String c_userId = request.getParameter("c_userId");
 		String c_title = request.getParameter("c_title");
@@ -161,7 +161,7 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		dao.CSwriteDao(c_userId, c_title, c_content);
+		dao.csWriteDao(c_userId, c_title, c_content);
 		
 		return "redirect:csBoardList";
 	}

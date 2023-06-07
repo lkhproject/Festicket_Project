@@ -20,41 +20,39 @@
 		<div class="container_1">
 		<div id="csBoard_page_form">
 		<h2 class="csBoardTitle">고객센터</h2>
-			<form action="csBoardWriteOk"  method="post" id="detail_form">
+			<form action="csBoardWriteOk" method="post" id="detail_form">
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">제목</span>
-	  				<input type="text" class="form-control" aria-describedby="basic-addon1">
+	  				<input type="text" class="form-control" aria-describedby="basic-addon1" name="c_title">
 				</div>
 				
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">작성자</span>
 	  				<input type="text" class="form-control" aria-describedby="basic-addon1" 
-	  					value="${memberDto.userId }" readonly="readonly">
+	  				 value="${memberDto.userId }" name="c_userId">
 				</div>
 				
 				<div class="input-group">
-	  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea"></textarea>
+	  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" name="c_content"></textarea>
 				</div>
+				
+				<!-- 등록, 취소 버튼 -->
+				<div class="container" style="padding-top: 10px">
+				<div class="button_area">
+					<div class="button_submit">
+						<input type="submit" class="btn" id="button_submit" value="등록">
+					</div>
+					<div class="button_cancel">
+						<input type="button" class="btn" id="button_cancel" onclick="script:window.location.href='csBoardList'" value="취소">
+					</div>
+				</div>
+				</div>
+				<!-- 등록, 취소 버튼 끝 -->
 			</form>
-	
+		</div>
+		</div>
+	</div>
 	<!-- 게시글 작성 끝 -->
-	
-	<!-- 등록, 취소 버튼 -->
-	<div class="container" style="padding-top: 10px">
-	<div class="button_area">
-		<div class="button_submit">
-			<input type="submit" class="btn" id="button_submit" value="등록">
-		</div>
-		<div class="button_cancel">
-			<input type="button" class="btn" id="button_cancel" onclick="script:window.location.href='csBoardList'" value="취소">
-		</div>
-	</div>
-	</div>
-	<!-- 등록, 취소 버튼 끝 -->
-		</div>
-		</div>
-	</div>
-
 	
 	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>

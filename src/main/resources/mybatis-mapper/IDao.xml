@@ -16,7 +16,7 @@
 	</select>
 	
 	<!-- 고객센터 페이지 -->
-	<select id="CSListDao" resultType="com.festicket.dto.CSboardDto">
+	<select id="csListDao" resultType="com.festicket.dto.CSboardDto">
 		SELECT *
 		FROM (
 		    SELECT A.*, FLOOR(((ROWNUM - 1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
@@ -27,20 +27,20 @@
 		    ) A
 		) B
 		WHERE PAGE = #{param2}
-	    
-	<!-- SELECT * FROM eventCSboard ORDER BY c_idx DESC  -->
 	</select>
 	
-	<insert id="CSwriteDao">
-		INSERT INTO eventCSboard(c_idx, c_userId, c_title, c_content) 
-			VALUES(ecs_seq.nextval, #{param1}, #{param2}, #{param3})
+	<insert id="csWriteDao">
+		INSERT INTO 
+			eventCSboard(c_idx, c_userId, c_title, c_content, c_hit, c_replyCount)
+				VALUES
+					(ecs_seq.nextval, #{param1}, #{param2}, #{param3}, 0, 0)
 	</insert>
 	
 	<select id="csViewDao" resultType="com.festicket.dto.CSboardDto">
 		SELECT * FROM eventCSboard WHERE c_idx=#{param1}
 	</select>
 	
-	<delete id="CSDeleteDao">
+	<delete id="csDeleteDao">
 		DELETE FROM eventCSboard WHERE c_idx=#{param1}
 	</delete>
 	
