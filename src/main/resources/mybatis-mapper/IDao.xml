@@ -44,6 +44,10 @@
 		DELETE FROM eventCSboard WHERE c_idx=#{param1}
 	</delete>
 	
+	<update id="csHitDao">
+		UPDATE eventCSboard SET c_hit=c_hit+1 WHERE c_idx=#{param1}
+	</update>
+	
 	<select id="totalCSListCountDao" resultType="int">
 		SELECT COUNT(*) FROM eventCSboard
 	</select>

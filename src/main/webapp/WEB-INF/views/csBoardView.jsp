@@ -37,25 +37,49 @@
 	  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" readonly="readonly">${csBoardDto.c_content }
 	  				</textarea>
 				</div>
+				
+				<!-- 댓글 영역 -->
+				<form action="" method="post">
+				<input type=hidden name=tb value=board_private>
+				<input type=hidden name=num value=>
+				<input type=hidden name=bbs_num value=42310>
+				<input type=hidden name=pg value=1>
+				<div style='border:1px solid #e4e4e4; padding:10px 15px 8px 15px; background:#f6f6f6'>
+				  <table cellpadding=0 cellspacing=0 width='100%'>
+				    <tr>
+				      <td><textarea name="short_comment" maxlength="1000" style="font-size:15px; padding:7px; width:95%; height:55px; border:1px solid #ddd; -webkit-appearance:none;" ></textarea></td>
+				      <td style="width:70px;">
+				        <button style="width:90px; height:70px; margin-bottom:3px; background:#e2e2e2; color:#555; font-weight:700; border:none; border-radius:5px; font-size:16px;">등록</button>
+				      </td>
+				    </tr>
+				  </table>
+				</div>
+				</form>
+				<!-- 댓글 영역 끝 -->
+				
+				<!-- 수정, 삭제, 목록 버튼 -->
+				<div class="container" style="padding-top: 10px">
+				<div class="button_area">
+					<div class="button_modify">
+						<input type="button" class="btn" id="button" onclick="script:window.location.href='csBoardModify'" value="수정">
+					</div>
+					<div class="button_delete">
+						<input type="button" class="btn" id="button" onclick="script:window.location.href='csBoardDelete'" value="삭제">
+					</div>
+					<div class="button_list">
+						<input type="button" class="btn" id="button" onclick="script:window.location.href='csBoardList'" value="목록">
+					</div>
+				</div>
+				</div>
+				<!-- 수정, 삭제, 목록 버튼 끝 -->
+				
 			</form>
-	
-	<!-- 등록, 취소 버튼 -->
-	<div class="container" style="padding-top: 10px">
-	<div class="button_area">
-		<div class="button_submit">
-			<input type="button" class="btn" id="button_submit" onclick="script:window.location.href='csBoardModify'" value="수정">
-		</div>
-		<div class="button_cancel">
-			<input type="button" class="btn" id="button_cancel" onclick="script:window.location.href='csBoardList'" value="취소">
-		</div>
-	</div>
-	</div>
-	<!-- 등록, 취소 버튼 끝 -->
-	
 		</div>
 		</div>
 	</div>
 	<!-- 게시글 작성 끝 -->
+	
+
 	
 	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>

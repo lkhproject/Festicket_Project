@@ -45,39 +45,31 @@ div.button_area {
 	margin-top: 10px;
 }
 
-div.button_submit {
+div.button_modify {
 	float: left;
 	margin-right: 5px;
 }
 
-div.button_cancel {
+div.button_delete {
+	float: left;
+	margin-right: 5px;
+}
+
+div.button_list {
 	float: left;
 }
 
-#button_submit {
+#button {
 	font-weight: bold;
-	background: #6800b8;
-	color: white;
+	background: #e2e2e2;
+	color: #555;
 	padding: 5px 40px;
 	border-radius : 0.8em;
 }
 
-#button_submit:hover {
-	background: #5c00a2;
-	color: white;
-}
-
-#button_cancel {
-	font-weight: bold;
-	background: #818181;
-	color: white;
-	padding: 5px 40px;
-	border-radius : 0.8em;
-}
-
-#button_cancel:hover {
-	background: #616161;
-	color: white;
+#button:hover {
+	background: #d4d4d4;
+	color: #555;
 }
 
 #detail_form {
@@ -86,7 +78,7 @@ div.button_cancel {
 
 #csBoard_page_form {
 	width: 80%;
-	height: 670px;
+	height: 750px;
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-bottom: 100px;

@@ -171,11 +171,25 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
+		dao.csHitDao(request.getParameter("c_idx")); // 조회수 증가
+		
 		CSboardDto csBoardDto = dao.csViewDao(request.getParameter("c_idx"));
 		
 		model.addAttribute("csBoardDto", csBoardDto);
 		
 		return "csBoardView";
+	}
+	
+	@RequestMapping(value = "/csBoardDelete")
+	public String board_delete(HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.csDeleteDao(request.getParameter("c_idx"));
+		
+//		dao.boardReplyDeleteDao(request.getParameter("ca_boardNum"));
+		
+		return "redirect:csBoardList";
 	}
 	
 }
