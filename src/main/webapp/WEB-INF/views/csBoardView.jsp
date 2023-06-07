@@ -34,8 +34,7 @@
 				</div>
 				
 				<div class="input-group">
-	  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" readonly="readonly">
-	  				 ${csBoardDto.c_content }
+	  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" readonly="readonly">${csBoardDto.c_content }
 	  				</textarea>
 				</div>
 			</form>
