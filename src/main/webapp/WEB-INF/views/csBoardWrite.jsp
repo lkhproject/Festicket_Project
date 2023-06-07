@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/csBoardWrite.css">
+<script src="/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
 		<div class="container_1">
 		<div id="csBoard_page_form">
 		<h2 class="csBoardTitle">고객센터</h2>
-			<form action="" id="detail_form">
+			<form action="csBoardWriteOk"  method="post" id="detail_form">
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">제목</span>
 	  				<input type="text" class="form-control" aria-describedby="basic-addon1">
@@ -27,7 +28,8 @@
 				
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">작성자</span>
-	  				<input type="text" class="form-control" aria-describedby="basic-addon1">
+	  				<input type="text" class="form-control" aria-describedby="basic-addon1" 
+	  					value="${memberDto.userId }" readonly="readonly">
 				</div>
 				
 				<div class="input-group">
@@ -41,10 +43,10 @@
 	<div class="container" style="padding-top: 10px">
 	<div class="button_area">
 		<div class="button_submit">
-			<input type="button" class="btn" id="button_submit" onclick="script:window.location.href=''" value="등록">
+			<input type="submit" class="btn" id="button_submit" value="등록">
 		</div>
 		<div class="button_cancel">
-			<input type="button" class="btn" id="button_cancel" onclick="script:window.location.href=''" value="취소">
+			<input type="button" class="btn" id="button_cancel" onclick="script:window.location.href='csBoardList'" value="취소">
 		</div>
 	</div>
 	</div>

@@ -14,6 +14,8 @@ public interface IDao {
 	// 고객센터
 	public List<CSboardDto> CSListDao(int countList, int countPage); // 게시글 목록 모두 가져오기
 	public void CSwriteDao(String c_userId, String c_title, String c_content); // 게시판 글쓰기
+	public CSboardDto csViewDao(String c_idx); // 게시판 리스트에서 선택한 특정 글 가져오기
 	public void CSDeleteDao(String c_idx); // 게시판 글삭제
 	public int totalCSListCountDao(); // 총 게시글 개수 반환
+	
 }

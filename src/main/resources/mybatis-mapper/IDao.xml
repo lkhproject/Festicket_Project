@@ -36,8 +36,12 @@
 			VALUES(ecs_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
 	
+	<select id="csViewDao" resultType="com.festicket.dto.CSboardDto">
+		SELECT * FROM eventCSboard WHERE c_idx=#{param1}
+	</select>
+	
 	<delete id="CSDeleteDao">
-		DELETE FROM web_board WHERE c_idx=#{param1}
+		DELETE FROM eventCSboard WHERE c_idx=#{param1}
 	</delete>
 	
 	<select id="totalCSListCountDao" resultType="int">

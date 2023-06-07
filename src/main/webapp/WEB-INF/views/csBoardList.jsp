@@ -26,7 +26,7 @@
 			<thead>
 				<tr>
 			      <th scope="col">번호</th>
-			      <th scope="col">제목</th>
+			      <th scope="col" style="width:350px;">제목</th>
 			      <th scope="col">작성자</th>
 			      <th scope="col">작성일</th>
 			      <th scope="col">조회수</th>
@@ -36,7 +36,18 @@
 		  		<c:forEach items="${CSboardDtos }" var="csList"  begin="0" end="11">
 				    <tr>
 				      <th scope="row">${csList.c_idx }</th>
-				      <td><a href="#">${csList.c_title }</a></td>
+				      <td>
+						<a href="csBoardView?c_idx=${csList.c_idx }">
+						<c:choose>
+							<c:when test="${fn:length(csList.c_title) > 25}">
+								<c:out value="${fn:substring(csList.c_title, 0, 24)}"></c:out>...
+							</c:when>
+							<c:otherwise>
+								<c:out value="${csList.c_title }"></c:out>
+							</c:otherwise>
+						</c:choose>
+						</a>
+				      </td>
 				      <td>${csList.c_userId }</td>
 				      <td><fmt:formatDate value="${csList.c_writeDate }" pattern="yyyy-MM-dd"/></td>
 				      <td>${csList.c_hit }</td>
@@ -47,7 +58,7 @@
 	<!-- 게시글 리스트 끝 -->
 	 
 	<!-- 검색, 등록 -->
-	<div class="container" style="padding-top: 10px">
+	<div class="container" style="padding-top:10px">
 	<div class="search_board_area">
 	<div class="search_board">
 	 	<input class="search_board_box" type="text">

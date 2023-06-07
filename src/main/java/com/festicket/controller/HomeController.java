@@ -152,4 +152,30 @@ public class HomeController {
 		return "csBoardWrite";
 	}
 	
+	@RequestMapping(value = "/csBoardWriteOk")
+	public String questionOk(HttpServletRequest request) {
+		
+		String c_userId = request.getParameter("c_userId");
+		String c_title = request.getParameter("c_title");
+		String c_content = request.getParameter("c_content");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.CSwriteDao(c_userId, c_title, c_content);
+		
+		return "redirect:csBoardList";
+	}
+	
+	@RequestMapping(value = "/csBoardView")
+	public String contentView(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		CSboardDto csBoardDto = dao.csViewDao(request.getParameter("c_idx"));
+		
+		model.addAttribute("csBoardDto", csBoardDto);
+		
+		return "csBoardView";
+	}
+	
 }
