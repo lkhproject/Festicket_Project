@@ -11,29 +11,40 @@
 </head>
 <body>
 
-<!-- 페이징 -->
-<tr>
-	<td colspan="5" align="center">
-		<c:if test="${pageMaker.prev }">
-			<a href="list?pageNum=${pageMaker.startPage-5 }">◀</a>&nbsp;&nbsp;&nbsp;
-		</c:if>
-		
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-			<c:choose>
-				<c:when test="${currPage == num }">
-					<span style="color: #FFFFFF; background-color: #000000; font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
-				</c:when>
-				<c:otherwise>
-					<a href="list?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		
-		<c:if test="${pageMaker.next }">
-			<a href="list?pageNum=${pageMaker.startPage+5 }">▶</a>
-		</c:if>
-	</td>
-</tr>
+<table id="details">
+<thead>
+  <tr>
+    <th class="eventTitle" colspan="2">${event.title }</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>장소: </td>
+    <td>${event.place }</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td colspan="2"></td>
+  </tr>
+</tbody>
+</table>
 
 
 </body>

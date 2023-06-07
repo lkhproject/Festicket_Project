@@ -63,7 +63,6 @@ div.search_board_area {
 	justify-content: space-between;
 }
 
-/* 작은 검색창 */
 div.search_board {
 	position: relative;
 	width: 220px;
@@ -86,7 +85,6 @@ input.search_board_img {
 	right: 12px;
 	margin: 0;
 }
-/* 작은 검색창 끝 */
 
 #csBoard_page_form {
 	width: 80%;
@@ -96,4 +94,12 @@ input.search_board_img {
 	border-radius: 0.8em;
 	background-color: white;
 	margin: auto;
+}
+
+#csPagingNum {
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
 }

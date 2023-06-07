@@ -55,32 +55,29 @@ div.top5 {
 	 border-radius: 0.8em;
 }
 
-#ongoinEvent_container {
-	 padding: 50px;
-}
-
-div.eventListScroll_left {
-	 overflow: auto;
-	 height: 400px;
-	 width: 40%;
-	 float: left;
-}
-
-div.eventListScroll_right {
-	 overflow: auto;
-	 height: 400px;
-	 width: 60%;
-	 float: left;
-}
-
 #overlayText {
 	color: white;
 	font-weight: bold;
 	font-size: 12px;
 }
+
+#ongingTable {
+	background-color: white;
+	margin-bottom: 50px;
+}
+
 h1.rankingCount {
 	color: white;
 	font-weight: 900;
 	text-shadow: -1px 0px blue, 0px 1px blue, 1px 0px blue, 0px -1px blue;
 }
 
+a {
+  width: 100%; 
+  display: table;
+}
+
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}

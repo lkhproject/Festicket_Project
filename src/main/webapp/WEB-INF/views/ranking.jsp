@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/ranking.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
+	<script src="/resources/js/ranking.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
 <!-- 헤더 -->
@@ -46,42 +49,33 @@
 <!-- 탑 5 리스트 끝 -->
 
 <!-- 현재 진행중인 행사 배너 -->
-<div class="container" style="padding-bottom: 400px">
+<div class="container" style="width: 50%;">
 	<nav class="navbar bg-light">
 	  <div class="container-fluid" id="ongoingEventTitle">
 	    <div class="navbar-brand">
 	      <img src="resources/img/search_board_btn.png" id="search_btn" class="d-inline-block align-text-top">
 	      <div style="float: left;">&nbsp;현재 진행중인 행사</div>
 	    </div>
-	    <div style="float: right;">총 100건</div>
+	    <div style="float: right;">총 ${fn:length(ongoing) }건</div>
 	  </div>
 	</nav>
 
 <!-- 행사 리스트 -->
-<div class="container" style="margin-bottom: 50px">
-	<div class="eventListScroll_left">
-		 <div id="list-example" class="list-group">
-		    <c:forEach items="${event }" var="event" begin="0" end="10">
-			    <div class="row">
-			      <a class="list-group-item list-group-item-action" href="#">${event.title }</a>
-				</div>
-		    </c:forEach>
-	    </div>
-	  </div>
-	<div class="eventListScroll_right">
-		  <div id="list-example" class="list-group">
-	    <!-- 수정필요 --> 
-	    <c:forEach items="${event }" var="event" begin="0" end="0">
-		      <div id="item-1">
-		        <h4>${event.place }</h4>
-		        <p>${event.program }</p>
-		        <p>${event.rgstDate }</p>
-		        <p>${event.end_date }</p>
-		      </div>
-	     </c:forEach>
-	    </div>
-	</div>
-</div>
+	<div id="ongingTable">
+	 <table class="table table-hover">
+	    <c:forEach items="${ongoing }" var="ongoing">
+			<input type="hidden" value="${ongoing.eventNum }" name="curr_event">
+		     <tbody>
+				<tr>
+				<!-- 상세 예약페이지로 (수정필요)-->
+					<td scope="row"><a href="rvView?eventNum=${ongoing.eventNum }">&nbsp;~ ${fn:substring(ongoing.end_date, 0, 11) }</a></td>
+					<td><a href="rvView">${ongoing.title }</a></td>
+					<td><a href="rvView">${ongoing.place }</a></td>
+				</tr>
+			</tbody>
+	    </c:forEach>
+	 </table>
+	 </div>
 </div>
 <!-- 행사 리스트 끝 -->
 	

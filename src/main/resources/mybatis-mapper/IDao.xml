@@ -56,16 +56,6 @@
 		WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '전시%'
 	</select>
 
-<!-- 페이징
-	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
-		SELECT * FROM
-			(SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1)PAGE, ROWNUM
-				FROM
-					(SELECT * from event ORDER BY eventNum DESC)A)
-						WHERE PAGE=#{param2}
-	</select>
--->
-
 <!--
 	<select id="contentViewDao" resultType="com.festicket.dto.EventDto">
 		SELECT * FROM event WHERE eventNum=${param1}
@@ -85,6 +75,8 @@
 		SELECT COUNT(*) FROM event
 	</select>
 	
+	<!-- *** 랭킹 페이지 *** -->
+	
 	<!-- 예매 수가 같을경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->
 	<select id="getTopFiveEventsDao" resultType="com.festicket.dto.EventDto">
 		SELECT main_img, title, eventDate
@@ -98,15 +90,20 @@
 		WHERE rnk <![CDATA[<]]>= 5
 	</select>
 	
-	<!-- 날짜비교 
-	<select id="getOngoingEventDao" resultMap="com.festicket.dto.EventDto">
+	<select id="getEventDao" resultType="com.festicket.dto.EventDto">
+		SELECT *
+		FROM event
+		WHERE eventNum=#{param1}
+	</select>
+	
+	<!-- 날짜비교 - 진행중인 이벤트 조회 -->
+	<select id="getOngoingEventDao" resultType="com.festicket.dto.EventDto">
 		SELECT title, place, rgstDate, end_date
 		  FROM event
-		WHERE end_date <![CDATA[>]]>= SYSDATE and
-		start_date <![CDATA[<]]>= SYSDATE and
-		rgstDate <![CDATA[<]]>= SYSDATE
+		WHERE end_date <![CDATA[>]]>= SYSDATE
+		AND start_date <![CDATA[<]]>= SYSDATE
+		AND rgstDate <![CDATA[<]]>= SYSDATE
 	</select>
-	 -->
 	 
 	 <!-- 축제 페이지 -->
 	 <select id="festivalListDao" resultType="com.festicket.dto.EventDto">
@@ -144,6 +141,52 @@
 	 
 	 <select id="totalExhibitionCountDao" resultType="int">
 		SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '전시%'
+	</select>
+	
+	<!-- 리뷰 글 가져오기 -->
+	<select id="getReviewListDao" resultType="com.festicket.dto.ReviewDto">
+		SELECT *
+		  FROM eventReview er
+		  LEFT OUTER JOIN event e
+		    ON er.rw_eventNum = e.eventNum
+		 WHERE er.rw_eventNum=${param1}
+	</select>
+	
+	<!-- 고객센터 페이지 -->
+	<select id="csListDao" resultType="com.festicket.dto.CSboardDto">
+		SELECT *
+		FROM (
+		    SELECT A.*, FLOOR(((ROWNUM - 1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
+		    FROM (
+		        SELECT *
+		        FROM eventCSboard
+		        ORDER BY c_idx DESC
+		    ) A
+		) B
+		WHERE PAGE = #{param2}
+	</select>
+	
+	<insert id="csWriteDao">
+		INSERT INTO 
+			eventCSboard(c_idx, c_userId, c_title, c_content, c_hit, c_replyCount)
+				VALUES
+					(ecs_seq.nextval, #{param1}, #{param2}, #{param3}, 0, 0)
+	</insert>
+	
+	<select id="csViewDao" resultType="com.festicket.dto.CSboardDto">
+		SELECT * FROM eventCSboard WHERE c_idx=#{param1}
+	</select>
+	
+	<delete id="csDeleteDao">
+		DELETE FROM eventCSboard WHERE c_idx=#{param1}
+	</delete>
+	
+	<update id="csHitDao">
+		UPDATE eventCSboard SET c_hit=c_hit+1 WHERE c_idx=#{param1}
+	</update>
+	
+	<select id="totalCSListCountDao" resultType="int">
+		SELECT COUNT(*) FROM eventCSboard
 	</select>
 	
 </mapper>

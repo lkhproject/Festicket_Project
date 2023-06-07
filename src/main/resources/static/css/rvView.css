@@ -10,28 +10,73 @@ body {
 div.container {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
-}
-
-div.container_1 {
-	padding: 50px 0px;
+	margin-top: 30px;
 }
 
 img.img-thumbnail {
-	width: 40%;
+	width: 450px;
+	height: 600px;
+	margin-bottom: 8px;
 }
 
-h5.eventTitle {
+div.eventTitle {
 	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 20px;
 	font-weight: bold;
 	padding-top: 20px;
 	color: #404040;
-	float: right;
 }
 
 #rvView_page_form {
-	width: 70%;
+	width: 80%;
 	padding-left: 50px;
-	padding-right: 50px;
 	padding-bottom: 50px;
 	margin: auto;
 }
+
+#rev_detail_container_1 {
+	float: left;
+	width: 50%;
+	font-size: 16px;
+}
+
+#rev_detail_container_2 {
+	float: left;
+	width: 50%;
+	font-size: 16px;
+	padding-left: 40px;
+	margin-bottom: 50px;
+}
+
+div.detailTitle {
+	margin-top: 10px;
+}
+
+#details_1 {
+	float: left;
+	font-weight: bold;
+	margin-right: 69px;
+}
+
+#details {
+	float: left;
+	font-weight: bold;
+	margin-right: 40px;
+}
+
+div.cal {
+	margin: 20px 0px;
+}
+
+input[type="submit"] {
+	background: #6800b8;
+	color: white;
+	margin-top: 15px;
+	padding: 15px 118px;
+	border-radius : 1em;
+	border: none;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+

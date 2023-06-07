@@ -61,12 +61,8 @@
 <!-- 페이징 -->
 	<div class="container" id="pagingNum">
 		
-			<c:out value="${'<' }"></c:out>
-			 1 2 3 4 5 
-			<c:out value="${'>' }"></c:out>
-		<!-- 
 		<c:if test="${pageMaker.prev }">
-			<a href="list?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+			<a href="adminList?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
 		</c:if>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
@@ -75,15 +71,14 @@
 					<span style="color: #FFFFFF; background-color: #000000; font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>
-					<a href="list?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+					<a href="adminList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next }">
-			<a href="list?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+			<a href="adminList?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
 		</c:if>
-		 -->
 	</div>
 	
 <!-- 페이징 끝 -->
