@@ -43,17 +43,22 @@
 			
 					  <c:forEach items="${exhibitionDtos }" var="exhibition">
 					  <!-- eventNum 넘기기 -->
-					  <input type="hidden" value="${exhibition.eventNum }">
+					  <input type="hidden" value="${exhibition.eventNum }" name="selectedEvent">
 					    <tr>
 					      <td scope="row" id="eventImgCell"><img src="${exhibition.main_img }" class="listImg"
-					      	onclick="script:window.location.href=''"></td><!-- 상세페이지로 이동 -->
+					      	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"></td>
 					      <td id="tableCenter">
 					      	<p id="eventTitle">${exhibition.title }</p>
 					      	<p id="eventDetail"><b>장 소:</b> ${exhibition.place }</p>
 						  	<p id="eventDetail"><b>기 간:</b> ${exhibition.eventDate }</p>
-						  	<p id="eventDetail"><b>관람가:</b> ${exhibition.eventPrice }</p>
+						  	<p id="eventDetail"><b>관람가:</b>
+						  		<c:choose>
+								  	<c:when test="${exhibition.eventPrice == null}">무료</c:when>
+								  	<c:otherwise>${exhibition.eventPrice }</c:otherwise>
+							  	</c:choose>
+						  	</p>
 					      </td>
-					      <td id="reserve"><input type="button" value="예매하기"></td>
+					      <td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"></td>
 					    </tr>
 			  		</c:forEach>
 			  		</c:when>

@@ -44,14 +44,19 @@
 					  <input type="hidden" value="${festival.eventNum }">
 					    <tr>
 					      <td scope="row" id="eventImgCell"><img src="${festival.main_img }" class="listImg"
-					      	onclick="script:window.location.href=''"></td>
+					      	onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"></td>
 					      <td id="tableCenter">
 					      	<p id="eventTitle">${festival.title }</p>
 					      	<p id="eventDetail"><b>장 소:</b> ${festival.place }</p>
 						  	<p id="eventDetail"><b>기 간:</b> ${festival.eventDate }</p>
-						  	<p id="eventDetail"><b>관람가:</b> ${festival.eventPrice }</p>
+						  	<p id="eventDetail"><b>관람가:</b> 
+							  	<c:choose>
+								  	<c:when test="${festival.eventPrice == null}">무료</c:when>
+								  	<c:otherwise>${festival.eventPrice }</c:otherwise>
+							  	</c:choose>
+						  	</p>
 					      </td>
-					      <td id="reserve"><input type="button" value="예매하기"></td>
+					      <td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"></td>
 					    </tr>
 					  </c:forEach>
 			  		</c:when>

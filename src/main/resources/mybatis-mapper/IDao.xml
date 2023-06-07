@@ -79,13 +79,13 @@
 	
 	<!-- 예매 수가 같을경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->
 	<select id="getTopFiveEventsDao" resultType="com.festicket.dto.EventDto">
-		SELECT main_img, title, eventDate
+		SELECT eventNum, main_img, title, eventDate
 		FROM (
-		    SELECT e.main_img, e.title, e.eventDate, e.ticketCount,
+		    SELECT e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount,
 		           RANK() OVER (ORDER BY COUNT(er.re_eventNum) DESC, e.ticketCount ASC) AS rnk
 		    FROM event e
 		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
-		    GROUP BY e.main_img, e.title, e.eventDate, e.ticketCount
+		    GROUP BY e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount
 		)
 		WHERE rnk <![CDATA[<]]>= 5
 	</select>
@@ -98,7 +98,7 @@
 	
 	<!-- 날짜비교 - 진행중인 이벤트 조회 -->
 	<select id="getOngoingEventDao" resultType="com.festicket.dto.EventDto">
-		SELECT title, place, rgstDate, end_date
+		SELECT eventNum, title, place, rgstDate, end_date
 		  FROM event
 		WHERE end_date <![CDATA[>]]>= SYSDATE
 		AND start_date <![CDATA[<]]>= SYSDATE

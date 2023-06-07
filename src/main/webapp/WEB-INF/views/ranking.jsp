@@ -30,8 +30,9 @@
 			<c:forEach items="${topfiveEvent }" var="topfiveEvent"  begin="0" end="4" varStatus="status">
 		  <div class="col" style="float: none; margin 0 auto">
 		    <div class="card" id="rankingList">
+		    <!-- 이미지 클릭이 안됨...... -->
 			      <img src="${topfiveEvent.main_img }" class="card-img-top" id="cardImg"
-			      	onclick="script:window.location.href=''"><!-- 상세페이지로 이동 -->
+			      	onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'">
 			      	<div class="card-img-overlay" id="overlayText">
 			      		<h1 class="rankingCount">${status.count }</h1>
 			      	</div>
@@ -49,7 +50,7 @@
 <!-- 탑 5 리스트 끝 -->
 
 <!-- 현재 진행중인 행사 배너 -->
-<div class="container" style="width: 50%;">
+<div class="container" style="width: 60%;">
 	<nav class="navbar bg-light">
 	  <div class="container-fluid" id="ongoingEventTitle">
 	    <div class="navbar-brand">
@@ -61,16 +62,15 @@
 	</nav>
 
 <!-- 행사 리스트 -->
-	<div id="ongingTable">
+	<div class="table-responsive" id="ongingTable">
 	 <table class="table table-hover">
 	    <c:forEach items="${ongoing }" var="ongoing">
-			<input type="hidden" value="${ongoing.eventNum }" name="curr_event">
 		     <tbody>
 				<tr>
 				<!-- 상세 예약페이지로 (수정필요)-->
-					<td scope="row"><a href="rvView?eventNum=${ongoing.eventNum }">&nbsp;~ ${fn:substring(ongoing.end_date, 0, 11) }</a></td>
-					<td><a href="rvView">${ongoing.title }</a></td>
-					<td><a href="rvView">${ongoing.place }</a></td>
+					<td scope="row" id="ongoingDate"><a href="rvView?selectedEvent=${ongoing.eventNum }">&nbsp;~ ${fn:substring(ongoing.end_date, 0, 11) }</a></td>
+					<td><a href="rvView?selectedEvent=${ongoing.eventNum }">${ongoing.title }</a></td>
+					<td><a href="rvView?selectedEvent=${ongoing.eventNum }">${ongoing.place }</a></td>
 				</tr>
 			</tbody>
 	    </c:forEach>

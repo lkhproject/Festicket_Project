@@ -292,11 +292,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/rvView")
-	public String rvView(HttpSession session, Model model) {
+	public String rvView(HttpSession session, Model model, HttpServletRequest request) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		int eventNum = 1;
+		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
 		
 		EventDto event = dao.getEventDao(eventNum);
 		

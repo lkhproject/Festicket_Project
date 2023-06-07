@@ -64,12 +64,18 @@ div.top5 {
 #ongingTable {
 	background-color: white;
 	margin-bottom: 50px;
+	width: 100%;
+	height: 500px;
 }
 
 h1.rankingCount {
 	color: white;
 	font-weight: 900;
 	text-shadow: -1px 0px blue, 0px 1px blue, 1px 0px blue, 0px -1px blue;
+}
+
+#ongoingDate {
+	width: 13%;
 }
 
 a {

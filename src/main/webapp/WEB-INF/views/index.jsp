@@ -50,7 +50,7 @@
 	  <input type="hidden" value="${festival.eventNum }">
 	    <div class="card" id="cardList">
 	      <img src="${festival.main_img }" class="card-img-top" id="card_img"
-	      		onclick="script:window.location.href=''"><!-- 상세페이지로 이동 -->
+	      		onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"><!-- 상세페이지로 이동 -->
 	      <div class="card-body">
 	        <h5 class="card-title">${festival.title }</h5>
 	        <h6 class="card-subtitle">서울/${festival.gunName }</h6>
@@ -76,7 +76,7 @@
 	    <div class="card" id="cardList">
 	    <input type="hidden" value="${exhibition.eventNum }">
 	      <img src="${exhibition.main_img }" class="card-img-top" id="card_img"
-	      	onclick="script:window.location.href=''"><!-- 상세페이지로 이동 -->
+	      	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"><!-- 상세페이지로 이동 -->
 	      <div class="card-body">
 	        <h5 class="card-title">${exhibition.title }</h5>
 	        <h6 class="card-subtitle">서울/${exhibition.gunName }</h6>
