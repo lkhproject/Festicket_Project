@@ -33,7 +33,7 @@
 	    		</tr>
 	  		</thead>
 	  		<tbody class="table-group-divider">
-		  		<c:forEach items="${csList }" var="csList"  begin="0" end="11">
+		  		<c:forEach items="${CSboardDtos }" var="csList"  begin="0" end="11">
 				    <tr>
 				      <th scope="row">${csList.c_idx }</th>
 				      <td><a href="#">${csList.c_title }</a></td>
@@ -44,49 +44,43 @@
 			  	</c:forEach>
 	  		</tbody>
 	  	</table>	  		
-	 <!-- 게시글 리스트 끝 -->
+	<!-- 게시글 리스트 끝 -->
 	 
-	 <!-- 검색, 등록 -->
-	 <div class="container" style="padding-top: 10px">
-	 <div class="search_board_area">
-	 <div class="search_board">
+	<!-- 검색, 등록 -->
+	<div class="container" style="padding-top: 10px">
+	<div class="search_board_area">
+	<div class="search_board">
 	 	<input class="search_board_box" type="text">
 		<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
-	 </div>
-	 <div class="button">
-		<input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
-	 </div>
-	 </div>
-	 </div>
-	 <!-- 검색, 등록 끝 -->
-	
-	 <!-- 페이징 -->
-	 <div class="container" id="pagingNum">
-		
-			<c:out value="${'<' }"></c:out>
-			 1 2 3 4 5 
-			<c:out value="${'>' }"></c:out>
-		<!-- 
-		<c:if test="${pageMaker.prev }">
-			<a href="list?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
-		</c:if>
-		
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-			<c:choose>
-				<c:when test="${currPage == num }">
-					<span style="color: #FFFFFF; background-color: #000000; font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
-				</c:when>
-				<c:otherwise>
-					<a href="list?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		
-		<c:if test="${pageMaker.next }">
-			<a href="list?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
-		</c:if>
-		 -->
 	</div>
+	<div class="button">
+		<input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
+	</div>
+	</div>
+	</div>
+	<!-- 검색, 등록 끝 -->
+	
+	<!-- 페이징 -->
+		<div class="container" id="csPagingNum">
+			<c:if test="${pageMaker.prev }">
+				<a href="csBoardList?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+			</c:if>
+			
+			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+				<c:choose>
+					<c:when test="${currPage == num }">
+						<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+					</c:when>
+					<c:otherwise>
+						<a href="csBoardList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<c:if test="${pageMaker.next }">
+				<a href="csBoardList?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+			</c:if>
+		</div>
 	<!-- 페이징 끝 -->
 
 	</div>

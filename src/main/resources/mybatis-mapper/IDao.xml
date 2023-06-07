@@ -15,14 +15,33 @@
 		SELECT COUNT(*) FROM event
 	</select>
 	
-	<!-- 고객센터 관련 -->
-	<select id="CSboardDao" resultType="com.festicket.dto.CSboardDto">
-		SELECT * FROM eventCSboard ORDER BY c_idx DESC
+	<!-- 고객센터 페이지 -->
+	<select id="CSListDao" resultType="com.festicket.dto.CSboardDto">
+		SELECT *
+		FROM (
+		    SELECT A.*, FLOOR(((ROWNUM - 1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
+		    FROM (
+		        SELECT *
+		        FROM eventCSboard
+		        ORDER BY c_idx DESC
+		    ) A
+		) B
+		WHERE PAGE = #{param2}
+	    
+	<!-- SELECT * FROM eventCSboard ORDER BY c_idx DESC  -->
 	</select>
 	
 	<insert id="CSwriteDao">
 		INSERT INTO eventCSboard(c_idx, c_userId, c_title, c_content) 
 			VALUES(ecs_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
+	
+	<delete id="CSDeleteDao">
+		DELETE FROM web_board WHERE c_idx=#{param1}
+	</delete>
+	
+	<select id="totalCSListCountDao" resultType="int">
+		SELECT COUNT(*) FROM eventCSboard
+	</select>
 	
 </mapper>

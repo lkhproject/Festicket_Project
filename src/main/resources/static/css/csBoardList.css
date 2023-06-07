@@ -95,3 +95,11 @@ input.search_board_img {
 	background-color: white;
 	margin: auto;
 }
+
+#csPagingNum {
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+}

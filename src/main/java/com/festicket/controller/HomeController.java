@@ -1,5 +1,7 @@
 package com.festicket.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.festicket.dao.IDao;
+import com.festicket.dto.CSboardDto;
+import com.festicket.dto.Criteria;
+import com.festicket.dto.PageDto;
 
 @Controller
 public class HomeController {
@@ -112,11 +117,32 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/csBoardList")
-	public String csBoardList(HttpServletRequest request, Model model) {
+	public String csBoardList(HttpServletRequest request, Model model, Criteria criteria) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("csList", dao.CSboardDao());
+		// 페이징
+		int pageNum = 0;
+		
+		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+		if(request.getParameter("pageNum") == null) {
+			pageNum = 1;
+			criteria.setPageNum(pageNum);
+		} else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			criteria.setPageNum(pageNum);
+		}
+		
+		int totalCount = dao.totalCSListCountDao(); // 모든 글의 개수
+		
+		PageDto pageDto = new PageDto(criteria, totalCount);	
+		
+		List<CSboardDto> CSboardDtos = dao.CSListDao(criteria.getCountList(), pageNum);
+		
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("CSboardDtos", CSboardDtos);
+		model.addAttribute("currPage", pageNum);
 		
 		return "csBoardList";
 	}
@@ -125,6 +151,5 @@ public class HomeController {
 	public String csBoardWrite() {
 		return "csBoardWrite";
 	}
-	
 	
 }
