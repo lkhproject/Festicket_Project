@@ -181,7 +181,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/csBoardDelete")
-	public String board_delete(HttpServletRequest request) {
+	public String csBoardDelete(HttpServletRequest request) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		

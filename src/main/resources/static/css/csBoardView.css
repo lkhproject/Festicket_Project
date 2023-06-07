@@ -59,7 +59,7 @@ div.button_list {
 	float: left;
 }
 
-#button {
+#buttons {
 	font-weight: bold;
 	background: #e2e2e2;
 	color: #555;
@@ -67,7 +67,7 @@ div.button_list {
 	border-radius : 0.8em;
 }
 
-#button:hover {
+#buttons:hover {
 	background: #d4d4d4;
 	color: #555;
 }
@@ -78,7 +78,7 @@ div.button_list {
 
 #csBoard_page_form {
 	width: 80%;
-	height: 750px;
+	height: 800px;
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-bottom: 100px;
