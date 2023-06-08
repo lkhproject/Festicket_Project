@@ -105,7 +105,7 @@
 					<br>
 					<div class="container" >
                     <div class="basic_tbl basic_tbl_v3">
-                      <table class="table table-striped">
+                <table class="table table-striped">
   				<thead>
  					<tr>
       				<th scope="col">예매번호</th>
@@ -120,8 +120,26 @@
                     <tr ng-show="reserveList.length === 0">
                     <td colspan="6" class="no_data">예매한 내역이 없습니다.</td>
                     </tr>
-                 </tbody>
-				</table>
+                 </tbody>  
+                  
+				</table> 
+				<nav aria-label="Page navigation example">
+ 				<ul class="pagination justify-content-center">
+  				  <li class="page-item">
+  				    <a class="page-link" href="#" aria-label="Previous">
+     				   <span aria-hidden="true">&laquo;</span>
+   				   </a>
+   				 </li>
+   				 <li class="page-item"><a class="page-link" href="#">1</a></li>
+   				 <li class="page-item"><a class="page-link" href="#">2</a></li>
+ 			     <li class="page-item"><a class="page-link" href="#">3</a></li>
+    		     <li class="page-item">
+      				<a class="page-link" href="#" aria-label="Next">
+     				   <span aria-hidden="true">&raquo;</span>
+     				 </a>
+    			</li>
+ 				 </ul>
+				</nav> 
 					</div>
 					</div>
                 	</div>
