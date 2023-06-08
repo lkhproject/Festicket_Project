@@ -50,19 +50,21 @@
 				<div class="cal">
 					<script type="text/javascript"> 
 	                    $(function(){ 
-	                    	var start_date = "${event.eventDate }";
+	                    	var dateRange = "${event.eventDate}".split("~");
+	                    	var start_date = dateRange[0]; // "2023-06-28"
+	                    	var end_date = dateRange[1]; // "2023-07-09"
+	                    	
 	                    	var year_start = parseInt(start_date.substring(0, 4), 10);
 	                        var month_start = parseInt(start_date.substring(5, 7), 10) - 1;
 	                        var day_start = parseInt(start_date.substring(8, 10), 10); 
 	                    	var minDate = new Date(year_start, month_start, day_start);
 	                    	
-	                    	var end_date = "${event.end_date }";
 	                    	var year_end = parseInt(end_date.substring(0, 4), 10);
-	                        var month_end = parseInt(end_date.substring(5, 7), 10) - 1;
-	                        var day_end = parseInt(end_date.substring(8, 10), 10); 
+	                    	var month_end = parseInt(end_date.substring(5, 7), 10) - 1;
+	                    	var day_end = parseInt(end_date.substring(8, 10), 10);
 	                    	var maxDate = new Date(year_end, month_end, day_end);
 	                        
-	                    	$("#datepicker_from, #datepicker_to").datepicker({ 
+	                    	$("#datepicker").datepicker({ 
 	                            changeMonth: true, 
 	                            changeYear: true, 
 	                            nextText: '다음 달',
@@ -75,12 +77,19 @@
 	                            showButtonPanel: true, 
 	                            yearRange: "c-99:c+99", 
 	                            minDate: minDate,
-	                            maxDate: maxDate
+	                            maxDate: maxDate,
+	                            autoclose: false,
+	                            onSelect: function(dateText, inst) {
+	                                var date = $.datepicker.formatDate("yy-mm-dd", $("#datepicker").datepicker("getDate"));
+	                                alert(date);
+	                                $("#selectedDate").val(date);
+	                              }
 	                        }); 
-	                        $("#datepicker_from").focus(); 
 	                    }); 
 	                </script> 
-	                <div style="width:110px;" id="datepicker_from"></div>
+	                <div style="width:110px;" id="datepicker"></div>
+	                <!-- 값 표시 안됨 -->
+	                <div>선택한 날짜: <c:out value="${param.selectedDate}" /></div>
 				</div>
 				<div>티켓매수(최대 5매 선택가능)</div>
 				<div>

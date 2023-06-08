@@ -352,4 +352,10 @@ public class HomeController {
 		return "confirmRev";
 	}
 	
+	@RequestMapping(value = "/test")
+	public String test(HttpSession session, Model model, HttpServletRequest request) {
+		
+		
+		return "test";
+	}
 }
