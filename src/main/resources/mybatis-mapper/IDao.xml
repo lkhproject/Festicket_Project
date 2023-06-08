@@ -7,7 +7,6 @@
 <mapper namespace="com.festicket.dao.IDao">
 
 	<!-- ***메인 페이지(index)*** -->
-	
 	<!-- 검색 결과 가져오기 -->
 	<select id="getSearchResult" resultType="com.festicket.dto.EventDto">
 	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
@@ -56,16 +55,6 @@
 		WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '전시%'
 	</select>
 
-<!--
-	<select id="contentViewDao" resultType="com.festicket.dto.EventDto">
-		SELECT * FROM event WHERE eventNum=${param1}
-	</select>
-	
-	<delete id="deleteDao">
-		DELETE FROM event WHERE eventNum=${param1}
-	</delete>
--->
-	
 	<!-- 행사 관련 -->
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
 		SELECT * FROM event ORDER BY eventNum DESC
@@ -76,7 +65,6 @@
 	</select>
 	
 	<!-- *** 랭킹 페이지 *** -->
-	
 	<!-- 예매 수가 같을경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->
 	<select id="getTopFiveEventsDao" resultType="com.festicket.dto.EventDto">
 		SELECT eventNum, main_img, title, eventDate
@@ -96,7 +84,7 @@
 		WHERE eventNum=#{param1}
 	</select>
 	
-	<!-- 날짜비교 - 진행중인 이벤트 조회 -->
+	<!-- 진행중인 이벤트 조회 -->
 	<select id="getOngoingEventDao" resultType="com.festicket.dto.EventDto">
 		SELECT eventNum, title, place, rgstDate, end_date, gunName
 		  FROM event
@@ -143,6 +131,7 @@
 		SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '전시%'
 	</select>
 	
+	<!-- *** 상세 예매 페이지 *** -->
 	<!-- 리뷰 글 가져오기 -->
 	<select id="getReviewListDao" resultType="com.festicket.dto.ReviewDto">
 		SELECT *
@@ -159,6 +148,12 @@
 		  LEFT OUTER JOIN event e
 		    ON er.q_eventNum = e.eventNum
 		 WHERE er.q_eventNum=${param1}
+	</select>
+	
+	<select id="getQaDao" resultType="com.festicket.dto.QABoardDto">
+		SELECT *
+		FROM event_QABoard
+		WHERE q_idx=${param1}
 	</select>
 	
 	<!-- 고객센터 페이지 -->

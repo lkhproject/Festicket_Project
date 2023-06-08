@@ -41,6 +41,7 @@ public interface IDao {
 	
 	// QA
 	public List<QABoardDto> getQAListDao(int eventNum); // QA 글 리스트 가져오기
+	public QABoardDto getQaDao(int qaNum); // qa 굴 하나 가져오기
 	
 	// 고객센터 게시판 기능
 	public List<CSboardDto> csListDao(int countList, int countPage); // 게시글 목록 모두 가져오기

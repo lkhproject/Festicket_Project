@@ -325,4 +325,15 @@ public class HomeController {
 		return "rvView";
 	}
 	
+	@RequestMapping(value = "/qaView")
+	public String qaView(HttpSession session, Model model, HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int qaNum = Integer.parseInt(request.getParameter("selectedQA"));
+		
+		model.addAttribute("qaDto", dao.getQaDao(qaNum));
+		
+		return "qaView";
+	}
 }

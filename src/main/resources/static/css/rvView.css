@@ -15,7 +15,6 @@ div.container {
 img.img-thumbnail {
 	width: 450px;
 	height: 600px;
-	margin-bottom: 8px;
 }
 
 div.eventTitle {
@@ -28,7 +27,6 @@ div.eventTitle {
 
 #rvView_page_form {
 	width: 80%;
-	height: 50%;
 	padding-left: 50px;
 	margin: auto;
 }
@@ -44,7 +42,11 @@ div.eventTitle {
 	width: 50%;
 	font-size: 16px;
 	padding-left: 40px;
-	margin-bottom: 50px;
+}
+
+#like_container {
+	float: left;
+	margin: 5px 0px 10px;
 }
 
 div.detailTitle {
@@ -103,9 +105,11 @@ input[type="submit"]:hover {
 }
 
 #reviewContainer {
+	clear: left;
 	margin-left: 10px;
 	width: 85%;
-	padding: 0px 50px;
+	padding: 20px 50px;
 	background-color: white;
+	border-radius: 0.8em;
 }
 
