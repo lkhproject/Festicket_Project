@@ -30,7 +30,6 @@
 			<c:forEach items="${topfiveEvent }" var="topfiveEvent"  begin="0" end="4" varStatus="status">
 		  <div class="col" style="float: none; margin 0 auto">
 		    <div class="card" id="rankingList">
-		    <!-- 이미지 클릭이 안됨...... -->
 			      <img src="${topfiveEvent.main_img }" class="card-img-top" id="cardImg"
 			      	onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'">
 			      	<div class="card-img-overlay" id="overlayText">
@@ -70,7 +69,7 @@
 				<!-- 상세 예약페이지로 (수정필요)-->
 					<td scope="row" id="ongoingDate"><a href="rvView?selectedEvent=${ongoing.eventNum }">&nbsp;~ ${fn:substring(ongoing.end_date, 0, 11) }</a></td>
 					<td><a href="rvView?selectedEvent=${ongoing.eventNum }">${ongoing.title }</a></td>
-					<td><a href="rvView?selectedEvent=${ongoing.eventNum }">${ongoing.place }</a></td>
+					<td><a href="rvView?selectedEvent=${ongoing.eventNum }">${ongoing.gunName } / ${ongoing.place }</a></td>
 				</tr>
 			</tbody>
 	    </c:forEach>

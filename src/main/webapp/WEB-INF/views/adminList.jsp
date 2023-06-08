@@ -22,6 +22,7 @@
 <div class="container_1">
 <div id="admin_page_form">
 	<h2 class="adminTitle">관리자 페이지</h2>
+	<p>총 <b>${totalCount }</b>개의 행사가 조회되었습니다.</p>
 	<table class="table table-hover" id="adminListTable">
 	  <thead style="background-color: #eeeeee">
 	    <tr>
@@ -32,7 +33,7 @@
 	    </tr>
 	  </thead>
 	  <tbody class="table-group-divider">
-		  <c:forEach items="${event }" var="event"  begin="0" end="5">
+		  <c:forEach items="${eventListDtos }" var="event"  begin="0" end="5">
 		    <tr>
 		      <th scope="row">${event.eventNum }</th>
 		      <td>서울/${event.gunName }</td>
@@ -47,10 +48,12 @@
 <!-- 검색, 등록 -->
 	<div class="container" style="padding-top: 10px">
 	 <div class="search_board_area">
-	 <div class="search_board">
-	 	<input class="search_board_box" type="text">
-		<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
-	 </div>
+	 <form class="search" method='get' action='searchResult'>
+		 <div class="search_board">
+		 	<input class="search_board_box" type="text" id="search_word" name="keyword">
+			<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
+		 </div>
+	 </form>
 	 <div class="button">
 		<input type="button" class="btn" onclick="script:window.location.href='adminEventAdd'" value="등록">
 	 </div>
@@ -68,7 +71,7 @@
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
 			<c:choose>
 				<c:when test="${currPage == num }">
-					<span style="color: #FFFFFF; background-color: #000000; font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>
 					<a href="adminList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;

@@ -5,6 +5,7 @@ import java.util.List;
 import com.festicket.dto.CSanswerDto;
 import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
+import com.festicket.dto.QABoardDto;
 import com.festicket.dto.ReviewDto;
 
 public interface IDao {
@@ -17,7 +18,7 @@ public interface IDao {
 	public int totalSearchResultCount(String keyword); // 검색 결과 개수
 	
 	// 랭킹
-	public List<EventDto> eventListDao(); // 모든 행사 리스트
+	public List<EventDto> eventListDao(int countList, int countPage); // 모든 행사 리스트
 	public int totalEventCountDao(); // 행사의 총 개수
 	public List<EventDto> getTopFiveEventsDao(); // 행사 탑5 리스트 
 	public List<EventDto> getOngoingEventDao(); // 진행중인 행사 리스트
@@ -35,8 +36,11 @@ public interface IDao {
 	public int totalExhibitionCountDao();
 	public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트
 	
-	// 예매
+	// 리뷰
 	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 글 리스트 가져오기
+	
+	// QA
+	public List<QABoardDto> getQAListDao(int eventNum); // QA 글 리스트 가져오기
 	
 	// 고객센터 게시판 기능
 	public List<CSboardDto> csListDao(int countList, int countPage); // 게시글 목록 모두 가져오기

@@ -48,9 +48,14 @@
 					      	<p id="eventTitle">${search.title }</p>
 					      	<p id="eventDetail"><b>장 소:</b> ${search.place }</p>
 						  	<p id="eventDetail"><b>기 간:</b> ${search.eventDate }</p>
-						  	<p id="eventDetail"><b>관람가:</b> ${search.eventPrice }</p>
+						  	<p id="eventDetail"><b>관람가:</b>
+						  		<c:choose>
+								  	<c:when test="${search.eventPrice  == null}">무료</c:when>
+								  	<c:otherwise>${search.eventPrice }</c:otherwise>
+							  	</c:choose>
+						  	</p>
 					      </td>
-					      <!-- eventNum이랑 userId 넘기기 -->
+					      <!-- 세션으로 관리자는 버튼 value="수정하기" -->
 					      <td id="reserve"><input type="button" value="예매하기"></td>
 					    </tr>
 					  </c:forEach>

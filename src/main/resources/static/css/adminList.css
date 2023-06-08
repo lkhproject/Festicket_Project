@@ -53,9 +53,12 @@ input[type="button"]:hover {
 	color: white;
 }
 
+p {
+	margin-top: 30px;
+}
+
 #adminListTable {
 	line-height: 3rem;
-	margin-top: 40px;
 }
 
 div.search_board_area {

@@ -98,7 +98,7 @@
 	
 	<!-- 날짜비교 - 진행중인 이벤트 조회 -->
 	<select id="getOngoingEventDao" resultType="com.festicket.dto.EventDto">
-		SELECT eventNum, title, place, rgstDate, end_date
+		SELECT eventNum, title, place, rgstDate, end_date, gunName
 		  FROM event
 		WHERE end_date <![CDATA[>]]>= SYSDATE
 		AND start_date <![CDATA[<]]>= SYSDATE
@@ -150,6 +150,15 @@
 		  LEFT OUTER JOIN event e
 		    ON er.rw_eventNum = e.eventNum
 		 WHERE er.rw_eventNum=${param1}
+	</select>
+	
+	<!-- QA 글 가져오기 -->
+	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
+		SELECT *
+		  FROM event_QABoard er
+		  LEFT OUTER JOIN event e
+		    ON er.q_eventNum = e.eventNum
+		 WHERE er.q_eventNum=${param1}
 	</select>
 	
 	<!-- 고객센터 페이지 -->

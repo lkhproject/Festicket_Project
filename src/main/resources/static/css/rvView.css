@@ -10,7 +10,6 @@ body {
 div.container {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
-	margin-top: 30px;
 }
 
 img.img-thumbnail {
@@ -29,8 +28,8 @@ div.eventTitle {
 
 #rvView_page_form {
 	width: 80%;
+	height: 50%;
 	padding-left: 50px;
-	padding-bottom: 50px;
 	margin: auto;
 }
 
@@ -79,4 +78,34 @@ input[type="submit"] {
 	font-weight: bold;
 }
 
+input[type="submit"]:hover {
+	background: #5c00a2;
+	color: white;
+}
+
+#tb_num1 {
+	padding-left: 20px;
+	width: 10%;
+}
+
+#tb_right3 {
+	text-align: right;
+	width: 20%;
+}
+
+#btn_like {
+	margin-right: 10px;
+}
+
+#tb_qaMiddle2 {
+	text-align: left;
+	width: 20%;
+}
+
+#reviewContainer {
+	margin-left: 10px;
+	width: 85%;
+	padding: 0px 50px;
+	background-color: white;
+}
 

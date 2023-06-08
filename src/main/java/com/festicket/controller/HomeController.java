@@ -207,11 +207,32 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/adminList")
-	public String adminList(HttpServletRequest request, Model model) {
+	public String adminList(HttpServletRequest request, Model model, Criteria criteria) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("event", dao.eventListDao());
+		// 페이징
+		int pageNum = 0;
+		
+		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+		if(request.getParameter("pageNum") == null) {
+			pageNum = 1;
+			criteria.setPageNum(pageNum);
+		} else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			criteria.setPageNum(pageNum);
+		}
+		
+		int totalCount = dao.totalEventCountDao();
+		
+		PageDto pageDto = new PageDto(criteria, totalCount);
+		
+		List<EventDto> eventListDtos = dao.eventListDao(criteria.getCountList(), pageNum);
+		
+		request.setAttribute("totalCount", totalCount);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("eventListDtos", eventListDtos);
+		model.addAttribute("currPage", pageNum);
 		
 		return "adminList";
 	}
@@ -261,7 +282,6 @@ public class HomeController {
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
 			criteria.setPageNum(pageNum);
 		}
-		
 
 		String keyword = request.getParameter("keyword");
 		
@@ -286,7 +306,7 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("event", dao.eventListDao());
+//		model.addAttribute("event", dao.eventListDao());
 		
 		return "reservation";
 	}
@@ -298,10 +318,9 @@ public class HomeController {
 		
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
 		
-		EventDto event = dao.getEventDao(eventNum);
-		
-		model.addAttribute("event", event);
+		model.addAttribute("event", dao.getEventDao(eventNum));
 		model.addAttribute("reviewList", dao.getReviewListDao(eventNum));
+		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
 		
 		return "rvView";
 	}
