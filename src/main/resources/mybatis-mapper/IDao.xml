@@ -42,7 +42,7 @@
 	</select>
 	
 	<update id="csModifyDao">
-		UPDATE eventCSboard SET c_title=#{param2}, c_content=#{param3} WHERE c_userId=#{param1}
+		UPDATE eventCSboard SET c_title=#{param2}, c_content=#{param3} WHERE c_idx=#{param1}
 	</update>
 	
 	<delete id="csDeleteDao">

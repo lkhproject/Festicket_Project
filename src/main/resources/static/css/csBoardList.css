@@ -32,6 +32,12 @@ div.container_1 {
 	padding: 50px 0px;
 }
 
+span.badge {
+	background:#aaa; 
+	color:#fff; 
+	padding:4px 5px;
+}
+
 #pagingNum {
 	margin-top: 30px;
 	display: flex;
