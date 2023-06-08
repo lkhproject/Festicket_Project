@@ -138,22 +138,39 @@
 		  FROM eventReview er
 		  LEFT OUTER JOIN event e
 		    ON er.rw_eventNum = e.eventNum
-		 WHERE er.rw_eventNum=${param1}
+		 WHERE er.rw_eventNum=#{param1}
 	</select>
 	
-	<!-- QA 글 가져오기 -->
+	<!-- QA -->
 	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
 		SELECT *
 		  FROM event_QABoard er
 		  LEFT OUTER JOIN event e
 		    ON er.q_eventNum = e.eventNum
-		 WHERE er.q_eventNum=${param1}
+		 WHERE er.q_eventNum=#{param1}
 	</select>
 	
 	<select id="getQaDao" resultType="com.festicket.dto.QABoardDto">
 		SELECT *
 		FROM event_QABoard
-		WHERE q_idx=${param1}
+		WHERE q_idx=#{param1}
+	</select>
+	
+	<update id="qaHitDao">
+		UPDATE event_QABoard SET q_hit=q_hit+1 WHERE q_idx=#{param1}
+	</update>
+	
+	<!-- 예약확인 -->
+	<select id="getReservationDao" resultType="com.festicket.dto.ReserveDto">
+		SELECT *
+		FROM eventReservation
+		WHERE re_idx=#{param1}
+		<!-- 
+		FROM eventReservation er
+		LEFT OUTER JOIN event e
+		ON er.re_userId = e.userId
+		Where re_idx=#{param1}
+		 -->
 	</select>
 	
 	<!-- 고객센터 페이지 -->

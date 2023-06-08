@@ -332,8 +332,24 @@ public class HomeController {
 		
 		int qaNum = Integer.parseInt(request.getParameter("selectedQA"));
 		
+		dao.qaHitDao(qaNum);
+		
 		model.addAttribute("qaDto", dao.getQaDao(qaNum));
 		
 		return "qaView";
 	}
+	
+	@RequestMapping(value = "/confirmRev")
+	public String confirmRev(HttpSession session, Model model, HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		// Integer.parseInt(request.getParameter("넘어온 값")) 필요
+		int revNum = 1;
+		
+		model.addAttribute("comfirmedRev", dao.getReservationDao(revNum));
+		
+		return "confirmRev";
+	}
+	
 }

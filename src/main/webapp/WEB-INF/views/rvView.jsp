@@ -28,9 +28,13 @@
 	<div class="container" id="rvView_page_form">
 			<div class="container" id="rev_detail_container_1">
 				<img src="${event.main_img }" class="img-thumbnail" alt="포스터"><br>
+				<button type="button" class="btn rounded-pill btn-light" id="like_btn">
+				  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
+				</button>
 			</div>
 		<div class="container" id="rev_detail_container_2">
-			<form action="">
+		<!-- method 설정 필요 -->
+			<form action="confirmRev">
 				<div class="eventTitle">${event.title }</div>
 				<div class="detailTitle">
 					<div id="details_1">장소: </div><div>${event.place }</div>
@@ -88,15 +92,9 @@
 						<option value="3">5</option>
 					</select>
 				</div>
-				<input type="submit" value="예매하기" onclick="">
+				<!-- js로 디테일 포함 알림창 띄운다음 확인 누르면 confirmRev로 넘어감 -->
+				<input type="submit" value="예매하기" onclick="checkRev()">
 			</form>
-		</div>
-		
-		
-		<div class="container" id="like_container">
-			<button type="button" class="btn rounded-pill btn-light">
-			  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
-			</button>
 		</div>
 	<!-- 예매 영역 끝 -->
 		
@@ -110,31 +108,38 @@
 			    </tr>
 			  </thead>
 			  <tbody class="table-group-divider">
-				  <c:forEach items="${reviewList }" var="reviewList"  begin="0" end="5">
-				    <tr>
-				      <td style="padding-left: 15px; width: 10%">${reviewList.rw_rating }/5</td>
-				      <th style="text-align: left; width: 30%">
-						
-					      <c:choose>	
-					      	<c:when test="${fn:length(reviewList.rw_content) gt 20 }">
-					      		<c:out value="${fn:substring(reviewList.rw_content, 0, 19) }">...</c:out>
-					      	</c:when>
-					      	<c:otherwise>
-					      		<c:out value="${reviewList.rw_content }"></c:out>
-					      	</c:otherwise>
-					      </c:choose>
-				      	
-					  </th>
-				      <td id="tb_right3">${reviewList.rw_userId }</td>
-				      <td id="tb_right3">${reviewList.rw_date }</td>
-				      <td id="tb_right3">
-				      	<button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like">
-				  			<span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
-						</button>
-					  </td>
-				      <!-- 본인이면 수정버튼 추가 -->
-				    </tr>
-				  </c:forEach>
+			  	<c:choose>
+			  		<c:when test="${not empty reviewList }">
+					  <c:forEach items="${reviewList }" var="reviewList"  begin="0" end="5">
+					    <tr>
+					      <td id="tb_num1">${reviewList.rw_rating }/5</td>
+					      <th id="tb_num2">
+						      <c:choose>	
+						      	<c:when test="${fn:length(reviewList.rw_content) gt 22 }">
+						      		${fn:substring(reviewList.rw_content, 0, 21) }...
+						      	</c:when>
+						      	<c:otherwise>
+						      		${reviewList.rw_content }
+						      	</c:otherwise>
+						      </c:choose>
+						  </th>
+					      <td id="tb_num3">${reviewList.rw_userId }</td>
+					      <td id="tb_num3">${reviewList.rw_date }</td>
+					      <td id="tb_num3">
+					      	<button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like">
+					  			<span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
+							</button>
+						  </td>
+					      <!-- 본인이면 수정버튼 추가 -->
+					    </tr>
+					  </c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="5">등록된 리뷰가 존재하지 않습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 			  </tbody>
 			</table>
 		<!-- 리뷰 끝 -->
@@ -147,30 +152,41 @@
 			    </tr>
 			  </thead>
 			  <tbody class="table-group-divider">
-				  <c:forEach items="${QA_List }" var="QA_List"  begin="0" end="5">
-				    <tr>
-				      <td id="tb_num1">${QA_List.q_idx }</td>
-				      <th style="text-align: left; width: 40%">
-					      <c:choose>	
-					      	<c:when test="${fn:length(QA_List.q_title) gt 20 }">
-					      		<c:out value="${fn:substring(QA_List.q_title, 0, 19) }">...</c:out>
-					      	</c:when>
-					      	<c:otherwise>
-					      		<c:out value="${QA_List.q_title }"></c:out>
-					      	</c:otherwise>
-					      </c:choose>
-				      </th>
-				      <td id="tb_qaMiddle2">${QA_List.q_userId }</td>
-				      <td id="tb_qaMiddle2">${QA_List.q_writeDate }</td>
-				      <td style="text-align: left;  width: 10%">${QA_List.q_hit }</td>
-				    </tr>
-				  </c:forEach>
+			  <c:choose>
+			  		<c:when test="${not empty QA_List }">
+					  <c:forEach items="${QA_List }" var="QA_List" begin="0" end="5">
+					    <tr>
+					      <td id="tb_num1">${QA_List.q_idx }</td>
+					      <th id="tb_num2">
+						      <div style="cursor:pointer;" onclick="script:window.location.href='qaView?selectedQA=${QA_List.q_idx }'">
+							      <c:choose>	
+							      	<c:when test="${fn:length(QA_List.q_title) gt 22 }">
+							      		${fn:substring(QA_List.q_title, 0, 21) }...
+							      	</c:when>
+							      	<c:otherwise>
+							      		${QA_List.q_title }
+							      	</c:otherwise>
+							      </c:choose>
+							  </div>
+					      </th>
+					      <td id="tb_num3">${QA_List.q_userId }</td>
+					      <td id="tb_num3">${QA_List.q_writeDate }</td>
+					      <td id="tb_num3" style="text-align: center;">${QA_List.q_hit }</td>
+					    </tr>
+					  </c:forEach>
+				  	</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="5">등록된 Q&A가 존재하지 않습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 			  </tbody>
 			</table>
 		</div>
 		<!-- Q&A 끝 -->
 	</div>
-	</div>
+</div>
 	
 	
 	<!-- 푸터 -->

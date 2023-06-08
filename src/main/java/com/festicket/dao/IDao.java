@@ -6,6 +6,7 @@ import com.festicket.dto.CSanswerDto;
 import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
 import com.festicket.dto.QABoardDto;
+import com.festicket.dto.ReserveDto;
 import com.festicket.dto.ReviewDto;
 
 public interface IDao {
@@ -41,7 +42,11 @@ public interface IDao {
 	
 	// QA
 	public List<QABoardDto> getQAListDao(int eventNum); // QA 글 리스트 가져오기
-	public QABoardDto getQaDao(int qaNum); // qa 굴 하나 가져오기
+	public QABoardDto getQaDao(int qaNum); // qa 글 하나 가져오기
+	public void qaHitDao(int q_idx); // 조회수 증가
+	
+	// 예약확인
+	public ReserveDto getReservationDao(int re_idx); // 예약 디테일 하나 가져오기
 	
 	// 고객센터 게시판 기능
 	public List<CSboardDto> csListDao(int countList, int countPage); // 게시글 목록 모두 가져오기

@@ -19,8 +19,8 @@
 	<div class="container">
 		<div class="container_1">
 		<div id="csBoard_page_form">
-		<h2 class="csBoardTitle">Q&A</h2>
-			<form action="" method="post" id="">
+		<h2 class="csBoardTitle" style="margin-bottom: 35px">Q&A</h2>
+			<form action="" method="" id="">
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">제목</span>
 	  				<input type="text" class="form-control" aria-describedby="basic-addon1" 
@@ -58,7 +58,7 @@
 						<input type="button" class="btn" id="buttons" value="삭제" onclick="script:window.location.href=''">
 					</div>
 					<div class="button_list">
-						<input type="button" class="btn" id="buttons" value="이전" onclick="history.back()">
+						<input type="button" class="btn" id="buttons" value="이전" onclick="window.location=document.referrer">
 					</div>
 				</div>
 				</div>
