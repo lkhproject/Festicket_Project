@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 public class ReserveDto {
 	
 	private int re_idx;
-	private String userid;
+	private String re_userId;
 	private int re_eventNum;
 	private String re_price;
 	private Date re_date;
 	private int re_ticketCount;
+	private Date re_ticketDate;
 	
 }

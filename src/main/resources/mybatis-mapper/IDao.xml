@@ -160,11 +160,12 @@
 		UPDATE event_QABoard SET q_hit=q_hit+1 WHERE q_idx=#{param1}
 	</update>
 	
+	<!-- *** 예약 *** -->
 	<!-- 예약확인 -->
 	<select id="getReservationDao" resultType="com.festicket.dto.ReserveDto">
 		SELECT *
 		FROM eventReservation
-		WHERE re_idx=#{param1}
+		WHERE re_eventNum=#{param1}
 		<!-- 
 		FROM eventReservation er
 		LEFT OUTER JOIN event e
@@ -172,6 +173,12 @@
 		Where re_idx=#{param1}
 		 -->
 	</select>
+	
+	<!-- 예약db에 넣어주기 -->
+	<insert id="reservationConfirmedDao">
+		INSERT INTO eventreservation
+		VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
+	</insert>
 	
 	<!-- 고객센터 페이지 -->
 	<select id="csListDao" resultType="com.festicket.dto.CSboardDto">

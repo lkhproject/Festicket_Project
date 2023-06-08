@@ -20,7 +20,23 @@
 	
 <div class="container" style="margin-top: 30px">
 	<div class="container" id="rvView_page_form">
-		ㅇㅇ
+		<div class="card mb-3" style="max-width: 540px;">
+		  <div class="row g-0">
+		    <div class="col-md-4">
+		      <img src="${event.main_img }" class="img-fluid rounded-start" alt="${event.title }">
+		    </div>
+		    <div class="col-md-8">
+		      <div class="card-body">
+		        <h5 class="card-title">${event.title }</h5>
+		        <p class="card-text">${event.gunName } / ${event.place }</p>
+		        <p class="card-text"><small class="text-muted">예약일 : ${comfirmedRev.re_ticketDate }</small></p>
+		        <p class="card-text"><small class="text-muted">${comfirmedRev.re_userId } 님,</small></p>
+		        <p class="card-text"><small class="text-muted">티켓수 : ${comfirmedRev.re_ticketCount }</small></p>
+		        <p class="card-text"><small class="text-muted">가격 : ${comfirmedRev.re_price }</small></p>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 	</div>
 </div>
 	

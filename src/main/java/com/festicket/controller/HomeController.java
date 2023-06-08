@@ -1,5 +1,6 @@
 package com.festicket.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -344,18 +345,16 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		// Integer.parseInt(request.getParameter("넘어온 값")) 필요
-		int revNum = 1;
+		// Integer.parseInt(request.getParameter("selectedEventNum"));
+		int revNum = 6;
+				
+		// int seq, String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate
+		// dao.reservationConfirmedDao("seq값", "userId", revNum, "price", "sysdate", 2, "selectedDate");
 		
 		model.addAttribute("comfirmedRev", dao.getReservationDao(revNum));
+		model.addAttribute("event", dao.getEventDao(revNum));
 		
 		return "confirmRev";
 	}
 	
-	@RequestMapping(value = "/test")
-	public String test(HttpSession session, Model model, HttpServletRequest request) {
-		
-		
-		return "test";
-	}
 }

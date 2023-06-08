@@ -17,6 +17,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
+<script type="text/javascript" src="/resources/js/rvView.js"></script>
+
 <title>페스티켓</title>
 </head>
 <body>
@@ -48,6 +50,7 @@
 					</div>
 				</div>
 				<div class="cal">
+				<!-- 따로 js 파일로 뺄 수 있는지 -->
 					<script type="text/javascript"> 
 	                    $(function(){ 
 	                    	var dateRange = "${event.eventDate}".split("~");
@@ -101,8 +104,19 @@
 						<option value="3">5</option>
 					</select>
 				</div>
+				<script>
+				  var ticketCountSelect = document.getElementById("ticketCount");
+				  var selectedTicketCountInput = document.getElementById("selectedTicketCount");
+				
+				  ticketCountSelect.addEventListener("change", function() {
+				    selectedTicketCountInput.value = ticketCountSelect.value;
+				  });
+				</script>
 				<!-- js로 디테일 포함 알림창 띄운다음 확인 누르면 confirmRev로 넘어감 -->
-				<input type="submit" value="예매하기" onclick="checkRev()">
+				<input type="hidden" name="selectedDate" id="selectedDate" value="">
+				<input type="hidden" name="selectedEventNum" id="selectedEventNum" value="${event.eventNum }">
+				<input type="hidden" name="selectedTicketCount" id="selectedTicketCount" value="">
+				<input type="submit" value="예매하기" onclick="confirmRev()">
 			</form>
 		</div>
 	<!-- 예매 영역 끝 -->

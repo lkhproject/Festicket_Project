@@ -1,5 +1,6 @@
 package com.festicket.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.festicket.dto.CSanswerDto;
@@ -47,6 +48,7 @@ public interface IDao {
 	
 	// 예약확인
 	public ReserveDto getReservationDao(int re_idx); // 예약 디테일 하나 가져오기
+	public void reservationConfirmedDao(int seq, String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate); // 예약 디테일 db에 넣어주기
 	
 	// 고객센터 게시판 기능
 	public List<CSboardDto> csListDao(int countList, int countPage); // 게시글 목록 모두 가져오기
