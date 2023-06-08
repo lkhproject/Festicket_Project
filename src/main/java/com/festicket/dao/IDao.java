@@ -16,6 +16,7 @@ public interface IDao {
 	public List<CSboardDto> csListDao(int countList, int countPage); // 게시글 목록 모두 가져오기
 	public void csWriteDao(String c_userId, String c_title, String c_content); // 게시글 쓰기
 	public CSboardDto csViewDao(String c_idx); // 클릭한 게시글 내용 보기
+	public void csModifyDao(String c_userId, String c_title, String c_content); // 게시글 수정
 	public void csDeleteDao(String c_idx); // 게시글 삭제
 	public void csHitDao(String c_idx); // 조회수 증가
 	public int totalCSListCountDao(); // 총 게시글 개수 반환

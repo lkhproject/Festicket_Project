@@ -33,8 +33,7 @@
 			</div>
 			
 			<div class="input-group">
-  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" readonly="readonly">${csBoardDto.c_content }
-  				</textarea>
+  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" readonly="readonly">${csBoardDto.c_content }</textarea>
 			</div>
 	<!-- 게시글 영역 끝 -->
 			
@@ -66,8 +65,7 @@
 			          </td>
 			        </tr>
 			        <tr>
-			          <td id="reply_list_cnt" colspan='2'>${replyDto.ca_content }
-			          </td>
+			          <td id="reply_list_cnt" colspan='2'>${replyDto.ca_content }</td>
 			        </tr>
 			        </table>
 		        </c:forEach>
