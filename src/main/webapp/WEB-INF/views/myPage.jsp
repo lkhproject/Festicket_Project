@@ -76,10 +76,12 @@
 
 <div class="help_rcont">
                     <div class="h3_line"><h4 class="tit_reserve01">예매확인/취소</h4></div>
+                    <div class="guide_txt">
                     <p class="guide_txt">
                         <span class="color_point">예매번호</span>를 클릭하면 예매 상세 내용을 확인할 수 있습니다.
                         <br>공연/전시 예매 내역은 하단의 공연/전시 탭을 선택하면 확인할 수 있습니다.
                     </p>
+                    </div>
                     <div class="sortbx">
                         <dl class="daysortbx fl">
                             <dt>기간별 조회</dt>
@@ -98,50 +100,32 @@
                             </dd>
                         </dl> 
                     </div>
-
-                    <p class="guide_txt v2">예매한 내역이 확인이 안되실 경우 <a href="">1:1 상담 문의</a>를 이용해주세요.</p>
-
+					<br><br><br><br>
+                    <p class="guide_text">예매한 내역이 확인이 안되실 경우 <a href="" class="color_point">1:1 상담 문의</a>를 이용해주세요.</p>
+					<br>
+					<div class="container" >
                     <div class="basic_tbl basic_tbl_v3">
-                        <table>
-                            <caption>예매확인/취소 리스트</caption>
-                            <colgroup>
-                                <col style="width:90px">
-                                <col>
-                                <col style="width:135px">
-                                <col style="width:50px">
-                                <col style="width:100px">
-                                <col style="width:155px">
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th scope="col">예매번호</th>
-                                <th scope="col">티켓명</th>
-                                <th scope="col">관람일시</th>
-                                <th scope="col">매수</th>
-                                <th scope="col">취소가능일</th>
-                                <th scope="col">상태</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-show="reserveList.length === 0">
-                                <td colspan="6" class="no_data">예매한 내역이 없습니다.</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div>
-    <div class="paging ng-isolate-scope" paging="paging" search="fn.search">
-    <a href="" class="first" ng-click="search(pagingService.initialPage)">맨앞</a>
-    <a href="" class="prev" ng-click="search(pagingService.getPreviousPage(paging))">이전</a>
-    <strong class="ng-binding">1</strong>
-    <a href="" class="next" ng-click="search(pagingService.getNextPage(paging))">다음</a>
-    <a href="" class="end" ng-click="search(pagingService.getPageCount(paging))">맨뒤</a>
-</div>
-</div>
-
-                </div>
-  </div>
+                      <table class="table table-striped">
+  				<thead>
+ 					<tr>
+      				<th scope="col">예매번호</th>
+      				<th scope="col">티켓명</th>
+      				<th scope="col">관람일시</th>
+      				<th scope="col">매수</th>
+      				<th scope="col">취소가능일</th>
+      				<th scope="col">상태</th>
+      				</tr>
+      			</thead>
+   				 <tbody>
+                    <tr ng-show="reserveList.length === 0">
+                    <td colspan="6" class="no_data">예매한 내역이 없습니다.</td>
+                    </tr>
+                 </tbody>
+				</table>
+					</div>
+					</div>
+                	</div>
+  					</div>
 	
 	<%@ include file="include/footer.jsp" %>
 </body>
