@@ -52,4 +52,21 @@
 		SELECT COUNT(*) FROM eventCSboard
 	</select>
 	
+	<!-- 댓글 관련 -->
+	<insert id="replyWriteDao">
+		INSERT INTO 
+			eventCSanswer(ca_idx, ca_userId, ca_content, ca_boardNum)
+				VALUES
+					(ecsa_seq.nextval, '관리자', #{param1}, #{param2})
+	</insert>
+	
+	<update id="replyCountDao">
+		UPDATE eventCSboard SET c_replyCount=c_replyCount+1 WHERE c_idx=#{param1}
+	</update>
+	
+	<select id="replyListDao" resultType="com.festicket.dto.CSanswerDto">
+		SELECT * FROM eventCSanswer WHERE ca_boardNum=#{param1} ORDER BY ca_idx ASC
+	</select>
+	
+	
 </mapper>

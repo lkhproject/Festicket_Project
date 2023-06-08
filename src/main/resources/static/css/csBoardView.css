@@ -78,7 +78,8 @@ div.button_list {
 
 #csBoard_page_form {
 	width: 80%;
-	height: 800px;
+	height:auto;
+	overflow:hidden;
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-bottom: 100px;

@@ -78,9 +78,8 @@ public class CSboardController {
 		
 		dao.csHitDao(request.getParameter("c_idx")); // 조회수 증가
 		
-		CSboardDto csBoardDto = dao.csViewDao(request.getParameter("c_idx"));
-		
-		model.addAttribute("csBoardDto", csBoardDto);
+		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
+		model.addAttribute("replyList", dao.replyListDao(request.getParameter("c_idx")));
 		
 		return "csBoardView";
 	}
@@ -90,10 +89,7 @@ public class CSboardController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		dao.csDeleteDao(request.getParameter("c_idx"));
-		
-		System.out.println(request.getParameter("c_idx"));
-		
+		dao.csDeleteDao(request.getParameter("c_idx"));	
 //		dao.boardReplyDeleteDao(request.getParameter("ca_boardNum"));
 		
 		return "redirect:csBoardList";

@@ -17,7 +17,7 @@ public class ReplyController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "/replyWrite")
-	public String reply_write(HttpServletRequest request, Model model) {
+	public String replyWrite(HttpServletRequest request, Model model) {
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -25,9 +25,9 @@ public class ReplyController {
 		dao.replyCountDao(request.getParameter("ca_boardNum")); // 원글의 댓글 수를 1증가
 		
 		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("ca_boardNum")));
-		model.addAttribute("replyList", dao.replyListDao(request.getParameter("rorinum")));
+		model.addAttribute("replyList", dao.replyListDao(request.getParameter("ca_boardNum")));
 		
-		return "csBoardview";
+		return "csBoardView";
 	}
 
 }
