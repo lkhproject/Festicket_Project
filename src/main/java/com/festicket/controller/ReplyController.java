@@ -29,5 +29,19 @@ public class ReplyController {
 		
 		return "csBoardView";
 	}
+	
+	@RequestMapping(value = "/replyDelete")
+	public String reply_delete(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.replyDeleteDao(request.getParameter("ca_idx")); // 댓글 삭제
+		dao.replyCountMinusDao(request.getParameter("ca_boardNum")); // 댓글 개수 1개 삭제
+		
+		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("ca_boardNum")));	
+		model.addAttribute("replyList", dao.replyListDao(request.getParameter("ca_boardNum")));
+		
+		return "csBoardView";
+	}
 
 }

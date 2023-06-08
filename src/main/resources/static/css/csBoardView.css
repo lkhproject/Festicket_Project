@@ -12,12 +12,16 @@ thead {
 }
 
 th, td {
-	text-align: center;
+	text-align: left;
 }
 
 div.container {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
+}
+
+div.container_1 {
+	padding: 10px 0px;
 }
 
 h2.csBoardTitle {
@@ -28,16 +32,11 @@ h2.csBoardTitle {
 	color: #404040;
 }
 
-div.container_1 {
-	padding: 50px 0px;
-}
-
-#pagingNum {
+div.reply_write {
 	margin-top: 30px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 18px;
+	border:1px solid #e4e4e4; 
+	padding:10px 15px 8px 15px; 
+	background:#f6f6f6
 }
 
 div.button_area {
@@ -57,6 +56,28 @@ div.button_delete {
 
 div.button_list {
 	float: left;
+}
+
+#reply_list {
+	width:100%; 
+	margin:30px 0 30px 0;
+	border-top:1px solid #ddd;
+}
+
+#reply_list_id {
+	font-size:15px; 
+	height:15px; 
+	color:#aaa; 
+	padding-top: 30px;
+}
+
+#reply_list_cnt {
+	font-size:15px; 
+	height:14px; 
+	padding-top:10px;
+	color:#000; 
+	font-weight:300; 
+	line-height:22px;
 }
 
 #buttons {
@@ -86,11 +107,20 @@ div.button_list {
 	border-radius: 0.8em;
 	background-color: white;
 	margin: auto;
+	margin-top: 40px;
 }
 
 #basic-addon1 {
 	width: 100px;
 	font-weight: 700;
+}
+
+#pagingNum {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
 }
 
 textarea.form-control {

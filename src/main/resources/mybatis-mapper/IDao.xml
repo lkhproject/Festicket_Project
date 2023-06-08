@@ -68,5 +68,12 @@
 		SELECT * FROM eventCSanswer WHERE ca_boardNum=#{param1} ORDER BY ca_idx ASC
 	</select>
 	
+	<delete id="replyDeleteDao">
+		DELETE FROM eventCSanswer WHERE ca_idx=#{param1}
+	</delete>
+	
+	<update id="replyCountMinusDao">
+		UPDATE eventCSboard SET c_replyCount=c_replyCount-1 WHERE c_idx=#{param1}
+	</update>
 	
 </mapper>

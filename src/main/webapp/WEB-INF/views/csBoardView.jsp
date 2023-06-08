@@ -11,11 +11,11 @@
 <title>페스티켓</title>
 </head>
 <body>
-	<!-- 헤더 -->
+	<!-- 헤더 시작 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
-	<!-- 게시글 영역 -->
+	<!-- 게시글 영역 시작 -->
 	<div class="container">
 		<div class="container_1">
 		<div id="csBoard_page_form">
@@ -38,11 +38,11 @@
 			</div>
 	<!-- 게시글 영역 끝 -->
 			
-			<!-- 댓글 영역 -->
-			<!-- 댓글 쓰기 영역 -->
+			<!-- 댓글 영역 시작 -->
+			<!-- 댓글 쓰기 시작 -->
 			<form action="replyWrite" method="post">
 			<input type="hidden" name="ca_boardNum" value="${csBoardDto.c_idx }">
-			<div class="reply_write" style='border:1px solid #e4e4e4; padding:10px 15px 8px 15px; background:#f6f6f6'>
+			<div class="reply_write">
 			  <table cellpadding=0 cellspacing=0 width='100%'>
 			    <tr>
 			      <td><textarea name="ca_content" maxlength="1000" style="font-size:15px; padding:7px; width:95%; height:55px; border:1px solid #ddd; -webkit-appearance:none;"></textarea></td>
@@ -53,30 +53,30 @@
 			  </table>
 			</div>
 			</form>
-			<!-- 댓글 쓰기 영역 끝 -->				
-			<!-- 댓글 리스트 영역 -->
-			<div class="reply_list" style="padding-top:0px; width:778px;">
-				<table cellspacing="0" style="width:100%; margin:10px 0 15px 0; padding:15px 0; border-top:1px solid #ddd;">
-			        <c:forEach items="${replyList }" var="replyDto">
+			<!-- 댓글 쓰기 끝 -->				
+			<!-- 댓글 리스트 영역 시작 -->
+			<div class="container">
+		        <c:forEach items="${replyList }" var="replyDto">
+			        <table id="reply_list" cellspacing="0" >
 			        <tr>
-			          <td style='font-size:14px; height:15px; color:#aaa; padding-top:15px;' align='left'>
+			          <td id="reply_list_id">
 			          	<span style='color:#1e6ec9;'>${replyDto.ca_userId }</span>
 				        &nbsp;&nbsp;|&nbsp;&nbsp;${replyDto.ca_answerDate }&nbsp;&nbsp;&nbsp;
-						<input type="button" value="삭제" onclick="script:window.location.href='replyDelete?ca_idx=${replyDto.ca_idx }&ca_boardNum=${csBoardDto.c_idx }'">
+			          	<a href="replyDelete?ca_idx=${replyDto.ca_idx }&ca_boardNum=${csBoardDto.c_idx }"><img src="/resources/img/btn_del_reply.png"></a>
 			          </td>
 			        </tr>
 			        <tr>
-			          <td colspan='2' style='font-size:15px; height:14px; padding-top:10px; color:#000; font-weight:300; line-height:22px;' align="left">
-			          	${replyDto.ca_content }
+			          <td id="reply_list_cnt" colspan='2'>${replyDto.ca_content }
 			          </td>
 			        </tr>
-			        </c:forEach>
-		        </table>
-			</div>
+			        </table>
+		        </c:forEach>
+		        <hr style="color:#888888;">
+			</div>	
 			<!-- 댓글 리스트 영역 끝 -->			
 			<!-- 댓글 영역 끝 -->
 			
-			<!-- 수정, 삭제, 목록 버튼 -->
+			<!-- 수정, 삭제, 목록 버튼 시작 -->
 			<div class="container" style="padding-top: 10px">
 			<div class="button_area">
 				<div class="button_modify">
@@ -95,7 +95,7 @@
 		</div>
 	</div>
 
-	<!-- 푸터 -->
+	<!-- 푸터 시작 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 </body>
