@@ -90,7 +90,7 @@ public class CSboardController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		dao.csDeleteDao(request.getParameter("c_idx"));	
-//		dao.boardReplyDeleteDao(request.getParameter("ca_boardNum"));
+		dao.boardReplyDeleteDao(request.getParameter("ca_boardNum"));
 		
 		return "redirect:csBoardList";
 	}

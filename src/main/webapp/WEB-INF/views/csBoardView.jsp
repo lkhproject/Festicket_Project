@@ -83,7 +83,7 @@
 					<input type="button" class="btn" id="buttons" value="수정" onclick="script:window.location.href='csBoardModify'">
 				</div>
 				<div class="button_delete">
-					<input type="button" class="btn" id="buttons" value="삭제" onclick="script:window.location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}'">
+					<input type="button" class="btn" id="buttons" value="삭제" onclick="script:window.location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'">
 				</div>
 				<div class="button_list">
 					<input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='csBoardList'">

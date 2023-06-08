@@ -48,7 +48,7 @@
 						</c:choose>
 						</a>
 						<c:if test="${csList.c_replyCount != 0 }">
-			            <span style="color:#999999; font-size: 8px;">[${csList.c_replyCount }]</span>
+			            <span style="color:#999999; font-size: 12px;">&nbsp;[${csList.c_replyCount }]</span>
 			            </c:if>
 				      </td>
 				      <td>${csList.c_userId }</td>

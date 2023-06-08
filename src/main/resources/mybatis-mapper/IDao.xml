@@ -76,4 +76,8 @@
 		UPDATE eventCSboard SET c_replyCount=c_replyCount-1 WHERE c_idx=#{param1}
 	</update>
 	
+	<delete id="boardReplyDeleteDao">
+		DELETE FROM eventCSanswer WHERE ca_boardNum=#{param1}
+	</delete>
+	
 </mapper>
