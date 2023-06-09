@@ -1,6 +1,8 @@
 package com.festicket.controller;
 
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -130,6 +132,7 @@ public class HomeController {
 	}
 
 
+// *************************************************CS
 	@RequestMapping(value = "/csBoardList")
 	public String csBoardList(HttpServletRequest request, Model model, Criteria criteria) {
 		
@@ -147,7 +150,7 @@ public class HomeController {
 			criteria.setPageNum(pageNum);
 		}
 		
-		int totalCount = dao.totalCSListCountDao(); // 모든 글의 개수
+		int totalCount = dao.csListTotalCountDao(); // 모든 글의 개수
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);	
 		
@@ -181,17 +184,48 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/csBoardView")
-	public String contentView(HttpServletRequest request, Model model) {
+	public String csBoardView(HttpServletRequest request, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		dao.csHitDao(request.getParameter("c_idx")); // 조회수 증가
 		
-		CSboardDto csBoardDto = dao.csViewDao(request.getParameter("c_idx"));
-		
-		model.addAttribute("csBoardDto", csBoardDto);
+		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
+		model.addAttribute("replyList", dao.replyListDao(request.getParameter("c_idx")));
 		
 		return "csBoardView";
+	}
+	
+	@RequestMapping(value = "/csBoardModify")
+	public String csBoardModify(HttpServletRequest request, HttpSession session, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
+		
+//		String sessionId = (String) session.getAttribute("sessionId");
+//		
+//		IDao dao = sqlSession.getMapper(IDao.class);
+//		
+//		model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
+		
+		return "csBoardModify";
+	}
+	
+	@RequestMapping(value = "csModifyOk")
+	public String csModifyOk(HttpServletRequest request, Model model) {
+		
+		String c_idx = request.getParameter("c_idx");
+		String c_title = request.getParameter("c_title");
+		String c_content = request.getParameter("c_content");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.csModifyDao(c_idx, c_title, c_content);
+		
+		model.addAttribute("csBoardDto", dao.csViewDao(c_idx)); // 수정이 된 후 글내용
+		
+		return "csModifyOk";
 	}
 	
 	@RequestMapping(value = "/csBoardDelete")
@@ -199,12 +233,70 @@ public class HomeController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		dao.csDeleteDao(request.getParameter("c_idx"));
-		
-//		dao.boardReplyDeleteDao(request.getParameter("ca_boardNum"));
+		dao.csDeleteDao(request.getParameter("c_idx"));	
+		dao.boardReplyDeleteDao(request.getParameter("ca_boardNum"));
 		
 		return "redirect:csBoardList";
 	}
+	
+	@RequestMapping(value = "/csBoardSearch")
+	public String search_list(HttpServletRequest request, Model model, Criteria criteria) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		// 페이징
+		int pageNum = 0;
+		
+		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+		if(request.getParameter("pageNum") == null) {
+			pageNum = 1;
+			criteria.setPageNum(pageNum);
+		} else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			criteria.setPageNum(pageNum);
+		}
+
+		String searchOption = request.getParameter("searchOption");
+		String keyword = request.getParameter("keyword");
+		
+		if(searchOption.equals("title")) {
+			int totalCount = dao.totalcsSearch_TitleCount(keyword);
+			
+			PageDto pageDto = new PageDto(criteria, totalCount);
+			
+			List<CSboardDto> CSboardDtos = dao.csSearchTitleDao(keyword, criteria.getCountList(), pageNum);
+			
+			request.setAttribute("totalCount", totalCount);
+			model.addAttribute("pageMaker", pageDto);
+			model.addAttribute("CSboardDtos", CSboardDtos);
+			model.addAttribute("currPage", pageNum);
+		}
+		else if(searchOption.equals("content")) {
+			int totalCount = dao.totalcsSearch_ContentCount(keyword);
+			
+			PageDto pageDto = new PageDto(criteria, totalCount);
+			
+			List<CSboardDto> CSboardDtos = dao.csSearchContentDao(keyword, criteria.getCountList(), pageNum);
+			
+			request.setAttribute("totalCount", totalCount);
+			model.addAttribute("pageMaker", pageDto);
+			model.addAttribute("CSboardDtos", CSboardDtos);
+			model.addAttribute("currPage", pageNum);
+		} else {
+			int totalCount = dao.totalcsSearch_IdCount(keyword);
+			
+			PageDto pageDto = new PageDto(criteria, totalCount);
+			
+			List<CSboardDto> CSboardDtos = dao.csSearchWriterDao(keyword, criteria.getCountList(), pageNum);
+			
+			request.setAttribute("totalCount", totalCount);
+			model.addAttribute("pageMaker", pageDto);
+			model.addAttribute("CSboardDtos", CSboardDtos);
+			model.addAttribute("currPage", pageNum);
+		}
+		return "csBoardSearch";
+	}
+	// *************************************************CS
 	
 	
 	@RequestMapping(value = "/adminList")
@@ -341,18 +433,40 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/confirmRev")
-	public String confirmRev(HttpSession session, Model model, HttpServletRequest request) {
-		
+	public String confirmRev(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
+
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		// Integer.parseInt(request.getParameter("selectedEventNum"));
-		int revNum = 6;
-				
-		// int seq, String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate
-		// dao.reservationConfirmedDao("seq값", "userId", revNum, "price", "sysdate", 2, "selectedDate");
+//		String re_userId = request.getParameter("mid");
+		String re_userId = "happyCat";
+		int re_eventNum = Integer.parseInt(request.getParameter("selectedEventNum"));
+		String re_price = request.getParameter("eventPrice");
 		
-		model.addAttribute("comfirmedRev", dao.getReservationDao(revNum));
-		model.addAttribute("event", dao.getEventDao(revNum));
+		Date now = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strToday = formatter.format(now);
+        Date today = formatter.parse(strToday);
+		
+//		int re_ticketCount = Integer.parseInt(request.getParameter("selectedTicketCount"));
+		int re_ticketCount = 2;
+        
+        String selectedDate = request.getParameter("selectedDate");
+		Date re_ticketDate = formatter.parse(selectedDate);
+		
+		System.out.println(re_ticketCount);
+		
+		int revCheck = 0;
+		
+		revCheck = dao.reservationConfirmedDao(re_userId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate);
+		
+//		같은 아이디로 같은 행사 예약하면 이미 예약한 행사가 있다고 티켓 매수 수정하라는 알림창 띄우기
+		if(revCheck == 1) { // 예약완료
+			model.addAttribute("comfirmedRev", dao.getReservationDao(re_eventNum, re_userId));
+			model.addAttribute("event", dao.getEventDao(re_eventNum));
+			model.addAttribute("revCheck", revCheck);
+		} else { // 예약실패
+			model.addAttribute("revCheck", revCheck);
+		}
 		
 		return "confirmRev";
 	}

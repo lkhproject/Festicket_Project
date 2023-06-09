@@ -164,14 +164,26 @@
 	<!-- 예약확인 -->
 	<select id="getReservationDao" resultType="com.festicket.dto.ReserveDto">
 		SELECT *
-		FROM eventReservation
-		WHERE re_eventNum=#{param1}
-		<!-- 
-		FROM eventReservation er
-		LEFT OUTER JOIN event e
-		ON er.re_userId = e.userId
-		Where re_idx=#{param1}
-		 -->
+		FROM (
+		    SELECT *
+		    FROM eventReservation
+		    WHERE re_eventNum = #{param1} AND re_userId=#{param2}
+		    ORDER BY re_idx DESC
+		)
+		WHERE ROWNUM <![CDATA[<=]]>1
+	
+	<!-- 오라클에서는 되는데 여기선 안됨
+		SELECT
+		    e.main_img, e.title, e.gunName, e.place, er.*
+		FROM (
+		    SELECT *
+		    FROM eventReservation
+		    WHERE re_eventNum = #{param1} AND re_userId=#{param2}
+		    ORDER BY re_idx DESC
+		) er
+		LEFT OUTER JOIN event e ON er.re_eventNum = e.eventNum
+		WHERE ROWNUM <![CDATA[<=]]>1;
+	 -->
 	</select>
 	
 	<!-- 예약db에 넣어주기 -->
@@ -179,8 +191,8 @@
 		INSERT INTO eventreservation
 		VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
 	</insert>
-	
-	<!-- 고객센터 페이지 -->
+
+	<!-- 고객센터 게시판 관련 -->
 	<select id="csListDao" resultType="com.festicket.dto.CSboardDto">
 		SELECT *
 		FROM (
@@ -205,6 +217,10 @@
 		SELECT * FROM eventCSboard WHERE c_idx=#{param1}
 	</select>
 	
+	<update id="csModifyDao">
+		UPDATE eventCSboard SET c_title=#{param2}, c_content=#{param3} WHERE c_idx=#{param1}
+	</update>
+	
 	<delete id="csDeleteDao">
 		DELETE FROM eventCSboard WHERE c_idx=#{param1}
 	</delete>
@@ -213,8 +229,105 @@
 		UPDATE eventCSboard SET c_hit=c_hit+1 WHERE c_idx=#{param1}
 	</update>
 	
-	<select id="totalCSListCountDao" resultType="int">
+	<select id="csListTotalCountDao" resultType="int">
 		SELECT COUNT(*) FROM eventCSboard
 	</select>
+	
+	
+	<!-- 고객센터 검색 관련 -->
+	<select id="totalcsSearch_TitleCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM eventCSboard
+	    WHERE c_title
+		LIKE '%' || #{param1} || '%'
+	</select>
+	
+	<select id="totalcsSearch_IdCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM eventCSboard
+	    WHERE c_userId
+		LIKE '%' || #{param1} || '%'
+	</select>
+	
+	<select id="totalcsSearch_ContentCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM eventCSboard
+	    WHERE c_content
+		LIKE '%' || #{param1} || '%'
+	</select>
+	
+	<select id="csSearchTitleDao" resultType="com.festicket.dto.CSboardDto">
+		SELECT *
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT *
+		        FROM eventCSboard
+		        WHERE c_title
+		        LIKE '%' || #{param1} || '%'
+		        ORDER BY c_idx DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
+	</select>
+	
+	<select id="csSearchContentDao" resultType="com.festicket.dto.CSboardDto">
+		SELECT *
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT *
+		        FROM eventCSboard
+		        WHERE c_content
+		        LIKE '%' || #{param1} || '%'
+		        ORDER BY c_idx DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
+	</select>
+	
+	<select id="csSearchWriterDao" resultType="com.festicket.dto.CSboardDto">
+		SELECT *
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT *
+		        FROM eventCSboard
+		        WHERE c_userID
+		        LIKE '%' || #{param1} || '%'
+		        ORDER BY c_idx DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
+	</select>
+	
+	
+	<!-- 댓글 관련 -->
+	<insert id="replyWriteDao">
+		INSERT INTO 
+			eventCSanswer(ca_idx, ca_userId, ca_content, ca_boardNum)
+				VALUES
+					(ecsa_seq.nextval, '관리자', #{param1}, #{param2})
+	</insert>
+	
+	<update id="replyCountDao">
+		UPDATE eventCSboard SET c_replyCount=c_replyCount+1 WHERE c_idx=#{param1}
+	</update>
+	
+	<select id="replyListDao" resultType="com.festicket.dto.CSanswerDto">
+		SELECT * FROM eventCSanswer WHERE ca_boardNum=#{param1} ORDER BY ca_idx ASC
+	</select>
+	
+	<delete id="replyDeleteDao">
+		DELETE FROM eventCSanswer WHERE ca_idx=#{param1}
+	</delete>
+	
+	<update id="replyCountMinusDao">
+		UPDATE eventCSboard SET c_replyCount=c_replyCount-1 WHERE c_idx=#{param1}
+	</update>
+	
+	<delete id="boardReplyDeleteDao">
+		DELETE FROM eventCSanswer WHERE ca_boardNum=#{param1}
+	</delete>
 	
 </mapper>
