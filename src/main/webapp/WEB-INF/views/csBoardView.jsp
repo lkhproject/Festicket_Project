@@ -14,11 +14,10 @@
 		 location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'
 	 } else {return false;}
 	}
-
  function replyRemoveCheck(ca_idx) {
 	  if (confirm("삭제하시겠습니까?") == true) {
 	    var form = document.createElement("form");
-	    form.action = 'replyDelete'; // 수정된 URL을 입력해야 합니다.
+	    form.action = 'replyDelete';
 	    form.method = 'post';
 
 	    var ca_idxInput = document.createElement("input");
@@ -91,7 +90,7 @@
 			        <table id="reply_list" cellspacing="0" >
 			        <tr>
 			          <td id="reply_list_id">
-			          	<span style='color:#1e6ec9;'>${replyDto.ca_userId }</span>
+			          	<span style='color:#1e6ec9; font-weight:bold;'>${replyDto.ca_userId }</span>
 				        &nbsp;&nbsp;|&nbsp;&nbsp;${replyDto.ca_answerDate }&nbsp;&nbsp;&nbsp;
 			          	<img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${replyDto.ca_idx}', '${csBoardDto.c_idx}')" style="cursor:pointer">
 			          </td>

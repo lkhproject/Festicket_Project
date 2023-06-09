@@ -86,13 +86,17 @@ public class CSboardController {
 	}
 	
 	@RequestMapping(value = "/csBoardModify")
-	public String csBoardModify(HttpSession session, Model model) {
-		
-		String sessionId = (String) session.getAttribute("sessionId");
+	public String csBoardModify(HttpServletRequest request, HttpSession session, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
+		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
+		
+//		String sessionId = (String) session.getAttribute("sessionId");
+//		
+//		IDao dao = sqlSession.getMapper(IDao.class);
+//		
+//		model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
 		
 		return "csBoardModify";
 	}
@@ -124,7 +128,7 @@ public class CSboardController {
 		return "redirect:csBoardList";
 	}
 	
-	@RequestMapping(value = "/csSearch")
+	@RequestMapping(value = "/csBoardSearch")
 	public String search_list(HttpServletRequest request, Model model) {
 		
 		String searchOption = request.getParameter("searchOption");
@@ -134,13 +138,10 @@ public class CSboardController {
 		
 		if(searchOption.equals("qtitle")) {
 			model.addAttribute("CSboardDtos", dao.csSearchTitleDao(keyword));
-//			model.addAttribute("totalCount", dao.csSearchTitleDao(keyword).size());
 		} else if(searchOption.equals("content")) {
 			model.addAttribute("CSboardDtos", dao.csSearchContentDao(keyword));
-//			model.addAttribute("totalCount", dao.csSearchContentDao(keyword).size());
 		} else {
 			model.addAttribute("CSboardDtos", dao.csSearchWriterDao(keyword));
-//			model.addAttribute("totalCount", dao.csSearchWriterDao(keyword).size());
 		}
 		return "csBoardList";
 	}

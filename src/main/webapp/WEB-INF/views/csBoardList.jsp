@@ -65,7 +65,7 @@
 	<!-- 검색 기능, 등록 버튼 시작 -->
 	<div class="container" style="padding-top:10px">
 	<div class="bottom_area">
-	<form action="csSearch" method="get">
+	<form action="csBoardSearch" method="get">
     <div class="search_select" id="search_select">
 	    <select class="form-select" name="searchOption">
 	      <option value="title">제목</option>

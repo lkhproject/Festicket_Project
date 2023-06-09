@@ -56,6 +56,7 @@
 		SELECT COUNT(*) FROM eventCSboard
 	</select>
 	
+	
 	<!-- 고객센터 검색 관련 -->
 	<select id="csSearchTitleDao" resultType="com.festicket.dto.CSboardDto">
 	    SELECT * FROM eventCSboard WHERE c_title LIKE '%' || #{param1} || '%' ORDER BY c_idx DESC
@@ -68,6 +69,7 @@
 	<select id="csSearchWriterDao" resultType="com.festicket.dto.CSboardDto">
 	    SELECT * FROM eventCSboard WHERE c_userID LIKE '%' || #{param1} || '%' ORDER BY c_idx DESC
 	</select>
+	
 	
 	<!-- 댓글 관련 -->
 	<insert id="replyWriteDao">

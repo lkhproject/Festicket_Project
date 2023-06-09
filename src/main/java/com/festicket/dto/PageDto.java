@@ -37,6 +37,7 @@ public class PageDto {
 		this.prev = this.startPage > 1;
 		// 마지막 페이지 번호가 실제 페이지 번호보다 작은 경우에만 next 존재해야 함
 		this.next = this.endPage < realEndPage;
+		
 	}
 	
 }
