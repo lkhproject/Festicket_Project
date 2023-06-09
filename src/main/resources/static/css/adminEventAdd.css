@@ -42,6 +42,12 @@ h2.adminTitle {
 	color: #404040;
 }
 
+#dateInput {
+	width: 30%;
+	float: left;
+	margin-right: 10px;
+}
+
 input[type="submit"] {
 	background: #6800b8;
 	color: white;
