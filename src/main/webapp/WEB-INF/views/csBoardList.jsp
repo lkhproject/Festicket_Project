@@ -62,41 +62,50 @@
 	  	</table>	  		
 	<!-- 게시글 리스트 끝 -->
 	 
-	<!-- 검색, 등록 버튼 시작 -->
+	<!-- 검색 기능, 등록 버튼 시작 -->
 	<div class="container" style="padding-top:10px">
-	<div class="search_board_area">
-	<div class="search_board">
-	 	<input class="search_board_box" type="text">
-		<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
+	<div class="bottom_area">
+	<form action="csSearch" method="get">
+    <div class="search_select" id="search_select">
+	    <select class="form-select" name="searchOption">
+	      <option value="title">제목</option>
+	      <option value="content">내용</option>
+	      <option value="writer">아이디</option>
+	    </select>
 	</div>
+	<div class="search_board">
+	 	<div id="search_input"><input class="search_board_box" type="text" name="keyword"></div>
+		<div id="search_btn"><input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색버튼'></div>
+	</div>
+	</form>
 	<div class="button">
 		<input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
 	</div>
 	</div>
 	</div>
-	<!-- 검색, 등록 버튼 끝 -->
+	<!-- 검색 기능, 등록 버튼 끝 -->
 	
 	<!-- 페이징 시작 -->
-		<div class="container" id="csPagingNum">
-			<c:if test="${pageMaker.prev }">
-				<a href="csBoardList?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
-			</c:if>
-			
-			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-				<c:choose>
-					<c:when test="${currPage == num }">
-						<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
-					</c:when>
-					<c:otherwise>
-						<a href="csBoardList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			
-			<c:if test="${pageMaker.next }">
-				<a href="csBoardList?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
-			</c:if>
-		</div>
+	<div class="container" id="csPagingNum">
+		<c:if test="${pageMaker.prev }">
+			<a href="csBoardList?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+		</c:if>
+		
+		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+			<c:choose>
+				<c:when test="${currPage == num }">
+					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+				</c:when>
+				<c:otherwise>
+					<a href="csBoardList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<c:if test="${pageMaker.next }">
+			<a href="csBoardList?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+		</c:if>
+	</div>
 	<!-- 페이징 끝 -->
 
 	</div>

@@ -64,9 +64,13 @@ input[type="button"]:hover {
 	margin-top: 40px;
 }
 
-div.search_board_area {
+div.bottom_area {
 	display: flex;
 	justify-content: space-between;
+}
+
+div.search_select {
+	width: 90px;
 }
 
 div.search_board {
