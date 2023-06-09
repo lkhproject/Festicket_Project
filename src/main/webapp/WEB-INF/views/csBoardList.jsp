@@ -38,7 +38,8 @@
 				      <th scope="row">${csList.c_idx }</th>
 				      <td>
 						<a href="csBoardView?c_idx=${csList.c_idx }">
-						<c:choose><!-- 제목 글자수 제한 -->
+						<!-- 제목 글자수 제한 -->
+						<c:choose>
 							<c:when test="${fn:length(csList.c_title) > 25}">
 								<c:out value="${fn:substring(csList.c_title, 0, 24)}"></c:out>...
 							</c:when>
@@ -47,7 +48,8 @@
 							</c:otherwise>
 						</c:choose>
 						</a>
-						<c:if test="${csList.c_replyCount != 0 }"><!-- 댓글 수 -->
+						<!-- 댓글 수 -->
+						<c:if test="${csList.c_replyCount != 0 }">
 			            	<span class="badge">${csList.c_replyCount }</span>
 			            </c:if>   
 				      </td>
