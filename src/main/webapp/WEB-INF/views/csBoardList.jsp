@@ -60,7 +60,7 @@
 	  	</table>	  		
 	<!-- 게시글 리스트 끝 -->
 	 
-	<!-- 검색, 등록 -->
+	<!-- 검색, 등록 버튼 시작 -->
 	<div class="container" style="padding-top:10px">
 	<div class="search_board_area">
 	<div class="search_board">
@@ -72,9 +72,9 @@
 	</div>
 	</div>
 	</div>
-	<!-- 검색, 등록 끝 -->
+	<!-- 검색, 등록 버튼 끝 -->
 	
-	<!-- 페이징 -->
+	<!-- 페이징 시작 -->
 		<div class="container" id="csPagingNum">
 			<c:if test="${pageMaker.prev }">
 				<a href="csBoardList?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
@@ -101,7 +101,7 @@
 	</div>
 	</div>
 	
-	<!-- 푸터 -->
+	<!-- 푸터 시작 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 </body>
