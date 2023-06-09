@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.festicket.dto.CSanswerDto;
 import com.festicket.dto.CSboardDto;
+import com.festicket.dto.Criteria;
 import com.festicket.dto.EventDto;
 
 public interface IDao {
@@ -19,7 +20,12 @@ public interface IDao {
 	public void csModifyDao(String c_idx, String c_title, String c_content); // 게시글 수정
 	public void csDeleteDao(String c_idx); // 게시글 삭제
 	public void csHitDao(String c_idx); // 조회수 증가
-	public int totalCSListCountDao(); // 총 게시글 개수 반환
+	public int csListTotalCountDao(); // 총 게시글 개수 반환
+	
+	// 고객센터 검색 기능
+	public List<CSboardDto> csSearchTitleDao(String keyword); // 제목으로 검색
+	public List<CSboardDto> csSearchContentDao(String keyword); // 내용으로 검색
+	public List<CSboardDto> csSearchWriterDao(String keyword); // 아이디로 검색
 	
 	// 댓글 기능
 	public int replyWriteDao(String ca_content, String ca_boardNum); // 댓글 입력

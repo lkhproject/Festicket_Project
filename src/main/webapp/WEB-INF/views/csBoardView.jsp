@@ -8,6 +8,38 @@
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/csBoardView.css">
 <script src="/resources/js/bootstrap.min.js"></script>
+<script>
+ function removeCheck() {
+	 if (confirm("삭제하시겠습니까?") == true){
+		 location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'
+	 } else {return false;}
+	}
+
+ function replyRemoveCheck(ca_idx) {
+	  if (confirm("삭제하시겠습니까?") == true) {
+	    var form = document.createElement("form");
+	    form.action = 'replyDelete'; // 수정된 URL을 입력해야 합니다.
+	    form.method = 'post';
+
+	    var ca_idxInput = document.createElement("input");
+	    ca_idxInput.type = 'hidden';
+	    ca_idxInput.name = 'ca_idx';
+	    ca_idxInput.value = ca_idx;
+	    form.appendChild(ca_idxInput);
+
+	    var ca_boardNumInput = document.createElement("input");
+	    ca_boardNumInput.type = 'hidden';
+	    ca_boardNumInput.name = 'ca_boardNum';
+	    ca_boardNumInput.value = '${csBoardDto.c_idx }';
+	    form.appendChild(ca_boardNumInput);
+
+	    document.documentElement.appendChild(form);
+	    form.submit();
+	  } else {
+	    return false;
+	  }
+	}
+</script>
 <title>페스티켓</title>
 </head>
 <body>
@@ -61,7 +93,7 @@
 			          <td id="reply_list_id">
 			          	<span style='color:#1e6ec9;'>${replyDto.ca_userId }</span>
 				        &nbsp;&nbsp;|&nbsp;&nbsp;${replyDto.ca_answerDate }&nbsp;&nbsp;&nbsp;
-			          	<a href="replyDelete?ca_idx=${replyDto.ca_idx }&ca_boardNum=${csBoardDto.c_idx }"><img src="/resources/img/btn_del_reply.png"></a>
+			          	<img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${replyDto.ca_idx}', '${csBoardDto.c_idx}')" style="cursor:pointer">
 			          </td>
 			        </tr>
 			        <tr>
@@ -81,7 +113,7 @@
 					<input type="button" class="btn" id="buttons" value="수정" onclick="script:window.location.href='csBoardModify'">
 				</div>
 				<div class="button_delete">
-					<input type="button" class="btn" id="buttons" value="삭제" onclick="script:window.location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'">
+					<input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
 				</div>
 				<div class="button_list">
 					<input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='csBoardList'">

@@ -39,7 +39,7 @@ public class CSboardController {
 			criteria.setPageNum(pageNum);
 		}
 		
-		int totalCount = dao.totalCSListCountDao(); // 모든 글의 개수
+		int totalCount = dao.csListTotalCountDao(); // 모든 글의 개수
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);	
 		
@@ -122,5 +122,26 @@ public class CSboardController {
 		dao.boardReplyDeleteDao(request.getParameter("ca_boardNum"));
 		
 		return "redirect:csBoardList";
+	}
+	
+	@RequestMapping(value = "/csSearch")
+	public String search_list(HttpServletRequest request, Model model) {
+		
+		String searchOption = request.getParameter("searchOption");
+		String keyword = request.getParameter("keyword");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		if(searchOption.equals("qtitle")) {
+			model.addAttribute("CSboardDtos", dao.csSearchTitleDao(keyword));
+//			model.addAttribute("totalCount", dao.csSearchTitleDao(keyword).size());
+		} else if(searchOption.equals("content")) {
+			model.addAttribute("CSboardDtos", dao.csSearchContentDao(keyword));
+//			model.addAttribute("totalCount", dao.csSearchContentDao(keyword).size());
+		} else {
+			model.addAttribute("CSboardDtos", dao.csSearchWriterDao(keyword));
+//			model.addAttribute("totalCount", dao.csSearchWriterDao(keyword).size());
+		}
+		return "csBoardList";
 	}
 }
