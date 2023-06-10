@@ -11,10 +11,6 @@ thead {
 	background-color: #eeeeee
 }
 
-th, td {
-	text-align: center;
-}
-
 div.container {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
@@ -54,6 +50,12 @@ div.button_cancel {
 	float: left;
 }
 
+div.error {
+	font-size: 13px;
+	font-weight: bold;
+	color: #1e6ec9;
+}
+
 #button_submit {
 	font-weight: bold;
 	background: #6800b8;
@@ -86,7 +88,8 @@ div.button_cancel {
 
 #csBoard_page_form {
 	width: 80%;
-	height: 670px;
+	height:auto;
+	overflow:hidden;
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-bottom: 100px;
