@@ -39,7 +39,7 @@
 			
 			<!-- 댓글 영역 시작 -->
 			<!-- 댓글 쓰기 시작 -->
-			<form action="replyWrite" method="post">
+			<form action="replyWrite" method="post" onsubmit="return replyValidateCheck()">
 			<input type="hidden" name="ca_boardNum" value="${csBoardDto.c_idx }">
 			<div class="reply_write">
 			  <table cellpadding=0 cellspacing=0 width='100%'>
@@ -100,37 +100,49 @@
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 	
-	<!-- 삭제시 경고창 -->
 	<script>
-	 function removeCheck() {
-		 if (confirm("삭제하시겠습니까?") == true){
-			 location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'
-		 } else {return false;}
-		}
-	 function replyRemoveCheck(ca_idx) {
-		  if (confirm("삭제하시겠습니까?") == true) {
-		    var form = document.createElement("form");
-		    form.action = 'replyDelete';
-		    form.method = 'post';
+	<!-- 글 삭제시 경고창 -->
+	function removeCheck() {
+		if (confirm("삭제하시겠습니까?") == true){
+			location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'
+	 	} else {return false;}
+	}
 	
-		    var ca_idxInput = document.createElement("input");
-		    ca_idxInput.type = 'hidden';
-		    ca_idxInput.name = 'ca_idx';
-		    ca_idxInput.value = ca_idx;
-		    form.appendChild(ca_idxInput);
+	<!-- 댓글 삭제시 경고창 -->
+	function replyRemoveCheck(ca_idx) {
+		 if (confirm("삭제하시겠습니까?") == true) {
+		   var form = document.createElement("form");
+		   form.action = 'replyDelete';
+		   form.method = 'post';
 	
-		    var ca_boardNumInput = document.createElement("input");
-		    ca_boardNumInput.type = 'hidden';
-		    ca_boardNumInput.name = 'ca_boardNum';
-		    ca_boardNumInput.value = '${csBoardDto.c_idx }';
-		    form.appendChild(ca_boardNumInput);
+		   var ca_idxInput = document.createElement("input");
+		   ca_idxInput.type = 'hidden';
+		   ca_idxInput.name = 'ca_idx';
+		   ca_idxInput.value = ca_idx;
+		   form.appendChild(ca_idxInput);
 	
-		    document.documentElement.appendChild(form);
-		    form.submit();
-		  } else {
-		    return false;
-		  }
-		}
+		   var ca_boardNumInput = document.createElement("input");
+		   ca_boardNumInput.type = 'hidden';
+		   ca_boardNumInput.name = 'ca_boardNum';
+		   ca_boardNumInput.value = '${csBoardDto.c_idx }';
+		   form.appendChild(ca_boardNumInput);
+	
+		   document.documentElement.appendChild(form);
+		   form.submit();
+		 } else {
+		   return false;
+		 }
+	}
+	
+	<!-- 댓글 유효성 검사 -->
+	function replyValidateCheck() {
+	    var content = document.getElementsByName("ca_content")[0].value;
+	    if (content.trim() === "") {
+	        alert("내용을 입력해주세요.");
+	        return false;
+	    }
+	    return true;
+	}
 	</script>
 </body>
 </html>
