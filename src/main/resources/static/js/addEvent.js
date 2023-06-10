@@ -2,44 +2,63 @@
  * 
  */
 
- function checkValidity() {
-	 if($("#inputGroupSelect01 option:selected").val()) {
-		 alert("행사분류는 필수 선택사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 if(document.detail_frm.title.value.length == 0) {
-		 alert("행사명은 필수 입력사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 if(document.detail_frm.start_date.value.length == 0) {
-		 alert("시작일은 필수 선택사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 if(document.detail_frm.end_date.value.length == 0) {
-		 alert("종료일은 필수 선택사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 if(document.detail_frm.gunName.value.length == 0) {
-		 alert("자치구은 필수 입력사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 if(document.detail_frm.place.value.length == 0) {
-		 alert("장소는 필수 입력사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 if(document.detail_frm.org_link.value.length == 0) {
-		 alert("홈페이지 주소는 필수 입력사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 if(document.detail_frm.ticketCount.value.length == 0) {
-		 alert("총 티켓 매수는 필수 입력사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 if(document.detail_frm.main_img.value.length == 0) {
-		 alert("대표 이미지는 필수 입력사항입니다. 다시 확인해 주세요.");
-		 return ;
-	 }
-	 
-	 document.detail_frm.submit();
-	 
- }
+function checkValidity() {
+	  // 행사분류 선택 확인
+	  var type = document.getElementById("inputGroupSelect01").value;
+	  if (type === "") {
+	    alert("행사분류를 선택해주세요.");
+	    return false;
+	  }
+	
+	  // 행사명 입력 확인
+	  var title = document.getElementsByName("title")[0].value;
+	  if (title === "") {
+	    alert("행사명을 입력해주세요.");
+	    return false;
+	  }
+	
+	  // 시작일 확인
+	  var startDate = document.getElementsByName("start_date")[0].value;
+	  if (startDate === "") {
+	    alert("시작일을 선택해주세요.");
+	    return false;
+	  }
+	
+	  // 종료일 확인
+	  var endDate = document.getElementsByName("end_date")[0].value;
+	  if (endDate === "") {
+	    alert("종료일을 선택해주세요.");
+	    return false;
+	  }
+	
+	  // 자치구 입력 확인
+	  var gunName = document.getElementsByName("gunName")[0].value;
+	  if (gunName === "") {
+	    alert("자치구를 입력해주세요.");
+	    return false;
+	  }
+	
+	  // 장소 입력 확인
+	  var place = document.getElementsByName("place")[0].value;
+	  if (place === "") {
+	    alert("장소를 입력해주세요.");
+	    return false;
+	  }
+	
+	  // 홈페이지 주소 입력 확인
+	  var orgLink = document.getElementsByName("org_link")[0].value;
+	  if (orgLink === "") {
+	    alert("홈페이지 주소를 입력해주세요.");
+	    return false;
+	  }
+	
+	  // 총 티켓 매수 입력 확인
+	  var ticketCount = document.getElementsByName("ticketCount")[0].value;
+	  if (ticketCount === "") {
+	    alert("총 티켓 매수를 입력해주세요.");
+	    return false;
+	  }
+	
+	  // 유효성 검사 통과 시 폼 제출
+	  document.getElementById("detail_frm").submit();
+}
