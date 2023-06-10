@@ -140,7 +140,7 @@ input.search_board_img {
 	border-color: #ccc;
 }
 
-.form-select:focus {
+.form-select:focus, .page-link:focus {
 	box-shadow: none;
 	border-color: #ced4da;
 }
