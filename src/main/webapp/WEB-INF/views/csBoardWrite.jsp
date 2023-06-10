@@ -21,15 +21,24 @@
 		<div id="csBoard_page_form">
 		<h2 class="csBoardTitle">고객센터</h2>
 			<form action="csBoardWriteOk" method="post" id="detail_form">
+				<!-- 질문 등록시 에러 발생 메시지 출력 -->
+				  <c:if test="${not empty errors}">
+				    <div class="alert alert-danger">
+				      <c:forEach items="${errors.allErrors}" var="error">
+				        <p>${error.defaultMessage}</p>
+				      </c:forEach>
+				    </div>
+				  </c:if>
+				<!-- 에러 발생 출력 끝 -->
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">제목</span>
 	  				<input type="text" class="form-control" aria-describedby="basic-addon1" name="c_title">
 				</div>
 				
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1">작성자</span>
-	  				<input type="text" class="form-control" aria-describedby="basic-addon1" 
-	  				 value="${memberDto.userId }" name="c_userId">
+				    <span class="input-group-text" id="basic-addon1">작성자</span>
+				    <input type="text" class="form-control" aria-describedby="basic-addon1" 
+				        value="${csBoardDto.c_userId }" name="c_userId">
 				</div>
 				
 				<div class="input-group">
@@ -40,7 +49,7 @@
 				<div class="container" style="padding-top: 10px">
 				<div class="button_area">
 					<div class="button_submit">
-						<input type="submit" class="btn" id="button_submit" value="등록">
+						<input type="button" class="btn" id="button_submit" value="등록">
 					</div>
 					<div class="button_cancel">
 						<input type="button" class="btn" id="button_cancel" onclick="script:window.location.href='csBoardList'" value="취소">

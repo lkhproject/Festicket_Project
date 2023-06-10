@@ -20,24 +20,25 @@
 		<div class="container_1">
 		<div id="csBoard_page_form">
 		<h2 class="csBoardTitle">고객센터</h2>
-			<form action="csModifyOk" method="post" id="detail_form">
+			<form action="csBoardModifyOk" method="post" id="detail_form">
+			<input type="hidden" name="c_idx" value="${csBoardDto.c_idx }">
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">제목</span>
 	  				<input type="text" class="form-control" aria-describedby="basic-addon1" 
-	  				 value="${csBoardDto.c_title }">
+	  				 value="${csBoardDto.c_title }" name="c_title">
 				</div>
 				
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">작성자</span>
 	  				<input type="text" class="form-control" aria-describedby="basic-addon1" 
-	  				 value="${csBoardDto.c_userId }">
+	  				 value="${csBoardDto.c_userId }" name="c_userId" readonly="readonly">
 				</div>
 				
 				<div class="input-group">
-	  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea">${csBoardDto.c_content }</textarea>
+	  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" name="c_content">${csBoardDto.c_content }</textarea>
 				</div>
 				
-				<!-- 등록, 취소 버튼 -->
+				<!-- 수정, 취소 버튼 -->
 				<div class="container" style="padding-top: 10px">
 				<div class="button_area">
 					<div class="button_submit">
@@ -48,7 +49,7 @@
 					</div>
 				</div>
 				</div>
-				<!-- 등록, 취소 버튼 끝 -->
+				<!-- 수정, 취소 버튼 끝 -->
 			</form>
 		</div>
 		</div>

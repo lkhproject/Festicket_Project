@@ -2,6 +2,9 @@ package com.festicket.dto;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +22,5 @@ public class CSboardDto {
 	private Date c_modifyDate; // 글수정날
 	private int c_hit; // 조회수
 	private int c_replyCount; // 댓글개수
+	
 }

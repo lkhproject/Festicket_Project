@@ -30,19 +30,19 @@
 	</select>
 	
 	<insert id="csWriteDao">
-		INSERT INTO 
+		INSERT INTO
 			eventCSboard(c_idx, c_userId, c_title, c_content, c_hit, c_replyCount)
 				VALUES
-					(ecs_seq.nextval, #{param1}, #{param2}, #{param3}, 0, 0)
-	</insert>
+					(ecs_seq.nextval, 'guest', #{param2}, #{param3}, 0, 0)
+    </insert>
 	
 	<select id="csViewDao" resultType="com.festicket.dto.CSboardDto">
 		SELECT * FROM eventCSboard WHERE c_idx=#{param1}
 	</select>
 	
-	<update id="csModifyDao">
-		UPDATE eventCSboard SET c_title=#{param2}, c_content=#{param3} WHERE c_idx=#{param1}
-	</update>
+    <update id="csModifyDao">
+    	UPDATE eventCSboard SET c_userId=#{param2}, c_title=#{param3}, c_content=#{param4} WHERE c_idx=#{param1}
+    </update>
 	
 	<delete id="csDeleteDao">
 		DELETE FROM eventCSboard WHERE c_idx=#{param1}
@@ -58,16 +58,61 @@
 	
 	
 	<!-- 고객센터 검색 관련 -->
+	<select id="totalcsSearch_TitleCount" resultType="int">
+	    SELECT COUNT(*) FROM eventCSboard WHERE c_title LIKE '%' || #{param1} || '%'
+	</select>
+	
+	<select id="totalcsSearch_IdCount" resultType="int">
+	    SELECT COUNT(*) FROM eventCSboard WHERE c_userId LIKE '%' || #{param1} || '%'
+	</select>
+	
+	<select id="totalcsSearch_ContentCount" resultType="int">
+	    SELECT COUNT(*) FROM eventCSboard WHERE c_content LIKE '%' || #{param1} || '%'
+	</select>
+	
 	<select id="csSearchTitleDao" resultType="com.festicket.dto.CSboardDto">
-	    SELECT * FROM eventCSboard WHERE c_title LIKE '%' || #{param1} || '%' ORDER BY c_idx DESC
+		SELECT *
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT *
+		        FROM eventCSboard
+		        WHERE c_title
+		        LIKE '%' || #{param1} || '%'
+		        ORDER BY c_idx DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
 	</select>
 	
 	<select id="csSearchContentDao" resultType="com.festicket.dto.CSboardDto">
-	    SELECT * FROM eventCSboard WHERE c_content LIKE '%' || #{param1} || '%' ORDER BY c_idx DESC
+		SELECT *
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT *
+		        FROM eventCSboard
+		        WHERE c_content
+		        LIKE '%' || #{param1} || '%'
+		        ORDER BY c_idx DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
 	</select>
 	
 	<select id="csSearchWriterDao" resultType="com.festicket.dto.CSboardDto">
-	    SELECT * FROM eventCSboard WHERE c_userID LIKE '%' || #{param1} || '%' ORDER BY c_idx DESC
+		SELECT *
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT *
+		        FROM eventCSboard
+		        WHERE c_userID
+		        LIKE '%' || #{param1} || '%'
+		        ORDER BY c_idx DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
 	</select>
 	
 	
