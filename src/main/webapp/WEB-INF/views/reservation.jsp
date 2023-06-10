@@ -28,9 +28,9 @@
 		  <input type="hidden" value="${event.eventNum }">
 		    <div class="card" id="cardList">
 		      <img src="${event.main_img }" class="card-img-top" id="card_img"
-		      		onclick="script:window.location.href=''" style="cursor:pointer"><!-- 상세페이지로 이동 -->
-		      <div class="card-body" onclick="script:window.location.href=''" style="cursor:pointer">
-		        <h5 class="card-title">
+		      	onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer"><!-- 상세페이지로 이동 -->
+		      <div class="card-body">
+		        <h5 class="card-title" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer">
 					<c:choose>
 						<c:when test="${fn:length(event.title) > 19}">
 							${fn:substring(event.title, 0, 18)}...
