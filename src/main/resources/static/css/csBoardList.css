@@ -64,9 +64,10 @@ input[type="button"]:hover {
 	margin-top: 40px;
 }
 
-div.bottom_area {
-	display: flex;
-	justify-content: space-between;
+div.search_button_area {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
 }
 
 div.search_select {
@@ -76,6 +77,11 @@ div.search_select {
 div.search_board {
 	position: relative;
 	width: 220px;
+	margin-left: 5px;
+}
+
+div.button {
+	margin-left: auto;
 }
 
 input.search_board_box {
@@ -107,7 +113,7 @@ input.search_board_img {
 }
 
 #csPagingNum {
-	margin-top: 20px;
+	margin-top: 40px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

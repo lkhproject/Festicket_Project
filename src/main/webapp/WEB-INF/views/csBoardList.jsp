@@ -63,25 +63,25 @@
 	<!-- 게시글 리스트 끝 -->
 	 
 	<!-- 검색 기능, 등록 버튼 시작 -->
-	<div class="container" style="padding-top:10px">
-	<div class="bottom_area">
-	<form action="csBoardSearch" method="get">
-    <div class="search_select" id="search_select">
-	    <select class="form-select" name="searchOption">
-	      <option value="title">제목</option>
-	      <option value="content">내용</option>
-	      <option value="writer">아이디</option>
-	    </select>
-	</div>
-	<div class="search_board">
-	 	<div id="search_input"><input class="search_board_box" type="text" name="keyword"></div>
-		<div id="search_btn"><input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색버튼'></div>
-	</div>
-	</form>
-	<div class="button">
-		<input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
-	</div>
-	</div>
+	<div class="container">
+	  <form action="csBoardSearch" method="get" class="search_form">
+	  	<div class="search_button_area">    
+	      <div class="search_select">
+	        <select class="form-select" name="searchOption">
+	          <option value="title">제목</option>
+	          <option value="content">내용</option>
+	          <option value="writer">아이디</option>
+	        </select>
+	      </div>
+	      <div class="search_board">
+	        <input class="search_board_box" type="text" name="keyword">
+	        <input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색버튼'>
+	      </div>
+	      <div class="button">
+	        <input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
+	      </div>
+	    </div>
+	   </form>
 	</div>
 	<!-- 검색 기능, 등록 버튼 끝 -->
 	
