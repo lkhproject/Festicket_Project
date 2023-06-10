@@ -87,24 +87,38 @@
 	
 	<!-- 페이징 시작 -->
 	<div class="container" id="csPagingNum">
-		<c:if test="${pageMaker.prev }">
-			<a href="csBoardSearch?pageNum=${pageMaker.startPage-5 }&searchOption=${param.searchOption}&keyword=${param.keyword}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
-		</c:if>
+	  <ul class="pagination">
+    	<li class="page-item" id="page-item">
+			<c:if test="${pageMaker.prev }">
+				<a class="page-link" aria-label="Previous" href="csBoardSearch?pageNum=${pageMaker.startPage-5 }&searchOption=${param.searchOption}&keyword=${param.keyword}">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</c:if>
+		</li>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
 			<c:choose>
 				<c:when test="${currPage == num }">
-					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+					<li class="page-item">
+						<span class="page-link" style="font-weight: bold;">${num }</span>
+					</li>
 				</c:when>
 				<c:otherwise>
-					<a href="csBoardSearch?pageNum=${num }&searchOption=${param.searchOption}&keyword=${param.keyword}">${num }</a>&nbsp;&nbsp;&nbsp;
+					<li class="page-item">
+						<a class="page-link" href="csBoardSearch?pageNum=${num }&searchOption=${param.searchOption}&keyword=${param.keyword}">${num }</a>
+					</li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
-		<c:if test="${pageMaker.next }">
-			<a href="csBoardSearch?pageNum=${pageMaker.startPage+5 }&searchOption=${param.searchOption}&keyword=${param.keyword}"><c:out value="${'>' }"></c:out></a>
-		</c:if>
+		<li class="page-item">
+			<c:if test="${pageMaker.next }">
+				<a class="page-link" aria-label="Next" href="csBoardSearch?pageNum=${pageMaker.startPage+5 }&searchOption=${param.searchOption}&keyword=${param.keyword}">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</c:if>
+		</li>
+	   </ul>
 	</div>
 	<!-- 페이징 끝 -->
 
