@@ -8,37 +8,6 @@
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/csBoardView.css">
 <script src="/resources/js/bootstrap.min.js"></script>
-<script>
- function removeCheck() {
-	 if (confirm("삭제하시겠습니까?") == true){
-		 location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'
-	 } else {return false;}
-	}
- function replyRemoveCheck(ca_idx) {
-	  if (confirm("삭제하시겠습니까?") == true) {
-	    var form = document.createElement("form");
-	    form.action = 'replyDelete';
-	    form.method = 'post';
-
-	    var ca_idxInput = document.createElement("input");
-	    ca_idxInput.type = 'hidden';
-	    ca_idxInput.name = 'ca_idx';
-	    ca_idxInput.value = ca_idx;
-	    form.appendChild(ca_idxInput);
-
-	    var ca_boardNumInput = document.createElement("input");
-	    ca_boardNumInput.type = 'hidden';
-	    ca_boardNumInput.name = 'ca_boardNum';
-	    ca_boardNumInput.value = '${csBoardDto.c_idx }';
-	    form.appendChild(ca_boardNumInput);
-
-	    document.documentElement.appendChild(form);
-	    form.submit();
-	  } else {
-	    return false;
-	  }
-	}
-</script>
 <title>페스티켓</title>
 </head>
 <body>
@@ -130,5 +99,38 @@
 	<!-- 푸터 시작 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
+	
+	<!-- 삭제시 경고창 -->
+	<script>
+	 function removeCheck() {
+		 if (confirm("삭제하시겠습니까?") == true){
+			 location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'
+		 } else {return false;}
+		}
+	 function replyRemoveCheck(ca_idx) {
+		  if (confirm("삭제하시겠습니까?") == true) {
+		    var form = document.createElement("form");
+		    form.action = 'replyDelete';
+		    form.method = 'post';
+	
+		    var ca_idxInput = document.createElement("input");
+		    ca_idxInput.type = 'hidden';
+		    ca_idxInput.name = 'ca_idx';
+		    ca_idxInput.value = ca_idx;
+		    form.appendChild(ca_idxInput);
+	
+		    var ca_boardNumInput = document.createElement("input");
+		    ca_boardNumInput.type = 'hidden';
+		    ca_boardNumInput.name = 'ca_boardNum';
+		    ca_boardNumInput.value = '${csBoardDto.c_idx }';
+		    form.appendChild(ca_boardNumInput);
+	
+		    document.documentElement.appendChild(form);
+		    form.submit();
+		  } else {
+		    return false;
+		  }
+		}
+	</script>
 </body>
 </html>
