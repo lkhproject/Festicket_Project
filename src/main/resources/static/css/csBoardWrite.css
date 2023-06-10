@@ -107,3 +107,8 @@ div.error {
 textarea.form-control {
 	height: 300px;
 }
+
+.form-control:focus {
+	box-shadow: none;
+	border-color: #ced4da;
+}
