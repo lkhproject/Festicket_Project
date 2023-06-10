@@ -48,15 +48,15 @@
 					      <td scope="row" id="eventImgCell"><img src="${exhibition.main_img }" class="listImg"
 					      	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"></td>
 					      <td id="tableCenter">
-					      	<p id="eventTitle">${exhibition.title }</p>
-					      	<p id="eventDetail"><b>장 소:</b> ${exhibition.place }</p>
-						  	<p id="eventDetail"><b>기 간:</b> ${exhibition.eventDate }</p>
-						  	<p id="eventDetail"><b>관람가:</b>
+					      	<div id="eventTitle">${exhibition.title }</div>
+					      	<div id="eventDetail"><b>장 소:</b> ${exhibition.place }</div>
+						  	<div id="eventDetail"><b>기 간:</b> ${exhibition.eventDate }</div>
+						  	<div id="eventDetail"><b>관람가:</b>
 						  		<c:choose>
 								  	<c:when test="${exhibition.eventPrice == null}">무료</c:when>
 								  	<c:otherwise>${exhibition.eventPrice }</c:otherwise>
 							  	</c:choose>
-						  	</p>
+						  	</div>
 					      </td>
 					      <td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"></td>
 					    </tr>
