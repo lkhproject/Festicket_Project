@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>페스티켓</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/adminList.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
@@ -22,7 +21,7 @@
 <div class="container_1">
 <div id="admin_page_form">
 	<h2 class="adminTitle">관리자 페이지</h2>
-	<p>총 <b>${totalCount }</b>개의 행사가 조회되었습니다.</p>
+	<div style="margin-bottom: 5px;">총 <b>${totalCount }</b>개의 행사가 조회되었습니다.</div>
 	<table class="table table-hover" id="adminListTable">
 	  <thead style="background-color: #eeeeee">
 	    <tr>
@@ -32,15 +31,31 @@
 	      <th scope="col">행사기간</th>
 	    </tr>
 	  </thead>
-	  <tbody class="table-group-divider">
-		  <c:forEach items="${eventListDtos }" var="event"  begin="0" end="5">
+	  <tbody>
+	  <c:choose>
+		<c:when test="${totalCount > 0 }">
+		  <c:forEach items="${eventListDtos }" var="event">
 		    <tr>
 		      <th scope="row">${event.eventNum }</th>
 		      <td>서울/${event.gunName }</td>
-		      <td><a href="#">${event.title }</a></td>
+		      <td><a href="#">
+			      <c:choose>
+						<c:when test="${fn:length(event.title) > 25}">
+							<c:out value="${fn:substring(event.title, 0, 24)}"></c:out>...
+						</c:when>
+						<c:otherwise>
+							<c:out value="${event.title }"></c:out>
+						</c:otherwise>
+				  </c:choose>
+			  </a></td>
 		      <td>${event.eventDate }</td>
 		    </tr>
 		  </c:forEach>
+		  </c:when>
+  		  <c:otherwise>
+             <div id="noResult">조회된 결과가 없습니다.</div>
+	     </c:otherwise>
+		</c:choose>
 	  </tbody>
 	</table>
 <!-- 행사 리스트 끝 -->
