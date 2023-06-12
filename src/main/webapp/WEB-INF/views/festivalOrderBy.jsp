@@ -10,7 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/festival.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/resources/js/festival.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
 <!-- 헤더 -->
@@ -26,9 +25,9 @@
   </div>
   <!-- 선택하면 정렬 기능 추가 필요 -->
 	<div class="selector">
-	<form action="festivalOrderBy" onsubmit="return validateForm()">
+	<form action="festivalOrderBy">
 		<select class="form-select form-select-sm" name="orderOption" aria-label=".form-select-sm example">
-		  <option disabled selected value="">정렬선택</option>
+		  <option selected>정렬선택</option>
 		  <option value="startRecent" >시작 날짜 빠른 순</option>
 		  <option value="startLate" >시작 날짜 느린 순</option>
 		  <option value="endRecent">종료 날짜 빠른 순</option>
@@ -73,11 +72,10 @@
 		</table>
 <!-- 페스티벌 리스트 끝 -->
 
-<!-- 페이징 -->
-	<div class="container" id="festPagingNum">
-		
+	<!-- 페이징 시작 -->
+	<div class="container" id="csPagingNum">
 		<c:if test="${pageMaker.prev }">
-			<a href="festival?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+			<a href="festivalOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.searchOption}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
 		</c:if>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
@@ -86,17 +84,16 @@
 					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>
-					<a href="festival?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+					<a href="festivalOrderBy?pageNum=${num }&orderOption=${param.searchOption}">${num }</a>&nbsp;&nbsp;&nbsp;
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next }">
-			<a href="festival?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+			<a href="festivalOrderBy?pageNum=${pageMaker.startPage+5 }&orderOption=${param.searchOption}"><c:out value="${'>' }"></c:out></a>
 		</c:if>
 	</div>
-	
-<!-- 페이징 끝 -->
+	<!-- 페이징 끝 -->
 		
 	</div>
 <!-- 페스티벌 리스트 끝 -->

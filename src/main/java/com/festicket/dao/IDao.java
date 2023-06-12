@@ -52,6 +52,12 @@ public interface IDao {
 	
 	// 전시
 	public List<EventDto> exhibitionListDao(int countList, int countPage); // 전시 리스트
+// 정렬
+	public List<EventDto> exhibitionOrderByStartRecent(int countList, int countPage); // 페스티벌 리스트 시작일순
+	public List<EventDto> exhibitionOrderByStartLate(int countList, int countPage); // 페스티벌 리스트 시작일순
+	public List<EventDto> exhibitionOrderByEndRecent(int countList, int countPage); // 페스티벌 리스트 종료일순
+	public List<EventDto> exhibitionOrderByEndLate(int countList, int countPage); // 페스티벌 리스트 종료일순
+//
 	public int totalExhibitionCountDao();
 	public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트
 	

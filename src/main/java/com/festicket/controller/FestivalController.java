@@ -40,27 +40,10 @@ public class FestivalController {
 		}
 		
 		int totalCount = dao.totalFestivalCountDao();
-		String orderOption = request.getParameter("orderOption");
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);
 		
-		List<EventDto> festivalDtos = new ArrayList<>();
-		
-		if(orderOption.equals("startRecent")) {
-			
-		}
-		else if(orderOption.equals("startLate")) {
-			
-		} 
-		else if(orderOption.equals("endRecent")) {
-			
-		}
-		else if(orderOption.equals("endLate")) {
-			
-		}
-		else {
-			festivalDtos = dao.festivalListDao(criteria.getCountList(), pageNum);
-		}
+		List<EventDto> festivalDtos = dao.festivalListDao(criteria.getCountList(), pageNum);
 		
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
@@ -68,6 +51,52 @@ public class FestivalController {
 		model.addAttribute("currPage", pageNum);
 		
 		return "festival";
+	}
+	
+	@RequestMapping(value = "/festivalOrderBy")
+	public String festivalOrderBy(HttpServletRequest request, Model model, Criteria criteria) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		// 페이징
+		int pageNum = 0;
+		
+		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+		if(request.getParameter("pageNum") == null) {
+			pageNum = 1;
+			criteria.setPageNum(pageNum);
+		} else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			criteria.setPageNum(pageNum);
+		}
+		
+		int totalCount = dao.totalFestivalCountDao();
+		String orderOption = request.getParameter("orderOption");
+		
+		PageDto pageDto = new PageDto(criteria, totalCount);
+		
+		List<EventDto> festivalDtos = new ArrayList<>();
+		
+		if(orderOption.equals("startRecent")) {
+			festivalDtos = dao.festivalOrderByStartRecent(criteria.getCountList(), pageNum);
+		}
+//		else if(orderOption.equals("startLate")) {
+//			festivalDtos = dao.festivalOrderByStartLate(criteria.getCountList(), pageNum);
+//		} 
+//		else if(orderOption.equals("endRecent")) {
+//			festivalDtos = dao.festivalOrderByEndRecent(criteria.getCountList(), pageNum);
+//		}
+//		else {
+//			festivalDtos = dao.festivalOrderByEndLate(criteria.getCountList(), pageNum);
+//		}
+		
+		request.setAttribute("totalCount", totalCount);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("festivalDtos", festivalDtos);
+		model.addAttribute("currPage", pageNum);
+		
+		
+		return "festivalOrderBy";
 	}
 
 }
