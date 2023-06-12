@@ -51,7 +51,6 @@
 	</div>
 	<!-- 모든 이벤트 리스트 끝 -->
 	
-	
 	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
