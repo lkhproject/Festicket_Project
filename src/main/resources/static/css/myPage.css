@@ -74,7 +74,7 @@ span.qmenu_tit{
 
 span.qmenu_tit:hover {
 	text-decoration: underline;
-	text-underline-position : under;
+	text-underline-offset: 5px;
 }
 
 span.qmenu_txt{
