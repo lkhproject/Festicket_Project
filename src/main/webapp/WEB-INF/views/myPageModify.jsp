@@ -18,7 +18,7 @@
         <li class="quick_menu_item">
             <a href="" class="quick_link">
                 <div class="qmemu_box">
-                    <span class="qmenu_tit">나의 예매권</span>
+                    <span class="qmenu_tit">예매 내역</span>
                 </div>
             </a>
         </li>
@@ -44,19 +44,10 @@
     </li>
     
     <li class="has_sub">
-        <span class="help_submenu_tit">할인혜택</span>
-        <ul class="help_submenu">
-            <li>
-                <a href="">예매권</a>
-            </li>
-        </ul>
-    </li>
-    
-    <li class="has_sub">
         <span class="help_submenu_tit">활동관리</span>
         <ul class="help_submenu">
             <li>
-                <a href="" class="my_lmenu32"> 후기 </a>
+                <a href="" class="my_lmenu32"> 후기관리 </a>
             </li>
         </ul>
     </li>
