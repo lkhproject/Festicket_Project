@@ -21,14 +21,14 @@
 	<div class="container">
 	<div id="reservation_page">
 		<h2 class="rvTitle">예매</h2>
-		<div class="totalNum">총 ${totalCount }건</div> <!-- 총 개수 넣어줘야함 -->
+		<div class="totalNum">총 ${totalCount }건</div>
 		<div class="card-group center-block" id="cardBox">
 		<div class="row">
 		<c:forEach items="${event }" var="event" >
 		  <input type="hidden" value="${event.eventNum }">
 		    <div class="card" id="cardList">
 		      <img src="${event.main_img }" class="card-img-top" id="card_img"
-		      	onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer"><!-- 상세페이지로 이동 -->
+		      	onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer">
 		      <div class="card-body">
 		        <h5 class="card-title" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer">
 					<c:choose>
