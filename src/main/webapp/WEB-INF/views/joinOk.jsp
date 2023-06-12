@@ -8,7 +8,7 @@
 <title>페스티켓</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/join.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/joinOk.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -43,9 +43,9 @@
 									
 									
 									<tr>
-										<td colspan="2" align ="center" class="main_text">											
-											${name }님 회원가입을 축하드립니다!<br>
-											가입하신 아이디는 ${userId }입니다.<br><br>
+										<td colspan="2" class="main_text">											
+											${memberName }님 회원가입을 축하드립니다!<br>
+											가입하신 아이디는 ${memberId }입니다.<br><br>
 											<input class="content_btn01" type="button" value="로그인 바로가기" onclick="script:window.location.href='login'">
 										</td>										
 									</tr>

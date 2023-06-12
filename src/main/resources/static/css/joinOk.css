@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #eeeeee;
+}
+
+td.contentbox {
+	background-color: #ffffff ;
+	height : 500px;
+	text-align: center;
+	border-radius: 8px;
+}
+
+input.content_btn01{
+	width:200px;
+	height:50px;  
+	padding:0 20px;
+	margin: 1px;
+	border:1px solid #6800b8;
+	border-radius:10px;
+	outline: none;
+	font-size:20px;
+	color:#ffffff;
+	background: #6800b8;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+h5 {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
