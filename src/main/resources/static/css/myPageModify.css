@@ -7,7 +7,6 @@ body {
 	background: #eeeeee;
 }
 
-
 td.contentbox {
 	float: center;
     width: 1000px;
@@ -123,6 +122,7 @@ div.qmemu_box {
 
 h2.title_txt{
 	color : #ffffff;
+	font-weight: bold;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -135,11 +135,19 @@ span.qmenu_tit{
     font-family: 'Noto Sans KR', sans-serif;
     padding-top: 15px;
 }
+
+span.qmenu_tit:hover {
+	text-decoration: underline;
+	text-underline-offset: 5px;
+}
+
 div.help_cont{
-	border: 1px solid #ecedf2;
+	border-right: 1px solid #ecedf2;
+	border-bottom: 1px solid #ecedf2;
     background: #ffffff;
     width: 260px;
-    height : 850px;
+    height:auto;
+	overflow:hidden;
   	float: left;
 }
 ul.help_lmenu{
@@ -165,5 +173,18 @@ span.help_submenu_tit{
 ul.help_submenu{
 	list-style: none;
 	font-family: 'Noto Sans KR', sans-serif;
-	padding: 10px;
+	font-size: 14px;
+	padding: 2px;
+}
+
+li.has_sub_last{
+	padding: 10px 18px 20px 26px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.has_sub_last ul.help_submenu li.on {
+    color: #6800b8;
+    position: relative;
+    font-weight: bold;
 }
