@@ -54,6 +54,11 @@
 		)
 		WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '전시%'
 	</select>
+	
+	<!-- 예매 페이지 -->
+	<select id="eventAllListDao" resultType="com.festicket.dto.EventDto">
+		SELECT * FROM event ORDER BY eventNum DESC
+	</select>
 
 	<!-- 행사 관련 -->
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">

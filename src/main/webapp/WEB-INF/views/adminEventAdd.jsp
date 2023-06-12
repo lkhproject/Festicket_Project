@@ -45,19 +45,19 @@
 	  				<input type="text" name="title" id="title" class="form-control" aria-describedby="basic-addon1">
 				</div>
 				
-				<div id="start_date_error" class="error" id="dateInput"></div>
+				<div id="start_date_error" class="error" id="date_Input"></div>
 				<div class="input-group mb-3" id="dateInput">
 					<span class="input-group-text" id="basic-addon1">시작일*</span>
 	  				<input type="date" id="datepicker" name="start_date" class="form-control" aria-describedby="basic-addon1">
 				</div>
 				
-				<div id="end_date_error" class="error" id="dateInput"></div>
+				<div id="end_date_error" class="error" id="date_Input"></div>
 				<div class="input-group mb-3" id="dateInput">
 					<span class="input-group-text" id="basic-addon1">종료일*</span>
 	  				<input type="date" id="datepicker" name="end_date" class="form-control" aria-describedby="basic-addon1">
 				</div>
 				
-				<div id="rgstDate_error" class="error" id="dateInput"></div>
+				<div id="rgstDate_error" class="error" id="date_Input"></div>
 				<div class="input-group mb-3" id="dateInput">
 					<span class="input-group-text" id="basic-addon1">신청일*</span>
 	  				<input type="date" id="datepicker" name="rgstDate" class="form-control" aria-describedby="basic-addon1">

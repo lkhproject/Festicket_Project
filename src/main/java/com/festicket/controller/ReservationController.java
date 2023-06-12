@@ -26,7 +26,7 @@ public class ReservationController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-//		model.addAttribute("event", dao.eventListDao());
+		model.addAttribute("event", dao.eventAllListDao());
 		
 		return "reservation";
 	}

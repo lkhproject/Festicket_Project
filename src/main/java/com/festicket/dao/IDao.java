@@ -19,8 +19,11 @@ public interface IDao {
 	public List<EventDto> getSearchResult(String keyword, int countList, int countPage); // 검색 결과 가져오기
 	public int totalSearchResultCount(String keyword); // 검색 결과 개수
 	
+	// 예매
+	public List<EventDto> eventAllListDao(); // 모든 행사 리스트
+	
 	// 랭킹
-	public List<EventDto> eventListDao(int countList, int countPage); // 모든 행사 리스트
+	public List<EventDto> eventListDao(int countList, int countPage); // 모든 행사 리스트 + 페이징
 	public int totalEventCountDao(); // 행사의 총 개수
 	public List<EventDto> getTopFiveEventsDao(); // 행사 탑5 리스트 
 	public List<EventDto> getOngoingEventDao(); // 진행중인 행사 리스트
