@@ -15,6 +15,61 @@
 		SELECT COUNT(*) FROM event
 	</select>
 	
+	
+	<!-- *** 랭킹 페이지 *** -->
+	<!-- 예매 수가 같을경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->
+	<select id="getTopFiveEventsDao" resultType="com.festicket.dto.EventDto">
+		SELECT eventNum, main_img, title, eventDate
+		FROM (
+		    SELECT e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount,
+		           RANK() OVER (ORDER BY COUNT(er.re_eventNum) DESC, e.ticketCount ASC) AS rnk
+		    FROM event e
+		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+		    GROUP BY e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount
+		)
+		WHERE rnk <![CDATA[<]]>= 5
+	</select>
+	
+	<select id="getEventDao" resultType="com.festicket.dto.EventDto">
+		SELECT *
+		FROM event
+		WHERE eventNum=#{param1}
+	</select>
+	
+	
+	<!-- *** 상세 예매 페이지 *** -->
+	<!-- 리뷰 글 가져오기 -->
+	<select id="getReviewListDao" resultType="com.festicket.dto.ReviewDto">
+		SELECT *
+		  FROM eventReview er
+		  LEFT OUTER JOIN event e
+		    ON er.rw_eventNum = e.eventNum
+		 WHERE er.rw_eventNum=#{param1}
+	</select>
+	
+	
+	<!-- QA -->
+	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
+		SELECT *
+		  FROM event_QABoard er
+		  LEFT OUTER JOIN event e
+		    ON er.q_eventNum = e.eventNum
+		 WHERE er.q_eventNum=#{param1}
+	</select>
+	
+	
+	<select id="getQaDao" resultType="com.festicket.dto.QABoardDto">
+		SELECT *
+		FROM event_QABoard
+		WHERE q_idx=#{param1}
+	</select>
+	
+	
+	<update id="qaHitDao">
+		UPDATE event_QABoard SET q_hit=q_hit+1 WHERE q_idx=#{param1}
+	</update>
+	
+	
 	<!-- 고객센터 게시판 관련 -->
 	<select id="csListDao" resultType="com.festicket.dto.CSboardDto">
 		SELECT *

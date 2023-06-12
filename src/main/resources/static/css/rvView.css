@@ -15,7 +15,6 @@ div.container {
 img.img-thumbnail {
 	width: 450px;
 	height: 600px;
-	margin-bottom: 8px;
 }
 
 div.eventTitle {
@@ -28,7 +27,6 @@ div.eventTitle {
 
 #rvView_page_form {
 	width: 80%;
-	height: 50%;
 	padding-left: 50px;
 	margin: auto;
 }
@@ -44,7 +42,11 @@ div.eventTitle {
 	width: 50%;
 	font-size: 16px;
 	padding-left: 40px;
-	margin-bottom: 50px;
+	padding-bottom: 20px;
+}
+
+#like_btn {
+	margin: 5px 0px 20px;
 }
 
 div.detailTitle {
@@ -83,28 +85,30 @@ input[type="submit"]:hover {
 	color: white;
 }
 
-#tb_num1 {
-	padding-left: 20px;
-	width: 10%;
-}
-
-#tb_right3 {
-	text-align: right;
-	width: 20%;
-}
-
 #btn_like {
 	margin-right: 10px;
 }
 
-#tb_qaMiddle2 {
+#tb_num1 {
+	padding-left: 15px;
+	width: 10%;
+}
+
+#tb_num2 {
 	text-align: left;
-	width: 20%;
+	width: 40%;
+}
+
+#tb_num3 {
+	text-align: left;
+	width: 15%;
 }
 
 #reviewContainer {
-	margin-left: 10px;
+	clear: left;
+	margin: 0px 0px 30px 10px;
 	width: 85%;
-	padding: 0px 50px;
+	padding: 20px 50px;
 	background-color: white;
+	border-radius: 0.8em;
 }
