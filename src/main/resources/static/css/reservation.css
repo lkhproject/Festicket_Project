@@ -19,14 +19,20 @@ h2.rvTitle {
 	font-weight: bold;
 	padding-top: 60px;
 	margin: 10px;
-	margin-left: 34px;
+	margin-left: 20px;
 	color: #404040;
 }
 
 div.totalNum {
 	font-weight: 600;
-	margin-left: 37px;
+	margin-left: 23px;
 	margin-bottom: 20px;
+}
+
+div.row {
+	justify-content: center;
+	margin-right: 0;
+	margin-left: 0;
 }
 
 div.row {
@@ -107,6 +113,5 @@ h5.card-title {
 }
 
 .custom-button i {
-
  	color: #555;
 }

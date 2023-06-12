@@ -27,7 +27,7 @@
 	<div class="container_1" >
 	<div class="container_2" >
 		<h2 class="adminTitle">관리자 페이지</h2>
-			<form action="adminList" method="post" id="detail_frm" name="detail_frm">
+			<form action="adminEventAddOk" method="post" id="detail_frm" name="detail_frm">
 		<!-- 행사 디테일 폼 입력 -->
 				<div id="event_type_error" class="error"></div>
 				<div class="input-group mb-3">

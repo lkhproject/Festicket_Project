@@ -35,7 +35,7 @@ public interface IDao {
 	
 	// admin
 	public List<EventDto> eventListPagingDao(int countList, int countPage); // 모든 행사 리스트 + 페이징
-	public void eventAddDao(String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
+	public int eventAddDao(String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
             String player, String program, String org_link, String main_img, Date rgstDate,
             Date start_date, Date end_date, String eventPrice, int ticketCount); // 행사 추가
 	

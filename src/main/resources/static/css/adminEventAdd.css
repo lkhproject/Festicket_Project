@@ -71,13 +71,3 @@ input[type="button"] {
 #detail_form {
 	margin: 50px 0px 10px;
 }
-
-.error {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-#date_Input {
-  display: block;
-  margin-bottom: 1rem;
-}

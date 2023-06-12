@@ -85,7 +85,7 @@ function checkVal() {
     isValid = false;
   }
   // 총 티켓 매수 유효성 검사
-  if (ticketCount.trim().length === 0) {
+  if (ticketCount.trim().length === 0 && ticketCount === 0) {
     ticketCountError.innerHTML = "※ 총 티켓 매수를 입력해주세요.";
     isValid = false;
   }

@@ -79,7 +79,7 @@ public class AdminController {
       
       IDao dao = sqlSession.getMapper(IDao.class);
       
-      String type = request.getParameter("type");
+      String type = request.getParameter("inputGroupSelect01");
        String gunName = request.getParameter("gunName");
        String title = request.getParameter("title");
        String place = request.getParameter("place");
@@ -108,11 +108,14 @@ public class AdminController {
        
        String eventDate = start_dateStr + "~" + end_dateStr;
       
-      dao.eventAddDao(type, gunName, title, eventDate, place, org_name, use_trgt,
+      int eventAddFlag = dao.eventAddDao(type, gunName, title, eventDate, place, org_name, use_trgt,
             player, program, org_link, main_img, rgstDate,
             start_date, end_date, eventPrice, ticketCount);
       
+      model.addAttribute("eventAddFlag", eventAddFlag);
+      
       return "adminEventAddOk";
    }
+	
 	
 }
