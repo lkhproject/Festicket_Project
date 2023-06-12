@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/reservation.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <script src="/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
@@ -24,9 +25,9 @@
 		<div class="totalNum">총 ${totalCount }건</div>
 		<div class="card-group center-block" id="cardBox">
 		<div class="row">
-		<c:forEach items="${event }" var="event" >
+		<c:forEach items="${event }" var="event" varStatus="loop">
 		  <input type="hidden" value="${event.eventNum }">
-		    <div class="card" id="cardList">
+		    <div class="card hidden" id="cardList">
 		      <img src="${event.main_img }" class="card-img-top" id="card_img"
 		      	onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer">
 		      <div class="card-body">
@@ -47,6 +48,11 @@
 		 </c:forEach>
 		 </div>
 		 </div>
+		<div id="showMoreButtonWrapper">
+		  <button type="button" class="btn custom-button" onclick="showMoreEvents()">
+		    더보기 <i class="bi bi-arrow-down-circle"></i>
+		  </button>
+		</div>
 	</div>
 	</div>
 	<!-- 모든 이벤트 리스트 끝 -->
@@ -54,5 +60,29 @@
 	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
+	
+	<!-- 더보기 버튼 기능 (16개씩 나오게 하기) -->
+	<script>
+	var startIndex = 0;
+	var endIndex = 15;
+	
+	function showMoreEvents() {
+	    var cards = document.getElementsByClassName("card");
+	    for (var i = startIndex; i <= endIndex; i++) {
+	        if (cards[i]) {
+	            cards[i].classList.remove("hidden");
+	        }
+	    }
+	    startIndex += 16;
+	    endIndex += 16;
+	    if (endIndex >= cards.length) {
+	        document.getElementById("showMoreButton").style.display = "none";
+	    }
+	}
+	
+	window.addEventListener("DOMContentLoaded", function() {
+	    showMoreEvents();
+	});
+	</script>
 </body>
 </html>
