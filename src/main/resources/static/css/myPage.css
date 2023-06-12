@@ -189,7 +189,8 @@ ul.help_lmenu{
 ul.help_submenu{
 	list-style: none;
 	font-family: 'Noto Sans KR', sans-serif;
-	padding: 10px;
+	font-size: 14px;
+	padding: 2px;
 }
 
 li.has_sub{
