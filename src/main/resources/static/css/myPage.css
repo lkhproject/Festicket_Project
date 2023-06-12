@@ -16,6 +16,7 @@ div.inner{
 
 h2.title_txt{
 	color : #ffffff;
+	font-weight: bold;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 li.quick_menu_item{
@@ -71,6 +72,11 @@ span.qmenu_tit{
     padding-top: 15px;
 }
 
+span.qmenu_tit:hover {
+	text-decoration: underline;
+	text-underline-position : under;
+}
+
 span.qmenu_txt{
 	display: block;
     margin-top: 5px;
@@ -97,9 +103,10 @@ a.my_lmenu32{
 div.help_rcont{
     width: 1120px;
     padding: 38px 59px 100px 60px;
+    margin-bottom: 60px;
     box-sizing: border-box;
     background-color: #ffffff ;
-	height : 1000px;	
+	height:auto;	
 }
 div.guide_txt{
 	margin-top:80px;
@@ -163,10 +170,12 @@ div.basic_tbl basic_tbl_v3{
 }
 
 div.help_cont{
-	border: 1px solid #ecedf2;
+	border-right: 1px solid #ecedf2;
+	border-bottom: 1px solid #ecedf2;
     background: #ffffff;
     width: 260px;
-    height : 850px;
+    height:auto;
+	overflow:hidden;
   	float: left;
 }
 
@@ -190,10 +199,16 @@ li.has_sub{
     box-sizing: border-box;
 }
 
+li.has_sub_last{
+	padding: 10px 18px 20px 26px;
+    position: relative;
+    box-sizing: border-box;
+}
+
 span.help_submenu_tit{
 	width: 100%;
-	height: 10%;
-	line-height: 90px;
+	height: 0%;
+	line-height: 60px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;	
 }
@@ -311,4 +326,10 @@ tbody {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+.help_lmenu li.has_sub li.on a {
+    color: #6800b8;
+    position: relative;
+    font-weight: bold;
 }

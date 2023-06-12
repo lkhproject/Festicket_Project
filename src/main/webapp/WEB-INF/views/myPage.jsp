@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,11 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/myPage.css">
 </head>
 <body>
+
+<!-- 헤더 시작 -->
 <%@ include file="include/header.jsp" %>
+<!-- 헤더 끝 -->
+
 <div class="inner">
 	<div class="quick_menu_wrap">
 		<div class="title">
@@ -19,7 +23,7 @@
 			<li class="quick_menu_item">
 				<a href="" class="quick_link">
 					<div class="qmemu_box">
-						<span class="qmenu_tit">나의 예매권</span>
+						<span class="qmenu_tit">나의 예매내역</span>
 					</div>
 				</a>
 			</li>
@@ -37,16 +41,8 @@
 			<li class="has_sub">
 				<span class="help_submenu_tit">예매관리</span>
 				<ul class="help_submenu">
-					<li>
-						<a href="">예매확인/취소</a>
-					</li>
-				</ul>
-			</li>
-			<li class="has_sub">
-				<span class="help_submenu_tit">할인혜택</span>
-				<ul class="help_submenu">
-					<li>
-						<a href="">예매권</a>
+					<li class="on">
+						<a href="myPage">예매확인/취소</a>
 					</li>
 				</ul>
 			</li>
@@ -54,14 +50,14 @@
 				<span class="help_submenu_tit">활동관리</span>
 				<ul class="help_submenu">
 					<li>
-						<a href="" class="my_lmenu32">후기</a>
+						<a href="" class="my_lmenu32"> 후기 </a>
 					</li>
 				</ul>
 			</li>
-			<li class="has_sub">
+			<li class="has_sub_last">
 				<span class="help_submenu_tit">회원정보관리</span>
 				<ul class="help_submenu">
-					<li class="on">
+					<li>
 						<a href="" class="my_lmenu52">회원정보수정</a>
 					</li>
 					<li>
@@ -144,6 +140,10 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- 푸터 시작 -->
 	<%@ include file="include/footer.jsp" %>
+<!-- 푸터 끝 -->
 </body>
 </html>
