@@ -114,7 +114,7 @@ public class AdminController {
       
       model.addAttribute("eventAddFlag", eventAddFlag);
       
-      return "adminEventAddOk";
+      return "redirect:adminList";
    }
 	
 	
