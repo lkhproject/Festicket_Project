@@ -6,5 +6,19 @@
 	
 <mapper namespace="com.festicket.dao.IDao">
 
+	<insert id="joinDao">
+		INSERT INTO eventMember(userId, userPassword, userPhone, email, name) VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+	</insert>
 	
+	<select id="checkIdDao" resultType="int">
+		SELECT COUNT(*) FROM eventMember WHERE userId=#{param1}
+	</select>
+	
+	<select id="checkIdPwDao" resultType="int">
+		SELECT COUNT(*) FROM eventMember WHERE userId=#{param1} AND userPassword=#{param2}
+	</select>
+	
+	<select id="getMemberInfo" resultType="com.festicket.dto.MemberDto">
+		SELECT * FROM eventMember WHERE userId=#{param1}
+	</select>
 </mapper>
