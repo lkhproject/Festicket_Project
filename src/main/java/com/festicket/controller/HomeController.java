@@ -1,7 +1,10 @@
 package com.festicket.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.festicket.dao.IDao;
-import com.festicket.dto.EventDto;
 
 @Controller
 public class HomeController {
@@ -34,6 +36,8 @@ public class HomeController {
 		
 		return "join";
 	}
+	
+	
 	
 	@RequestMapping(value = "/login")
 	public String login() {
@@ -59,14 +63,14 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/joinOk")
-	public String joinOk(HttpServletRequest request, Model model) {
+	public String joinOk(HttpServletRequest request, Model model) throws ParseException {
 		
 		String userId = request.getParameter("userId");
 		String userPassword = request.getParameter("userPassword");
-		String userPhone = request.getParameter("userPhone");
-		String email = request.getParameter("email");
 		String name = request.getParameter("name");
-		
+		String email = request.getParameter("email");
+		String userPhone = request.getParameter("userPhone");
+
 		IDao dao = sqlSession.getMapper(IDao.class);
 	
 		int joinCheck = 0;
@@ -74,7 +78,12 @@ public class HomeController {
 		int checkId = dao.checkIdDao(userId);//가입하려는 id 존재여부 체크 1이면 이미 존재
 		
 		if(checkId == 0) {
-			joinCheck = dao.joinDao(userId, userPassword, userPhone, email,name);
+			Date now = new Date();
+		    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	        String strToday = formatter.format(now);
+	        Date today = formatter.parse(strToday);
+	        
+			joinCheck = dao.joinDao(userId, userPassword, userPhone, email, name, today);
 			model.addAttribute("checkId", checkId);
 		//joinCheck 값이 1이면 회원가입 성공, 아니면 가입실패
 		} else {
@@ -141,11 +150,11 @@ public class HomeController {
 //		return "adminModify";
 //	}
 //	
-//	@RequestMapping(value = "/adminEventAdd")
-//	public String adminEventAdd() {
-//		
-//		return "adminEventAdd";
-//	}
+	@RequestMapping(value = "/adminEventAdd")
+	public String adminEventAdd() {
+		
+		return "adminEventAdd";
+	}
 	
 	
 }
