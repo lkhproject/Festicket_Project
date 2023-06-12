@@ -1,8 +1,5 @@
 package com.festicket.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +34,41 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/searchResult")
+	public String searchResult(HttpServletRequest request, Model model, Criteria criteria) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		// 페이징
+		int pageNum = 0;
+		
+		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+		if(request.getParameter("pageNum") == null) {
+			pageNum = 1;
+			criteria.setPageNum(pageNum);
+		} else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			criteria.setPageNum(pageNum);
+		}
+
+		String keyword = request.getParameter("keyword");
+		
+		request.setAttribute("search_word", keyword);
+		
+		int totalResult = dao.totalSearchResultCount(keyword); // 모든 글의 개수
+		
+		PageDto pageDto = new PageDto(criteria, totalResult);
+		
+		List<EventDto> searchListDtos = dao.getSearchResult(keyword, criteria.getCountList(), pageNum);
+		
+		model.addAttribute("totalCount", totalResult);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("searchListDtos", searchListDtos);
+		model.addAttribute("currPage", pageNum);
+		
+		return "searchResult";
+	}
+	
 	@RequestMapping(value = "/login")
 	public String login() {
 		return "login";
@@ -52,85 +84,9 @@ public class HomeController {
 		return "myPage";
 	}
 	
-	@RequestMapping(value = "/ranking")
-	public String ranking(HttpServletRequest request, Model model) {
-
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		model.addAttribute("ongoing", dao.getOngoingEventDao());
-		model.addAttribute("topfiveEvent", dao.getTopFiveEventsDao());
-		
-//		int ongoing = Integer.parseInt(request.getParameter("curr_event"));
-//		
-//		System.out.println(ongoing);
-//		
-//		model.addAttribute("ongoing", dao.getEventDao(ongoing));
-		
-		return "ranking";
-	}
 	
-	@RequestMapping(value = "/exhibition")
-	public String exhibition(HttpServletRequest request, Model model, Criteria criteria) {
-
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		// 페이징
-		int pageNum = 0;
-		
-		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
-		if(request.getParameter("pageNum") == null) {
-			pageNum = 1;
-			criteria.setPageNum(pageNum);
-		} else {
-			pageNum = Integer.parseInt(request.getParameter("pageNum"));
-			criteria.setPageNum(pageNum);
-		}
-		
-		int totalCount = dao.totalExhibitionCountDao();
-		
-		PageDto pageDto = new PageDto(criteria, totalCount);
-		
-		List<EventDto> exhibitionDtos = dao.exhibitionListDao(criteria.getCountList(), pageNum);
-		
-		request.setAttribute("totalCount", totalCount);
-		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("exhibitionDtos", exhibitionDtos);
-		model.addAttribute("currPage", pageNum);
-		
-		return "exhibition";
-	}
 	
-	@RequestMapping(value = "/festival")
-	public String festival(HttpServletRequest request, Model model, Criteria criteria) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		// 페이징
-		int pageNum = 0;
-		
-		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
-		if(request.getParameter("pageNum") == null) {
-			pageNum = 1;
-			criteria.setPageNum(pageNum);
-		} else {
-			pageNum = Integer.parseInt(request.getParameter("pageNum"));
-			criteria.setPageNum(pageNum);
-		}
-		
-		int totalCount = dao.totalFestivalCountDao();
-		
-		PageDto pageDto = new PageDto(criteria, totalCount);
-		
-		List<EventDto> festivalDtos = dao.festivalListDao(criteria.getCountList(), pageNum);
-		
-		request.setAttribute("totalCount", totalCount);
-		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("festivalDtos", festivalDtos);
-		model.addAttribute("currPage", pageNum);
-		
-		return "festival";
-	}
-
+	
 
 // *************************************************CS
 	@RequestMapping(value = "/csBoardList")
@@ -298,126 +254,6 @@ public class HomeController {
 	}
 	// *************************************************CS
 	
-	
-	@RequestMapping(value = "/adminList")
-	public String adminList(HttpServletRequest request, Model model, Criteria criteria) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		// 페이징
-		int pageNum = 0;
-		
-		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
-		if(request.getParameter("pageNum") == null) {
-			pageNum = 1;
-			criteria.setPageNum(pageNum);
-		} else {
-			pageNum = Integer.parseInt(request.getParameter("pageNum"));
-			criteria.setPageNum(pageNum);
-		}
-		
-		int totalCount = dao.totalEventCountDao();
-		
-		PageDto pageDto = new PageDto(criteria, totalCount);
-		
-		List<EventDto> eventListDtos = dao.eventListDao(criteria.getCountList(), pageNum);
-		
-		request.setAttribute("totalCount", totalCount);
-		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("eventListDtos", eventListDtos);
-		model.addAttribute("currPage", pageNum);
-		
-		return "adminList";
-	}
-	
-	@RequestMapping(value = "/adminAddEvent")
-	public String adminList(Model model, HttpSession session, HttpServletRequest request) {
-		
-		String sessionId = (String)session.getAttribute("sessionId");
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-//		EventDto eventDto = dao.contentViewDao(request.getParameter("eventNum"));
-//		
-//		if(sessionId != null) {
-//			model.addAttribute("eventDto", eventDto);
-//		}
-		
-		return "adminAddEvent";
-	}
-	
-	@RequestMapping(value = "/adminModify")
-	public String adminModify(HttpSession session, Model model) {
-		
-		String sessionId = (String)session.getAttribute("sessionId");
-		
-		return "adminModify";
-	}
-	
-	@RequestMapping(value = "/adminEventAdd")
-	public String adminEventAdd() {
-		return "adminEventAdd";
-	}
-	
-	@RequestMapping(value = "/searchResult")
-	public String searchResult(HttpServletRequest request, Model model, Criteria criteria) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		// 페이징
-		int pageNum = 0;
-		
-		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
-		if(request.getParameter("pageNum") == null) {
-			pageNum = 1;
-			criteria.setPageNum(pageNum);
-		} else {
-			pageNum = Integer.parseInt(request.getParameter("pageNum"));
-			criteria.setPageNum(pageNum);
-		}
-
-		String keyword = request.getParameter("keyword");
-		
-		request.setAttribute("search_word", keyword);
-		
-		int totalResult = dao.totalSearchResultCount(keyword); // 모든 글의 개수
-		
-		PageDto pageDto = new PageDto(criteria, totalResult);
-		
-		List<EventDto> searchListDtos = dao.getSearchResult(keyword, criteria.getCountList(), pageNum);
-		
-		model.addAttribute("totalCount", totalResult);
-		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("searchListDtos", searchListDtos);
-		model.addAttribute("currPage", pageNum);
-		
-		return "searchResult";
-	}
-	
-	@RequestMapping(value = "/reservation")
-	public String reservation(HttpSession session, Model model) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-//		model.addAttribute("event", dao.eventListDao());
-		
-		return "reservation";
-	}
-	
-	@RequestMapping(value = "/rvView")
-	public String rvView(HttpSession session, Model model, HttpServletRequest request) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
-		
-		model.addAttribute("event", dao.getEventDao(eventNum));
-		model.addAttribute("reviewList", dao.getReviewListDao(eventNum));
-		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
-		
-		return "rvView";
-	}
-	
 	@RequestMapping(value = "/qaView")
 	public String qaView(HttpSession session, Model model, HttpServletRequest request) {
 		
@@ -432,43 +268,5 @@ public class HomeController {
 		return "qaView";
 	}
 	
-	@RequestMapping(value = "/confirmRev")
-	public String confirmRev(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
-
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-//		String re_userId = request.getParameter("mid");
-		String re_userId = "happyCat";
-		int re_eventNum = Integer.parseInt(request.getParameter("selectedEventNum"));
-		String re_price = request.getParameter("eventPrice");
-		
-		Date now = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String strToday = formatter.format(now);
-        Date today = formatter.parse(strToday);
-		
-//		int re_ticketCount = Integer.parseInt(request.getParameter("selectedTicketCount"));
-		int re_ticketCount = 2;
-        
-        String selectedDate = request.getParameter("selectedDate");
-		Date re_ticketDate = formatter.parse(selectedDate);
-		
-		System.out.println(re_ticketCount);
-		
-		int revCheck = 0;
-		
-		revCheck = dao.reservationConfirmedDao(re_userId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate);
-		
-//		같은 아이디로 같은 행사 예약하면 이미 예약한 행사가 있다고 티켓 매수 수정하라는 알림창 띄우기
-		if(revCheck == 1) { // 예약완료
-			model.addAttribute("comfirmedRev", dao.getReservationDao(re_eventNum, re_userId));
-			model.addAttribute("event", dao.getEventDao(re_eventNum));
-			model.addAttribute("revCheck", revCheck);
-		} else { // 예약실패
-			model.addAttribute("revCheck", revCheck);
-		}
-		
-		return "confirmRev";
-	}
 	
 }

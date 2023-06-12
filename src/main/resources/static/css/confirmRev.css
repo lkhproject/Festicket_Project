@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #eeeeee;
+}
+
+div.container {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px;
+}
+
+#wrapper {
+	margin: 20px;
+	background-color: white;
+	padding: 0px 50px 80px;
+	border-radius: 0.8em;
+	width: 80%;
+	padding-left: 50px;
+	margin: 40px auto;
+	text-align:center;
+}
+
+#child {
+	display:inline-block;
+	vertical-align:middle;
+	margin-bottom: 50px;
+}
+
+div.confirmed {
+	text-align: center;
+	margin: 50px 0px;
+}
+
+#ticket {
+	width: 540px;
+}
+
+#ticketDetails {
+	line-height: 10px;
+}
+
+input[type="button"] {
+	float: right;
+	margin-top: 10px;
+	font-weight: bold;
+	background: #6800b8;
+	color: white;
+	padding: 7px 40px;
+	border-radius : 0.8em;
+	border: none;
+}
+
+input[type="button"]:hover {
+	background: #5c00a2;
+	color: white;
+}

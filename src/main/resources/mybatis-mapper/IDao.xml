@@ -64,6 +64,26 @@
 		SELECT COUNT(*) FROM event
 	</select>
 	
+	<!-- admin 관련 -->
+   <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
+       SELECT eventNum, gunName, title, eventDate
+       FROM (
+           SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
+           FROM (
+               SELECT eventNum, gunName, title, eventDate
+               FROM event
+               ORDER BY eventNum DESC
+           ) A
+       )
+       WHERE PAGE=#{param2}
+    </select>
+    
+    <insert id="eventAddDao">
+       INSERT INTO event
+       VALUES(e_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, 
+             #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, #{param13}, #{param14})
+    </insert>
+	
 	<!-- *** 랭킹 페이지 *** -->
 	<!-- 예매 수가 같을경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->
 	<select id="getTopFiveEventsDao" resultType="com.festicket.dto.EventDto">
@@ -140,6 +160,30 @@
 		    ON er.rw_eventNum = e.eventNum
 		 WHERE er.rw_eventNum=#{param1}
 	</select>
+	
+	<!-- 리뷰 좋아요 -->
+	<insert id="reviewLiker">
+		INSERT INTO eventReviewLike
+		VALUES(#{param1}, #{param2})
+	</insert>
+	
+	<!-- 행사 좋아요 -->
+	<insert id="eventLiker">
+		INSERT INTO eventLike
+		VALUES(#{param1}, #{param2})
+	</insert>
+	
+	<!-- 리뷰 좋아요 취소 -->
+	<delete id="reviewEventLiker">
+		DELETE FROM eventReviewLike
+		WHERE reviewIdx=#{param1} AND reviewLikerId=#{param2}
+	</delete>
+	
+	<!-- 행사 좋아요 취소 -->
+	<delete id="cancelEventLiker">
+		DELETE FROM eventLike
+		WHERE eventIdx=#{param1} AND eventLikerId=#{param2}
+	</delete>
 	
 	<!-- QA -->
 	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">

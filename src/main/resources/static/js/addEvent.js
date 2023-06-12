@@ -1,64 +1,99 @@
-/**
- * 
- */
+function checkVal() {
+  
+  // 행사 타입 유효성 검사
+  var eventType = document.getElementById("inputGroupSelect01").value;
+  var eventTypeError = document.getElementById("event_type_error");
 
-function checkValidity() {
-	  // 행사분류 선택 확인
-	  var type = document.getElementById("inputGroupSelect01").value;
-	  if (type === "") {
-	    alert("행사분류를 선택해주세요.");
-	    return false;
-	  }
-	
-	  // 행사명 입력 확인
-	  var title = document.getElementsByName("title")[0].value;
-	  if (title === "") {
-	    alert("행사명을 입력해주세요.");
-	    return false;
-	  }
-	
-	  // 시작일 확인
-	  var startDate = document.getElementsByName("start_date")[0].value;
-	  if (startDate === "") {
-	    alert("시작일을 선택해주세요.");
-	    return false;
-	  }
-	
-	  // 종료일 확인
-	  var endDate = document.getElementsByName("end_date")[0].value;
-	  if (endDate === "") {
-	    alert("종료일을 선택해주세요.");
-	    return false;
-	  }
-	
-	  // 자치구 입력 확인
-	  var gunName = document.getElementsByName("gunName")[0].value;
-	  if (gunName === "") {
-	    alert("자치구를 입력해주세요.");
-	    return false;
-	  }
-	
-	  // 장소 입력 확인
-	  var place = document.getElementsByName("place")[0].value;
-	  if (place === "") {
-	    alert("장소를 입력해주세요.");
-	    return false;
-	  }
-	
-	  // 홈페이지 주소 입력 확인
-	  var orgLink = document.getElementsByName("org_link")[0].value;
-	  if (orgLink === "") {
-	    alert("홈페이지 주소를 입력해주세요.");
-	    return false;
-	  }
-	
-	  // 총 티켓 매수 입력 확인
-	  var ticketCount = document.getElementsByName("ticketCount")[0].value;
-	  if (ticketCount === "") {
-	    alert("총 티켓 매수를 입력해주세요.");
-	    return false;
-	  }
-	
-	  // 유효성 검사 통과 시 폼 제출
-	  document.getElementById("detail_frm").submit();
+  var title = document.getElementById("title").value;
+  var titleError = document.getElementById("title_error");
+
+  var startDate = document.getElementById("datepicker").value;
+  var startDateError = document.getElementById("start_date_error");
+
+  var endDate = document.getElementById("datepicker").value;
+  var endDateError = document.getElementById("end_date_error");
+
+  var rgstDate = document.getElementById("datepicker").value;
+  var rgstDateError = document.getElementById("rgstDate_error");
+
+  var gunName = document.getElementsByName("gunName")[0].value;
+  var gunNameError = document.getElementById("gunName_error");
+
+  var place = document.getElementsByName("place")[0].value;
+  var placeError = document.getElementById("place_error");
+
+  var orgLink = document.getElementsByName("org_link")[0].value;
+  var orgLinkError = document.getElementById("org_link_error");
+
+  var ticketCount = document.getElementsByName("ticketCount")[0].value;
+  var ticketCountError = document.getElementById("ticketCount_error");
+
+  var mainImg = document.getElementsByName("main_img")[0].value;
+  var mainImgError = document.getElementById("main_img_error");
+  
+  eventTypeError.innerHTML = "";
+  titleError.innerHTML = "";
+  startDateError.innerHTML = "";
+  endDateError.innerHTML = "";
+  rgstDateError.innerHTML = "";
+  gunNameError.innerHTML = "";
+  placeError.innerHTML = "";
+  orgLinkError.innerHTML = "";
+  ticketCountError.innerHTML = "";
+  mainImgError.innerHTML = "";
+  
+  var isValid = true;
+  
+  // 행사 타입 유효성 검사
+  if (eventType === "Choose...") {
+    eventTypeError.innerHTML = "※ 행사분류를 선택해주세요.";
+    isValid = false;
+  }
+  // 제목 유효성 검사
+  if (title.trim().length === 0) {
+    titleError.innerHTML = "※ 제목을 입력해주세요.";
+    isValid = false;
+  }
+  // 시작일 유효성 검사
+  if (startDate.trim().length === 0) {
+    startDateError.innerHTML = "※ 시작일을 입력해주세요.";
+    isValid = false;
+  }
+  // 종료일 유효성 검사
+  if (endDate.trim().length === 0) {
+    endDateError.innerHTML = "※ 종료일을 입력해주세요.";
+    isValid = false;
+  }
+  // 신청일 유효성 검사
+  if (rgstDate.trim().length === 0) {
+    rgstDateError.innerHTML = "※ 신청일을 입력해주세요.";
+    isValid = false;
+  }
+  // 자치구 유효성 검사
+  if (gunName.trim().length === 0) {
+    gunNameError.innerHTML = "※ 자치구를 입력해주세요.";
+    isValid = false;
+  }
+  // 장소 유효성 검사
+  if (place.trim().length === 0) {
+    placeError.innerHTML = "※ 장소를 입력해주세요.";
+    isValid = false;
+  }
+  // 홈페이지 주소 유효성 검사
+  if (orgLink.trim().length === 0) {
+    orgLinkError.innerHTML = "※ 홈페이지 주소를 입력해주세요.";
+    isValid = false;
+  }
+  // 총 티켓 매수 유효성 검사
+  if (ticketCount.trim().length === 0) {
+    ticketCountError.innerHTML = "※ 총 티켓 매수를 입력해주세요.";
+    isValid = false;
+  }
+  // 대표 이미지 유효성 검사
+  if (mainImg.trim().length === 0) {
+    mainImgError.innerHTML = "※ 대표 이미지를 선택해주세요.";
+    isValid = false;
+  }
+
+  return isValid;
 }

@@ -25,11 +25,25 @@ public interface IDao {
 	public List<EventDto> getTopFiveEventsDao(); // 행사 탑5 리스트 
 	public List<EventDto> getOngoingEventDao(); // 진행중인 행사 리스트
 	
-	// 행사 선택
+	// 행사
 	public EventDto getEventDao(int eventNum); // 행사 하나만 가져오기
+	public int eventLiker(int eventIdx, String userId); // 행사 좋아요
+	public void cancelEventLiker(int eventIdx, String userId); // 행사 좋아요 취소
+	
+	// admin
+	public List<EventDto> eventListPagingDao(int countList, int countPage); // 모든 행사 리스트 + 페이징
+	public void eventAddDao(String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
+            String player, String program, String org_link, String main_img, Date rgstDate,
+            Date start_date, Date end_date, String eventPrice, int ticketCount); // 행사 추가
 	
 	// 페스티벌
 	public List<EventDto> festivalListDao(int countList, int countPage); // 페스티벌 리스트
+// 정렬
+	public List<EventDto> festivalOrderByStartRecent(int countList, int countPage); // 페스티벌 리스트 시작일순
+	public List<EventDto> festivalOrderByStartLate(int countList, int countPage); // 페스티벌 리스트 시작일순
+	public List<EventDto> festivalOrderByEndRecent(int countList, int countPage); // 페스티벌 리스트 종료일순
+	public List<EventDto> festivalOrderByEndLate(int countList, int countPage); // 페스티벌 리스트 종료일순
+//
 	public int totalFestivalCountDao();
 	public List<EventDto> top5FestivalListDao(); // 페스티벌 탑5 리스트
 	
@@ -40,6 +54,8 @@ public interface IDao {
 	
 	// 리뷰
 	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 글 리스트 가져오기
+	public int reviewLiker(int reviewIdx, String userId); // 리뷰 좋아요
+	public void cancelReviewLiker(int reviewIdx, String userId); // 리뷰 좋아요 취소
 	
 	// QA
 	public List<QABoardDto> getQAListDao(int eventNum); // QA 글 리스트 가져오기

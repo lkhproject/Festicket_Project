@@ -30,7 +30,7 @@
 	<div class="container" id="rvView_page_form">
 			<div class="container" id="rev_detail_container_1">
 				<img src="${event.main_img }" class="img-thumbnail" alt="포스터"><br>
-				<button type="button" class="btn rounded-pill btn-light" id="like_btn">
+				<button type="button" class="btn rounded-pill btn-light" id="like_btn" onclick="likeButtonClicked()">
 				  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
 				</button>
 			</div>
@@ -43,10 +43,11 @@
 					<div id="details">공연기간: </div><div>${event.eventDate }</div>
 					<div id="details">관람연령: </div><div>${event.use_trgt }</div>
 					<div id="details_1">가격: </div><div>
-					<c:choose>
-					  	<c:when test="${event.eventPrice == null}">무료</c:when>
-					  	<c:otherwise>${event.eventPrice }</c:otherwise>
-				  	</c:choose>
+					<c:set var="eventPrice" value="${event.eventPrice}" />
+						<c:if test="${empty eventPrice}">
+						    <c:set var="eventPrice" value="무료" />
+						</c:if>
+						${eventPrice}
 					</div>
 				</div>
 				<div class="cal">
@@ -92,7 +93,6 @@
 	                </script> 
 	                <div style="width:110px;" id="datepicker"></div>
 	                <!-- 값 표시 안됨 -->
-	                <div>선택한 날짜: <c:out value="${param.selectedDate}" /></div>
 				</div>
 				<div>티켓매수(최대 5매 선택가능)</div>
 				<div>
@@ -115,8 +115,9 @@
 				<!-- js로 디테일 포함 알림창 띄운다음 확인 누르면 confirmRev로 넘어감 -->
 				<input type="hidden" name="selectedDate" id="selectedDate" value="">
 				<input type="hidden" name="selectedEventNum" id="selectedEventNum" value="${event.eventNum }">
+				<input type="hidden" name="eventPrice" id="eventPrice" value="${eventPrice }">
 				<input type="hidden" name="selectedTicketCount" id="selectedTicketCount" value="">
-				<input type="submit" value="예매하기" onclick="confirmRev()">
+				<input type="submit" value="예매하기" onclick="return confirmRev()">
 			</form>
 		</div>
 	<!-- 예매 영역 끝 -->
@@ -149,7 +150,7 @@
 					      <td id="tb_num3">${reviewList.rw_userId }</td>
 					      <td id="tb_num3">${reviewList.rw_date }</td>
 					      <td id="tb_num3">
-					      	<button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like">
+					      	<button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like" onclick="reviewLikeClicked(this)">
 					  			<span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
 							</button>
 						  </td>

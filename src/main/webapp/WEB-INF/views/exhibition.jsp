@@ -25,11 +25,12 @@
   </div>
   <!-- 선택하면 정렬 기능 추가 필요 -->
 	<div class="selector">
-		<select class="form-select form-select-sm" aria-label=".form-select-sm example">
+		<select class="form-select form-select-sm" name="orderOption" aria-label=".form-select-sm example">
 		  <option selected>정렬선택</option>
-		  <option value="1" >시작 날짜 순</option>
-		  <option value="2">종료 날짜 늦은??? 순</option>
-		  <option value="3">관람가 낮은 순</option>
+		  <option value="startRecent" >시작 날짜 빠른 순</option>
+		  <option value="startLate" >시작 날짜 느린 순</option>
+		  <option value="endRecent">종료 날짜 빠른 순</option>
+		  <option value="endLate">종료 날짜 느린 순</option>
 		</select>
 	</div>
 </div>
