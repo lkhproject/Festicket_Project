@@ -18,44 +18,44 @@
 
   <!-- 모든 이벤트 리스트 -->
   <!-- 이벤트 이미지, 자치구, 행사분류, 행사명 넘김 -->
-  <div class="container">
-    <div id="reservation_page">
-      <h2 class="rvTitle">예매</h2>
-      <div class="totalNum">총 ${totalCount}건</div>
-      <div class="card-group center-block" id="cardBox">
-        <div class="row justify-content-start">
-          <c:forEach items="${event}" var="event" varStatus="loop">
-            <input type="hidden" value="${event.eventNum}">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="card hidden" id="cardList">
-                <img src="${event.main_img}" class="card-img-top" id="card_img"
-                  onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'" style="cursor:pointer">
-                <div class="card-body">
-                  <h5 class="card-title" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'" style="cursor:pointer">
-                    <c:choose>
-                      <c:when test="${fn:length(event.title) > 19}">
-                        ${fn:substring(event.title, 0, 18)}...
-                      </c:when>
-                      <c:otherwise>
-                        ${event.title}
-                      </c:otherwise>
-                    </c:choose>
-                  </h5>
-                  <h6 class="card-subtitle">서울/${event.gunName}</h6>
-                  <p class="card-text"><small class="text-muted">${event.type}</small></p>
-                </div>
-              </div>
-            </div>
-          </c:forEach>
-        </div>
-      </div>
-      <div id="showMoreButtonWrapper">
-        <button type="button" class="btn custom-button" onclick="showMoreEvents()" id="showMoreButton">
-          더보기 <i class="bi bi-caret-down-fill"></i>
-        </button>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+	  <div id="reservation_page">
+	    <h2 class="rvTitle">예매</h2>
+	    <div class="totalNum">총 ${totalCount}건</div>
+	    <div class="card-group center-block" id="cardBox">
+	      <div class="row">
+	        <c:forEach items="${event}" var="event" varStatus="loop">
+	          <input type="hidden" value="${event.eventNum}">
+	          <div class="col-lg-3 col-md-4 col-sm-6">
+	            <div class="card hidden" id="cardList">
+	              <img src="${event.main_img}" class="card-img-top" id="card_img"
+	                onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'" style="cursor:pointer">
+	              <div class="card-body">
+	                <h5 class="card-title" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'" style="cursor:pointer">
+	                  <c:choose>
+	                    <c:when test="${fn:length(event.title) > 19}">
+	                      ${fn:substring(event.title, 0, 18)}...
+	                    </c:when>
+	                    <c:otherwise>
+	                      ${event.title}
+	                    </c:otherwise>
+	                  </c:choose>
+	                </h5>
+	                <h6 class="card-subtitle">서울/${event.gunName}</h6>
+	                <p class="card-text"><small class="text-muted">${event.type}</small></p>
+	              </div>
+	            </div>
+	          </div>
+	        </c:forEach>
+	      </div>
+	    </div>
+	    <div id="showMoreButtonWrapper">
+	      <button type="button" class="btn custom-button" onclick="showMoreEvents()" id="showMoreButton">
+	        더보기 <i class="bi bi-caret-down-fill"></i>
+	      </button>
+	    </div>
+	  </div>
+	</div>
   <!-- 모든 이벤트 리스트 끝 -->
 
   <!-- 푸터 -->
