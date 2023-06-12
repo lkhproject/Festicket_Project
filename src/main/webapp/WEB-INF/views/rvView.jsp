@@ -116,56 +116,66 @@
 				<input type="hidden" name="selectedDate" id="selectedDate" value="">
 				<input type="hidden" name="selectedEventNum" id="selectedEventNum" value="${event.eventNum }">
 				<input type="hidden" name="eventPrice" id="eventPrice" value="${eventPrice }">
-				<input type="hidden" name="selectedTicketCount" id="selectedTicketCount" value="">
 				<input type="submit" value="예매하기" onclick="return confirmRev()">
 			</form>
 		</div>
 	<!-- 예매 영역 끝 -->
 		
 		<!-- 리뷰 시작 -->
-		<div class="container" id="reviewContainer">
-			<table class="table table-hover">
-			  <thead>
-			    <tr>
-			      <th scope="col" style="font-size: 16px">평점</th>
-			      <th scope="col" colspan="4" style="font-size: 16px">리뷰</th>
-			    </tr>
-			  </thead>
-			  <tbody class="table-group-divider">
-			  	<c:choose>
-			  		<c:when test="${not empty reviewList }">
-					  <c:forEach items="${reviewList }" var="reviewList"  begin="0" end="5">
-					    <tr>
-					      <td id="tb_num1">${reviewList.rw_rating }/5</td>
-					      <th id="tb_num2">
-						      <c:choose>	
-						      	<c:when test="${fn:length(reviewList.rw_content) gt 22 }">
-						      		${fn:substring(reviewList.rw_content, 0, 21) }...
-						      	</c:when>
-						      	<c:otherwise>
-						      		${reviewList.rw_content }
-						      	</c:otherwise>
-						      </c:choose>
-						  </th>
-					      <td id="tb_num3">${reviewList.rw_userId }</td>
-					      <td id="tb_num3">${reviewList.rw_date }</td>
-					      <td id="tb_num3">
-					      	<button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like" onclick="reviewLikeClicked(this)">
-					  			<span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
-							</button>
-						  </td>
-					      <!-- 본인이면 수정버튼 추가 -->
-					    </tr>
-					  </c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="5">등록된 리뷰가 존재하지 않습니다.</td>
-						</tr>
-					</c:otherwise>
-				</c:choose>
-			  </tbody>
-			</table>
+<div class="container" id="reviewContainer">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="font-size: 16px">평점</th>
+        <th scope="col" colspan="4" style="font-size: 16px">리뷰</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider" id="reviewTableBody">
+      <c:choose>
+        <c:when test="${not empty reviewList}">
+          <c:forEach items="${reviewList}" var="review">
+            <tr class="reviewRow" id="reviewRow" style="display: none;">
+              <td id="tb_num1">${review.rw_rating}/5</td>
+              <th id="tb_num2">
+                <c:choose>
+                  <c:when test="${fn:length(review.rw_content) gt 22}">
+                    ${fn:substring(review.rw_content, 0, 21)}...
+                  </c:when>
+                  <c:otherwise>
+                    ${review.rw_content}
+                  </c:otherwise>
+                </c:choose>
+              </th>
+              <td id="tb_num3">${review.rw_userId}</td>
+              <td id="tb_num3">${review.rw_date}</td>
+              <td id="tb_num3">
+                <button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like" onclick="reviewLikeClicked(this)">
+                  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
+                </button>
+              </td>
+              <!-- 본인이면 수정버튼 추가 -->
+            </tr>
+          </c:forEach>
+
+          <!-- 더보기 버튼 표시 -->
+          <tr id="showMoreRow">
+            <td colspan="5">
+              <div id="showMoreButtonWrapper">
+                <button type="button" class="btn custom-button" onclick="showMoreReviews()" id="showMoreButton">
+                  더보기 <i class="bi bi-caret-down-fill"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </c:when>
+        <c:otherwise>
+          <tr>
+            <td colspan="5">등록된 리뷰가 존재하지 않습니다.</td>
+          </tr>
+        </c:otherwise>
+      </c:choose>
+    </tbody>
+  </table>
 		<!-- 리뷰 끝 -->
 		
 		<!-- Q&A 시작 -->
@@ -178,24 +188,24 @@
 			  <tbody class="table-group-divider">
 			  <c:choose>
 			  		<c:when test="${not empty QA_List }">
-					  <c:forEach items="${QA_List }" var="QA_List" begin="0" end="5">
+					  <c:forEach items="${QA_List }" var="QA" begin="0" end="5">
 					    <tr>
-					      <td id="tb_num1">${QA_List.q_idx }</td>
+					      <td id="tb_num1">${QA.q_idx }</td>
 					      <th id="tb_num2">
-						      <div style="cursor:pointer;" onclick="script:window.location.href='qaView?selectedQA=${QA_List.q_idx }'">
+						      <div style="cursor:pointer;" onclick="script:window.location.href='qaView?selectedQA=${QA.q_idx }'">
 							      <c:choose>	
-							      	<c:when test="${fn:length(QA_List.q_title) gt 22 }">
-							      		${fn:substring(QA_List.q_title, 0, 21) }...
+							      	<c:when test="${fn:length(QA.q_title) gt 22 }">
+							      		${fn:substring(QA.q_title, 0, 21) }...
 							      	</c:when>
 							      	<c:otherwise>
-							      		${QA_List.q_title }
+							      		${QA.q_title }
 							      	</c:otherwise>
 							      </c:choose>
 							  </div>
 					      </th>
-					      <td id="tb_num3">${QA_List.q_userId }</td>
-					      <td id="tb_num3">${QA_List.q_writeDate }</td>
-					      <td id="tb_num3" style="text-align: center;">${QA_List.q_hit }</td>
+					      <td id="tb_num3">${QA.q_userId }</td>
+					      <td id="tb_num3">${QA.q_writeDate }</td>
+					      <td id="tb_num3" style="text-align: center;">${QA.q_hit }</td>
 					    </tr>
 					  </c:forEach>
 				  	</c:when>
@@ -212,9 +222,35 @@
 	</div>
 </div>
 	
-	
 	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
+	
+<!-- 더보기 버튼 기능 (6개씩 나오게 하기) -->
+<script>
+  var startIndex = 0;
+  var endIndex = 5;
+
+  function showMoreReviews() {
+    var reviewRows = document.getElementsByClassName("reviewRow");
+    for (var i = startIndex; i < endIndex; i++) {
+      if (reviewRows[i]) {
+        reviewRows[i].style.display = "table-row";
+      }
+    }
+    startIndex += 6;
+    endIndex += 6;
+    if (endIndex >= reviewRows.length) {
+      document.getElementById("showMoreRow").style.display = "none";
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", function() {
+    showMoreReviews();
+  });
+  
+
+  
+</script>
 </body>
 </html>

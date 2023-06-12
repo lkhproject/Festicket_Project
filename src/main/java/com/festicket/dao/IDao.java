@@ -32,6 +32,7 @@ public interface IDao {
 	public EventDto getEventDao(int eventNum); // 행사 하나만 가져오기
 	public int eventLiker(int eventIdx, String userId); // 행사 좋아요
 	public void cancelEventLiker(int eventIdx, String userId); // 행사 좋아요 취소
+	public void ticketReservedDao(int eventNum, int reservedTicket); // 예약 후 티켓 총 개수 감소 
 	
 	// admin
 	public List<EventDto> eventListPagingDao(int countList, int countPage); // 모든 행사 리스트 + 페이징

@@ -69,6 +69,12 @@
 		SELECT COUNT(*) FROM event
 	</select>
 	
+	<update id="ticketReservedDao">
+		UPDATE event
+		SET ticketCount = ticketCount - #{param2}
+		WHERE eventNum = #{param1}
+	</update>
+	
 	<!-- admin 관련 -->
    <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
        SELECT eventNum, gunName, title, eventDate

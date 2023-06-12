@@ -71,22 +71,26 @@ public class ReservationController {
         String strToday = formatter.format(now);
         Date today = formatter.parse(strToday);
 		
-//		int re_ticketCount = Integer.parseInt(request.getParameter("selectedTicketCount"));
-		int re_ticketCount = 2;
+		int re_ticketCount = Integer.parseInt(request.getParameter("ticketCount"));
         
         String selectedDate = request.getParameter("selectedDate");
 		Date re_ticketDate = formatter.parse(selectedDate);
-		
-		System.out.println(re_ticketCount);
 		
 		int revCheck = 0;
 		
 		revCheck = dao.reservationConfirmedDao(re_userId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate);
 		
 //		같은 아이디로 같은 행사 예약하면 이미 예약한 행사가 있다고 티켓 매수 수정하라는 알림창 띄우기
+//		총 티켓 개수보다 많이 예약하면 돌려보내기
 		if(revCheck == 1) { // 예약완료
+			
+			// getReservationDao 수정후 적용 밑에 2 dao들 대신 적용
 			model.addAttribute("comfirmedRev", dao.getReservationDao(re_eventNum, re_userId));
 			model.addAttribute("event", dao.getEventDao(re_eventNum));
+			
+			// 총 티켓 매수 감소
+			dao.ticketReservedDao(re_eventNum, re_ticketCount);
+			
 			model.addAttribute("revCheck", revCheck);
 		} else { // 예약실패
 			model.addAttribute("revCheck", revCheck);

@@ -113,3 +113,31 @@ input[type="submit"]:hover {
 	border-radius: 0.8em;
 }
 
+#showMoreButtonWrapper {
+	display: flex;
+	justify-content: center;
+}
+
+#button {
+	font-weight: bold;
+	background: #555;
+	color: #fff;
+	padding: 5px 40px;
+	border-radius : 0.8em;
+}
+
+.custom-button {
+  	background-color: #e2e2e2;
+  	font-weight: bold;
+  	color: #555;
+}
+
+.custom-button:hover {
+	background-color: #d4d4d4;
+	font-weight: bold;
+	color: #555;
+}
+
+.custom-button i {
+ 	color: #555;
+}
