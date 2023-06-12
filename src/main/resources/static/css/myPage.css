@@ -109,7 +109,7 @@ div.help_rcont{
 	height:auto;	
 }
 div.guide_txt{
-	margin-top:80px;
+	margin-top: 70px;
 	margin-left : 250px;
 	text-align: left;	
 }
@@ -219,7 +219,8 @@ div.h3_line {
 	float: left;
 	padding: 10px;
 	margin-left : 40px;
-	border-bottom: 2px solid;
+	text-decoration: underline;
+	text-underline-offset: 15px;
 }
 
 h4.tit_reserve01{
