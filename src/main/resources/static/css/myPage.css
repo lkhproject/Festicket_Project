@@ -242,15 +242,14 @@ div.sortbx{
 
 dl.daysortbx fl{
 	float: left;
-
 }
+
 ul.daysort{
 	display: inline-block;
 	overflow: hidden;
 	padding-left: 1px;
 	border-radius: 2px;
 	vertical-align: middle;
-
 }
 
 li.ng-scope{

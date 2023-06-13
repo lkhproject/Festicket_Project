@@ -42,7 +42,7 @@
 				<span class="help_submenu_tit">예매관리</span>
 				<ul class="help_submenu">
 					<li class="on">
-						<a href="myPage">예매확인/취소</a>
+						<a href="/myPage">예매확인/취소</a>
 					</li>
 				</ul>
 			</li>
@@ -50,7 +50,7 @@
 				<span class="help_submenu_tit">활동관리</span>
 				<ul class="help_submenu">
 					<li>
-						<a href="" class="my_lmenu32">나의 후기</a>
+						<a href="/myPageReview" class="my_lmenu32">나의 후기</a>
 					</li>
 				</ul>
 			</li>
