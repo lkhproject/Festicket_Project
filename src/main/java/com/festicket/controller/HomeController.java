@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,28 @@ public class HomeController {
 		}
 		
 		return "joinOk";
+	}
+	
+	@RequestMapping(value = "/loginOk")
+	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
+		
+		String userId = request.getParameter("userId");
+		String userPassword = request.getParameter("userPassword");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int checkIdPwFlag = dao.checkIdPwDao(userId,userPassword);
+		//1이면 로그인 성공, 0이면 로그인 실패
+		
+		model.addAttribute("checkIdPwFlag", checkIdPwFlag);
+		
+		if(checkIdPwFlag == 1) {//로그인 성공 실행
+			//session.setAttribute("sessionId", userId);			
+			
+			model.addAttribute("memberDto", dao.getMemberInfo(userId));
+		}
+		
+		return "loginOk";
 	}
 	
 //	@RequestMapping(value = "/ranking")

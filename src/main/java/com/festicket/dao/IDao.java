@@ -1,5 +1,6 @@
 package com.festicket.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.festicket.dto.EventDto;
@@ -18,7 +19,7 @@ public interface IDao {
 	public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트
 		
 	//회원관리	
-	public int joinDao(String userId, String userPassword, String userPhone, String email, String name); //회원가입
+	public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date signupDate); //회원가입
 	public int checkIdDao(String userId); //가입하려는 id의 존재여부 체크
 	public int checkIdPwDao(String userId, String userPassword);//아이디와 비밀번호의 일치여부 체크
 	public MemberDto getMemberInfo(String userId);//아이디로 조회하여 회원 정보 모두 가져오기
