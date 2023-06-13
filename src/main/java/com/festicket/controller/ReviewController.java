@@ -48,11 +48,6 @@ public class ReviewController {
 	      
 	    dao.reviewWriteDao(rw_userId, rw_eventNum, rw_rating, rw_content);
 	    
-	    System.out.println(rw_userId);
-	    System.out.println(rw_eventNum);
-	    System.out.println(rw_rating);
-	    System.out.println(rw_content);
-	    
 	    return "redirect:myPageReview";
 	}
     
