@@ -79,11 +79,6 @@ public class HomeController {
 		return "join";
 	}
 	
-	@RequestMapping(value = "/myPage")
-	public String myPage() {
-		return "myPage";
-	}
-	
 	@RequestMapping(value = "/loginOk")
 	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
 		
