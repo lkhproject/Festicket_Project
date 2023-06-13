@@ -54,6 +54,16 @@ input[type="button"] {
 	border: none;
 }
 
+button[type="submit"] {
+	background: gray;
+	color: white;
+	padding: 6px 40px;
+	border-radius : 0.8em;
+	border: none;
+	font-size: 16px;
+	margin: 10px 0px 0px 3px;
+}
+
 #reserve {
 	display: table-cell;
 	vertical-align: middle;

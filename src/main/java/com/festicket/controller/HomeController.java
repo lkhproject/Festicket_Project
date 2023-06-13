@@ -254,19 +254,6 @@ public class HomeController {
 	}
 	// *************************************************CS
 	
-	@RequestMapping(value = "/qaView")
-	public String qaView(HttpSession session, Model model, HttpServletRequest request) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		int qaNum = Integer.parseInt(request.getParameter("selectedQA"));
-		
-		dao.qaHitDao(qaNum);
-		
-		model.addAttribute("qaDto", dao.getQaDao(qaNum));
-		
-		return "qaView";
-	}
 	
 	
 }

@@ -179,47 +179,48 @@
   </table>
 		<!-- 리뷰 끝 -->
 		
-		<!-- Q&A 시작 -->
-			<table class="table table-hover">
-			  <thead>
+<!-- Q&A 시작 -->
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th scope="col" colspan="4" style="font-size: 16px">Q<c:out value="&"></c:out>A</th>
+	    </tr>
+	  </thead>
+	  <tbody class="table-group-divider">
+	  <c:choose>
+	  		<c:when test="${not empty QA_List }">
+			  <c:forEach items="${QA_List }" var="QA" begin="0" end="5">
 			    <tr>
-			      <th scope="col" colspan="4" style="font-size: 16px">Q<c:out value="&"></c:out>A</th>
+			      <td id="tb_num1">${QA.q_idx }</td>
+			      <th id="tb_num2">
+				      <div style="cursor:pointer;" onclick="script:window.location.href='qaView?selectedQA=${QA.q_idx }'">
+					      <c:choose>	
+					      	<c:when test="${fn:length(QA.q_title) gt 22 }">
+					      		${fn:substring(QA.q_title, 0, 21) }...
+					      	</c:when>
+					      	<c:otherwise>
+					      		${QA.q_title }
+					      	</c:otherwise>
+					      </c:choose>
+					  </div>
+			      </th>
+			      <td id="tb_num3">${QA.q_userId }</td>
+			      <td id="tb_num3">${QA.q_writeDate }</td>
+			      <td id="tb_num3" style="text-align: center;">${QA.q_hit }</td>
 			    </tr>
-			  </thead>
-			  <tbody class="table-group-divider">
-			  <c:choose>
-			  		<c:when test="${not empty QA_List }">
-					  <c:forEach items="${QA_List }" var="QA" begin="0" end="5">
-					    <tr>
-					      <td id="tb_num1">${QA.q_idx }</td>
-					      <th id="tb_num2">
-						      <div style="cursor:pointer;" onclick="script:window.location.href='qaView?selectedQA=${QA.q_idx }'">
-							      <c:choose>	
-							      	<c:when test="${fn:length(QA.q_title) gt 22 }">
-							      		${fn:substring(QA.q_title, 0, 21) }...
-							      	</c:when>
-							      	<c:otherwise>
-							      		${QA.q_title }
-							      	</c:otherwise>
-							      </c:choose>
-							  </div>
-					      </th>
-					      <td id="tb_num3">${QA.q_userId }</td>
-					      <td id="tb_num3">${QA.q_writeDate }</td>
-					      <td id="tb_num3" style="text-align: center;">${QA.q_hit }</td>
-					    </tr>
-					  </c:forEach>
-				  	</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="5">등록된 Q&A가 존재하지 않습니다.</td>
-						</tr>
-					</c:otherwise>
-				</c:choose>
-			  </tbody>
-			</table>
-		</div>
-		<!-- Q&A 끝 -->
+			  </c:forEach>
+		  	</c:when>
+			<c:otherwise>
+				<tr>
+					<td colspan="5">등록된 Q&A가 존재하지 않습니다.</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
+	  </tbody>
+	</table>
+	<input type="button" value="문의하기" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+</div>
+<!-- Q&A 끝 -->
 	</div>
 </div>
 	
@@ -227,31 +228,5 @@
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 	
-<!-- 더보기 버튼 기능 (6개씩 나오게 하기) -->
-<script>
-  var startIndex = 0;
-  var endIndex = 5;
-
-  function showMoreReviews() {
-    var reviewRows = document.getElementsByClassName("reviewRow");
-    for (var i = startIndex; i < endIndex; i++) {
-      if (reviewRows[i]) {
-        reviewRows[i].style.display = "table-row";
-      }
-    }
-    startIndex += 6;
-    endIndex += 6;
-    if (endIndex >= reviewRows.length) {
-      document.getElementById("showMoreRow").style.display = "none";
-    }
-  }
-
-  window.addEventListener("DOMContentLoaded", function() {
-    showMoreReviews();
-  });
-  
-
-  
-</script>
 </body>
 </html>

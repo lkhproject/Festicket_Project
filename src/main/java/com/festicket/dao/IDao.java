@@ -2,6 +2,7 @@ package com.festicket.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.festicket.dto.CSanswerDto;
 import com.festicket.dto.CSboardDto;
@@ -69,8 +70,11 @@ public interface IDao {
 	
 	// QA
 	public List<QABoardDto> getQAListDao(int eventNum); // QA 글 리스트 가져오기
+	public List<QABoardDto> getQAListPagingDao(int eventNum, int countList, int countPage); // QA 글 리스트 가져오기 + 페이징
 	public QABoardDto getQaDao(int qaNum); // qa 글 하나 가져오기
+	public int totalQAListCountDao(int eventNum); // qa개수 가져오기
 	public void qaHitDao(int q_idx); // 조회수 증가
+	public void qaWriteDao(int eventNum, String userId, String title, String content, Date writeDate, int hit); // 문의하기
 	
 	// 예약확인
 	public ReserveDto getReservationDao(int eventNum, String userId); // 예약 디테일 하나 가져오기
