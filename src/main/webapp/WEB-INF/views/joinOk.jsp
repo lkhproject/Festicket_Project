@@ -13,47 +13,37 @@
 </head>
 <body>
 	<%
-		int checkId = Integer.parseInt(request.getAttribute("checkId").toString());
+		//int checkId = Integer.parseInt(request.getAttribute("checkId").toString());
 		
-		if(checkId == 1) {
+		//if(checkId == 1) {
 	%>
+	<!-- 
 		<script type="text/javascript">
 			alert("입력하신 아이디는 이미 가입된 아이디 입니다. 다시 입력해 주세요.");
 			history.go(-1);
 		</script>
+		 -->
 	<%			
-		}	
+		//}	
 	%>
-	
 	<!-- 헤더 시작 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
-	<center>
-				<table border="0" cellspacing="0" cellpadding="20" width="40%">	
-					<tr>
-						
-						<center>
-							<td class="contentbox">
-							<img src = "/resources/img/festicket_logo.png" width="30%"> 
-							<br><br>
-								<h5><b> 회원가입 </b></h5>
-								<table border="0" cellspacing="0" cellpadding="10">
-									<form action="joinOk" method="post" name="join_frm">
-									<tr>
-										<td colspan="2" class="main_text">											
-											${memberName }님 회원가입을 축하드립니다!<br>
-											가입하신 아이디는 ${memberId }입니다.<br><br>
-											<input class="content_btn01" type="button" value="로그인 바로가기" onclick="script:window.location.href='login'">
-										</td>										
-									</tr>
-									</form>
-								</table>
-							</td>
-						</center>
-						
-					</tr>
-				</table>
-				</center>
+	
+	
+	
+	<div class="container">
+		<div class="container_1">
+			<div class="joinOk_container">
+				<img src = "/resources/img/festicket_logo.png" id="logoImg"> 
+				
+				<div class="confirm"><b>ㅇㅇ</b>님 회원가입을 축하드립니다!</div>
+				<div class="confirm">가입하신 아이디는 <b>ㅇㅇ</b>입니다.</div>
+				
+				<input class="content_btn01" type="button" value="로그인 바로가기" onclick="script:window.location.href='login'">
+			</div>
+		</div>
+	</div>
 	
 	<%@ include file="include/footer.jsp" %>
 </body>

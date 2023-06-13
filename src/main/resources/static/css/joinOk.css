@@ -7,18 +7,42 @@ body {
 	background: #eeeeee;
 }
 
-td.contentbox {
-	background-color: #ffffff ;
-	height : 500px;
-	text-align: center;
-	border-radius: 8px;
+div.container {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px;
+}
+
+div.container_1 {
+  background-color: #ffffff;
+  height: 500px;
+  width: 80%;
+  text-align: center;
+  border-radius: 8px;
+  margin: 30px auto; /* 가로 중앙 정렬 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#logoImg {
+	margin-bottom: 50px;
+	width: 30%;
+}
+
+div.confirm {
+	margin: 5px 0;
+	font-size: 17px;
+}
+
+b {
+	font-size: 18px;
 }
 
 input.content_btn01{
 	width:200px;
 	height:50px;  
 	padding:0 20px;
-	margin: 1px;
+	margin: 50px 0;
 	border:1px solid #6800b8;
 	border-radius:10px;
 	outline: none;
@@ -30,5 +54,10 @@ input.content_btn01{
 
 h5 {
 	font-family: 'Noto Sans KR', sans-serif;
+}
+
+footer {
+	position : absolute;
+	bottom : 0;
 }
 
