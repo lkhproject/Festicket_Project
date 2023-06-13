@@ -60,6 +60,7 @@ public class HomeController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		model.addAttribute("event", dao.eventListDao(0, 0));
+		model.addAttribute("totalCount", dao.totalEventCountDao());
 		
 		return "reservation";
 	}
