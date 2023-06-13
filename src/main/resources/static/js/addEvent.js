@@ -7,13 +7,13 @@ function checkVal() {
   var title = document.getElementById("title").value;
   var titleError = document.getElementById("title_error");
 
-  var startDate = document.getElementById("datepicker").value;
+  var startDate = document.getElementById("datepicker_1").value;
   var startDateError = document.getElementById("start_date_error");
 
-  var endDate = document.getElementById("datepicker").value;
+  var endDate = document.getElementById("datepicker_2").value;
   var endDateError = document.getElementById("end_date_error");
 
-  var rgstDate = document.getElementById("datepicker").value;
+  var rgstDate = document.getElementById("datepicker_3").value;
   var rgstDateError = document.getElementById("rgstDate_error");
 
   var gunName = document.getElementsByName("gunName")[0].value;
@@ -93,6 +93,10 @@ function checkVal() {
   if (mainImg.trim().length === 0) {
     mainImgError.innerHTML = "※ 대표 이미지를 선택해주세요.";
     isValid = false;
+  }
+  
+  if (!isValid) {
+    alert("모든 필수 입력값을 입력해주세요.");
   }
 
   return isValid;

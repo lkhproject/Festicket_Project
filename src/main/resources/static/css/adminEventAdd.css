@@ -49,6 +49,16 @@ h2.adminTitle {
 	margin-right: 10px;
 }
 
+#start_date_error, #end_date_error, #rgstDate_error {
+	display: inline-block;
+	width: 31%;
+}
+
+#gunName_error {
+	width: 30%;
+	margin-right: 10px;
+}
+
 input[type="submit"] {
 	background: #6800b8;
 	color: white;
