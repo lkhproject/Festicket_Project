@@ -79,45 +79,4 @@ public class HomeController {
 		return "rvView";
 	}
 	
-	@RequestMapping(value = "/exhibition")
-	public String exhibition() {
-		return "exhibition";
-	}
-	
-	@RequestMapping(value = "/festival")
-	public String festival() {
-		return "festival";
-	}
-	
-	@RequestMapping(value = "/adminList")
-	public String adminList(HttpServletRequest request, Model model, Criteria criteria) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		// 페이징
-		int pageNum = 0;
-		
-		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
-		if(request.getParameter("pageNum") == null) {
-			pageNum = 1;
-			criteria.setPageNum(pageNum);
-		} else {
-			pageNum = Integer.parseInt(request.getParameter("pageNum"));
-			criteria.setPageNum(pageNum);
-		}
-		
-		int totalCount = dao.totalEventCountDao();
-		
-		PageDto pageDto = new PageDto(criteria, totalCount);
-		
-		List<EventDto> eventListDtos = dao.eventListDao(criteria.getCountList(), pageNum);
-		
-		request.setAttribute("totalCount", totalCount);
-		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("eventListDtos", eventListDtos);
-		model.addAttribute("currPage", pageNum);
-		
-		return "adminList";
-	}
-	
 }
