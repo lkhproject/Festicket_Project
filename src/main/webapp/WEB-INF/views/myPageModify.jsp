@@ -58,10 +58,10 @@
 				<span class="help_submenu_tit">회원정보관리</span>
 				<ul class="help_submenu">
 					<li class="on">
-						<a href="" class="">회원정보수정</a>
+						<a href="myPageModify" class="">회원정보수정</a>
 					</li>
 					<li>
-						<a href="memberjoin" class="">회원탈퇴</a>
+						<a href="myPageUnreg" class="">회원탈퇴</a>
 					</li>
 				</ul>
 			</li>

@@ -58,10 +58,10 @@
 				<span class="help_submenu_tit">회원정보관리</span>
 				<ul class="help_submenu">
 					<li>
-						<a href="" class="my_lmenu52">회원정보수정</a>
+						<a href="myPageModify" class="my_lmenu52">회원정보수정</a>
 					</li>
 					<li>
-						<a href="" class="my_lmenu53">회원탈퇴</a>
+						<a href="myPageUnreg" class="my_lmenu53">회원탈퇴</a>
 					</li>
 				</ul>
 			</li>
@@ -99,7 +99,7 @@
 			</dl>
 		</div>
 		<br><br><br><br>
-		<p class="guide_text">예매한 내역이 확인이 안되실 경우 <a href="" class="color_point">1:1 상담 문의</a>를 이용해주세요.</p>
+		<p class="guide_text">예매한 내역이 확인이 안되실 경우 <a href="csBoardList" class="color_point">고객센터</a>를 이용해주세요.</p>
 		<br>
 		<div class="container">
 			<div class="basic_tbl basic_tbl_v3">
@@ -110,7 +110,6 @@
 							<th scope="col">티켓명</th>
 							<th scope="col">관람일시</th>
 							<th scope="col">매수</th>
-							<th scope="col">취소가능일</th>
 							<th scope="col">상태</th>
 						</tr>
 					</thead>

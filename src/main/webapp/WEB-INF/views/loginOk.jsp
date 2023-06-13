@@ -38,7 +38,7 @@
 							<tr>
 							<td class="main_text">											
 								${memberDto.userId}님 로그인 하셨습니다. 반갑습니다!<br>	
-							<input class="content_btn01" type="button" value="메인화면가기" onclick="script:window.location.href='in'">									
+							<input class="content_btn01" type="button" value="메인화면가기" onclick="script:window.location.href='index'">									
 							</td>										
 							</tr>									
 						</table>

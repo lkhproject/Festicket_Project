@@ -45,10 +45,10 @@ public class HomeController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/memberjoin")
-	public String memberjoin() {
+	@RequestMapping(value = "/myPageUnreg")
+	public String myPageUnreg() {
 		
-		return "memberjoin";
+		return "myPageUnreg";
 	}
 	
 	@RequestMapping(value = "/myPage")
