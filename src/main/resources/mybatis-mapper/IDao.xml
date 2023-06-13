@@ -92,6 +92,12 @@
 		WHERE eventNum = #{param1}
 	</update>
 	
+	<select id="getTotalTicketDao" resultType="int">
+		SELECT ticketCount
+		FROM event
+		WHERE eventNum=#{param1}
+	</select>
+	
 	<!-- admin 관련 -->
    <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
        SELECT eventNum, gunName, title, eventDate
@@ -398,6 +404,18 @@
 		FROM eventReservation er
 		LEFT JOIN event e ON er.re_eventNum = e.eventNum
 		WHERE er.re_idx = #{param1} AND er.re_userId = #{param2}
+	</select>
+	
+	<select id="getReservationByRecentDao" resultType="com.festicket.dto.ReserveDto">
+		SELECT *
+		FROM (
+		    SELECT e.main_img, e.title, e.gunName, e.place, er.*
+		    FROM eventReservation er
+		    LEFT JOIN event e ON er.re_eventNum = e.eventNum
+		    WHERE er.re_eventNum = #{param1} AND er.re_userId = #{param2}
+		    ORDER BY er.re_idx DESC
+		)
+		WHERE ROWNUM <![CDATA[<]]>= 1
 	</select>
 	
 	<!-- 예약db에 넣어주기 -->

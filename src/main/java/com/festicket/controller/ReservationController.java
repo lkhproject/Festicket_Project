@@ -43,16 +43,6 @@ public class ReservationController {
 		model.addAttribute("reviewList", dao.getReviewListDao(eventNum));
 		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
 		
-//		int eventLiked = dao.eventLiker(eventNum, "userId");
-//		int reviewLiked = dao.reviewLiker(reviewNum, "userId");
-//		
-//		if(eventLiked == 0) {
-//			dao.cancelReviewLiker(reviewNum, "userId");
-//		}
-//		if(reviewLiked == 0) {
-//			dao.cancelEventLiker(eventNum, "userId");
-//		}
-		
 		return "rvView";
 	}
 	
@@ -63,7 +53,6 @@ public class ReservationController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		String re_userId = request.getParameter(sessionId);
 		int re_eventNum = Integer.parseInt(request.getParameter("selectedEventNum"));
 		String re_price = request.getParameter("eventPrice");
 		
@@ -78,22 +67,41 @@ public class ReservationController {
 		Date re_ticketDate = formatter.parse(selectedDate);
 		
 		int revCheck = 0;
+		int noTicket = 0;
+		int lessTicket = 0;
 		
-		revCheck = dao.reservationConfirmedDao(re_userId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate);
+		int ticketLeft = dao.getTotalTicketDao(re_eventNum);
 		
-//		같은 아이디로 같은 행사 예약하면 이미 예약한 행사가 있다고 티켓 매수 수정하라는 알림창 띄우기
-//		총 티켓 개수보다 많이 예약하면 돌려보내기
+//		총 티켓 개수보다 많이 예약 or 남은 티켓이 없다면 돌려보내기
+		if(ticketLeft >= re_ticketCount) {
+			revCheck = dao.reservationConfirmedDao(sessionId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate);
+			noTicket = 1;
+			lessTicket = 1;
+		} else if(ticketLeft == 0) {
+			revCheck = 2;
+			noTicket = 0;
+			lessTicket = 1;
+		} else if(ticketLeft < re_ticketCount) {
+			revCheck = 2;
+			noTicket = 1;
+			lessTicket = 0;
+		}
+		
 		if(revCheck == 1) { // 예약완료
 			
-			// getReservationDao 수정후 적용 밑에 2 dao들 대신 적용
-			model.addAttribute("comfirmedRev", dao.getReservationDao(re_eventNum, re_userId));
-			model.addAttribute("event", dao.getEventDao(re_eventNum));
+			model.addAttribute("comfirmedRev", dao.getReservationByRecentDao(re_eventNum, sessionId));
 			
 			// 총 티켓 매수 감소
 			dao.ticketReservedDao(re_eventNum, re_ticketCount);
 			
+			model.addAttribute("noTicket", noTicket);
+			model.addAttribute("lessTicket", lessTicket);
+			model.addAttribute("left_t", ticketLeft);
 			model.addAttribute("revCheck", revCheck);
 		} else { // 예약실패
+			model.addAttribute("noTicket", noTicket);
+			model.addAttribute("lessTicket", lessTicket);
+			model.addAttribute("left_t", ticketLeft);
 			model.addAttribute("revCheck", revCheck);
 		}
 		
