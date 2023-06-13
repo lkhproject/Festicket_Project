@@ -13,18 +13,18 @@
 </head>
 <body>
 	<%
-		//int checkId = Integer.parseInt(request.getAttribute("checkId").toString());
+		int checkId = Integer.parseInt(request.getAttribute("checkId").toString());
 		
-		//if(checkId == 1) {
+		if(checkId == 1) {
 	%>
-	<!-- 
+	
 		<script type="text/javascript">
 			alert("입력하신 아이디는 이미 가입된 아이디 입니다. 다시 입력해 주세요.");
 			history.go(-1);
 		</script>
-		 -->
+		
 	<%			
-		//}	
+		}	
 	%>
 	<!-- 헤더 시작 -->
 	<%@ include file="include/header.jsp" %>
@@ -37,8 +37,8 @@
 			<div class="joinOk_container">
 				<img src = "/resources/img/festicket_logo.png" id="logoImg"> 
 				
-				<div class="confirm"><b>ㅇㅇ</b>님 회원가입을 축하드립니다!</div>
-				<div class="confirm">가입하신 아이디는 <b>ㅇㅇ</b>입니다.</div>
+				<div class="confirm"><b>{memberName}</b>님 회원가입을 축하드립니다!</div>
+				<div class="confirm">가입하신 아이디는 <b>{memberId}</b>입니다.</div>
 				
 				<input class="content_btn01" type="button" value="로그인 바로가기" onclick="script:window.location.href='login'">
 			</div>
