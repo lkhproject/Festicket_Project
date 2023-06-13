@@ -44,7 +44,7 @@
 									</tr>
 									<tr>
 										<td class="content_text">휴대폰번호
-										<input class="inputbox01" type="text" name="memail" placeholder="휴대폰번호"></td>
+										<input class="inputbox01" type="text" name="userPhone" placeholder="휴대폰번호"></td>
 									</tr>
 									
 									
