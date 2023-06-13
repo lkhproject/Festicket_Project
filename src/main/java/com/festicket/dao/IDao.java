@@ -7,14 +7,16 @@ import java.util.Optional;
 import com.festicket.dto.CSanswerDto;
 import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
+import com.festicket.dto.MemberDto;
 import com.festicket.dto.QABoardDto;
 import com.festicket.dto.ReserveDto;
 import com.festicket.dto.ReviewDto;
 
 public interface IDao {
-//	public List<EventDto> eventListDao(int amount, int pageNum); // 행사 리스트 + 페이징
-//	public EventDto contentViewDao(String eventNum); // 리스트에서 선택한 특정 글 가져오기
-//	public void deleteDao(String eventNum); // 글 지우기
+	
+	// 로그인
+	public int checkIdPwDao(String userId, String userPassword);//아이디와 비밀번호의 일치여부 체크
+	public MemberDto getMemberInfo(String userId);//아이디로 조회하여 회원 정보 모두 가져오기
 	
 	// 검색
 	public List<EventDto> getSearchResult(String keyword, int countList, int countPage); // 검색 결과 가져오기

@@ -6,6 +6,16 @@
 	
 <mapper namespace="com.festicket.dao.IDao">
 
+	<!-- 로그인 -->
+	<select id="checkIdPwDao" resultType="int">
+		SELECT COUNT(*) FROM eventMember WHERE userId=#{param1} AND userPassword=#{param2}
+	</select>
+	
+	<select id="getMemberInfo" resultType="com.festicket.dto.MemberDto">
+		SELECT * FROM eventMember
+		WHERE userId=#{param1}
+	</select>
+
 	<!-- ***메인 페이지(index)*** -->
 	<!-- 검색 결과 가져오기 -->
 	<select id="getSearchResult" resultType="com.festicket.dto.EventDto">
