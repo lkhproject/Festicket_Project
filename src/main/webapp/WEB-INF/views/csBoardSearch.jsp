@@ -63,48 +63,62 @@
 	<!-- 게시글 리스트 끝 -->
 	 
 	<!-- 검색 기능, 등록 버튼 시작 -->
-	<div class="container" style="padding-top:10px">
-	<div class="bottom_area">
-	<form action="csBoardSearch" method="get">
-    <div class="search_select" id="search_select">
-	    <select class="form-select" name="searchOption">
-	      <option value="title">제목</option>
-	      <option value="content">내용</option>
-	      <option value="writer">아이디</option>
-	    </select>
-	</div>
-	<div class="search_board">
-	 	<div id="search_input"><input class="search_board_box" type="text" name="keyword"></div>
-		<div id="search_btn"><input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색버튼'></div>
-	</div>
-	</form>
-	<div class="button">
-		<input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
-	</div>
-	</div>
+	<div class="container">
+	  <form action="csBoardSearch" method="get" class="search_form">
+	  	<div class="search_button_area">    
+	      <div class="search_select">
+	        <select class="form-select" name="searchOption">
+	          <option value="title">제목</option>
+	          <option value="content">내용</option>
+	          <option value="writer">아이디</option>
+	        </select>
+	      </div>
+	      <div class="search_board">
+	        <input class="search_board_box" type="text" name="keyword">
+	        <input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색버튼'>
+	      </div>
+	      <div class="button">
+	        <input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
+	      </div>
+	    </div>
+	   </form>
 	</div>
 	<!-- 검색 기능, 등록 버튼 끝 -->
 	
 	<!-- 페이징 시작 -->
 	<div class="container" id="csPagingNum">
-		<c:if test="${pageMaker.prev }">
-			<a href="csBoardSearch?pageNum=${pageMaker.startPage-5 }&searchOption=${param.searchOption}&keyword=${param.keyword}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
-		</c:if>
+	  <ul class="pagination">
+    	<li class="page-item" id="page-item">
+			<c:if test="${pageMaker.prev }">
+				<a class="page-link" aria-label="Previous" href="csBoardSearch?pageNum=${pageMaker.startPage-5 }&searchOption=${param.searchOption}&keyword=${param.keyword}">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</c:if>
+		</li>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
 			<c:choose>
 				<c:when test="${currPage == num }">
-					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+					<li class="page-item">
+						<span class="page-link" style="font-weight: bold;">${num }</span>
+					</li>
 				</c:when>
 				<c:otherwise>
-					<a href="csBoardSearch?pageNum=${num }&searchOption=${param.searchOption}&keyword=${param.keyword}">${num }</a>&nbsp;&nbsp;&nbsp;
+					<li class="page-item">
+						<a class="page-link" href="csBoardSearch?pageNum=${num }&searchOption=${param.searchOption}&keyword=${param.keyword}">${num }</a>
+					</li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
-		<c:if test="${pageMaker.next }">
-			<a href="csBoardSearch?pageNum=${pageMaker.startPage+5 }&searchOption=${param.searchOption}&keyword=${param.keyword}"><c:out value="${'>' }"></c:out></a>
-		</c:if>
+		<li class="page-item">
+			<c:if test="${pageMaker.next }">
+				<a class="page-link" aria-label="Next" href="csBoardSearch?pageNum=${pageMaker.startPage+5 }&searchOption=${param.searchOption}&keyword=${param.keyword}">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</c:if>
+		</li>
+	   </ul>
 	</div>
 	<!-- 페이징 끝 -->
 

@@ -329,8 +329,49 @@ table {
     border-spacing: 0;
 }
 
+#revDetails {
+	font-size: 15px;
+}
+
+#revDetailsNum {
+	font-size: 15px;
+	text-align: center;
+}
+
 .help_lmenu li.has_sub li.on a {
     color: #6800b8;
     position: relative;
     font-weight: bold;
+}
+
+#csPagingNum {
+	margin-top: 40px;
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+}
+
+.page-link {
+	color: #000; 
+	background-color: #fff;
+	border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+   z-index: 1;
+   color: #555;
+   font-weight:bold;
+   background-color: #f1f1f1;
+   border-color: #ccc;
+}
+
+.page-link:focus, .page-link:hover {
+   color: #000;
+   background-color: #fafafa; 
+   border-color: #ccc;
+}
+
+.form-select:focus, .page-link:focus {
+   box-shadow: none;
+   border-color: #ced4da;
 }

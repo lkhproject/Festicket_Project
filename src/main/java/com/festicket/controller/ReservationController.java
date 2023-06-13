@@ -59,10 +59,11 @@ public class ReservationController {
 	@RequestMapping(value = "/confirmRev")
 	public String confirmRev(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
 
+		String sessionId = (String)session.getAttribute("sessionId");
+		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-//		String re_userId = request.getParameter("mid");
-		String re_userId = "happyCat";
+		String re_userId = request.getParameter(sessionId);
 		int re_eventNum = Integer.parseInt(request.getParameter("selectedEventNum"));
 		String re_price = request.getParameter("eventPrice");
 		

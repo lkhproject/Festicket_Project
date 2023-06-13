@@ -19,4 +19,10 @@ public class ReserveDto {
 	private int re_ticketCount;
 	private Date re_ticketDate;
 	
+//	event 테이블
+	private String title;
+	private String main_img;
+	private String gunName;
+	private String place;
+	
 }

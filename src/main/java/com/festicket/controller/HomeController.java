@@ -93,8 +93,7 @@ public class HomeController {
 		model.addAttribute("checkIdPwFlag", checkIdPwFlag);
 		
 		if(checkIdPwFlag == 1) {//로그인 성공 실행
-			//session.setAttribute("sessionId", userId);			
-			
+			session.setAttribute("sessionId", userId);			
 			model.addAttribute("memberDto", dao.getMemberInfo(userId));
 		}
 		

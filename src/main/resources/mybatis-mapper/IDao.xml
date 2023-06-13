@@ -69,6 +69,13 @@
 	<select id="eventAllListDao" resultType="com.festicket.dto.EventDto">
 		SELECT * FROM event ORDER BY eventNum DESC
 	</select>
+	
+	<!-- 마이페이지 -->
+	<select id="getReservationCountDao" resultType="int">
+		SELECT COUNT(*)
+		FROM eventReservation
+		WHERE re_userId=#{param1}
+	</select>
 
 	<!-- 행사 관련 -->
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
@@ -368,29 +375,29 @@
 	</insert>
 	
 	<!-- *** 예약 *** -->
+	
+	<!-- 예약 리스트 최신순으로 가져오기 -->
+	<select id="getReservationListDao" resultType="com.festicket.dto.ReserveDto">
+	    SELECT *
+		FROM (
+		    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
+		    FROM (
+		        SELECT er.re_idx, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title
+		        FROM eventReservation er
+		        JOIN event e ON er.re_eventNum = e.eventNum
+		        WHERE er.re_userId = #{param1}
+		        ORDER BY er.re_idx DESC
+		    ) A
+		)
+		WHERE PAGE = #{param3}
+	</select>
+	
 	<!-- 예약확인 -->
 	<select id="getReservationDao" resultType="com.festicket.dto.ReserveDto">
-		SELECT *
-		FROM (
-		    SELECT *
-		    FROM eventReservation
-		    WHERE re_eventNum = #{param1} AND re_userId=#{param2}
-		    ORDER BY re_idx DESC
-		)
-		WHERE ROWNUM <![CDATA[<=]]>1
-	
-	<!-- 오라클에서는 되는데 여기선 안됨
-		SELECT
-		    e.main_img, e.title, e.gunName, e.place, er.*
-		FROM (
-		    SELECT *
-		    FROM eventReservation
-		    WHERE re_eventNum = #{param1} AND re_userId=#{param2}
-		    ORDER BY re_idx DESC
-		) er
-		LEFT OUTER JOIN event e ON er.re_eventNum = e.eventNum
-		WHERE ROWNUM <![CDATA[<=]]>1;
-	 -->
+		SELECT e.main_img, e.title, e.gunName, e.place, er.*
+		FROM eventReservation er
+		LEFT JOIN event e ON er.re_eventNum = e.eventNum
+		WHERE er.re_idx = #{param1} AND er.re_userId = #{param2}
 	</select>
 	
 	<!-- 예약db에 넣어주기 -->
