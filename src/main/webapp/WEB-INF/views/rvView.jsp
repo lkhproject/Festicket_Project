@@ -218,6 +218,7 @@
 		</c:choose>
 	  </tbody>
 	</table>
+	<input type="button" value="QA 목록" id="moreQAbtn" onclick="script:window.location.href='qaBoardList?eventNum=${event.eventNum}'">
 	<input type="button" value="문의하기" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
 </div>
 <!-- Q&A 끝 -->

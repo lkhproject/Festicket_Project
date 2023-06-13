@@ -137,3 +137,7 @@ input[type="button"] {
 	border: none;
 	float: right;
 }
+
+#moreQAbtn {
+	margin-left: 3px;
+}
