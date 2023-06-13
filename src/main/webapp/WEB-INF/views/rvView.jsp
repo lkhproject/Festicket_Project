@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/rvView.css">
 <script src="/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 <!-- jquery -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
@@ -161,9 +162,9 @@
           <tr id="showMoreRow">
             <td colspan="5">
               <div id="showMoreButtonWrapper">
-                <button type="button" class="btn custom-button" onclick="showMoreReviews()" id="showMoreButton">
+                <h6 onclick="showMoreReviews()" id="showMoreButton">
                   더보기 <i class="bi bi-caret-down-fill"></i>
-                </button>
+                </h6>
               </div>
             </td>
           </tr>
