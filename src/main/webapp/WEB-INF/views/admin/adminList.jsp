@@ -12,6 +12,20 @@
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
+
+<%
+	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
+
+	if(adminCheck == 0) {
+%>
+	<script>
+		alert("권한이 없는 페이지 입니다.");
+		history.back();
+	</script>
+<%
+	}
+%>
+
 <!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 <!-- 헤더 끝 -->
@@ -38,7 +52,7 @@
 		    <tr>
 		      <th scope="row">${event.eventNum }</th>
 		      <td>서울/${event.gunName }</td>
-		      <td><a href="#">
+		      <td><a href="adminModify?selectedEvent=${event.eventNum }">
 			      <c:choose>
 						<c:when test="${fn:length(event.title) > 25}">
 							<c:out value="${fn:substring(event.title, 0, 24)}"></c:out>...

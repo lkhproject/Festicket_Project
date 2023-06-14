@@ -19,6 +19,20 @@
 
 </head>
 <body style="background-color: #eeeeee;">
+
+<%
+	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
+
+	if(adminCheck == 0) {
+%>
+	<script>
+		alert("권한이 없는 페이지 입니다.");
+		history.back();
+	</script>
+<%
+	}
+%>
+
 <!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 <!-- 헤더 끝 -->

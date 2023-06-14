@@ -139,6 +139,28 @@
        VALUES(e_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, 
              #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, #{param13}, #{param14}, #{param15}, #{param16})
     </insert>
+    
+    <update id="eventUpdateDao">
+		UPDATE event
+    	SET
+	        type = #{param2},
+	        gunName = #{param3},
+	        title = #{param4},
+	        eventDate = #{param5},
+	        place = #{param6},
+	        org_name = #{param7},
+	        use_trgt = #{param8},
+	        player = #{param9},
+	        program = #{param10},
+	        org_link = #{param11},
+	        main_img = #{param12},
+	        rgstDate = #{param13},
+	        start_date = #{param14},
+	        end_date = #{param15},
+	        eventPrice = #{param16},
+	        ticketCount = #{param17}
+	    WHERE eventNum = #{param1}
+    </update>
 	
 	<!-- *** 랭킹 페이지 *** -->
 	<!-- 예매 수가 같을경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->

@@ -38,7 +38,17 @@
 					}
 				%>
 				<td class="margin02">&nbsp;</td>
+				<% 
+					if(sessionId.equals("admin")) {
+				%>
+				<td class="toptext"><a href="adminList">관리자페이지</a></td>
+				<%
+					} else {
+				%>
 				<td class="toptext"><a href="myPage">마이페이지</a></td>
+				<%
+					}
+				%>
 				<td class="margin02">&nbsp;</td>
 				<td class="toptext"><a href="csBoardList">고객센터</a></td>
 				<td class="margin02">&nbsp;</td>
