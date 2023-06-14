@@ -43,7 +43,7 @@
 					  <input type="hidden" value="${search.eventNum }">
 					    <tr>
 					      <td scope="row" id="eventImgCell"><img src="${search.main_img }" class="listImg"
-					      	onclick="script:window.location.href=''"></td><!-- 상세페이지로 이동 -->
+					      	onclick="script:window.location.href='rvView?selectedEvent=${search.eventNum }'"></td><!-- 상세페이지로 이동 -->
 					      <td id="tableCenter">
 					      	<p id="eventTitle">${search.title }</p>
 					      	<p id="eventDetail"><b>장 소:</b> ${search.place }</p>
@@ -56,7 +56,7 @@
 						  	</p>
 					      </td>
 					      <!-- 세션으로 관리자는 버튼 value="수정하기" -->
-					      <td id="reserve"><input type="button" value="예매하기"></td>
+					      <td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${search.eventNum }'"></td>
 					    </tr>
 					  </c:forEach>
 			  		</c:when>

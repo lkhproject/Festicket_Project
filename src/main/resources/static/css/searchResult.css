@@ -67,6 +67,7 @@ img.listImg {
 	width: 150px;
 	height:180px;
 	margin: 20px 0px 20px;
+	cursor:pointer;
 }
 p {
 	line-height: 6px;
