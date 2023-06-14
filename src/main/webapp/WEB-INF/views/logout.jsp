@@ -11,8 +11,7 @@
 </head>
 <body>
 	<script>
-		alert("로그아웃 되었습니다. 로그인 페이지로 이동합니다.");
-		window.location.href ="login";
+		window.location.href ="index";
 	</script>
 </body>
 </html>
