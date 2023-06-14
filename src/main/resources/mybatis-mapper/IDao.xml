@@ -44,7 +44,8 @@
 		SELECT eventNum, main_img, title, gunName, type
 		FROM (
 		    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount,
-		           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / e.ticketCount)*100 DESC) AS rnk
+		           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / 
+									CASE WHEN e.ticketCount = 0 THEN 1 ELSE e.ticketCount END)*100 DESC) AS rnk
 		    FROM event e
 		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
 		    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
@@ -57,7 +58,8 @@
 		SELECT eventNum, main_img, title, gunName, type
 		FROM (
 		    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount,
-		           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / e.ticketCount)*100 DESC) AS rnk
+		           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / 
+									CASE WHEN e.ticketCount = 0 THEN 1 ELSE e.ticketCount END)*100 DESC) AS rnk
 		    FROM event e
 		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
 		    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
