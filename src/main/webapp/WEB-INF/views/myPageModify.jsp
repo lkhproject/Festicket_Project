@@ -14,60 +14,67 @@
 <%@ include file="include/header.jsp" %>
 <!-- 헤더 끝 -->
 
-<div class="inner">
-	<div class="quick_menu_wrap">
-		<div class="title">
-			<h2 class="title_txt">마이페이지</h2>
-		</div>
-		<ul class="quick_menu_list">
-			<li class="quick_menu_item">
-				<a href="" class="quick_link">
-					<div class="qmemu_box">
-						<span class="qmenu_tit">나의 예매내역</span>
-					</div>
-				</a>
-			</li>
-			<li class="quick_menu_item">
-				<a href="" class="quick_link">
-					<div class="qmemu_box">
-						<span class="qmenu_tit">나의 회원정보</span>
-					</div>
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="help_cont">
-		<ul class="help_lmenu">
-			<li class="has_sub">
-				<span class="help_submenu_tit">예매관리</span>
+	<!-- 상단 box -->
+			<div class="inner">
+				<div class="quick_menu_wrap">
+    			<div class="title"><h2 class="title_txt">마이페이지</h2></div>
+    			
+    		<ul class="quick_menu_list">
+    	    <li class="quick_menu_item">
+    	    <a href="" class="quick_link">
+				<div class="qmemu_box">
+                    <span class="qmenu_tit">나의 예매내역</span>
+                </div>
+            </a>
+        	</li>
+        	
+      		<li class="quick_menu_item">
+            <a href="" class="quick_link">
+                <div class="qmemu_box">
+                    <span class="qmenu_tit">나의 회원정보</span>
+                </div>
+            </a>
+      	  	</li>
+  		  	</ul>
+				</div>
+				
+				
+	<!-- 왼쪽 box -->
+			<div class="help_cont">
+				<ul class="help_lmenu">
+				<li class="has_sub">
+						<span class="help_submenu_tit">예매관리</span>
 				<ul class="help_submenu">
-					<li >
+				<li >
 						<a href="myPage">예매확인/취소</a>
-					</li>
+				</li>
 				</ul>
-			</li>
-			<li class="has_sub">
-				<span class="help_submenu_tit">활동관리</span>
-				<ul class="help_submenu">
-					<li>
-						<a href="" class="my_lmenu32">나의 후기</a>
-					</li>
-				</ul>
-			</li>
-			<li class="has_sub_last">
-				<span class="help_submenu_tit">회원정보관리</span>
-				<ul class="help_submenu">
-					<li class="on">
-						<a href="myPageModify" class="">회원정보수정</a>
-					</li>
-					<li>
-						<a href="myPageUnreg" class="">회원탈퇴</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
+				</li>
 			
+				<li class="has_sub">
+						<span class="help_submenu_tit">활동관리</span>
+				<ul class="help_submenu">
+				<li>
+						<a href="">나의 후기</a>
+				</li>
+				</ul>
+				</li>
+				
+				<li class="has_sub_last">
+					<span class="help_submenu_tit">회원정보관리</span>
+				<ul class="help_submenu">
+				<li   class="on">
+						<a href="myPageModify">회원정보수정</a>
+				</li>
+					<li>
+						<a href="myPageUnreg">회원탈퇴</a>
+					</li>
+				</ul>
+				</li>
+				</ul>
+			</div>
+			
+			<!-- 가운데 box -->
 				<table border="0" cellspacing="0" cellpadding="0" width="0">	
 					<tr>
 						
