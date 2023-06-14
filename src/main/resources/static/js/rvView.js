@@ -55,7 +55,7 @@ function confirmRev() {
 		}
 		
     }
-	
+	document.confirm.submit();
 }
 
   var startIndex = 0;
