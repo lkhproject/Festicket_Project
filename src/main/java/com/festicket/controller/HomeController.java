@@ -22,23 +22,15 @@ public class HomeController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "/index")
-	public String index(Model model) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		model.addAttribute("festival_5", dao.top5FestivalListDao());
-		model.addAttribute("exhibition_5", dao.top5ExhibitionListDao());
+	public String index() {
 		
 		return "index";
 	}
 	
 	@RequestMapping(value = "/join")
-	public String join() {
-		
+	public String join() {	
 		return "join";
 	}
-	
-	
 	
 	@RequestMapping(value = "/login")
 	public String login() {
@@ -124,6 +116,18 @@ public class HomeController {
 		return "loginOk";
 	}
 	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request) {
+	    // 세션 객체 가져오기
+	    HttpSession session = request.getSession();
+	    
+	    // 세션 무효화 (세션 제거)
+	    session.invalidate();
+	    
+	    // 로그아웃 후 리다이렉트할 경로를 리턴합니다.
+	    return "redirect:/login";
+	
+	}
 //	@RequestMapping(value = "/ranking")
 //	public String ranking() {
 //		
