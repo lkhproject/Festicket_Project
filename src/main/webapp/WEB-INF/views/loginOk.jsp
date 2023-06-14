@@ -13,40 +13,30 @@
 </head>
 <body>
 	<%
-		int checkIdPwFlag = Integer.parseInt(request.getAttribute("checkIdPwFlag").toString());
-		
-		if(checkIdPwFlag == 0) {
-	%>
-		<script type="text/javascript">
-			alert("입력하신 아이디 또는 비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
-			history.go(-1);
-		</script>
-	<%			
-		}	
-	%>
+	    int checkIdPwFlag = Integer.parseInt(request.getAttribute("checkIdPwFlag").toString());
 	
+	    if (checkIdPwFlag == 0) {
+	%>
+	    <script type="text/javascript">
+	        alert("입력하신 아이디 또는 비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
+	        history.go(-1);
+	    </script>
+	<%      
+	    } else if (checkIdPwFlag == 1) { // 로그인 성공 시
+	%>
+	    <script type="text/javascript">
+	        location.href = "index.jsp"; // 로그인 성공 후 이동할 페이지의 경로를 입력하세요.
+	    </script>
+	<%
+	    }
+	%>
+
 	<!-- 헤더 시작 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
-	<center>
-		<table border="0" cellspacing="0" cellpadding="10" width="80%">
-			<tr>
-				<td class="contentbox">
-					<center>
-						<table border="0" cellspacing="0" cellpadding="10">									
-							<tr>
-							<td class="main_text">											
-								${memberDto.userId}님 로그인 하셨습니다. 반갑습니다!<br>	
-							<input class="content_btn01" type="button" value="메인화면가기" onclick="script:window.location.href='index'">									
-							</td>										
-							</tr>									
-						</table>
-					</center>
-				</td>
-			</tr>
-		</table>
-	</center>
-<%@ include file="include/footer.jsp" %>
+	<!-- 푸터 시작 -->
+	<%@ include file="include/footer.jsp" %>
+	<!-- 푸터 끝 -->
 </body>
 </html>
