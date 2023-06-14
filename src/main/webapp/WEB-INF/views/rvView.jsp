@@ -23,6 +23,12 @@
 <title>페스티켓</title>
 </head>
 <body>
+
+<%
+	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+%>
+<input type="hidden" id="login-ok" value="<%= loginOk %>">
+
 	<!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝-->
@@ -117,7 +123,8 @@
 				<input type="hidden" name="selectedDate" id="selectedDate" value="">
 				<input type="hidden" name="selectedEventNum" id="selectedEventNum" value="${event.eventNum }">
 				<input type="hidden" name="eventPrice" id="eventPrice" value="${eventPrice }">
-				<input type="submit" value="예매하기" onclick="return confirmRev()">
+				<!-- 로그인시에만 예매가능 -->
+				<input type="submit" value="예매하기" onclick="return confirmRev(event)">
 			</form>
 		</div>
 	<!-- 예매 영역 끝 -->
@@ -219,7 +226,13 @@
 	  </tbody>
 	</table>
 	<input type="button" value="QA 목록" id="moreQAbtn" onclick="script:window.location.href='qaBoardList?eventNum=${event.eventNum}'">
+<%
+	if(loginOk == 1) {
+%>
 	<input type="button" value="문의하기" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+<%
+	}
+%>
 </div>
 <!-- Q&A 끝 -->
 	</div>
@@ -228,6 +241,6 @@
 	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
-	
+
 </body>
 </html>

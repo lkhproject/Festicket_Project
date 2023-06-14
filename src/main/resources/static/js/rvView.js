@@ -25,29 +25,38 @@ function likeButtonClicked() {
     }
   }
 
-function confirmRev() {
-	
-	var selectedDate = $("#selectedDate").val();
-  
-  	if (selectedDate === "") {
-	  alert("날짜를 선택해주세요.");
-	  return false;
-	}
-	
-	var confirmed = confirm("예약을 진행하시겠습니까?");
-
-    if (!confirmed) {
-	  event.preventDefault(); // 폼 제출 기본 동작 막기
-	}
-	
-}
-
 function reviewLikeClicked(button) {
     button.classList.toggle("bg-dark");
     button.classList.toggle("btn-light");
     button.classList.toggle("text-white");
     button.classList.toggle("text-bg-danger");
   }
+  
+function confirmRev() {
+	event.preventDefault();
+	
+	var loginOkElement = document.getElementById('login-ok');
+	var loginOk = loginOkElement.value;
+	
+	if (loginOk === '0') {
+		alert("로그인이 필요합니다.");
+        window.location.href = "login";
+    } else {
+		var selectedDate = $("#selectedDate").val();
+	  
+	  	if (selectedDate === "") {
+		  alert("날짜를 선택해주세요.");
+		  return false;
+		}
+		
+		var confirmed = confirm("예약을 진행하시겠습니까?");
+	
+	    if (!confirmed) {
+	    	return false;
+		}
+    }
+	
+}
 
   var startIndex = 0;
   var endIndex = 5;

@@ -34,11 +34,20 @@ public class ReservationController {
 	@RequestMapping(value = "/rvView")
 	public String rvView(HttpSession session, Model model, HttpServletRequest request) {
 		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		int loginOk = 0;
+		
+		if(sessionId != null && !sessionId.isEmpty()) {
+			loginOk = 1;
+		}
+		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
 //		int reviewNum = Integer.parseInt(request.getParameter("reviewNum"));
 		
+		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("event", dao.getEventDao(eventNum));
 		model.addAttribute("reviewList", dao.getReviewListDao(eventNum));
 		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
