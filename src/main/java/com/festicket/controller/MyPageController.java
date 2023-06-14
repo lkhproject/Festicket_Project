@@ -87,9 +87,12 @@ public class MyPageController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		int eventNum = Integer.parseInt(request.getParameter("re_idx"));
+		int revNum = Integer.parseInt(request.getParameter("re_idx"));
+		int eventNum = Integer.parseInt(request.getParameter("re_eventNum"));
 		
-		dao.cancelRevDao(sessionId, eventNum);
+		int revTicketCount = dao.getTicketCountByidx(revNum);
+		dao.addTicketDao(eventNum, revTicketCount);
+		dao.cancelRevDao(sessionId, revNum);
 		
 		return "cancelRev";
 	}

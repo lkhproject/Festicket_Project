@@ -26,6 +26,8 @@ public interface IDao {
 	public List<EventDto> eventAllListDao(); // 모든 행사 리스트
 	public int getReservationCountDao(String userId); // 예매한 행사 개수 가져오기
 	public void cancelRevDao(String userId, int re_idx); // 예매 취소
+	public int getTicketCountByidx(int re_idx); // 예약번호로 티켓 예매 개수 가져오기
+	public void addTicketDao(int eventNum, int canceledTicket); // 예매 취소 후 총 티켓 수 증가
 	
 	// 랭킹
 	public List<EventDto> eventListDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징

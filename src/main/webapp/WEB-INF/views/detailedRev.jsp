@@ -31,6 +31,7 @@
 		      <div class="card-body" style="text-align: left;">
 		        <h5 class="card-title">${details.title }</h5>
 		        <p class="card-text">${details.gunName } / ${details.place }</p>
+		        <p class="card-text" id="ticketDetails"><small class="text-muted">티켓번호 : ${details.re_idx }</small></p>
 		        <p class="card-text" id="ticketDetails"><small class="text-muted">발권일자 : ${details.re_date }</small></p>
 		        <p class="card-text" id="ticketDetails"><small class="text-muted">예약일자 : ${details.re_ticketDate }</small></p>
 		        <p class="card-text" id="ticketDetails"><small class="text-muted">${details.re_userId } 님,</small></p>
@@ -58,7 +59,7 @@
    </div>
 		<!-- 마이페이지에 예약목록으로 보내기 -->
 		<input type="button" value="예매목록" onclick="script:window.location.href='myPage'" style="margin-left: 3px;">
-		<input type="button" value="예매취소" onclick="return cancelReserve(${details.re_idx})">
+		<input type="button" value="예매취소" onclick="return cancelReserve(${details.re_idx}, ${details.re_eventNum })">
 	</div>
 	
 </div>
@@ -69,10 +70,10 @@
 	<!-- 푸터 끝 -->
 	
 <script>
-	function cancelReserve(re_idx) {
+	function cancelReserve(re_idx, re_eventNum) {
 		var confirmCancel = confirm("정말 취소하시겠습니까?");
 		if (confirmCancel) {
-		  window.location.href = "cancelRev?re_idx=" + re_idx;
+			window.location.href = "cancelRev?re_idx=" + re_idx + "&re_eventNum=" + re_eventNum;
 		} else {
 		  return false;
 		}
