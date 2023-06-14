@@ -27,7 +27,7 @@
 		if(checkEmail == 1) {
 	%>
 		<script type="text/javascript">
-			alert("입력하신 이메일는 이미 존재하는 입니다. 다시 입력해 주세요.");
+			alert("입력하신 이메일은 이미 존재하는 이메일 입니다. 다시 입력해 주세요.");
 			history.go(-1);
 		</script>
 	<%			
