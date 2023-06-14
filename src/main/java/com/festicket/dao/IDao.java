@@ -1,11 +1,12 @@
 package com.festicket.dao;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import com.festicket.dto.CSanswerDto;
 import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
+import com.festicket.dto.MemberDto;
 import com.festicket.dto.QABoardDto;
 import com.festicket.dto.ReserveDto;
 import com.festicket.dto.ReviewDto;
@@ -62,6 +63,13 @@ public interface IDao {
 	public ReserveDto getReservationDao(int eventNum, String userId); // 예약 디테일 하나 가져오기
 	public int reservationConfirmedDao(String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate); // 예약 디테일 db에 넣어주기
 	public int checkDupRevDao(int eventNum); // 같은 행사, 같은 날에 예약된게 있는지 확인
+	
+	//회원관리	
+	public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date signupDate); //회원가입
+	public int checkIdDao(String userId); //가입하려는 id의 존재여부 체크
+	public int checkIdPwDao(String userId, String userPassword);//아이디와 비밀번호의 일치여부 체크
+	public MemberDto getMemberInfo(String userId);//아이디로 조회하여 회원 정보 모두 가져오기
+	public int modifyMemberDao(String userId, String userPassword, String name, String email);//회원정보 수정
 	
 	// 고객센터 게시판 기능
 	public List<CSboardDto> csListDao(int countList, int countPage); // 게시글 목록 모두 가져오기

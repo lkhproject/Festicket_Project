@@ -136,6 +136,25 @@
 	</update>
 	
 	
+	<!-- 회원가입 -->
+	<insert id="joinDao">
+		INSERT INTO eventMember VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
+	</insert>
+	
+	<select id="checkIdPwDao" resultType="int">
+		SELECT COUNT(*) FROM eventMember WHERE userId=#{param1} AND userPassword=#{param2}
+	</select>
+
+	<update id="modifyMemberDao">
+		UPDATE eventMember SET userPassword=#{param2}, name=#{param3}, email=#{param4} WHERE mid=#{param1}
+	</update>
+	
+	<select id="getMemberInfo" resultType="com.festicket.dto.MemberDto">
+		SELECT * FROM eventMember
+		WHERE userId=#{param1}
+	</select>
+	
+	
 	<!-- 리뷰 관련 -->
 	<insert id="reviewWriteDao">
 		INSERT INTO
