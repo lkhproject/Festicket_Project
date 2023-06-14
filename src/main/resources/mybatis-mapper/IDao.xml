@@ -10,6 +10,18 @@
 		INSERT INTO eventMember VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
 	</insert>
 	
+	<select id="checkIdDao" resultType="int">
+		SELECT COUNT(*)
+		FROM eventMember
+		WHERE userId = #{param1}
+	</select>
+	
+	<select id="checkEmailDao" resultType="int">
+		SELECT COUNT(*)
+		FROM eventMember
+		WHERE email = #{param1}
+	</select>
+	
 	<select id="checkIdPwDao" resultType="int">
 		SELECT COUNT(*) FROM eventMember WHERE userId=#{param1} AND userPassword=#{param2}
 	</select>
@@ -18,5 +30,7 @@
 		SELECT * FROM eventMember
 		WHERE userId=#{param1}
 	</select>
+	
+	
 	
 </mapper>
