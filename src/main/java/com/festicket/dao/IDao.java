@@ -83,6 +83,7 @@ public interface IDao {
 	public void qaHitDao(int q_idx); // 조회수 증가
 	public void qaWriteDao(int eventNum, String userId, String title, String content, Date writeDate, int hit); // 문의하기
 	
+//***************
 	// 예약확인
 	public List<ReserveDto> getReservationListDao(String userId, int countList, int pageNum); // 예약 목록 가져오기
 	public ReserveDto getReservationDao(int re_idx, String userId); // 예약번호로 예약 디테일 하나 가져오기
@@ -116,4 +117,3 @@ public interface IDao {
 	public void boardReplyDeleteDao(String ca_boardNum); // 삭제한 게시글 댓글 모두 삭제
 	
 }
-

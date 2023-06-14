@@ -33,7 +33,7 @@
 	    		</tr>
 	  		</thead>
 	  		<tbody class="table-group-divider">
-		  		<c:forEach items="${CSboardDtos }" var="csList"  begin="0" end="11">
+		  		<c:forEach items="${csBoardDtos }" var="csList"  begin="0" end="11">
 				    <tr>
 				      <th scope="row">${csList.c_idx }</th>
 				      <td>

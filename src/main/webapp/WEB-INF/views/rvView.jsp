@@ -43,7 +43,7 @@
 			</div>
 		<div class="container" id="rev_detail_container_2">
 		<!-- method 설정 필요 -->
-			<form action="confirmRev">
+			<form action="confirmRev" name="confirm">
 				<div class="eventTitle">${event.title }</div>
 				<div class="detailTitle">
 					<div id="details_1">장소: </div><div>${event.place }</div>

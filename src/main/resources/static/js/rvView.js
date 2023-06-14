@@ -53,6 +53,7 @@ function confirmRev() {
 	    if (!confirmed) {
 	    	return false;
 		}
+		
     }
 	
 }

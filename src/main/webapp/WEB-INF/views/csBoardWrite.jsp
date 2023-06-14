@@ -11,6 +11,13 @@
 <title>페스티켓</title>
 </head>
 <body>
+<%
+   int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+
+   if(loginOk == 0) {
+    response.sendRedirect("login");
+   }
+%>
 	<!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->

@@ -6,10 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/loginOk.css">
-	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<%
@@ -22,26 +18,13 @@
 			history.go(-1);
 		</script>
 	<%			
-		}	
+		} else {
 	%>
-	
-	<!-- 헤더 시작 -->
-	<%@ include file="include/header.jsp" %>
-	<!-- 헤더 끝 -->
-	
-	
-	<div class="container">
-		<div class="container_1">
-			<div class="joinOk_container">
-				<img src = "/resources/img/festicket_logo.png" id="logoImg"> 
-				
-				<div class="confirm"><b>${memberDto.userId}</b>님 로그인하셨습니다.<br> 반갑습니다!</div>
-				
-				<input class="content_btn01" type="button" value="메인화면가기" onclick="script:window.location.href='index'">	
-			</div>
-		</div>
-	</div>
-
-<%@ include file="include/footer.jsp" %>
+		<script>
+			window.location.href="index";
+		</script>
+	<%
+		}
+	%>
 </body>
 </html>

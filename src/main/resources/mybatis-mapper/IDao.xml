@@ -445,6 +445,7 @@
 		VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
 	</insert>
 
+<!-- *******************CS************************* -->
 	<!-- 고객센터 게시판 관련 -->
 	<select id="csListDao" resultType="com.festicket.dto.CSboardDto">
 		SELECT *
