@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/join.css">
+	<script src="/resources/js/join.js"></script>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>
@@ -44,14 +45,13 @@
 									</tr>
 									<tr>
 										<td class="content_text">휴대폰번호
-										<input class="inputbox01" type="text" name="signupDate" placeholder="휴대폰번호"></td>
+										<input class="inputbox01" type="text" name="userPhone" placeholder="휴대폰번호"></td>
 									</tr>
-									
-									
+
 									<tr>
 										<td colspan="2" align="center">
 											<input class="content_btn01" type="button" value="가입완료" onclick="joinCheck()">&nbsp;&nbsp;
-											<input class="content_btn02" type="button" value="취소" >
+											<input class="content_btn02" type="button" value="취소" onclick="script:window.location.href='index'" >
 										</td>										
 									</tr>
 									</form>
