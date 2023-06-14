@@ -35,7 +35,7 @@
 			<div class="joinOk_container">
 				<img src = "/resources/img/festicket_logo.png" id="logoImg"> 
 				
-				<div class="confirm"><b>${memberDto.userId}</b>님 회원가입을 축하드립니다!</div>
+				<div class="confirm"><b>${memberDto.userId}</b>님 로그인하셨습니다.<br> 반갑습니다!</div>
 				
 				<input class="content_btn01" type="button" value="메인화면가기" onclick="script:window.location.href='index'">	
 			</div>
