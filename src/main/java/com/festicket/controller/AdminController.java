@@ -53,7 +53,7 @@ public class AdminController {
 		model.addAttribute("eventListDtos", eventListDtos);
 		model.addAttribute("currPage", pageNum);
 		
-		return "adminList";
+		return "admin/adminList";
 	}
 	
 	@RequestMapping(value = "/adminModify")
@@ -61,7 +61,7 @@ public class AdminController {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
 		
-		return "adminModify";
+		return "admin/adminModify";
 	}
 	
 	@RequestMapping(value = "/adminEventAdd")
@@ -69,7 +69,7 @@ public class AdminController {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
 		
-		return "adminEventAdd";
+		return "admin/adminEventAdd";
 	}
 	
 	@RequestMapping(value = "/adminEventAddOk")
@@ -114,7 +114,7 @@ public class AdminController {
       
       model.addAttribute("eventAddFlag", eventAddFlag);
       
-      return "redirect:adminList";
+      return "admin/redirect:adminList";
    }
 	
 	
