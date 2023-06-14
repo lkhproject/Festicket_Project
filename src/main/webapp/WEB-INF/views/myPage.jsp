@@ -11,6 +11,18 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/myPage.css">
 </head>
 <body>
+<%
+	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+
+	if(loginOk == 0) {
+%>
+	<script>
+		alert("접근 권한이 없는 페이지입니다. 로그인이 필요합니다.");
+		window.location.href = "login";
+	</script>
+<%
+	}
+%>
 
 <!-- 헤더 시작 -->
 <%@ include file="include/header.jsp" %>

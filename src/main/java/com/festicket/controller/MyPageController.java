@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.festicket.dao.IDao;
 import com.festicket.dto.Criteria;
-import com.festicket.dto.EventDto;
 import com.festicket.dto.PageDto;
 import com.festicket.dto.ReserveDto;
 
@@ -28,31 +27,40 @@ public class MyPageController {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
 		
-		IDao dao = sqlSession.getMapper(IDao.class);
+		int loginOk = 0;
 		
-		// 페이징
-		int pageNum = 0;
-		
-		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
-		if(request.getParameter("pageNum") == null) {
-			pageNum = 1;
-			criteria.setPageNum(pageNum);
+		// 세션 아이디가 없다면 접근불가
+		if(sessionId == null || sessionId.isEmpty()) {
+			request.setAttribute("loginOk", loginOk);
 		} else {
-			pageNum = Integer.parseInt(request.getParameter("pageNum"));
-			criteria.setPageNum(pageNum);
+			loginOk = 1;
+			
+			IDao dao = sqlSession.getMapper(IDao.class);
+			
+			// 페이징
+			int pageNum = 0;
+			
+			// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+			if(request.getParameter("pageNum") == null) {
+				pageNum = 1;
+				criteria.setPageNum(pageNum);
+			} else {
+				pageNum = Integer.parseInt(request.getParameter("pageNum"));
+				criteria.setPageNum(pageNum);
+			}
+			
+			int totalCount = dao.getReservationCountDao(sessionId);
+			
+			PageDto pageDto = new PageDto(criteria, totalCount);
+			
+			List<ReserveDto> revListDtos = dao.getReservationListDao(sessionId ,criteria.getCountList(), pageNum);
+			
+			request.setAttribute("loginOk", loginOk);
+			request.setAttribute("totalCount", totalCount);
+			model.addAttribute("pageMaker", pageDto);
+			model.addAttribute("revListDtos", revListDtos);
+			model.addAttribute("currPage", pageNum);
 		}
-		
-		int totalCount = dao.getReservationCountDao(sessionId);
-		
-		PageDto pageDto = new PageDto(criteria, totalCount);
-		
-		List<ReserveDto> revListDtos = dao.getReservationListDao(sessionId ,criteria.getCountList(), pageNum);
-		
-		request.setAttribute("totalCount", totalCount);
-		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("revListDtos", revListDtos);
-		model.addAttribute("currPage", pageNum);
-		
 		return "myPage";
 	}
 	
