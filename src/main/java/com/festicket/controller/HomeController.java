@@ -107,11 +107,6 @@ public class HomeController {
 		return "joinOk";
 	}
 	
-	@RequestMapping(value = "/myPage")
-	public String myPage() {
-		return "myPage";
-	}
-	
 	@RequestMapping(value = "/ranking")
 	public String ranking() {
 		return "ranking";
