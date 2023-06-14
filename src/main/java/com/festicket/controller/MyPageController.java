@@ -80,4 +80,17 @@ public class MyPageController {
 		return "detailedRev";
 	}
 	
+	@RequestMapping(value = "/cancelRev") // 예매 취소
+	public String cancelRev(HttpSession session, Model model, HttpServletRequest request) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int eventNum = Integer.parseInt(request.getParameter("re_idx"));
+		
+		dao.cancelRevDao(sessionId, eventNum);
+		
+		return "cancelRev";
+	}
 }

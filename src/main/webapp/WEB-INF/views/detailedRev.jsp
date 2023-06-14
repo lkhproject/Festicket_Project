@@ -58,7 +58,7 @@
    </div>
 		<!-- 마이페이지에 예약목록으로 보내기 -->
 		<input type="button" value="예매목록" onclick="script:window.location.href='myPage'" style="margin-left: 3px;">
-		<input type="button" value="예매취소" onclick="return cancelReserve()">
+		<input type="button" value="예매취소" onclick="return cancelReserve(${details.re_idx})">
 	</div>
 	
 </div>
@@ -69,11 +69,10 @@
 	<!-- 푸터 끝 -->
 	
 <script>
-	function cancelReserve() {
-		var confirmCancel = confirm("정말로 취소하시겠습니까?");
+	function cancelReserve(re_idx) {
+		var confirmCancel = confirm("정말 취소하시겠습니까?");
 		if (confirmCancel) {
-		  // 취소 작업 진행
-		  // 여기에 취소에 대한 로직을 추가하세요
+		  window.location.href = "cancelRev?re_idx=" + re_idx;
 		} else {
 		  return false;
 		}

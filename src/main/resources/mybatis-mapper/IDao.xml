@@ -76,6 +76,12 @@
 		FROM eventReservation
 		WHERE re_userId=#{param1}
 	</select>
+	
+	<!-- 예매 취소 -->
+	<delete id="cancelRevDao">
+		DELETE FROM eventreservation
+		WHERE re_userId=#{param1} AND re_idx=#{param2}
+	</delete>
 
 	<!-- 행사 관련 -->
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
