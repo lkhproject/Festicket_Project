@@ -60,25 +60,34 @@
                 <!-- 댓글 쓰기 끝 -->
                 
                 <!-- 댓글 리스트 영역 시작 -->
-                <div class="container">
-                    <c:forEach items="${replyList }" var="replyDto">
-                        <table id="reply_list" cellspacing="0">
-                            <tr>
-                                <td id="reply_list_id">
-                                    <span style='color:#1e6ec9; font-weight:bold;'>${replyDto.ca_userId }</span>
-                                    &nbsp;&nbsp;|&nbsp;&nbsp;${replyDto.ca_answerDate }&nbsp;&nbsp;&nbsp;
-							        <c:if test="${replyDto.ca_userId eq sessionId}">
-							          <img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${replyDto.ca_idx}', '${csBoardDto.c_idx}')" style="cursor:pointer">
-							        </c:if>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="reply_list_cnt" colspan='2'>${replyDto.ca_content }</td>
-                            </tr>
-                        </table>
-                    </c:forEach>
-                    <hr style="color:#888888;">
-                </div>
+				<div class="container ">
+				  <c:forEach items="${replyList}" var="replyDto">
+				    <table id="reply_list" cellspacing="0">
+				      <tr>
+				        <td id="reply_list_id">
+				          <c:choose>
+				          	<!-- 댓글 아이디가 'admin'이면 아이디 대신 '관리자'로 뜨게 -->
+				            <c:when test="${replyDto.ca_userId eq 'admin'}">
+				              <span style='color:#1e6ec9; font-weight:bold;'>관리자</span>
+				            </c:when>
+				            <c:otherwise>
+				              <span style='color:#1e6ec9; font-weight:bold;'>${replyDto.ca_userId}</span>
+				            </c:otherwise>
+				          </c:choose>
+				          &nbsp;&nbsp;|&nbsp;&nbsp;${replyDto.ca_answerDate}&nbsp;&nbsp;&nbsp;
+				          <!-- 세션 아이디가 작성자와 같으면 삭제 버튼 보이게 -->
+				          <c:if test="${replyDto.ca_userId eq sessionId}">
+				            <img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${replyDto.ca_idx}', '${csBoardDto.c_idx}')" style="cursor:pointer">
+				          </c:if>
+				        </td>
+				      </tr>
+				      <tr>
+				        <td id="reply_list_cnt" colspan='2'>${replyDto.ca_content}</td>
+				      </tr>
+				    </table>
+				  </c:forEach>
+				</div>
+
                 <!-- 댓글 리스트 영역 끝 -->
                 <!-- 댓글 영역 끝 -->
 
