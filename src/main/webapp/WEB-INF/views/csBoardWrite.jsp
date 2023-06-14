@@ -11,6 +11,13 @@
 <title>페스티켓</title>
 </head>
 <body>
+<%
+   int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+
+   if(loginOk == 0) {
+    response.sendRedirect("login");
+   }
+%>
 	<!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
@@ -30,7 +37,7 @@
 				<div class="input-group mt-3">
 				    <span class="input-group-text" id="basic-addon1">작성자</span>
 				    <input type="text" class="form-control" aria-describedby="basic-addon1" 
-				        value="guest" name="c_userId" readonly="readonly">
+				        value="${csBoardDto.c_userId }" name="c_userId" readonly="readonly">
 				</div>
 				
 				<div class="input-group mt-3">

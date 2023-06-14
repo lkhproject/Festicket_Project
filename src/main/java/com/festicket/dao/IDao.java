@@ -14,8 +14,8 @@ import com.festicket.dto.ReviewDto;
 public interface IDao {
 	
 	// 로그인
-	public int checkIdPwDao(String userId, String userPassword);//아이디와 비밀번호의 일치여부 체크
-	public MemberDto getMemberInfo(String userId);//아이디로 조회하여 회원 정보 모두 가져오기
+	public int checkIdPwDao(String userId, String userPassword);// 아이디와 비밀번호의 일치여부 체크
+	public MemberDto getMemberInfo(String userId);// 아이디로 조회하여 회원 정보 모두 가져오기
 	
 	// 검색
 	public List<EventDto> getSearchResult(String keyword, int countList, int pageNum); // 검색 결과 가져오기
@@ -58,10 +58,10 @@ public interface IDao {
 	// 전시
 	public List<EventDto> exhibitionListDao(int countList, int countPage); // 전시 리스트
 // 정렬
-	public List<EventDto> exhibitionOrderByStartRecent(int countList, int countPage); // 페스티벌 리스트 시작일순
-	public List<EventDto> exhibitionOrderByStartLate(int countList, int countPage); // 페스티벌 리스트 시작일순
-	public List<EventDto> exhibitionOrderByEndRecent(int countList, int countPage); // 페스티벌 리스트 종료일순
-	public List<EventDto> exhibitionOrderByEndLate(int countList, int countPage); // 페스티벌 리스트 종료일순
+	public List<EventDto> exhibitionOrderByStartRecent(int countList, int pageNum); // 페스티벌 리스트 시작일순
+	public List<EventDto> exhibitionOrderByStartLate(int countList, int pageNum); // 페스티벌 리스트 시작일순
+	public List<EventDto> exhibitionOrderByEndRecent(int countList, int pageNum); // 페스티벌 리스트 종료일순
+	public List<EventDto> exhibitionOrderByEndLate(int countList, int pageNum); // 페스티벌 리스트 종료일순
 //
 	public int totalExhibitionCountDao();
 	public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트
@@ -90,7 +90,7 @@ public interface IDao {
 	public int modifyMemberDao(String userId, String userPassword, String name, String email);//회원정보 수정
 	
 	// 고객센터 게시판 기능
-	public List<CSboardDto> csListDao(int countList, int countPage); // 게시글 목록 모두 가져오기
+	public List<CSboardDto> csListDao(int countList, int pageNum); // 게시글 목록 모두 가져오기
 	public void csWriteDao(String c_userId, String c_title, String c_content); // 게시글 쓰기
 	public CSboardDto csViewDao(String c_idx); // 클릭한 게시글 내용 보기
 	public void csModifyDao(String c_idx, String c_userId, String c_title, String c_content); // 게시글 수정
@@ -102,9 +102,9 @@ public interface IDao {
 	public int totalcsSearch_TitleCount(String keyword); // 타이틀로 CS 검색결과
 	public int totalcsSearch_IdCount(String keyword); // 아이디로 CS 검색결과
 	public int totalcsSearch_ContentCount(String keyword); // 내용으로 CS 검색결과
-	public List<CSboardDto> csSearchTitleDao(String keyword, int countList, int countPage); // 제목으로 검색
-	public List<CSboardDto> csSearchContentDao(String keyword, int countList, int countPage); // 내용으로 검색
-	public List<CSboardDto> csSearchWriterDao(String keyword, int countList, int countPage); // 아이디로 검색
+	public List<CSboardDto> csSearchTitleDao(String keyword, int countList, int pageNum); // 제목으로 검색
+	public List<CSboardDto> csSearchContentDao(String keyword, int countList, int pageNum); // 내용으로 검색
+	public List<CSboardDto> csSearchWriterDao(String keyword, int countList, int pageNum); // 아이디로 검색
 	
 	// 댓글 기능
 	public int replyWriteDao(String ca_content, String ca_boardNum); // 댓글 입력

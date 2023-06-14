@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.festicket.dao.IDao;
 import com.festicket.dto.CSboardDto;
 import com.festicket.dto.Criteria;
+import com.festicket.dto.MemberDto;
 import com.festicket.dto.PageDto;
 
 @Controller
@@ -39,24 +40,33 @@ public class CSboardController {
 		} else {
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
 			criteria.setPageNum(pageNum);
+			
+			int totalCount = dao.csListTotalCountDao(); // 모든 글의 개수
+			
+			PageDto pageDto = new PageDto(criteria, totalCount);	
+			
+			List<CSboardDto> csBoardDtos = dao.csListDao(criteria.getCountList(), pageNum);
+			
+			model.addAttribute("pageMaker", pageDto);
+			model.addAttribute("csboardDtos", csBoardDtos);
+			model.addAttribute("currPage", pageNum);
 		}
-		
-		int totalCount = dao.csListTotalCountDao(); // 모든 글의 개수
-		
-		PageDto pageDto = new PageDto(criteria, totalCount);	
-		
-		List<CSboardDto> CSboardDtos = dao.csListDao(criteria.getCountList(), pageNum);
-		
-		model.addAttribute("totalCount", totalCount);
-		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("CSboardDtos", CSboardDtos);
-		model.addAttribute("currPage", pageNum);
-		
 		return "csBoardList";
 	}
 	
 	@RequestMapping(value = "/csBoardWrite")
-	public String csBoardWrite() {
+	public String csBoardWrite(HttpSession session, Model model) {
+		String sessionId = (String) session.getAttribute("sessionId");
+		
+		MemberDto memberDto = new MemberDto("guest", null, null, null, "비회원", null);
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		if(sessionId == null) {
+			model.addAttribute("memberDto", memberDto);
+		} else {
+			model.addAttribute("memberDto", dao.getMemberInfo(sessionId));
+		}
 		return "csBoardWrite";
 	}
 	
@@ -90,15 +100,11 @@ public class CSboardController {
 	@RequestMapping(value = "/csBoardModify")
 	public String csBoardModify(HttpServletRequest request, HttpSession session, Model model) {
 	      
-		IDao dao = sqlSession.getMapper(IDao.class);
-		      
-		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
-	      
-//	      String sessionId = (String) session.getAttribute("sessionId");
-//	      
-//	      IDao dao = sqlSession.getMapper(IDao.class);
-//	      
-//	      model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
+		String sessionId = (String) session.getAttribute("sessionId");
+  
+  		IDao dao = sqlSession.getMapper(IDao.class);
+  
+		model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
 	      
 		return "csBoardModify";
 	}

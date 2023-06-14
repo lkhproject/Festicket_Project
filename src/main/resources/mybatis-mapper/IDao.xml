@@ -235,7 +235,7 @@
 		INSERT INTO
 			eventCSboard(c_idx, c_userId, c_title, c_content, c_hit, c_replyCount)
 				VALUES
-					(ecs_seq.nextval, 'guest', #{param2}, #{param3}, 0, 0)
+					(ecs_seq.nextval, #{param1}, #{param2}, #{param3}, 0, 0)
     </insert>
 	
 	<select id="csViewDao" resultType="com.festicket.dto.CSboardDto">
