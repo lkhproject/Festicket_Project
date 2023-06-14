@@ -55,7 +55,18 @@ public class CSboardController {
 	}
 	
 	@RequestMapping(value = "/csBoardWrite")
-	public String csBoardWrite() {
+	public String csBoardWrite(HttpServletRequest request, Model model, HttpSession session) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+
+		int loginOk = 0;
+		
+		if(sessionId != null && !sessionId.isEmpty()) {
+			loginOk = 1;
+		}
+		
+		request.setAttribute("loginOk", loginOk);
+		
 		return "csBoardWrite";
 	}
 	
