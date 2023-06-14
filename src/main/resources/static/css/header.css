@@ -12,16 +12,21 @@ div.headerline {
 }
 
 tr.top_menu {
-	margin-top: 15px;
+	margin-top: 12px;
     float: center;
     display: flex;
 }
 
 td.toptext {
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: bold;
 	font-family: 'Noto Sans KR', sans-serif;
     color: #7c7c7c;
+}
+
+td.toptext:hover {
+	color: #6800b8 ;
+	font-weight: bolder;
 }
 
 td.margin01 {
@@ -36,14 +41,15 @@ hr.line {
 	background: #d6d6d6;
     height:1px;
     border:0;
+    margin: 8px;
 }
 
 div.categoryline {
-	margin-left: 60px;
+	margin-left: 150px;
 }
 
 img.logo {
-	width: 220px;
+	width: 240px;
 	padding-right: 50px;
 }
 
@@ -60,6 +66,11 @@ li.categorytext {
 	font-weight: bold;
 	font-family: 'Noto Sans KR', sans-serif;
     color: #535353;
+}
+
+li.categorytext:hover {
+	color: #6800b8 ;
+	font-weight: bolder;
 }
 
 div.search {
@@ -89,6 +100,7 @@ div.search_btn {
 	
 div.search_btn_img {
 	position:absolute;
+	padding: 8px;
 	top:4px;
 	left:450px;
 }
@@ -101,9 +113,4 @@ a:link {
 a:visited {
 	text-decoration: none;
 	color: inherit;
-}
-
-a:hover {
-	color: #6800b8;
-	font-weight: bolder;
 }
