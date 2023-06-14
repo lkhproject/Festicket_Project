@@ -85,7 +85,7 @@
 						<c:out value="${fn:substring(exhibition.title, 0, 30)}"></c:out>...
 					</c:when>
 					<c:otherwise>
-						<c:out value="${exhibition.title } }"></c:out>
+						<c:out value="${exhibition.title }"></c:out>
 					</c:otherwise>
 				</c:choose>
 	        </h5>
