@@ -61,7 +61,7 @@ public class MyPageController {
 			model.addAttribute("revListDtos", revListDtos);
 			model.addAttribute("currPage", pageNum);
 		}
-		return "myPage";
+		return "myPage/myPage";
 	}
 	
 	@RequestMapping(value = "/detailedRev") // 예매내역으로 바로 이동
@@ -77,7 +77,7 @@ public class MyPageController {
 		
 		model.addAttribute("details", reserved);
 		
-		return "detailedRev";
+		return "myPage/detailedRev";
 	}
 	
 	@RequestMapping(value = "/cancelRev") // 예매 취소
@@ -94,6 +94,6 @@ public class MyPageController {
 		dao.addTicketDao(eventNum, revTicketCount);
 		dao.cancelRevDao(sessionId, revNum);
 		
-		return "cancelRev";
+		return "redirect:myPage";
 	}
 }

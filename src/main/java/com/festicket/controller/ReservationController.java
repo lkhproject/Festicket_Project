@@ -28,7 +28,7 @@ public class ReservationController {
 		
 		model.addAttribute("event", dao.eventAllListDao());
 		
-		return "reservation";
+		return "reservation/reservation";
 	}
 	
 	@RequestMapping(value = "/rvView")
@@ -52,7 +52,7 @@ public class ReservationController {
 		model.addAttribute("reviewList", dao.getReviewListDao(eventNum));
 		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
 		
-		return "rvView";
+		return "reservation/rvView";
 	}
 	
 	@RequestMapping(value = "/confirmRev")
@@ -114,7 +114,7 @@ public class ReservationController {
 			model.addAttribute("revCheck", revCheck);
 		}
 		
-		return "confirmRev";
+		return "reservation/confirmRev";
 	}
 
 	

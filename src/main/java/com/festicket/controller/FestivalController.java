@@ -50,7 +50,7 @@ public class FestivalController {
 		model.addAttribute("festivalDtos", festivalDtos);
 		model.addAttribute("currPage", pageNum);
 		
-		return "festival";
+		return "festival/festival";
 	}
 	
 	@RequestMapping(value = "/festivalOrderBy")
@@ -77,6 +77,8 @@ public class FestivalController {
 		
 		List<EventDto> festivalDtos = new ArrayList<>();
 		
+		System.out.println(orderOption);
+		
 		if(orderOption.equals("startRecent")) {
 			festivalDtos = dao.festivalOrderByStartRecent(criteria.getCountList(), pageNum);
 		}
@@ -96,7 +98,7 @@ public class FestivalController {
 		model.addAttribute("currPage", pageNum);
 		
 		
-		return "festivalOrderBy";
+		return "festival/festivalOrderBy";
 	}
 
 }

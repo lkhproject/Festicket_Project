@@ -30,7 +30,7 @@ public class RankingController {
 //		
 //		model.addAttribute("ongoing", dao.getEventDao(ongoing));
 		
-		return "ranking";
+		return "ranking/ranking";
 	}
 	
 }

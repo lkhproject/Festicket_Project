@@ -198,7 +198,7 @@
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') ASC
 		    ) A
 		)
-		WHERE PAGE=#{param2};
+		WHERE PAGE=#{param2}
 	</select>
 <!-- 
 	<select id="festivalOrderByStartLate" resultType="com.festicket.dto.EventDto">

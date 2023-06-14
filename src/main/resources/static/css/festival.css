@@ -31,6 +31,22 @@ div.selector {
 	padding-top: 25px;
 }
 
+div.selectorBtn {
+	float: right;
+	padding-top: 17px;
+}
+
+#orderBtn {
+	float: right;
+	background: gray;
+	color: white;
+	padding: 3px 15px;
+	border-radius : 0.8em;
+	border: none;
+	font-size: 14px;
+	margin: 10px 0px 0px 3px;
+}
+
 div.container_2 {
 	background-color: white;
 	margin: 0px 170px;
@@ -103,3 +119,6 @@ img.listImg {
 	font-weight: bold;
 	
 }
+
+
+

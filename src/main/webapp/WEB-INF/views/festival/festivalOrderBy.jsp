@@ -13,7 +13,7 @@
 </head>
 <body style="background-color: #eeeeee;">
 <!-- 헤더 -->
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
 <!-- 헤더 끝 -->
 
 <div class="container">
@@ -23,19 +23,22 @@
 	<h2 class="title">페스티벌</h2>
 	<div class="totalNum">총 ${totalCount }건</div>
   </div>
-  <!-- 선택하면 정렬 기능 추가 필요 -->
-	<div class="selector">
-	<form action="festivalOrderBy">
-		<select class="form-select form-select-sm" name="orderOption" aria-label=".form-select-sm example">
-		  <option selected>정렬선택</option>
-		  <option value="startRecent" >시작 날짜 빠른 순</option>
-		  <option value="startLate" >시작 날짜 느린 순</option>
-		  <option value="endRecent">종료 날짜 빠른 순</option>
-		  <option value="endLate">종료 날짜 느린 순</option>
-		</select>
-		<button type="submit">정렬</button>
-	</form>
+	<form action="festivalOrderBy" onsubmit="return validateForm()">
+	<div style="float: right;">
+		<div class="selectorBtn">
+			<button type="submit" id="orderBtn">정렬</button>
+		</div>
+		<div class="selector">
+			<select class="form-select form-select-sm" name="orderOption" aria-label=".form-select-sm example">
+			  <option disabled selected value="">정렬선택</option>
+			  <option value="startRecent" >시작 날짜 빠른 순</option>
+			  <option value="startLate" >시작 날짜 느린 순</option>
+			  <option value="endRecent">종료 날짜 빠른 순</option>
+			  <option value="endLate">종료 날짜 느린 순</option>
+			</select>
+		</div>
 	</div>
+	</form>
 </div>
 
 <!-- 페스티벌 리스트 시작 -->
@@ -72,8 +75,8 @@
 		</table>
 <!-- 페스티벌 리스트 끝 -->
 
-	<!-- 페이징 시작 -->
-	<div class="container" id="csPagingNum">
+	<!-- 페이징 시작 searchOption 안넘어옴 확인필요-->
+	<div class="container" id="festPagingNum">
 		<c:if test="${pageMaker.prev }">
 			<a href="festivalOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.searchOption}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
 		</c:if>
@@ -103,7 +106,7 @@
 </div>
 
 <!-- 푸터 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 <!-- 푸터 끝 -->
 
 </body>

@@ -49,7 +49,7 @@ public class ExhibitionController {
 		model.addAttribute("exhibitionDtos", exhibitionDtos);
 		model.addAttribute("currPage", pageNum);
 		
-		return "exhibition";
+		return "exhibition/exhibition";
 	}
 	
 }

@@ -20,7 +20,7 @@
 %>
 
 <!-- 헤더 시작 -->
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <!-- 헤더 끝 -->
 
 <div class="inner">
@@ -194,7 +194,7 @@
 </div>
 
 <!-- 푸터 시작 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 <!-- 푸터 끝 -->
 </body>
 </html>

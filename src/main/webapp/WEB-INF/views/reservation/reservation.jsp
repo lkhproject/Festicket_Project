@@ -13,7 +13,7 @@
 </head>
 <body>
   <!-- 헤더 -->
-  <%@ include file="include/header.jsp" %>
+  <%@ include file="../include/header.jsp" %>
   <!-- 헤더 끝-->
 
   <!-- 모든 이벤트 리스트 -->
@@ -59,7 +59,7 @@
   <!-- 모든 이벤트 리스트 끝 -->
 
   <!-- 푸터 -->
-  <%@ include file="include/footer.jsp" %>
+  <%@ include file="../include/footer.jsp" %>
   <!-- 푸터 끝 -->
 
   <!-- 더보기 버튼 기능 (16개씩 나오게 하기) -->

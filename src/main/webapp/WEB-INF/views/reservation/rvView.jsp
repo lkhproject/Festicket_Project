@@ -30,7 +30,7 @@
 <input type="hidden" id="login-ok" value="<%= loginOk %>">
 
 	<!-- 헤더 -->
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
 	
 	<div class="container" style="margin-top: 30px">
@@ -239,7 +239,7 @@
 </div>
 	
 	<!-- 푸터 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 
 </body>

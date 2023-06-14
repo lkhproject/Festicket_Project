@@ -14,62 +14,29 @@
 <title>페스티켓</title>
 </head>
 <body>
-	<!-- 예약확인 -->
-	<%
-		int revCheck = Integer.parseInt((request.getAttribute("revCheck")).toString());
-		int noTicket = Integer.parseInt((request.getAttribute("noTicket")).toString());
-		int lessTicket = Integer.parseInt((request.getAttribute("lessTicket")).toString());
-		int left_t = Integer.parseInt((request.getAttribute("left_t")).toString());
-		
-		if(revCheck == 0) {
-	%>
-		<script type="text/javascript">
-			alert("오류가 발생하였습니다. 다시 시도해주세요.");
-			history.go(-1);
-		</script>
-	<%
-		}
-		if(noTicket == 0) {
-	%>
-		<script type="text/javascript">
-			alert("본 행사는 매진되었습니다.");
-			history.go(-1);
-		</script>
-	<%
-		}
-		if(lessTicket == 0) {
-	%>
-		<script type="text/javascript">
-			alert("현재 예매 가능한 티켓 수는 총 <%= left_t %>매 입니다.");
-			history.go(-1);
-		</script>
-	<%
-		}
-	%>
-	<!-- 예약확인 끝 -->
-
 	<!-- 헤더 -->
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
 	
 <div class="container" style="margin-top: 30px">
 	<div id="wrapper">
 	<div id="child">
-		<div class="confirmed"><h4><b>예약이 완료되었습니다.</b></h4></div>
+		<div class="confirmed"><h4><b>예매 상세</b></h4></div>
 		<div class="card mb-3" id="ticket">
 		  <div class="row g-0">
 		    <div class="col-md-4">
-		      <img src="${comfirmedRev.main_img }" class="img-fluid rounded-start" alt="${comfirmedRev.title }">
+		      <img src="${details.main_img }" class="img-fluid rounded-start" alt="${details.title }">
 		    </div>
 		    <div class="col-md-8">
 		      <div class="card-body" style="text-align: left;">
-		        <h5 class="card-title">${comfirmedRev.title }</h5>
-		        <p class="card-text">${comfirmedRev.gunName } / ${comfirmedRev.place }</p>
-		        <p class="card-text" id="ticketDetails"><small class="text-muted">발권일자 : ${comfirmedRev.re_date }</small></p>
-		        <p class="card-text" id="ticketDetails"><small class="text-muted">예약일자 : ${comfirmedRev.re_ticketDate }</small></p>
-		        <p class="card-text" id="ticketDetails"><small class="text-muted">${comfirmedRev.re_userId } 님,</small></p>
-		        <p class="card-text" id="ticketDetails"><small class="text-muted">티켓수 : ${comfirmedRev.re_ticketCount }</small></p>
-		        <p class="card-text" id="ticketDetails"><small class="text-muted">가격 : ${comfirmedRev.re_price }</small></p>
+		        <h5 class="card-title">${details.title }</h5>
+		        <p class="card-text">${details.gunName } / ${details.place }</p>
+		        <p class="card-text" id="ticketDetails"><small class="text-muted">티켓번호 : ${details.re_idx }</small></p>
+		        <p class="card-text" id="ticketDetails"><small class="text-muted">발권일자 : ${details.re_date }</small></p>
+		        <p class="card-text" id="ticketDetails"><small class="text-muted">예약일자 : ${details.re_ticketDate }</small></p>
+		        <p class="card-text" id="ticketDetails"><small class="text-muted">${details.re_userId } 님,</small></p>
+		        <p class="card-text" id="ticketDetails"><small class="text-muted">티켓수 : ${details.re_ticketCount }</small></p>
+		        <p class="card-text" id="ticketDetails"><small class="text-muted">가격 : ${details.re_price }</small></p>
 		      </div>
 		    </div>
 		  </div>
@@ -91,14 +58,27 @@
        </div>
    </div>
 		<!-- 마이페이지에 예약목록으로 보내기 -->
-		<input type="button" value="예매목록" onclick="script:window.location.href='myPage'">
+		<input type="button" value="예매목록" onclick="script:window.location.href='myPage'" style="margin-left: 3px;">
+		<input type="button" value="예매취소" onclick="return cancelReserve(${details.re_idx}, ${details.re_eventNum })">
 	</div>
 	
 </div>
 	
 	
 	<!-- 푸터 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
+	
+<script>
+	function cancelReserve(re_idx, re_eventNum) {
+		var confirmCancel = confirm("정말 취소하시겠습니까?");
+		if (confirmCancel) {
+			window.location.href = "cancelRev?re_idx=" + re_idx + "&re_eventNum=" + re_eventNum;
+		} else {
+		  return false;
+		}
+	}
+</script>
+
 </body>
 </html>

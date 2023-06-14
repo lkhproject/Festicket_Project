@@ -14,7 +14,7 @@
 </head>
 <body>
 	<!-- 헤더 시작 -->
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
 
 	<!-- 게시글 리스트 시작 -->
@@ -33,7 +33,7 @@
 	    		</tr>
 	  		</thead>
 	  		<tbody class="table-group-divider">
-		  		<c:forEach items="${csBoardDtos }" var="csList"  begin="0" end="11">
+		  		<c:forEach items="${CSboardDtos }" var="csList"  begin="0" end="11">
 				    <tr>
 				      <th scope="row">${csList.c_idx }</th>
 				      <td>
@@ -90,7 +90,7 @@
 	  <ul class="pagination">
     	<li class="page-item" id="page-item">
 			<c:if test="${pageMaker.prev }">
-				<a class="page-link" aria-label="Previous" href="csBoardList?pageNum=${pageMaker.startPage-5 }">
+				<a class="page-link" aria-label="Previous" href="csBoardSearch?pageNum=${pageMaker.startPage-5 }&searchOption=${param.searchOption}&keyword=${param.keyword}">
 					<span aria-hidden="true">&laquo;</span>
 				</a>
 			</c:if>
@@ -105,7 +105,7 @@
 				</c:when>
 				<c:otherwise>
 					<li class="page-item">
-						<a class="page-link" href="csBoardList?pageNum=${num }">${num }</a>
+						<a class="page-link" href="csBoardSearch?pageNum=${num }&searchOption=${param.searchOption}&keyword=${param.keyword}">${num }</a>
 					</li>
 				</c:otherwise>
 			</c:choose>
@@ -113,12 +113,12 @@
 		
 		<li class="page-item">
 			<c:if test="${pageMaker.next }">
-				<a class="page-link" aria-label="Next" href="csBoardList?pageNum=${pageMaker.startPage+5 }">
+				<a class="page-link" aria-label="Next" href="csBoardSearch?pageNum=${pageMaker.startPage+5 }&searchOption=${param.searchOption}&keyword=${param.keyword}">
 					<span aria-hidden="true">&raquo;</span>
 				</a>
 			</c:if>
 		</li>
-	  </ul>
+	   </ul>
 	</div>
 	<!-- 페이징 끝 -->
 
@@ -127,7 +127,7 @@
 	</div>
 	
 	<!-- 푸터 시작 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 </body>
 </html>

@@ -13,7 +13,7 @@
 </head>
 <body style="background-color: #eeeeee;">
 <!-- 헤더 -->
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
 <!-- 헤더 끝 -->
 
 <!-- 행사 리스트 6개 -->
@@ -105,7 +105,7 @@
 </div>
 
 <!-- 푸터 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 <!-- 푸터 끝 -->
 
 </body>

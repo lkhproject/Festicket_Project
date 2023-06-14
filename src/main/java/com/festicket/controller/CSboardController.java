@@ -51,7 +51,7 @@ public class CSboardController {
 		model.addAttribute("csBoardDtos", CSboardDtos);
 		model.addAttribute("currPage", pageNum);
 		
-		return "csBoardList";
+		return "CS/csBoardList";
 	}
 	
 	@RequestMapping(value = "/csBoardWrite")
@@ -67,7 +67,7 @@ public class CSboardController {
 		
 		request.setAttribute("loginOk", loginOk);
 		
-		return "csBoardWrite";
+		return "CS/csBoardWrite";
 	}
 	
 	@RequestMapping(value = "/csBoardWriteOk")
@@ -94,7 +94,7 @@ public class CSboardController {
 		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
 		model.addAttribute("replyList", dao.replyListDao(request.getParameter("c_idx")));
 		
-		return "csBoardView";
+		return "CS/csBoardView";
 	}
 	
 	@RequestMapping(value = "/csBoardModify")
@@ -110,7 +110,7 @@ public class CSboardController {
 //		
 //		model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
 		
-		return "csBoardModify";
+		return "CS/csBoardModify";
 	}
 	
 	@RequestMapping(value = "csModifyOk")
@@ -126,7 +126,7 @@ public class CSboardController {
 		
 		model.addAttribute("csBoardDto", dao.csViewDao(c_idx)); // 수정이 된 후 글내용
 		
-		return "csModifyOk";
+		return "CS/csModifyOk";
 	}
 	
 	@RequestMapping(value = "/csBoardDelete")
@@ -195,6 +195,6 @@ public class CSboardController {
 			model.addAttribute("CSboardDtos", CSboardDtos);
 			model.addAttribute("currPage", pageNum);
 		}
-		return "csBoardSearch";
+		return "CS/csBoardSearch";
 	}
 }
