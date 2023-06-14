@@ -13,18 +13,36 @@ import com.festicket.dto.ReviewDto;
 
 public interface IDao {
 	
+	// 로그인
+	public int checkIdPwDao(String userId, String userPassword);//아이디와 비밀번호의 일치여부 체크
+	public MemberDto getMemberInfo(String userId);//아이디로 조회하여 회원 정보 모두 가져오기
+	
 	// 검색
-	public List<EventDto> getSearchResult(String keyword, int countList, int countPage); // 검색 결과 가져오기
+	public List<EventDto> getSearchResult(String keyword, int countList, int pageNum); // 검색 결과 가져오기
 	public int totalSearchResultCount(String keyword); // 검색 결과 개수
 	
+	// 예매
+	public List<EventDto> eventAllListDao(); // 모든 행사 리스트
+	public int getReservationCountDao(String userId); // 예매한 행사 개수 가져오기
+	
 	// 랭킹
-	public List<EventDto> eventListDao(int countList, int countPage); // 모든 행사 리스트
+	public List<EventDto> eventListDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징
 	public int totalEventCountDao(); // 행사의 총 개수
 	public List<EventDto> getTopFiveEventsDao(); // 행사 탑5 리스트 
 	public List<EventDto> getOngoingEventDao(); // 진행중인 행사 리스트
 	
-	// 행사 선택
+	// 행사
 	public EventDto getEventDao(int eventNum); // 행사 하나만 가져오기
+	public int eventLiker(int eventIdx, String userId); // 행사 좋아요
+	public void cancelEventLiker(int eventIdx, String userId); // 행사 좋아요 취소
+	public void ticketReservedDao(int eventNum, int reservedTicket); // 예약 후 티켓 총 개수 감소
+	public int getTotalTicketDao(int eventNum); // 행사 남은 티켓수
+	
+	// admin
+	public List<EventDto> eventListPagingDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징
+	public int eventAddDao(String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
+            String player, String program, String org_link, String main_img, Date rgstDate,
+            Date start_date, Date end_date, String eventPrice, int ticketCount); // 행사 추가
 	
 	// 페스티벌
 	public List<EventDto> festivalListDao(int countList, int countPage); // 페스티벌 리스트
@@ -60,15 +78,15 @@ public interface IDao {
 	public void qaHitDao(int q_idx); // 조회수 증가
 	
 	// 예약확인
-	public ReserveDto getReservationDao(int eventNum, String userId); // 예약 디테일 하나 가져오기
+	public List<ReserveDto> getReservationListDao(String userId, int countList, int pageNum); // 예약 목록 가져오기
+	public ReserveDto getReservationDao(int re_idx, String userId); // 예약번호로 예약 디테일 하나 가져오기
+	public ReserveDto getReservationByRecentDao(int eventNum, String userId); // 가장 최신 예약 하나 디테일 가져오기
 	public int reservationConfirmedDao(String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate); // 예약 디테일 db에 넣어주기
 	public int checkDupRevDao(int eventNum); // 같은 행사, 같은 날에 예약된게 있는지 확인
 	
-	//회원관리	
+	// 회원관리	
 	public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date signupDate); //회원가입
 	public int checkIdDao(String userId); //가입하려는 id의 존재여부 체크
-	public int checkIdPwDao(String userId, String userPassword);//아이디와 비밀번호의 일치여부 체크
-	public MemberDto getMemberInfo(String userId);//아이디로 조회하여 회원 정보 모두 가져오기
 	public int modifyMemberDao(String userId, String userPassword, String name, String email);//회원정보 수정
 	
 	// 고객센터 게시판 기능

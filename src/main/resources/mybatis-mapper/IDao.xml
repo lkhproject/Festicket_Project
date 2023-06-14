@@ -155,6 +155,14 @@
 	</select>
 	
 	
+	<!-- 마이페이지 -->
+	<select id="getReservationCountDao" resultType="int">
+		SELECT COUNT(*)
+		FROM eventReservation
+		WHERE re_userId=#{param1}
+	</select>
+	
+	
 	<!-- 리뷰 관련 -->
 	<insert id="reviewWriteDao">
 		INSERT INTO
@@ -162,6 +170,51 @@
 				VALUES
 					(erw_seq.nextval, 'guest', 0, #{param3}, #{param4})
     </insert>
+    
+    
+    <!-- *** 예약 *** -->
+	
+	<!-- 예약 리스트 최신순으로 가져오기 -->
+	<select id="getReservationListDao" resultType="com.festicket.dto.ReserveDto">
+	    SELECT *
+		FROM (
+		    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
+		    FROM (
+		        SELECT er.re_idx, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title
+		        FROM eventReservation er
+		        JOIN event e ON er.re_eventNum = e.eventNum
+		        WHERE er.re_userId = #{param1}
+		        ORDER BY er.re_idx DESC
+		    ) A
+		)
+		WHERE PAGE = #{param3}
+	</select>
+	
+	<!-- 예약확인 -->
+	<select id="getReservationDao" resultType="com.festicket.dto.ReserveDto">
+		SELECT e.main_img, e.title, e.gunName, e.place, er.*
+		FROM eventReservation er
+		LEFT JOIN event e ON er.re_eventNum = e.eventNum
+		WHERE er.re_idx = #{param1} AND er.re_userId = #{param2}
+	</select>
+	
+	<select id="getReservationByRecentDao" resultType="com.festicket.dto.ReserveDto">
+		SELECT *
+		FROM (
+		    SELECT e.main_img, e.title, e.gunName, e.place, er.*
+		    FROM eventReservation er
+		    LEFT JOIN event e ON er.re_eventNum = e.eventNum
+		    WHERE er.re_eventNum = #{param1} AND er.re_userId = #{param2}
+		    ORDER BY er.re_idx DESC
+		)
+		WHERE ROWNUM <![CDATA[<]]>= 1
+	</select>
+	
+	<!-- 예약db에 넣어주기 -->
+	<insert id="reservationConfirmedDao">
+		INSERT INTO eventreservation
+		VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
+	</insert>
 	
 	
 	<!-- 고객센터 게시판 관련 -->
