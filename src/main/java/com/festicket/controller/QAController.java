@@ -35,7 +35,7 @@ public class QAController {
 		
 		model.addAttribute("qaDto", dao.getQaDao(qaNum));
 		
-		return "qaView";
+		return "QA/qaView";
 	}
 	
 	@RequestMapping(value = "/qaBoardWrite")
@@ -47,7 +47,7 @@ public class QAController {
 		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
 		
-		return "qaBoardWrite";
+		return "QA/qaBoardWrite";
 	}
 	
 	@RequestMapping(value = "/qaBoardWriteOk")
@@ -70,7 +70,7 @@ public class QAController {
 		
 		session.setAttribute("eventNum", q_eventNum);
 		
-		return "redirect:qaBoardList";
+		return "QA/redirect:qaBoardList";
 	}
 	
 	@RequestMapping(value = "/qaBoardList")
@@ -113,6 +113,6 @@ public class QAController {
 		model.addAttribute("currPage", pageNum);
 		request.setAttribute("event", dao.getEventDao(eventNum));
 		
-		return "qaBoardList";
+		return "QA/qaBoardList";
 	}
 }
