@@ -45,6 +45,7 @@ public class ReservationController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
+		session.setAttribute("eventNum", eventNum);
 		
 		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("event", dao.getEventDao(eventNum));

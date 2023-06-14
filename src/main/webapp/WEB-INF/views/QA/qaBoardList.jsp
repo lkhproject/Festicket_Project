@@ -18,7 +18,7 @@
 %>
 
 	<!-- 헤더 시작 -->
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
 
 	<!-- 게시글 리스트 시작 -->
@@ -61,11 +61,12 @@
 			  	</c:forEach>
 	  		</tbody>
 	  	</table>
+	  	<input type="button" value="돌아가기" id="QAbtn" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'">
 	  	<!-- 로그인시 문의하기 버튼 추가 -->
 	<%
 		if(loginOk == 1) {
 	%>
-		<input type="button" value="문의하기" id="QAbtn" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+		<input type="button" value="문의하기" id="QAbtn" style="margin-right: 3px" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
 	<% 
 		}
 	%>
@@ -99,7 +100,7 @@
 	</div>
 	
 	<!-- 푸터 시작 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 </body>
 </html>

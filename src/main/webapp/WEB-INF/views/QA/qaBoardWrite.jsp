@@ -12,7 +12,7 @@
 </head>
 <body>
 	<!-- 헤더 -->
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
 	<!-- 게시글 작성 폼 -->
@@ -20,7 +20,7 @@
 		<div class="container_1">
 		<div id="csBoard_page_form">
 		<h2 class="csBoardTitle">문의하기</h2>
-			<form action="qaBoardWriteOk" method="post" id="detail_form" onsubmit="return validateCheck()">
+			<form action="qaBoardWriteOk" name="qaform">
 				<div class="input-group mt-3">
 					<span class="input-group-text" id="basic-addon1">제목</span>
 	  				<input type="text" class="form-control" aria-describedby="basic-addon1" name="q_title" id="q_title">
@@ -43,7 +43,7 @@
 				<div class="button_area">
 					<div class="button_submit">
 						<input type="hidden" name="eventNum" value="${eventNum}">
-						<input type="submit" class="btn" id="button_submit" value="등록">
+						<input type="submit" class="btn" id="button_submit" value="등록" onclick="validateCheck()">
 					</div>
 					<div class="button_cancel">
 						<input type="button" class="btn" id="button_cancel" onclick="window.history.back();" value="취소">
@@ -58,7 +58,7 @@
 	<!-- 게시글 작성 끝 -->
 	
 	<!-- 푸터 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 	
 	<script>
@@ -73,22 +73,20 @@
 	  titleError.innerHTML = "";
 	  contentError.innerHTML = "";
 
-	  var isValid = true;
-
 	  if (title.trim().length === 0) {
 	    titleError.innerHTML = "※ 제목을 입력해주세요.";
-	    isValid = false;
+	    return false;
 	  } else if (title.trim().length > 50) {
 	    titleError.innerHTML = "※ 제목은 50글자 이하여야 합니다.";
-	    isValid = false;
+	    return false;
 	  }
 
 	  if (content.trim().length < 10) {
 	    contentError.innerHTML = "※ 내용은 10글자 이상이어야 합니다.";
-	    isValid = false;
+	    return false;
 	  }
 
-	  return isValid;
+	  document.qaform.submit();
 	}
 	</script>
 </body>

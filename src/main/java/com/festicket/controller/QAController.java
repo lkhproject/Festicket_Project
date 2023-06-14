@@ -42,7 +42,7 @@ public class QAController {
 	public String qaBoardWrite(HttpSession session, Model model, HttpServletRequest request) {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
-		String eventNum = request.getParameter("eventNum");
+		int eventNum = (int)session.getAttribute("eventNum");
 		
 		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
@@ -55,7 +55,7 @@ public class QAController {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
 		
-		int q_eventNum = Integer.parseInt(request.getParameter("eventNum"));
+		int q_eventNum = (int)session.getAttribute("eventNum");
 		String q_title = request.getParameter("q_title");
 		String q_content = request.getParameter("q_content");
 		
@@ -68,9 +68,7 @@ public class QAController {
 
 		dao.qaWriteDao(q_eventNum, sessionId, q_title, q_content, today, 0);
 		
-		session.setAttribute("eventNum", q_eventNum);
-		
-		return "QA/redirect:qaBoardList";
+		return "redirect:qaBoardList";
 	}
 	
 	@RequestMapping(value = "/qaBoardList")
