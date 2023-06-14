@@ -14,10 +14,6 @@
 		SELECT COUNT(*) FROM eventMember WHERE userId=#{param1} AND userPassword=#{param2}
 	</select>
 
-	<update id="modifyMemberDao">
-		UPDATE eventMember SET userPassword=#{param2}, name=#{param3}, email=#{param4} WHERE mid=#{param1}
-	</update>
-	
 	<select id="getMemberInfo" resultType="com.festicket.dto.MemberDto">
 		SELECT * FROM eventMember
 		WHERE userId=#{param1}
