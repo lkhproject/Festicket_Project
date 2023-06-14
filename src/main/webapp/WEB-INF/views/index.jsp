@@ -53,7 +53,16 @@
 	      <img src="${festival.main_img }" class="card-img-top" id="card_img"
 	      		onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"><!-- 상세페이지로 이동 -->
 	      <div class="card-body">
-	        <h5 class="card-title">${festival.title }</h5>
+	        <h5 class="card-title">
+	        	<c:choose>
+					<c:when test="${fn:length(festival.title) > 31}">
+						<c:out value="${fn:substring(festival.title, 0, 30)}"></c:out>...
+					</c:when>
+					<c:otherwise>
+						<c:out value="${festival.title }"></c:out>
+					</c:otherwise>
+				</c:choose>
+	        </h5>
 	        <h6 class="card-subtitle">서울/${festival.gunName }</h6>
 			<p class="card-text"><small class="text-muted">${festival.type }</small></p>
 	      </div>
