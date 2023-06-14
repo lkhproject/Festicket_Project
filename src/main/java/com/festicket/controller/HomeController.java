@@ -130,7 +130,7 @@ public class HomeController {
 	    session.invalidate();
 	    
 	    // 로그아웃 후 리다이렉트할 경로를 리턴합니다.
-	    return "redirect:/login";
+	    return "logout";
 	
 	}
 //	@RequestMapping(value = "/ranking")
