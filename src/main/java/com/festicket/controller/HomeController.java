@@ -22,10 +22,16 @@ public class HomeController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "/index")
-	public String index() {
+	public String index(Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("festival_5", dao.top5FestivalListDao());
+		model.addAttribute("exhibition_5", dao.top5ExhibitionListDao());
 		
 		return "index";
 	}
+	
 	
 	@RequestMapping(value = "/join")
 	public String join() {	
