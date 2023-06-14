@@ -21,7 +21,7 @@
 				<%
 					} else {
 				%>
-				<td class="toptext"><a href="">로그아웃</a></td>
+				<td class="toptext"><a href="logout">로그아웃</a></td>
 				<%
 					}
 				%>
