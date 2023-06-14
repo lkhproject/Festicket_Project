@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,16 @@
 	      <img src="${exhibition.main_img }" class="card-img-top" id="card_img"
 	      	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"><!-- 상세페이지로 이동 -->
 	      <div class="card-body">
-	        <h5 class="card-title">${exhibition.title }</h5>
+	        <h5 class="card-title">
+	        	<c:choose>
+					<c:when test="${fn:length(exhibition.title) > 31}">
+						<c:out value="${fn:substring(exhibition.title, 0, 30)}"></c:out>...
+					</c:when>
+					<c:otherwise>
+						<c:out value="${exhibition.title } }"></c:out>
+					</c:otherwise>
+				</c:choose>
+	        </h5>
 	        <h6 class="card-subtitle">서울/${exhibition.gunName }</h6>
 			<p class="card-text"><small class="text-muted">${exhibition.type }</small></p>
 	      </div>
