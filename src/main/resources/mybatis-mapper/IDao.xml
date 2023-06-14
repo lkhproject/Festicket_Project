@@ -31,6 +31,10 @@
 		WHERE userId=#{param1}
 	</select>
 	
+	<delete id="deleteUser" parameterType="int">
+		DELETE FROM eventMemberDB
+		WHERE user_id = #{param1} AND user_password = #{param2}
+	</delete>
 	
 	
 </mapper>

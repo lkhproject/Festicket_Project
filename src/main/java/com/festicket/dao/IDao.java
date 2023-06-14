@@ -16,6 +16,9 @@ public interface IDao {
 	//로그인
 	public int checkIdPwDao(String userId, String userPassword); //아이디와 비밀번호의 일치여부 체크
 	public MemberDto getMemberInfo(String userId);
+	
+	//회원탈퇴
+	public void deleteDao(String parameter);
 
 
 	
