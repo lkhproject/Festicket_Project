@@ -21,7 +21,7 @@
 				<tr>
 					<td class="contentbox">
 					<center>
-						<table border="0" cellspacing="0" cellpadding="10">
+					<table border="0" cellspacing="0" cellpadding="10">
                     <img src = "/resources/img/festicket_logo.png" width="25%">
                     <form action="loginOk" method="post">
 	                    <input type="text" name="userId" class="login_box" placeholder="아이디" id="userId" autocomplete="off">
