@@ -26,7 +26,17 @@
 					}
 				%>
 				<td class="margin02">&nbsp;</td>
+				<%
+					if(sessionId == null) {
+				%>
 				<td class="toptext"><a href="join">회원가입</a></td>
+				<%
+					} else {
+				%>
+				<td class="toptext"><a href="myPageModify">회원정보</a></td>
+				<%
+					}
+				%>
 				<td class="margin02">&nbsp;</td>
 				<td class="toptext"><a href="myPage">마이페이지</a></td>
 				<td class="margin02">&nbsp;</td>
