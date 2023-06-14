@@ -10,7 +10,9 @@
     <title>페스티켓</title>
 </head>
 <body>
-    <h1>로그아웃되었습니다.</h1>
-    <a href="login.jsp">로그인 페이지로 이동</a>
+	<script>
+		alert("로그아웃 되었습니다. 로그인 페이지로 이동합니다.");
+		window.location.href ="login";
+	</script>
 </body>
 </html>
