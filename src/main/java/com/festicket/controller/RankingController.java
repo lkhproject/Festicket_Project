@@ -24,12 +24,6 @@ public class RankingController {
 		model.addAttribute("ongoing", dao.getOngoingEventDao());
 		model.addAttribute("topfiveEvent", dao.getTopFiveEventsDao());
 		
-//		int ongoing = Integer.parseInt(request.getParameter("curr_event"));
-//		
-//		System.out.println(ongoing);
-//		
-//		model.addAttribute("ongoing", dao.getEventDao(ongoing));
-		
 		return "ranking/ranking";
 	}
 	

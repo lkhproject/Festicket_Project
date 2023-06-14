@@ -50,18 +50,20 @@ public class HomeController {
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
 			criteria.setPageNum(pageNum);
 		}
-
-		String keyword = request.getParameter("keyword");
 		
-		request.setAttribute("search_word", keyword);
+		String keyword = request.getParameter("search_word");
 		
 		int totalResult = dao.totalSearchResultCount(keyword); // 모든 글의 개수
+		
+		System.out.println(keyword);
+		System.out.println(totalResult);
 		
 		PageDto pageDto = new PageDto(criteria, totalResult);
 		
 		List<EventDto> searchListDtos = dao.getSearchResult(keyword, criteria.getCountList(), pageNum);
 		
-		model.addAttribute("totalCount", totalResult);
+		request.setAttribute("search_word", keyword);
+		request.setAttribute("totalCount", totalResult);
 		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("searchListDtos", searchListDtos);
 		model.addAttribute("currPage", pageNum);
