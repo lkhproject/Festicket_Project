@@ -46,7 +46,7 @@
 				<div class="confirm"><b>${memberName}</b>님 회원가입을 축하드립니다!</div>
 				<div class="confirm">가입하신 아이디는 <b>${memberId}</b>입니다.</div>
 				
-				<input class="content_btn01" type="button" value="로그인 바로가기" onclick="script:window.location.href='login'">
+				<input class="content_btn01" type="button" value="로그인 바로가기" onclick="">
 			</div>
 		</div>
 	</div>
