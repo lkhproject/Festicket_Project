@@ -64,13 +64,10 @@ public class HomeController {
 	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
-	    // 세션 객체 가져오기
+		
 	    HttpSession session = request.getSession();
-	    
-	    // 세션 무효화 (세션 제거)
 	    session.invalidate();
 	    
-	    // 로그아웃 후 리다이렉트할 경로를 리턴합니다.
 	    return "logout";
 	}
 	
