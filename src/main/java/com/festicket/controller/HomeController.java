@@ -40,7 +40,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/myPageUnreg")
-	public String myPageUnreg() {
+	public String myPageUnreg(HttpServletRequest request) {
+		
+//		IDao dao = sqlSession.getMapper(IDao.class);
+//		
+//		dao.deleteDao(request.getParameter("userId"));
+//		dao.deleteDao(request.getParameter("userPassword"));
+//		
 		
 		return "myPageUnreg";
 	}
@@ -133,55 +139,55 @@ public class HomeController {
 	    return "logout";
 	
 	}
-//	@RequestMapping(value = "/ranking")
-//	public String ranking() {
-//		
-//		return "ranking";
-//	}
-//	
-//	@RequestMapping(value = "/exhibition")
-//	public String exhibition() {
-//		
-//		return "exhibition";
-//	}
-//	
-//	@RequestMapping(value = "/festival")
-//	public String festival() {
-//		
-//		return "festival";
-//	}
-//	
-//	@RequestMapping(value = "/csBoardList")
-//	public String csBoardList() {
-//		
-//		return "csBoardList";
-//	}
-//	
-//	@RequestMapping(value = "/csBoardWrite")
-//	public String csBoardWrite() {
-//		
-//		return "csBoardWrite";
-//	}
-//	
-//	@RequestMapping(value = "/adminList")
-//	public String adminList(HttpServletRequest request, Model model) {
-//		
-//		
-//		return "adminList";
-//	}
-//	
-//	@RequestMapping(value = "/adminAddEvent")
-//	public String adminList(Model model, HttpSession session, HttpServletRequest request) {
-//
-//		return "adminAddEvent";
-//	}
-//	
-//	@RequestMapping(value = "/adminModify")
-//	public String adminModify(HttpSession session, Model model) {
-//			
-//		return "adminModify";
-//	}
-//	
+	@RequestMapping(value = "/ranking")
+	public String ranking() {
+		
+		return "ranking";
+	}
+	
+	@RequestMapping(value = "/exhibition")
+	public String exhibition() {
+		
+		return "exhibition";
+	}
+	
+	@RequestMapping(value = "/festival")
+	public String festival() {
+		
+		return "festival";
+	}
+	
+	@RequestMapping(value = "/csBoardList")
+	public String csBoardList() {
+		
+		return "csBoardList";
+	}
+	
+	@RequestMapping(value = "/csBoardWrite")
+	public String csBoardWrite() {
+		
+		return "csBoardWrite";
+	}
+	
+	@RequestMapping(value = "/adminList")
+	public String adminList(HttpServletRequest request, Model model) {
+		
+		
+		return "adminList";
+	}
+	
+	@RequestMapping(value = "/adminAddEvent")
+	public String adminList(Model model, HttpSession session, HttpServletRequest request) {
+
+		return "adminAddEvent";
+	}
+	
+	@RequestMapping(value = "/adminModify")
+	public String adminModify(HttpSession session, Model model) {
+			
+		return "adminModify";
+	}
+	
 	@RequestMapping(value = "/adminEventAdd")
 	public String adminEventAdd() {
 		
