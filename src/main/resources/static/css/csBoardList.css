@@ -144,3 +144,13 @@ input.search_board_img {
 	box-shadow: none;
 	border-color: #ced4da;
 }
+
+#QAbtn {
+	font-size: 13px;
+	background: gray;
+	color: white;
+	padding: 5px 15px;
+	border-radius : 0.8em;
+	border: none;
+	float: right;
+}

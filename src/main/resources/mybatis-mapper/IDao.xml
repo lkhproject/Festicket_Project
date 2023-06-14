@@ -354,6 +354,7 @@
 				  LEFT OUTER JOIN event e
 				    ON er.q_eventNum = e.eventNum
 				 WHERE er.q_eventNum=#{param1}
+				 ORDER BY er.q_idx DESC
 	        ) A
 	    )
 	    WHERE PAGE=#{param3}

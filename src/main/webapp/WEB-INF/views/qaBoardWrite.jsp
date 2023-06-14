@@ -30,7 +30,7 @@
 				<div class="input-group mt-3">
 				    <span class="input-group-text" id="basic-addon1">작성자</span>
 				    <input type="text" class="form-control" aria-describedby="basic-addon1" 
-				        value="${qaBoardDto.q_userId }" name="q_userId" readonly="readonly">
+				        value="${sessionId }" name="q_userId" readonly="readonly">
 				</div>
 				
 				<div class="input-group mt-3">

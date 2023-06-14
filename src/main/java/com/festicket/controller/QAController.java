@@ -41,7 +41,10 @@ public class QAController {
 	@RequestMapping(value = "/qaBoardWrite")
 	public String qaBoardWrite(HttpSession session, Model model, HttpServletRequest request) {
 		
+		String sessionId = (String)session.getAttribute("sessionId");
 		String eventNum = request.getParameter("eventNum");
+		
+		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
 		
 		return "qaBoardWrite";
@@ -50,15 +53,11 @@ public class QAController {
 	@RequestMapping(value = "/qaBoardWriteOk")
 	public String qaBoardWriteOk(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
 		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
 		int q_eventNum = Integer.parseInt(request.getParameter("eventNum"));
-		// String q_userId = request.getParameter("q_userId");
-		String q_userId = "happyCat22";
 		String q_title = request.getParameter("q_title");
 		String q_content = request.getParameter("q_content");
-		
-		System.out.println(q_eventNum);
-		System.out.println(q_title);
-		System.out.println(q_content);
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -67,7 +66,7 @@ public class QAController {
         String strToday = formatter.format(now);
         Date today = formatter.parse(strToday);
 
-		dao.qaWriteDao(q_eventNum, q_userId, q_title, q_content, today, 0);
+		dao.qaWriteDao(q_eventNum, sessionId, q_title, q_content, today, 0);
 		
 		session.setAttribute("eventNum", q_eventNum);
 		
@@ -77,8 +76,17 @@ public class QAController {
 	@RequestMapping(value = "/qaBoardList")
 	public String qaBoardList(HttpSession session, Model model, HttpServletRequest request, Criteria criteria) throws ParseException {
 		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		int loginOk = 0;
+		
+		if(sessionId != null && !sessionId.isEmpty()) {
+			loginOk = 1;
+		}
+		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
+		// 선택한 이벤트 번호 등을 세션에 저장하고 이후에 필요한 곳에서 사용
 		int eventNum = (int) session.getAttribute("eventNum");
 		
 		// 페이징
@@ -97,9 +105,10 @@ public class QAController {
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);	
 				
-		
+		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
+		// 리스트로 넘어가기 때문에 title은 따로 넘겨줘야함 
 		model.addAttribute("QAListDtos", dao.getQAListPagingDao(eventNum, criteria.getCountList(), pageNum));
 		model.addAttribute("currPage", pageNum);
 		request.setAttribute("event", dao.getEventDao(eventNum));

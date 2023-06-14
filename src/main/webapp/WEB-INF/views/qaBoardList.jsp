@@ -13,6 +13,10 @@
 <title>페스티켓</title>
 </head>
 <body>
+<%
+	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+%>
+
 	<!-- 헤더 시작 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝-->
@@ -41,8 +45,8 @@
 						<a href="qaView?selectedQA=${qaList.q_idx }">
 						<!-- 제목 글자수 제한 -->
 						<c:choose>
-							<c:when test="${fn:length(qaList.q_title) > 25}">
-								<c:out value="${fn:substring(qaList.q_title, 0, 24)}"></c:out>...
+							<c:when test="${fn:length(qaList.q_title) > 20}">
+								<c:out value="${fn:substring(qaList.q_title, 0, 19)}"></c:out>...
 							</c:when>
 							<c:otherwise>
 								<c:out value="${qaList.q_title }"></c:out>
@@ -56,7 +60,15 @@
 				    </tr>
 			  	</c:forEach>
 	  		</tbody>
-	  	</table>	  		
+	  	</table>
+	  	<!-- 로그인시 문의하기 버튼 추가 -->
+	<%
+		if(loginOk == 1) {
+	%>
+		<input type="button" value="문의하기" id="QAbtn" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+	<% 
+		}
+	%>
 	<!-- 게시글 리스트 끝 -->
 	
 	<!-- 페이징 시작 -->
