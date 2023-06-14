@@ -22,12 +22,8 @@ public class HomeController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "/index")
-	public String index(Model model) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		model.addAttribute("festival_5", dao.top5FestivalListDao());
-		model.addAttribute("exhibition_5", dao.top5ExhibitionListDao());
+	public String index() {
+
 		
 		return "index";
 	}
@@ -75,8 +71,9 @@ public class HomeController {
 		int joinCheck = 0;
 		
 		int checkId = dao.checkIdDao(userId);//가입하려는 id 존재여부 체크 1이면 이미 존재
+		int checkEmail = dao.checkEmailDao(email);
 		
-		if(checkId == 0) {
+		if(checkId == 0 && checkEmail == 0) {
 			Date now = new Date();
 		    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	        String strToday = formatter.format(now);
@@ -84,9 +81,11 @@ public class HomeController {
 	        
 			joinCheck = dao.joinDao(userId, userPassword, userPhone, email, name, today);
 			model.addAttribute("checkId", checkId);
+			model.addAttribute("checkEmail", checkEmail);
 		//joinCheck 값이 1이면 회원가입 성공, 아니면 가입실패
 		} else {
 			model.addAttribute("checkId", checkId);
+			model.addAttribute("checkEmail", checkEmail);
 		}
 		
 		if(joinCheck == 1) {
