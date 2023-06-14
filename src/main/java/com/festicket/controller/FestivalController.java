@@ -82,15 +82,15 @@ public class FestivalController {
 		if(orderOption.equals("startRecent")) {
 			festivalDtos = dao.festivalOrderByStartRecent(criteria.getCountList(), pageNum);
 		}
-//		else if(orderOption.equals("startLate")) {
-//			festivalDtos = dao.festivalOrderByStartLate(criteria.getCountList(), pageNum);
-//		} 
-//		else if(orderOption.equals("endRecent")) {
-//			festivalDtos = dao.festivalOrderByEndRecent(criteria.getCountList(), pageNum);
-//		}
-//		else {
-//			festivalDtos = dao.festivalOrderByEndLate(criteria.getCountList(), pageNum);
-//		}
+		else if(orderOption.equals("startLate")) {
+			festivalDtos = dao.festivalOrderByStartLate(criteria.getCountList(), pageNum);
+		} 
+		else if(orderOption.equals("endRecent")) {
+			festivalDtos = dao.festivalOrderByEndRecent(criteria.getCountList(), pageNum);
+		}
+		else {
+			festivalDtos = dao.festivalOrderByEndLate(criteria.getCountList(), pageNum);
+		}
 		
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);

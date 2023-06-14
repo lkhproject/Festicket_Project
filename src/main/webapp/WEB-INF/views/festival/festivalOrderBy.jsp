@@ -78,7 +78,7 @@
 	<!-- 페이징 시작 searchOption 안넘어옴 확인필요-->
 	<div class="container" id="festPagingNum">
 		<c:if test="${pageMaker.prev }">
-			<a href="festivalOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.searchOption}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+			<a href="festivalOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.orderOption}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
 		</c:if>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
@@ -87,13 +87,13 @@
 					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>
-					<a href="festivalOrderBy?pageNum=${num }&orderOption=${param.searchOption}">${num }</a>&nbsp;&nbsp;&nbsp;
+					<a href="festivalOrderBy?pageNum=${num }&orderOption=${param.orderOption}">${num }</a>&nbsp;&nbsp;&nbsp;
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next }">
-			<a href="festivalOrderBy?pageNum=${pageMaker.startPage+5 }&orderOption=${param.searchOption}"><c:out value="${'>' }"></c:out></a>
+			<a href="festivalOrderBy?pageNum=${pageMaker.startPage+5 }&orderOption=${param.orderOption}"><c:out value="${'>' }"></c:out></a>
 		</c:if>
 	</div>
 	<!-- 페이징 끝 -->

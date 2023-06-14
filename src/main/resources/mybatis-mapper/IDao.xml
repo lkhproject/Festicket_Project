@@ -186,7 +186,7 @@
 		SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '축제%'
 	</select>
 	
-<!-- 축제 정렬 -->
+<!-- 축제 정렬 시작 -->
 	<select id="festivalOrderByStartRecent" resultType="com.festicket.dto.EventDto">
 		SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		FROM (
@@ -200,7 +200,7 @@
 		)
 		WHERE PAGE=#{param2}
 	</select>
-<!-- 
+
 	<select id="festivalOrderByStartLate" resultType="com.festicket.dto.EventDto">
 		SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		FROM (
@@ -212,7 +212,7 @@
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') DESC
 		    ) A
 		)
-		WHERE PAGE=#{param2};
+		WHERE PAGE=#{param2}
 	</select>
 	
 	<select id="festivalOrderByEndRecent" resultType="com.festicket.dto.EventDto">
@@ -226,7 +226,7 @@
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') ASC
 		    ) A
 		)
-		WHERE PAGE=#{param2};
+		WHERE PAGE=#{param2}
 	</select>
 	
 	<select id="festivalOrderByEndLate" resultType="com.festicket.dto.EventDto">
@@ -240,9 +240,9 @@
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
 		    ) A
 		)
-		WHERE PAGE=#{param2};
+		WHERE PAGE=#{param2}
 	</select>
-축제 정렬 끝 -->
+<!-- 축제 정렬 끝 -->
 	 
 	<!-- 전시 페이지 -->
 	 <select id="exhibitionListDao" resultType="com.festicket.dto.EventDto">
@@ -263,7 +263,7 @@
 		SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '전시%'
 	</select>
 	
-<!-- 전시 정렬
+<!-- 전시 정렬 시작 -->
 	<select id="exhibitionOrderByStartRecent" resultType="com.festicket.dto.EventDto">
 		SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		FROM (
@@ -275,7 +275,7 @@
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') ASC
 		    ) A
 		)
-		WHERE PAGE=#{param2};
+		WHERE PAGE=#{param2}
 	</select>
 	
 	<select id="exhibitionOrderByStartLate" resultType="com.festicket.dto.EventDto">
@@ -289,7 +289,7 @@
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') DESC
 		    ) A
 		)
-		WHERE PAGE=#{param2};
+		WHERE PAGE=#{param2}
 	</select>
 	
 	<select id="exhibitionOrderByEndRecent" resultType="com.festicket.dto.EventDto">
@@ -303,7 +303,7 @@
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') ASC
 		    ) A
 		)
-		WHERE PAGE=#{param2};
+		WHERE PAGE=#{param2}
 	</select>
 	
 	<select id="exhibitionOrderByEndLate" resultType="com.festicket.dto.EventDto">
@@ -317,9 +317,9 @@
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
 		    ) A
 		)
-		WHERE PAGE=#{param2};
+		WHERE PAGE=#{param2}
 	</select>
-전시 정렬 끝 -->
+<!-- 전시 정렬 끝 -->
 	
 	<!-- *** 상세 예매 페이지 *** -->
 	<!-- 리뷰 글 가져오기 -->
