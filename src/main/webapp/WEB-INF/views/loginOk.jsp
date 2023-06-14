@@ -25,7 +25,7 @@
 	    } else if (checkIdPwFlag == 1) { // 로그인 성공 시
 	%>
 	    <script type="text/javascript">
-	        location.href = "index.jsp"; // 로그인 성공 후 이동할 페이지의 경로를 입력하세요.
+	        location.href = "index";
 	    </script>
 	<%
 	    }
