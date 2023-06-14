@@ -26,7 +26,17 @@
 					}
 				%>
 				<td class="margin02">&nbsp;</td>
+				<%
+					if(sessionId == null) {
+				%>
 				<td class="toptext"><a href="join">회원가입</a></td>
+				<%
+					} else {
+				%>
+				<td class="toptext"><a href="myPageModify">회원정보</a></td>
+				<%
+					}
+				%>
 				<td class="margin02">&nbsp;</td>
 				<td class="toptext"><a href="myPage">마이페이지</a></td>
 				<td class="margin02">&nbsp;</td>
@@ -47,9 +57,9 @@
 		</div>
 		
 		<div class="search">
-			<form class="search" method='get' action='searchResult'>
+			<form class="search" method='get' action=''>
 			  <div class="search_btn">
-			    <input class="search_box" type="text" id="search_word" name="keyword" placeholder='검색어를 입력하세요.'>
+			    <input class="search_box" type=text id="search_word" placeholder='검색어를 입력하세요.'>
 			    <div class="search_btn_img">
 			      <input type="image" src='/resources/img/search_btn.png' alt='검색하기'>
 			    </div>
