@@ -1,6 +1,7 @@
 package com.festicket.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,13 @@ public class ReplyController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "/replyWrite")
-	public String replyWrite(HttpServletRequest request, Model model) {
+	public String replyWrite(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		dao.replyWriteDao(request.getParameter("ca_content"), request.getParameter("ca_boardNum"));
+		dao.replyWriteDao(request.getParameter("sessionId"), request.getParameter("ca_content"), request.getParameter("ca_boardNum"));
 		dao.replyCountDao(request.getParameter("ca_boardNum")); // 원글의 댓글 수를 1증가
 		
 		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("ca_boardNum")));

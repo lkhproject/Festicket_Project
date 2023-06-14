@@ -74,24 +74,27 @@
                 <!-- 댓글 리스트 영역 끝 -->
                 <!-- 댓글 영역 끝 -->
 
-                <!-- 수정, 삭제, 목록 버튼 시작 -->
-                <div class="container" style="padding-top: 10px">
-                    <div class="button_area">
-                        <div class="button_modify">
-                            <form action="csBoardModify" method="get">
-                                <input type="hidden" name="c_idx" value="${csBoardDto.c_idx}">
-                                <input type="submit" class="btn" id="buttons" value="수정">
-                            </form>
-                        </div>
-                        <div class="button_delete">
-                            <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
-                        </div>
-                        <div class="button_list">
-                            <input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='csBoardList'">
-                        </div>
-                    </div>
-                </div>
-                <!-- 수정, 삭제, 목록 버튼 끝 -->
+				<!-- 수정, 삭제, 목록 버튼 시작 -->
+				<div class="container" style="padding-top: 10px">
+				    <div class="button_area">
+				        <!-- 작성자와 세션 아이디 비교하여 수정, 삭제 버튼 보이기 -->
+				        <c:if test="${csBoardDto.c_userId eq sessionId}">
+				            <div class="button_modify">
+				                <form action="csBoardModify" method="get">
+				                    <input type="hidden" name="c_idx" value="${csBoardDto.c_idx}">
+				                    <input type="submit" class="btn" id="buttons" value="수정">
+				                </form>
+				            </div>
+				            <div class="button_delete">
+				                <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
+				            </div>
+				        </c:if>
+				        <div class="button_list">
+				            <input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='csBoardList'">
+				        </div>
+				    </div>
+				</div>
+				<!-- 수정, 삭제, 목록 버튼 끝 -->
             </div>
         </div>
     </div>
@@ -101,67 +104,51 @@
     <!-- 푸터 끝 -->
 
     <script>
-    <!-- 글 삭제시 경고창 -->
-    function
-    removeCheck()
-    {
-    if
-    (confirm("삭제하시겠습니까?")
-    ==
-    true) {
-    location.href = 'csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'
-    }
-    else
-    {
-        return
-    false;
-    }
-    }
+        <!-- 글 삭제시 경고창 -->
+        function removeCheck() {
+            if (confirm("삭제하시겠습니까?")) {
+                location.href = `csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}`;
+            } else {
+                return false;
+            }
+        }
 
-	<script>
-	<!-- 글 삭제시 경고창 -->
-	function removeCheck() {
-		if (confirm("삭제하시겠습니까?") == true){
-			location.href='csBoardDelete?c_idx=${csBoardDto.c_idx}&ca_boardNum=${csBoardDto.c_idx}'
-	 	} else {return false;}
-	}
-	
-	<!-- 댓글 삭제시 경고창 -->
-	function replyRemoveCheck(ca_idx) {
-		 if (confirm("삭제하시겠습니까?") == true) {
-		   var form = document.createElement("form");
-		   form.action = 'replyDelete';
-		   form.method = 'post';
-	
-		   var ca_idxInput = document.createElement("input");
-		   ca_idxInput.type = 'hidden';
-		   ca_idxInput.name = 'ca_idx';
-		   ca_idxInput.value = ca_idx;
-		   form.appendChild(ca_idxInput);
-	
-		   var ca_boardNumInput = document.createElement("input");
-		   ca_boardNumInput.type = 'hidden';
-		   ca_boardNumInput.name = 'ca_boardNum';
-		   ca_boardNumInput.value = '${csBoardDto.c_idx }';
-		   form.appendChild(ca_boardNumInput);
-	
-		   document.documentElement.appendChild(form);
-		   form.submit();
-		 } else {
-		   return false;
-		 }
-	}
-	
-	<!-- 댓글 유효성 검사 -->
-	function replyValidateCheck() {
-	    var content = document.getElementsByName("ca_content")[0].value;
-	    if (content.trim() === "") {
-	        alert("내용을 입력해주세요.");
-	        return false;
-	    }
-	    return true;
-	}
-	</script>
+        <!-- 댓글 삭제시 경고창 -->
+        function replyRemoveCheck(ca_idx, ca_boardNum) {
+            if (confirm("삭제하시겠습니까?")) {
+                var form = document.createElement("form");
+                form.action = "replyDelete";
+                form.method = "post";
+
+                var ca_idxInput = document.createElement("input");
+                ca_idxInput.type = "hidden";
+                ca_idxInput.name = "ca_idx";
+                ca_idxInput.value = ca_idx;
+                form.appendChild(ca_idxInput);
+
+                var ca_boardNumInput = document.createElement("input");
+                ca_boardNumInput.type = "hidden";
+                ca_boardNumInput.name = "ca_boardNum";
+                ca_boardNumInput.value = ca_boardNum;
+                form.appendChild(ca_boardNumInput);
+
+                document.documentElement.appendChild(form);
+                form.submit();
+            } else {
+                return false;
+            }
+        }
+
+        <!-- 댓글 유효성 검사 -->
+        function replyValidateCheck() {
+            var content = document.getElementsByName("ca_content")[0].value;
+            if (content.trim() === "") {
+                alert("내용을 입력해주세요.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>

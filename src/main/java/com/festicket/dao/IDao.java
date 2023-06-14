@@ -93,7 +93,7 @@ public interface IDao {
 	public List<CSboardDto> csListDao(int countList, int pageNum); // 게시글 목록 모두 가져오기
 	public void csWriteDao(String c_userId, String c_title, String c_content); // 게시글 쓰기
 	public CSboardDto csViewDao(String c_idx); // 클릭한 게시글 내용 보기
-	public void csModifyDao(String c_idx, String c_title, String c_content); // 게시글 수정
+	public void csModifyDao(String c_idx, String c_userId, String c_title, String c_content); // 게시글 수정
 	public void csDeleteDao(String c_idx); // 게시글 삭제
 	public void csHitDao(String c_idx); // 조회수 증가
 	public int csListTotalCountDao(); // 총 게시글 개수 반환
@@ -107,7 +107,7 @@ public interface IDao {
 	public List<CSboardDto> csSearchWriterDao(String keyword, int countList, int pageNum); // 아이디로 검색
 	
 	// 댓글 기능
-	public int replyWriteDao(String ca_content, String ca_boardNum); // 댓글 입력
+	public void replyWriteDao(String ca_userId, String ca_content, String ca_boardNum); // 댓글 입력
 	public void replyCountDao(String ca_boardNum); // 댓글이 달린 원글의 댓글 필드 값 +1
 	public List<CSanswerDto> replyListDao(String ca_boardNum); // 해당 원글에 달린 댓글의 리스트 가져오기
 	public void replyDeleteDao(String ca_idx); // 댓글 삭제

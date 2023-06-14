@@ -12,11 +12,18 @@
 </head>
 <body>
 <%
-   int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+    int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
 
-   if(loginOk == 0) {
-    response.sendRedirect("login");
-   }
+    if(loginOk == 0) {
+        String previousPage = request.getRequestURL().toString();
+        session.setAttribute("previousPage", previousPage);
+%>
+    <script>
+        alert("회원만 글쓰기가 가능합니다.");
+        window.location.href = "login";
+    </script>
+<%
+    }
 %>
 	<!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
@@ -37,7 +44,7 @@
 				<div class="input-group mt-3">
 				    <span class="input-group-text" id="basic-addon1">작성자</span>
 				    <input type="text" class="form-control" aria-describedby="basic-addon1" 
-				        value="${csBoardDto.c_userId }" name="c_userId" readonly="readonly">
+				        value="${sessionId }" name="c_userId" readonly="readonly">
 				</div>
 				
 				<div class="input-group mt-3">

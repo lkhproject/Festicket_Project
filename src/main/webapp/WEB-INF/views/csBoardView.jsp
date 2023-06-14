@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <!-- 헤더 시작 -->
+    <!-- 헤더 -->
     <%@ include file="include/header.jsp" %>
     <!-- 헤더 끝 -->
 
@@ -39,8 +39,11 @@
                 <!-- 게시글 영역 끝 -->
 
                 <!-- 댓글 영역 시작 -->
-                <!-- 댓글 쓰기 시작 -->
+                <!-- 댓글 쓰기 -->
+                <!-- 세션 아이디가 작성자와 같거나 'admin'일 때만 댓글창 보이기 -->
+                <c:if test="${csBoardDto.c_userId eq sessionId or sessionId eq 'admin'}">
                 <form action="replyWrite" method="post" onsubmit="return replyValidateCheck()">
+                    <input type="hidden" name="sessionId" value="${sessionId}">
                     <input type="hidden" name="ca_boardNum" value="${csBoardDto.c_idx }">
                     <div class="reply_write">
                         <table cellpadding=0 cellspacing=0 width='100%'>
@@ -53,7 +56,9 @@
                         </table>
                     </div>
                 </form>
+                </c:if>
                 <!-- 댓글 쓰기 끝 -->
+                
                 <!-- 댓글 리스트 영역 시작 -->
                 <div class="container">
                     <c:forEach items="${replyList }" var="replyDto">
@@ -62,7 +67,9 @@
                                 <td id="reply_list_id">
                                     <span style='color:#1e6ec9; font-weight:bold;'>${replyDto.ca_userId }</span>
                                     &nbsp;&nbsp;|&nbsp;&nbsp;${replyDto.ca_answerDate }&nbsp;&nbsp;&nbsp;
-                                    <img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${replyDto.ca_idx}', '${csBoardDto.c_idx}')" style="cursor:pointer">
+							        <c:if test="${replyDto.ca_userId eq sessionId}">
+							          <img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${replyDto.ca_idx}', '${csBoardDto.c_idx}')" style="cursor:pointer">
+							        </c:if>
                                 </td>
                             </tr>
                             <tr>
@@ -75,29 +82,33 @@
                 <!-- 댓글 리스트 영역 끝 -->
                 <!-- 댓글 영역 끝 -->
 
-                <!-- 수정, 삭제, 목록 버튼 시작 -->
-                <div class="container" style="padding-top: 10px">
-                    <div class="button_area">
-                        <div class="button_modify">
-                            <form action="csBoardModify" method="get">
-                                <input type="hidden" name="c_idx" value="${csBoardDto.c_idx}">
-                                <input type="submit" class="btn" id="buttons" value="수정">
-                            </form>
-                        </div>
-                        <div class="button_delete">
-                            <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
-                        </div>
-                        <div class="button_list">
-                            <input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='csBoardList'">
-                        </div>
-                    </div>
-                </div>
-                <!-- 수정, 삭제, 목록 버튼 끝 -->
+				<!-- 수정, 삭제, 목록 버튼 시작 -->
+				<div class="container" style="padding-top: 10px">
+				    <div class="button_area">
+				        <!-- 작성자와 세션 아이디 비교하여 수정, 삭제 버튼 보이기 -->
+				        <c:if test="${csBoardDto.c_userId eq sessionId}">
+				            <div class="button_modify">
+				                <form action="csBoardModify" method="get">
+				                    <input type="hidden" name="c_idx" value="${csBoardDto.c_idx}">
+				                    <input type="submit" class="btn" id="buttons" value="수정">
+				                </form>
+				            </div>
+				            <div class="button_delete">
+				                <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
+				            </div>
+				        </c:if>
+				        <div class="button_list">
+				            <input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='csBoardList'">
+				        </div>
+				    </div>
+				</div>
+				<!-- 수정, 삭제, 목록 버튼 끝 -->
+
             </div>
         </div>
     </div>
 
-    <!-- 푸터 시작 -->
+    <!-- 푸터 -->
     <%@ include file="include/footer.jsp" %>
     <!-- 푸터 끝 -->
 	

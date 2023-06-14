@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.festicket.dao.IDao;
 import com.festicket.dto.CSboardDto;
 import com.festicket.dto.Criteria;
-import com.festicket.dto.MemberDto;
 import com.festicket.dto.PageDto;
 
 @Controller
@@ -55,9 +54,20 @@ public class CSboardController {
 	}
 	
 	@RequestMapping(value = "/csBoardWrite")
-	public String csBoardWrite() {
-		return "csBoardWrite";
-	}
+	   public String csBoardWrite(HttpServletRequest request, HttpSession session, Model model) {
+	      
+	      String sessionId = (String)session.getAttribute("sessionId");
+
+	      int loginOk = 0;
+	      
+	      if(sessionId != null && !sessionId.isEmpty()) {
+	         loginOk = 1;
+	      }
+	      
+	      request.setAttribute("loginOk", loginOk);
+	      
+	      return "csBoardWrite";
+	   }
 	
 	@RequestMapping(value = "/csBoardWriteOk")
 	public String csBoardWriteOk(HttpServletRequest request) {
@@ -74,7 +84,9 @@ public class CSboardController {
 	}
 	
 	@RequestMapping(value = "/csBoardView")
-	public String csBoardView(HttpServletRequest request, Model model) {
+	public String csBoardView(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -82,40 +94,36 @@ public class CSboardController {
 		
 		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
 		model.addAttribute("replyList", dao.replyListDao(request.getParameter("c_idx")));
+		model.addAttribute("sessionId", sessionId);
 		
 		return "csBoardView";
 	}
 	
 	@RequestMapping(value = "/csBoardModify")
-	public String csBoardModify(HttpServletRequest request, HttpSession session, Model model) {
+	public String csBoardModify(HttpServletRequest request, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
 		
-//		String sessionId = (String) session.getAttribute("sessionId");
-//		
-//		IDao dao = sqlSession.getMapper(IDao.class);
-//		
-//		model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
-		
 		return "csBoardModify";
 	}
 	
-	@RequestMapping(value = "csModifyOk")
-	public String csModifyOk(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "csBoardModifyOk")
+	public String csBoardModifyOk(HttpServletRequest request, Model model) {
 		
 		String c_idx = request.getParameter("c_idx");
+		String c_userId = request.getParameter("c_userId");
 		String c_title = request.getParameter("c_title");
 		String c_content = request.getParameter("c_content");
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		dao.csModifyDao(c_idx, c_title, c_content);
+		dao.csModifyDao(c_idx, c_userId, c_title, c_content);
 		
 		model.addAttribute("csBoardDto", dao.csViewDao(c_idx)); // 수정이 된 후 글내용
 		
-		return "csModifyOk";
+		return "csBoardModifyOk";
 	}
 	
 	@RequestMapping(value = "/csBoardDelete")

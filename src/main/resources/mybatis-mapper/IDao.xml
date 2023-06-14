@@ -251,7 +251,7 @@
 	</select>
 	
 	<update id="csModifyDao">
-		UPDATE eventCSboard SET c_title=#{param2}, c_content=#{param3} WHERE c_idx=#{param1}
+		UPDATE eventCSboard SET c_userId=#{param2}, c_title=#{param3}, c_content=#{param4} WHERE c_idx=#{param1}
 	</update>
 	
 	<delete id="csDeleteDao">
@@ -331,7 +331,7 @@
 		INSERT INTO 
 			eventCSanswer(ca_idx, ca_userId, ca_content, ca_boardNum)
 				VALUES
-					(ecsa_seq.nextval, '관리자', #{param1}, #{param2})
+					(ecsa_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
 	
 	<update id="replyCountDao">

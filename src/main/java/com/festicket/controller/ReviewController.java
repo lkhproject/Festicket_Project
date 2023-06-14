@@ -65,7 +65,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/reviewWrite")
-	public String reviewWrite(HttpServletRequest request, Model model, HttpSession session) {
+	public String reviewWrite(HttpServletRequest request, HttpSession session, Model model) {
 		String sessionId = (String)session.getAttribute("sessionId");
 		
 		int loginOk = 0;
