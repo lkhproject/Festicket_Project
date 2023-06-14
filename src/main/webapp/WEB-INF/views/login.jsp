@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 </head>
 <body>
+
 <%@ include file="include/header.jsp" %>
 <br><Br>
 	<center>
