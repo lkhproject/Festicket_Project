@@ -74,6 +74,15 @@ public class HomeController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request) {
+		
+	    HttpSession session = request.getSession();
+	    session.invalidate();
+	    
+	    return "logout";
+	}
+	
 	@RequestMapping(value = "/join")
 	public String join() {
 		return "join";

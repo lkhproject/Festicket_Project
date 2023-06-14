@@ -29,24 +29,19 @@
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
-	<center>
-		<table border="0" cellspacing="0" cellpadding="10" width="80%">
-			<tr>
-				<td class="contentbox">
-					<center>
-						<table border="0" cellspacing="0" cellpadding="10">									
-							<tr>
-							<td class="main_text">											
-								${memberDto.userId}님 로그인 하셨습니다. 반갑습니다!<br>	
-							<input class="content_btn01" type="button" value="메인화면가기" onclick="script:window.location.href='in'">									
-							</td>										
-							</tr>									
-						</table>
-					</center>
-				</td>
-			</tr>
-		</table>
-	</center>
+	
+	<div class="container">
+		<div class="container_1">
+			<div class="joinOk_container">
+				<img src = "/resources/img/festicket_logo.png" id="logoImg"> 
+				
+				<div class="confirm"><b>${memberDto.userId}</b>님 로그인하셨습니다.<br> 반갑습니다!</div>
+				
+				<input class="content_btn01" type="button" value="메인화면가기" onclick="script:window.location.href='index'">	
+			</div>
+		</div>
+	</div>
+
 <%@ include file="include/footer.jsp" %>
 </body>
 </html>
