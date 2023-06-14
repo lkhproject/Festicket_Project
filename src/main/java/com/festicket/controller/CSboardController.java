@@ -4,13 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.festicket.dao.IDao;
@@ -40,49 +38,40 @@ public class CSboardController {
 		} else {
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
 			criteria.setPageNum(pageNum);
-			
-			int totalCount = dao.csListTotalCountDao(); // 모든 글의 개수
-			
-			PageDto pageDto = new PageDto(criteria, totalCount);	
-			
-			List<CSboardDto> csBoardDtos = dao.csListDao(criteria.getCountList(), pageNum);
-			
-			model.addAttribute("pageMaker", pageDto);
-			model.addAttribute("csboardDtos", csBoardDtos);
-			model.addAttribute("currPage", pageNum);
 		}
+		
+		int totalCount = dao.csListTotalCountDao(); // 모든 글의 개수
+		
+		PageDto pageDto = new PageDto(criteria, totalCount);	
+		
+		List<CSboardDto> CSboardDtos = dao.csListDao(criteria.getCountList(), pageNum);
+		
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("csBoardDtos", CSboardDtos);
+		model.addAttribute("currPage", pageNum);
+		
 		return "csBoardList";
 	}
 	
 	@RequestMapping(value = "/csBoardWrite")
-	public String csBoardWrite(HttpSession session, Model model) {
-		String sessionId = (String) session.getAttribute("sessionId");
-		
-		MemberDto memberDto = new MemberDto("guest", null, null, null, "비회원", null);
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		if(sessionId == null) {
-			model.addAttribute("memberDto", memberDto);
-		} else {
-			model.addAttribute("memberDto", dao.getMemberInfo(sessionId));
-		}
+	public String csBoardWrite() {
 		return "csBoardWrite";
 	}
 	
-    @RequestMapping(value = "/csBoardWriteOk")
-    public String csBoardWriteOk(HttpServletRequest request) {
-      
-    String c_userId = request.getParameter("c_userId");
-    String c_title = request.getParameter("c_title");
-    String c_content = request.getParameter("c_content");
-      
-    IDao dao = sqlSession.getMapper(IDao.class);
-      
-    dao.csWriteDao(c_userId, c_title, c_content);
-      
-    return "redirect:csBoardList";
-    }
+	@RequestMapping(value = "/csBoardWriteOk")
+	public String csBoardWriteOk(HttpServletRequest request) {
+		
+		String c_userId = request.getParameter("c_userId");
+		String c_title = request.getParameter("c_title");
+		String c_content = request.getParameter("c_content");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.csWriteDao(c_userId, c_title, c_content);
+		
+		return "redirect:csBoardList";
+	}
 	
 	@RequestMapping(value = "/csBoardView")
 	public String csBoardView(HttpServletRequest request, Model model) {
@@ -99,32 +88,34 @@ public class CSboardController {
 	
 	@RequestMapping(value = "/csBoardModify")
 	public String csBoardModify(HttpServletRequest request, HttpSession session, Model model) {
-	      
-		String sessionId = (String) session.getAttribute("sessionId");
-  
-  		IDao dao = sqlSession.getMapper(IDao.class);
-  
-		model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
-	      
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
+		
+//		String sessionId = (String) session.getAttribute("sessionId");
+//		
+//		IDao dao = sqlSession.getMapper(IDao.class);
+//		
+//		model.addAttribute("csBoardDto", dao.csViewDao(sessionId));
+		
 		return "csBoardModify";
 	}
 	
-	@RequestMapping(value = "csBoardModifyOk")
-	public String csBoardModifyOk(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "csModifyOk")
+	public String csModifyOk(HttpServletRequest request, Model model) {
 		
 		String c_idx = request.getParameter("c_idx");
-		String c_userId = request.getParameter("c_userId");
 		String c_title = request.getParameter("c_title");
 		String c_content = request.getParameter("c_content");
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		dao.csModifyDao(c_idx, c_userId, c_title, c_content);
+		dao.csModifyDao(c_idx, c_title, c_content);
 		
-		model.addAttribute("csBoardDto", dao.csViewDao(c_idx));
-		model.addAttribute("replyList", dao.replyListDao(c_idx));
+		model.addAttribute("csBoardDto", dao.csViewDao(c_idx)); // 수정이 된 후 글내용
 		
-		return "csBoardModifyOk";
+		return "csModifyOk";
 	}
 	
 	@RequestMapping(value = "/csBoardDelete")

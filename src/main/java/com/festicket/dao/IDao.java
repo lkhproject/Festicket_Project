@@ -17,6 +17,11 @@ public interface IDao {
 	public int checkIdPwDao(String userId, String userPassword);// 아이디와 비밀번호의 일치여부 체크
 	public MemberDto getMemberInfo(String userId);// 아이디로 조회하여 회원 정보 모두 가져오기
 	
+	//회원가입
+	public int checkIdDao(String userId); //가입하려는 아이디의 존재여부 체크
+	public int checkEmailDao(String email); //가입하려는 이메일의 존재여부 체크
+	public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date signupDate); //회원가입
+	
 	// 검색
 	public List<EventDto> getSearchResult(String keyword, int countList, int pageNum); // 검색 결과 가져오기
 	public int totalSearchResultCount(String keyword); // 검색 결과 개수
@@ -45,18 +50,18 @@ public interface IDao {
             Date start_date, Date end_date, String eventPrice, int ticketCount); // 행사 추가
 	
 	// 페스티벌
-	public List<EventDto> festivalListDao(int countList, int countPage); // 페스티벌 리스트
+	public List<EventDto> festivalListDao(int countList, int pageNum); // 페스티벌 리스트
 // 정렬
-	public List<EventDto> festivalOrderByStartRecent(int countList, int countPage); // 페스티벌 리스트 시작일순
-	public List<EventDto> festivalOrderByStartLate(int countList, int countPage); // 페스티벌 리스트 시작일순
-	public List<EventDto> festivalOrderByEndRecent(int countList, int countPage); // 페스티벌 리스트 종료일순
-	public List<EventDto> festivalOrderByEndLate(int countList, int countPage); // 페스티벌 리스트 종료일순
+	public List<EventDto> festivalOrderByStartRecent(int countList, int pageNum); // 페스티벌 리스트 시작일순
+	public List<EventDto> festivalOrderByStartLate(int countList, int pageNum); // 페스티벌 리스트 시작일순
+	public List<EventDto> festivalOrderByEndRecent(int countList, int pageNum); // 페스티벌 리스트 종료일순
+	public List<EventDto> festivalOrderByEndLate(int countList, int pageNum); // 페스티벌 리스트 종료일순
 //
 	public int totalFestivalCountDao();
 	public List<EventDto> top5FestivalListDao(); // 페스티벌 탑5 리스트
 	
 	// 전시
-	public List<EventDto> exhibitionListDao(int countList, int countPage); // 전시 리스트
+	public List<EventDto> exhibitionListDao(int countList, int pageNum); // 전시 리스트
 // 정렬
 	public List<EventDto> exhibitionOrderByStartRecent(int countList, int pageNum); // 페스티벌 리스트 시작일순
 	public List<EventDto> exhibitionOrderByStartLate(int countList, int pageNum); // 페스티벌 리스트 시작일순
@@ -84,16 +89,11 @@ public interface IDao {
 	public int reservationConfirmedDao(String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate); // 예약 디테일 db에 넣어주기
 	public int checkDupRevDao(int eventNum); // 같은 행사, 같은 날에 예약된게 있는지 확인
 	
-	// 회원관리	
-	public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date signupDate); //회원가입
-	public int checkIdDao(String userId); //가입하려는 id의 존재여부 체크
-	public int modifyMemberDao(String userId, String userPassword, String name, String email);//회원정보 수정
-	
 	// 고객센터 게시판 기능
 	public List<CSboardDto> csListDao(int countList, int pageNum); // 게시글 목록 모두 가져오기
 	public void csWriteDao(String c_userId, String c_title, String c_content); // 게시글 쓰기
 	public CSboardDto csViewDao(String c_idx); // 클릭한 게시글 내용 보기
-	public void csModifyDao(String c_idx, String c_userId, String c_title, String c_content); // 게시글 수정
+	public void csModifyDao(String c_idx, String c_title, String c_content); // 게시글 수정
 	public void csDeleteDao(String c_idx); // 게시글 삭제
 	public void csHitDao(String c_idx); // 조회수 증가
 	public int csListTotalCountDao(); // 총 게시글 개수 반환

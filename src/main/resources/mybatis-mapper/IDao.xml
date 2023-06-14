@@ -141,14 +141,22 @@
 		INSERT INTO eventMember VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
 	</insert>
 	
+	<select id="checkIdDao" resultType="int">
+		SELECT COUNT(*)
+		FROM eventMember
+		WHERE userId = #{param1}
+	</select>
+	
+	<select id="checkEmailDao" resultType="int">
+		SELECT COUNT(*)
+		FROM eventMember
+		WHERE email = #{param1}
+	</select>
+	
 	<select id="checkIdPwDao" resultType="int">
 		SELECT COUNT(*) FROM eventMember WHERE userId=#{param1} AND userPassword=#{param2}
 	</select>
 
-	<update id="modifyMemberDao">
-		UPDATE eventMember SET userPassword=#{param2}, name=#{param3}, email=#{param4} WHERE mid=#{param1}
-	</update>
-	
 	<select id="getMemberInfo" resultType="com.festicket.dto.MemberDto">
 		SELECT * FROM eventMember
 		WHERE userId=#{param1}
@@ -242,9 +250,9 @@
 		SELECT * FROM eventCSboard WHERE c_idx=#{param1}
 	</select>
 	
-    <update id="csModifyDao">
-    	UPDATE eventCSboard SET c_userId=#{param2}, c_title=#{param3}, c_content=#{param4} WHERE c_idx=#{param1}
-    </update>
+	<update id="csModifyDao">
+		UPDATE eventCSboard SET c_title=#{param2}, c_content=#{param3} WHERE c_idx=#{param1}
+	</update>
 	
 	<delete id="csDeleteDao">
 		DELETE FROM eventCSboard WHERE c_idx=#{param1}
