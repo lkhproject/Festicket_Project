@@ -3,6 +3,7 @@ package com.festicket.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,14 +26,17 @@ public class QAController {
 	
 	@RequestMapping(value = "/qaView")
 	public String qaView(HttpSession session, Model model, HttpServletRequest request) {
-		
+
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		int qaNum = Integer.parseInt(request.getParameter("selectedQA"));
+		String strQAnum = request.getParameter("selectedQA");
+		
+		int qaNum = Integer.parseInt(strQAnum);
 		
 		dao.qaHitDao(qaNum);
 		
 		model.addAttribute("qaDto", dao.getQaDao(qaNum));
+		model.addAttribute("QAreplyList", dao.QAreplyListDao(strQAnum));
 		
 		return "QA/qaView";
 	}
@@ -64,7 +68,7 @@ public class QAController {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String strToday = formatter.format(now);
         Date today = formatter.parse(strToday);
-
+        
 		dao.qaWriteDao(q_eventNum, sessionId, q_title, q_content, today, 0);
 		
 		return "redirect:qaBoardList";
@@ -77,10 +81,10 @@ public class QAController {
 		
 		int loginOk = 0;
 		
-		if(sessionId != null && !sessionId.isEmpty()) {
+		if(sessionId != null) {
 			loginOk = 1;
 		}
-		
+
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		// 선택한 이벤트 번호 등을 세션에 저장하고 이후에 필요한 곳에서 사용
@@ -111,5 +115,41 @@ public class QAController {
 		request.setAttribute("event", dao.getEventDao(eventNum));
 		
 		return "QA/qaBoardList";
+	}
+	
+	@RequestMapping(value = "/QAreplyWrite")
+	public String QAreplyWrite(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int qa = Integer.parseInt(request.getParameter("selectedQA"));
+		
+		System.out.println(qa);
+		
+		dao.QAreplyWriteDao(request.getParameter("sessionId"), request.getParameter("selectedQA"), request.getParameter("qa_content"));
+		dao.QAreplyCountDao(request.getParameter("selectedQA")); // 원글의 댓글 수를 1증가
+		
+		model.addAttribute("qaDto", dao.getQaDao(qa));
+		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("qa_boardNum")));
+		
+		return "QA/qaView";
+	}
+	
+	@RequestMapping(value = "/QAreplyDelete")
+	public String QAreply_delete(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.QAreplyDeleteDao(request.getParameter("qa_idx")); // 댓글 삭제
+		dao.QAreplyCountMinusDao(request.getParameter("qa_boardNum")); // 댓글 개수 1개 삭제
+		
+		int qa = Integer.parseInt(request.getParameter("qa_boardNum"));
+		
+		model.addAttribute("qaDto", dao.getQaDao(qa));	
+		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("qa_boardNum")));
+		
+		return "QA/qaView";
 	}
 }

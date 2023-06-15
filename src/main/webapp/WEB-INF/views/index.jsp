@@ -23,10 +23,10 @@
 	    <div class="carousel-item active">
 	      <img src="https://img.freepik.com/free-photo/cloud-and-blue-sky_1150-35749.jpg" class="d-block w-100" style="height: 500px">
 	    </div>
-	    <div class="carousel-item">
+	<!--    <div class="carousel-item">
 	      <img src="/resources/img/search_btn.png" class="d-block w-100" style="height: 500px">
-	    </div>
-	  </div>
+	    </div> -->
+	  </div> 
 	  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
 	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	    <span class="visually-hidden">Previous</span>

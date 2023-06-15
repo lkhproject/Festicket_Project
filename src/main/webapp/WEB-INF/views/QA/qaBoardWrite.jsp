@@ -12,9 +12,9 @@
 </head>
 <body>
 
-	<%
-		int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
-	%>
+<%
+	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
+%>
 
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
@@ -94,6 +94,5 @@
 	  document.qaform.submit();
 	}
 	</script>
-	
 </body>
 </html>

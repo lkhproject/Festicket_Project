@@ -13,13 +13,11 @@
 <title>페스티켓</title>
 </head>
 <body>
+<%
+	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+%>
 
-	<%
-		int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
-		int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
-	%>
-
-	<!-- 헤더 -->
+	<!-- 헤더 시작 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
 
@@ -101,7 +99,7 @@
 	</div>
 	</div>
 	
-	<!-- 푸터 -->
+	<!-- 푸터 시작 -->
 	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 </body>

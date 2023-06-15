@@ -8,6 +8,7 @@ import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
 import com.festicket.dto.MemberDto;
 import com.festicket.dto.QABoardDto;
+import com.festicket.dto.QAanswerDto;
 import com.festicket.dto.ReserveDto;
 import com.festicket.dto.ReviewDto;
 
@@ -40,7 +41,6 @@ public interface IDao {
 			public List<EventDto> searchOrderByStartLate(String keyword, int countList, int pageNum);
 			public List<EventDto> searchOrderByEndRecent(String keyword, int countList, int pageNum);
 			public List<EventDto> searchOrderByEndLate(String keyword, int countList, int pageNum);
-			
 	
 	// 예매
 	public List<EventDto> eventAllListDao(); // 모든 행사 리스트
@@ -56,6 +56,14 @@ public interface IDao {
 	public int totalQAListCountDao(int eventNum); // qa개수 가져오기
 	public void qaHitDao(int q_idx); // 조회수 증가
 	public void qaWriteDao(int eventNum, String userId, String title, String content, Date writeDate, int hit); // 문의하기
+	
+	// QA 답변
+	public int QAreplyWriteDao(String qa_userId, String qa_boardNum, String qa_content); // QA 댓글 입력
+	public void QAreplyCountDao(String qa_boardNum); // QA 댓글이 달린 원글의 댓글 필드 값 +1
+	public List<QAanswerDto> QAreplyListDao(String qa_boardNum); // 해당 원글에 달린 QA 댓글의 리스트 가져오기
+	public void QAreplyDeleteDao(String qa_idx); // QA 댓글 삭제
+	public void QAreplyCountMinusDao(String qa_boardNum); // QA 댓글이 달린 원글의 댓글 필드 값 -1
+	public void QAboardReplyDeleteDao(String qa_boardNum); // 삭제한 게시글 QA 댓글 모두 삭제
 	
 	// 리뷰
 	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 글 리스트 가져오기
