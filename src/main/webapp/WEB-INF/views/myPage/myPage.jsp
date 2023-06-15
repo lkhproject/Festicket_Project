@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
-	<!-- 헤더 -->
-	<%@ include file="../include/header.jsp" %>
+
+	<!-- 헤더 시작-->
+	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝-->
 	
 	<!-- 상단 box 시작 -->
@@ -162,52 +163,49 @@
 						</c:choose>
 					</tbody>
 				</table>
-				
-	<!-- 페이징 시작 -->
-	<div class="container" id="csPagingNum">
-	  <ul class="pagination">
-    	<li class="page-item" id="page-item">
-			<c:if test="${pageMaker.prev }">
-				<a class="page-link" aria-label="Previous" href="myPage?pageNum=${pageMaker.startPage-5 }">
-					<span aria-hidden="true">&laquo;</span>
-				</a>
-			</c:if>
-		</li>
-		
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-			<c:choose>
-				<c:when test="${currPage == num }">
-					<li class="page-item">
-						<span class="page-link" style="font-weight: bold;">${num }</span>
-					</li>
-				</c:when>
-				<c:otherwise>
-					<li class="page-item">
-						<a class="page-link" href="myPage?pageNum=${num }">${num }</a>
-					</li>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		
-		<li class="page-item">
-			<c:if test="${pageMaker.next }">
-				<a class="page-link" aria-label="Next" href="myPage?pageNum=${pageMaker.startPage+5 }">
-					<span aria-hidden="true">&raquo;</span>
-				</a>
-			</c:if>
-		</li>
-	  </ul>
-	</div>
-	<!-- 페이징 끝 -->
-		
+		<!-- 페이징 시작 -->
+		<div class="container" id="csPagingNum">
+		  <ul class="pagination">
+	    	<li class="page-item" id="page-item">
+				<c:if test="${pageMaker.prev }">
+					<a class="page-link" aria-label="Previous" href="myPage?pageNum=${pageMaker.startPage-5 }">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</c:if>
+			</li>
+			
+			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+				<c:choose>
+					<c:when test="${currPage == num }">
+						<li class="page-item">
+							<span class="page-link" style="font-weight: bold;">${num }</span>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a class="page-link" href="myPage?pageNum=${num }">${num }</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<li class="page-item">
+				<c:if test="${pageMaker.next }">
+					<a class="page-link" aria-label="Next" href="myPage?pageNum=${pageMaker.startPage+5 }">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</c:if>
+			</li>
+		  </ul>
+		</div>
+		<!-- 페이징 끝 -->
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-	<!-- 푸터 -->
-		<%@ include file="../include/footer.jsp" %>
+	<!-- 푸터 시작 -->
+		<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
-
 </body>
 </html>
