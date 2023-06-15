@@ -37,13 +37,9 @@ public class ReservationController {
 		String sessionId = (String)session.getAttribute("sessionId");
 		
 		int loginOk = 0;
-		int adminCheck = 0;
 		
-		if(sessionId != null && !sessionId.equals("admin")) {
+		if(sessionId != null) {
 			loginOk = 1;
-		}
-		if(sessionId != null && sessionId.equals("admin")) {
-			adminCheck = 1;
 		}
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
@@ -51,7 +47,6 @@ public class ReservationController {
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
 		session.setAttribute("eventNum", eventNum);
 		
-		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("event", dao.getEventDao(eventNum));
 		model.addAttribute("reviewList", dao.getReviewListDao(eventNum));

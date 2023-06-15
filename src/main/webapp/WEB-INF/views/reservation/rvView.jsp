@@ -26,7 +26,6 @@
 
 <%
 	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
-	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
 %>
 <input type="hidden" id="login-ok" value="<%= loginOk %>">
 
@@ -125,17 +124,14 @@
 				<input type="hidden" name="selectedEventNum" id="selectedEventNum" value="${event.eventNum }">
 				<input type="hidden" name="eventPrice" id="eventPrice" value="${eventPrice }">
 				<!-- 로그인시에만 예매가능 -->
-			  <%
-		      	if(adminCheck == 1) {
-		      %>
-		      		<input type="button" value="수정하기" id="adminBtn" onclick="script:window.location.href='adminModify?selectedEvent=${event.eventNum }'">
-		      <%
-		      	} else if(loginOk == 1) {
-		      %>
-		      		<input type="submit" value="예매하기" onclick="return confirmRev(event)">
-		      <%
-		      	}
-		      %>
+				<c:choose>
+				      <c:when test="${sessionId eq 'admin'}">
+				      		<input type="button" value="수정하기" id="adminBtn" onclick="script:window.location.href='adminModify?selectedEvent=${event.eventNum }'">
+				      </c:when>
+				      <c:otherwise>
+				      		<input type="submit" value="예매하기" onclick="return confirmRev(event)">
+				      </c:otherwise>
+			      </c:choose>
 			</form>
 		</div>
 	<!-- 예매 영역 끝 -->
