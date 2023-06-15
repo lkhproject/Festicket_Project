@@ -71,10 +71,10 @@
 			<ul class="category">
 				<li><a href="index"><img class="logo" src="/resources/img/festicket_logo.png" alt="로고"></a></li>
 				<li class="categorytext"><a href="index">홈</a></li>
-				<li class="categorytext"><a href="reservation">예매</a></li>
+				<li class="categorytext"><a href="reservation">전체행사</a></li>
 				<li class="categorytext"><a href="festival">페스티벌</a></li>
 				<li class="categorytext"><a href="exhibition">전시</a></li>
-			    <li class="categorytext"><a href="ranking">랭킹</a></li>
+			    <li class="categorytext"><a href="ranking">예매순위</a></li>
 			</ul>
 		</div>
 		
