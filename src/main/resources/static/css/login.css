@@ -7,11 +7,6 @@ body {
 	background: #eeeeee;
 }
 
-a:hover {
-	color: #6800b8;
-	font-weight: bolder;
-	font-family: 'Noto Sans KR', sans-serif;
-}
 
 input.login_box {
 	width:500px;
