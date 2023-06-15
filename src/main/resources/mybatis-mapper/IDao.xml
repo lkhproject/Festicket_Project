@@ -468,7 +468,7 @@
 	<!-- *** 고객센터 관련 끝 *** -->
 	
 	
-	<!-- *** 댓글 관련 *** -->
+	<!-- *** 고객센터 댓글 관련 *** -->
 	<insert id="replyWriteDao">
 		INSERT INTO 
 			eventCSanswer(ca_idx, ca_userId, ca_content, ca_boardNum)
@@ -495,7 +495,7 @@
 	<delete id="boardReplyDeleteDao">
 		DELETE FROM eventCSanswer WHERE ca_boardNum=#{param1}
 	</delete>
-	<!-- *** 댓글 관련 끝 *** -->
+	<!-- *** 고객센터 댓글 관련 끝 *** -->
 
 	
 	<!-- *** 페스티벌, 전시 관련 *** -->
