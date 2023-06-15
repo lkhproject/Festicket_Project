@@ -30,7 +30,7 @@
     			<div class="title"><h2 class="title_txt">마이페이지</h2></div>
 			<ul class="quick_menu_list">
     	    <li class="quick_menu_item">
-    	    <a href="" class="quick_link">
+    	    <a href="myPage" class="quick_link">
 				<div class="qmemu_box">
                    		<span class="qmenu_tit">
                    			<i class="bi bi-ticket-perforated"></i>
@@ -43,7 +43,7 @@
         	</li>
         	
       		<li class="quick_menu_item">
-            <a href="" class="quick_link">
+            <a href="myPageModify" class="quick_link">
                 <div class="qmemu_box">
                     <span class="qmenu_tit">
                   	 	<i class="bi bi-person-gear"></i>
@@ -72,7 +72,7 @@
 					<span class="help_submenu_tit">활동관리</span>
 					<ul class="help_submenu">
 						<li>
-							<a href="" class="my_lmenu32">나의 후기</a>
+							<a href="myPageReview" class="my_lmenu32">나의 후기</a>
 						</li>
 					</ul>
 				</li>
@@ -80,10 +80,10 @@
 					<span class="help_submenu_tit">회원정보관리</span>
 					<ul class="help_submenu">
 						<li>
-							<a href="" class="my_lmenu52">회원정보수정</a>
+							<a href="myPageModify" class="my_lmenu52">회원정보수정</a>
 						</li>
 						<li>
-							<a href="" class="my_lmenu53">회원탈퇴</a>
+							<a href="myPageUnreg" class="my_lmenu53">회원탈퇴</a>
 						</li>
 					</ul>
 				</li>
@@ -121,7 +121,7 @@
 				</dl>
 			</div>
 			<br><br><br><br>
-			<p class="guide_text">예매한 내역이 확인이 안되실 경우 <a href="" class="color_point">1:1 상담 문의</a>를 이용해주세요.</p>
+			<p class="guide_text">예매한 내역이 확인이 안되실 경우 <a href="csBoardList" class="color_point">고객센터</a>를 이용해주세요.</p>
 			<br>
 			<div class="container">
 				<div class="basic_tbl basic_tbl_v3">

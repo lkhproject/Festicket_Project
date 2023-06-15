@@ -30,28 +30,39 @@
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
-	<div class="inner">
-		<div class="quick_menu_wrap">
-			<div class="title">
-				<h2 class="title_txt">마이페이지</h2>
-			</div>
+	<!-- 상단 box 시작 -->
+			<div class="inner">
+				<div class="quick_menu_wrap">
+    			<div class="title"><h2 class="title_txt">마이페이지</h2></div>
 			<ul class="quick_menu_list">
-				<li class="quick_menu_item">
-					<a href="myPage" class="quick_link">
-						<div class="qmemu_box">
-							<span class="qmenu_tit">나의 예매내역</span>
-						</div>
-					</a>
-				</li>
-				<li class="quick_menu_item_info">
-					<a href="myPageModify" class="quick_link">
-						<div class="qmemu_box">
-							<span class="qmenu_tit">나의 회원정보</span>
-						</div>
-					</a>
-				</li>
-			</ul>
-		</div>
+    	    <li class="quick_menu_item">
+    	    <a href="myPage" class="quick_link">
+				<div class="qmemu_box">
+                   		<span class="qmenu_tit">
+                   			<i class="bi bi-ticket-perforated"></i>
+                   		</span>
+                </div>
+                 <div class="qmemu_box01">
+                    <span class="qmenu_tit"> 나의 예매내역 </span>
+                </div>
+            </a>
+        	</li>
+        	
+      		<li class="quick_menu_item">
+            <a href="myPageModify" class="quick_link">
+                <div class="qmemu_box">
+                    <span class="qmenu_tit">
+                  	 	<i class="bi bi-person-gear"></i>
+                    </span>
+                </div>
+                 <div class="qmemu_box01">
+                    <span class="qmenu_tit"> 나의 회원정보 </span>
+                </div>
+            </a>
+      	  	</li>
+  		  	</ul>
+				</div>
+		
 		<div class="help_cont">
 			<ul class="help_lmenu">
 				<li class="has_sub">
