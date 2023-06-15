@@ -43,7 +43,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/loginOk")
-	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
+	public String loginOk(HttpServletRequest request, HttpSession session, Model model) {
 		
 		String userId = request.getParameter("userId");
 		String userPassword = request.getParameter("userPassword");

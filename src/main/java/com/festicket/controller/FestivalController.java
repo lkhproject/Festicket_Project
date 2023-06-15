@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,15 @@ public class FestivalController {
 	SqlSession sqlSession;
 	
 	@RequestMapping(value = "/festival")
-	public String festival(HttpServletRequest request, Model model, Criteria criteria) {
+	public String festival(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		int adminCheck = 0;
+		
+		if(sessionId.equals("admin")) {
+			adminCheck = 1;
+		}
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -45,6 +54,7 @@ public class FestivalController {
 		
 		List<EventDto> festivalDtos = dao.festivalListDao(criteria.getCountList(), pageNum);
 		
+		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("festivalDtos", festivalDtos);
@@ -54,7 +64,15 @@ public class FestivalController {
 	}
 	
 	@RequestMapping(value = "/festivalOrderBy")
-	public String festivalOrderBy(HttpServletRequest request, Model model, Criteria criteria) {
+	public String festivalOrderBy(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		int adminCheck = 0;
+		
+		if(sessionId.equals("admin")) {
+			adminCheck = 1;
+		}
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -92,6 +110,7 @@ public class FestivalController {
 			festivalDtos = dao.festivalOrderByEndLate(criteria.getCountList(), pageNum);
 		}
 		
+		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("festivalDtos", festivalDtos);

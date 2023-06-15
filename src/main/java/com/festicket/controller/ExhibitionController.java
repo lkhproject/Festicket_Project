@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,16 @@ public class ExhibitionController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "/exhibition")
-	public String exhibition(HttpServletRequest request, Model model, Criteria criteria) {
+	public String exhibition(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) {
 
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		int adminCheck = 0;
+		
+		if(sessionId.equals("admin")) {
+			adminCheck = 1;
+		}
+		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		// 페이징
@@ -45,6 +54,7 @@ public class ExhibitionController {
 		
 		List<EventDto> exhibitionDtos = dao.exhibitionListDao(criteria.getCountList(), pageNum);
 		
+		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("exhibitionDtos", exhibitionDtos);
@@ -54,7 +64,15 @@ public class ExhibitionController {
 	}
 	
 	@RequestMapping(value = "/exhibitionOrderBy")
-	public String exhibitionOrderBy(HttpServletRequest request, Model model, Criteria criteria) {
+	public String exhibitionOrderBy(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		int adminCheck = 0;
+		
+		if(sessionId.equals("admin")) {
+			adminCheck = 1;
+		}
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -92,6 +110,7 @@ public class ExhibitionController {
 			exhibitionDtos = dao.exhibitionOrderByEndLate(criteria.getCountList(), pageNum);
 		}
 		
+		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("exhibitionDtos", exhibitionDtos);
