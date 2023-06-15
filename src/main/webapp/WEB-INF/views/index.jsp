@@ -20,12 +20,15 @@
 	<!-- 롤링배너 -->
 	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="margin: 50px 0px 0px">
 	  <div class="carousel-inner">
-	    <div class="carousel-item active">
-	      <img src="https://img.freepik.com/free-photo/cloud-and-blue-sky_1150-35749.jpg" class="d-block w-100" style="height: 500px">
+	    <div class="carousel-item active" >
+	      <img src="/resources/img/rolling_banner_01.jpg" class="d-block w-100">
 	    </div>
-	<!--    <div class="carousel-item">
-	      <img src="/resources/img/search_btn.png" class="d-block w-100" style="height: 500px">
-	    </div> -->
+	    <div class="carousel-item">
+	      <img src="/resources/img/rolling_banner_02.jpg" class="d-block w-100">
+	    </div>
+	   	<div class="carousel-item">
+	      <img src="/resources/img/rolling_banner_03.jpg" class="d-block w-100">
+	    </div>
 	  </div> 
 	  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
 	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
