@@ -81,7 +81,7 @@ public class ReviewController {
 	}
 	
     @RequestMapping(value = "/reviewWriteOk")
-    public String csBoardWriteOk(HttpServletRequest request) {
+    public String reviewWriteOk(HttpServletRequest request) {
       
     	String rw_userId = request.getParameter("rw_userId");
     	String rw_eventNum = request.getParameter("rw_eventNum");
