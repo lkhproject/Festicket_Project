@@ -16,7 +16,7 @@ div.container {
 	font-size: 15px;
 }
 
-h2.csBoardTitle {
+h2.rvWriteTitle {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 35px;
 	font-weight: bold;
@@ -87,12 +87,12 @@ div.error {
 	margin-top: 40px;
 }
 
-#csBoard_page_form {
-	width: 80%;
+#rvWrite_page_form {
+	width: 50%;
 	height:auto;
 	overflow:hidden;
-	padding-left: 100px;
-	padding-right: 100px;
+	padding-left: 70px;
+	padding-right: 70px;
 	padding-bottom: 100px;
 	border-radius: 0.8em;
 	background-color: white;
@@ -105,20 +105,10 @@ div.error {
 }
 
 textarea.form-control {
-	height: 300px;
+	height: 200px;
 }
 
 .form-control:focus {
 	box-shadow: none;
 	border-color: #ced4da;
-}
-
-.star {
-  font-size: 24px;
-  color: gray;
-  cursor: pointer;
-}
-
-.star.selected {
-  color: gold;
 }

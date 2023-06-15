@@ -15,9 +15,19 @@ import com.festicket.dto.ReviewDto;
 
 public interface IDao {
 	
-	// 로그인
-	public int checkIdPwDao(String userId, String userPassword);//아이디와 비밀번호의 일치여부 체크
-	public MemberDto getMemberInfo(String userId);//아이디로 조회하여 회원 정보 모두 가져오기
+	//회원가입
+	public int checkIdDao(String userId); //가입하려는 id의 존재여부 체크
+	public int checkEmailDao(String email); //가입하려는 id의 존재여부 체크
+//		public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date today);
+	public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date signupDate); //회원가입
+	
+	
+	//로그인
+	public int checkIdPwDao(String userId, String userPassword); //아이디와 비밀번호의 일치여부 체크
+	public MemberDto getMemberInfo(String userId);
+
+	//회원정보수정
+	public void modifyMemberDao(String userId, String userPassword, String userPhone, String email, String name);
 	
 	// 검색
 	public List<EventDto> getSearchResult(String keyword, int countList, int pageNum); // 검색 결과 가져오기
@@ -83,6 +93,7 @@ public interface IDao {
 	// 리뷰
 	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 글 리스트 가져오기
 	public int reviewLiker(int reviewIdx, String userId); // 리뷰 좋아요
+	public void reviewWriteDao(String c_userId, String rw_eventNum, String rw_rating, String rw_content); // 리뷰 쓰기
 	public void cancelReviewLiker(int reviewIdx, String userId); // 리뷰 좋아요 취소
 	
 	// QA

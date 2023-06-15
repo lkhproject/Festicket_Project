@@ -11,6 +11,10 @@ thead {
 	background-color: #eeeeee
 }
 
+th, td {
+	text-align: center;
+}
+
 div.container {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
@@ -50,13 +54,6 @@ div.button_cancel {
 	float: left;
 }
 
-div.error {
-	font-size: 13px;
-	font-weight: bold;
-	color: #1e6ec9;
-	margin-top: 5px;
-}
-
 #button_submit {
 	font-weight: bold;
 	background: #6800b8;
@@ -89,8 +86,7 @@ div.error {
 
 #csBoard_page_form {
 	width: 80%;
-	height:auto;
-	overflow:hidden;
+	height: 670px;
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-bottom: 100px;
@@ -111,14 +107,4 @@ textarea.form-control {
 .form-control:focus {
 	box-shadow: none;
 	border-color: #ced4da;
-}
-
-.star {
-  font-size: 24px;
-  color: gray;
-  cursor: pointer;
-}
-
-.star.selected {
-  color: gold;
 }
