@@ -12,9 +12,20 @@ div.headerline {
 }
 
 tr.top_menu {
-	margin-top: 12px;
-    float: center;
-    display: flex;
+	float: right;
+	top: 0;
+	margin-top: 8px;
+	margin-right: 180px;
+}
+
+.top_menu td {
+   	padding: 0 5px;
+}
+
+td.toptext_userId {
+	font-size: 13px;
+	font-family: 'Noto Sans KR', sans-serif;
+    color: #7c7c7c;
 }
 
 td.toptext {
@@ -29,23 +40,16 @@ td.toptext:hover {
 	font-weight: bolder;
 }
 
-td.margin01 {
-	width: 75%;
-}
-
-td.margin02 {
-	width: 2%;
-}
-
 hr.line {
 	background: #d6d6d6;
     height:1px;
     border:0;
     margin: 8px;
+    margin-top: 8px;
 }
 
 div.categoryline {
-	margin-left: 150px;
+	margin-left: 200px;
 }
 
 img.logo {
