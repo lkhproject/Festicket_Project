@@ -75,7 +75,7 @@
 		</table>
 <!-- 페스티벌 리스트 끝 -->
 
-	<!-- 페이징 시작 searchOption 안넘어옴 확인필요-->
+	<!-- 페이징 시작 -->
 	<div class="container" id="festPagingNum">
 		<c:if test="${pageMaker.prev }">
 			<a href="festivalOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.orderOption}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;

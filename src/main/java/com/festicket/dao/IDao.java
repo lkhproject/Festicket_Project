@@ -21,6 +21,12 @@ public interface IDao {
 	// 검색
 	public List<EventDto> getSearchResult(String keyword, int countList, int pageNum); // 검색 결과 가져오기
 	public int totalSearchResultCount(String keyword); // 검색 결과 개수
+// 정렬
+	public List<EventDto> searchOrderByStartRecent(String keyword, int countList, int pageNum);
+	public List<EventDto> searchOrderByStartLate(String keyword, int countList, int pageNum);
+	public List<EventDto> searchOrderByEndRecent(String keyword, int countList, int pageNum);
+	public List<EventDto> searchOrderByEndLate(String keyword, int countList, int pageNum);
+///
 	
 	// 예매
 	public List<EventDto> eventAllListDao(); // 모든 행사 리스트
@@ -118,5 +124,6 @@ public interface IDao {
 	public void replyDeleteDao(String ca_idx); // 댓글 삭제
 	public void replyCountMinusDao(String ca_boardNum); // 댓글이 달린 원글의 댓글 필드 값 -1
 	public void boardReplyDeleteDao(String ca_boardNum); // 삭제한 게시글 댓글 모두 삭제
+	
 	
 }

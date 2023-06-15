@@ -8,11 +8,7 @@ div {
 
 h2.title {
 	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 18px;
-}
-
-b {
-	font-size: 18px;
+	font-size: 20px;
 }
 
 div.container_1 {
@@ -24,9 +20,30 @@ div.continer_select {
 	padding-bottom: 65px;
 }
 
+div.totalNum {
+	font-weight: 600;
+	margin-left: 5px;
+}
+
 div.selector {
 	float: right;
 	padding-top: 25px;
+}
+
+div.selectorBtn {
+	float: right;
+	padding-top: 17px;
+}
+
+#orderBtn {
+	float: right;
+	background: gray;
+	color: white;
+	padding: 3px 15px;
+	border-radius : 0.8em;
+	border: none;
+	font-size: 14px;
+	margin: 10px 0px 0px 3px;
 }
 
 div.container_2 {
@@ -52,6 +69,16 @@ input[type="button"] {
 	border: none;
 }
 
+button[type="submit"] {
+	background: gray;
+	color: white;
+	padding: 6px 40px;
+	border-radius : 0.8em;
+	border: none;
+	font-size: 16px;
+	margin: 10px 0px 0px 3px;
+}
+
 #reserve {
 	display: table-cell;
 	vertical-align: middle;
@@ -69,6 +96,7 @@ img.listImg {
 	margin: 20px 0px 20px;
 	cursor:pointer;
 }
+
 p {
 	line-height: 6px;
 }

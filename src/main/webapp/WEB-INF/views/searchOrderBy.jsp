@@ -81,7 +81,7 @@
 	<div class="container" id="PagingNum">
 		
 		<c:if test="${pageMaker.prev }">
-			<a href="searchResult?keyword=${search_word }&pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
+			<a href="searchOrderBy?keyword=${search_word }&orderOption=${param.orderOption}&pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
 		</c:if>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
@@ -90,13 +90,13 @@
 					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>
-					<a href="searchResult?keyword=${search_word }&pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+					<a href="searchOrderBy?keyword=${search_word }&orderOption=${param.orderOption}&pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next }">
-			<a href="searchResult?keyword=${search_word }&pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
+			<a href="searchOrderBy?keyword=${search_word }&orderOption=${param.orderOption}&pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
 		</c:if>
 	</div>
 	

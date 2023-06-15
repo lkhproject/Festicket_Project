@@ -1,5 +1,6 @@
 package com.festicket.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,43 +33,6 @@ public class HomeController {
 		model.addAttribute("exhibition_5", dao.top5ExhibitionListDao());
 		
 		return "index";
-	}
-	
-	@RequestMapping(value = "/searchResult")
-	public String searchResult(HttpServletRequest request, Model model, Criteria criteria) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		// 페이징
-		int pageNum = 0;
-		
-		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
-		if(request.getParameter("pageNum") == null) {
-			pageNum = 1;
-			criteria.setPageNum(pageNum);
-		} else {
-			pageNum = Integer.parseInt(request.getParameter("pageNum"));
-			criteria.setPageNum(pageNum);
-		}
-		
-		String keyword = request.getParameter("search_word");
-		
-		int totalResult = dao.totalSearchResultCount(keyword); // 모든 글의 개수
-		
-		System.out.println(keyword);
-		System.out.println(totalResult);
-		
-		PageDto pageDto = new PageDto(criteria, totalResult);
-		
-		List<EventDto> searchListDtos = dao.getSearchResult(keyword, criteria.getCountList(), pageNum);
-		
-		request.setAttribute("search_word", keyword);
-		request.setAttribute("totalCount", totalResult);
-		model.addAttribute("pageMaker", pageDto);
-		model.addAttribute("searchListDtos", searchListDtos);
-		model.addAttribute("currPage", pageNum);
-		
-		return "searchResult";
 	}
 	
 	@RequestMapping(value = "/login")
@@ -110,5 +74,88 @@ public class HomeController {
 		
 		return "loginOk";
 	}
+	
+	@RequestMapping(value = "/searchResult")
+	public String searchResult(HttpServletRequest request, Model model, Criteria criteria) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		// 페이징
+		int pageNum = 0;
+		
+		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+		if(request.getParameter("pageNum") == null) {
+			pageNum = 1;
+			criteria.setPageNum(pageNum);
+		} else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			criteria.setPageNum(pageNum);
+		}
+		
+		String keyword = request.getParameter("keyword");
+		
+		int totalResult = dao.totalSearchResultCount(keyword); // 모든 글의 개수
+		
+		PageDto pageDto = new PageDto(criteria, totalResult);
+		
+		List<EventDto> searchListDtos = dao.getSearchResult(keyword, criteria.getCountList(), pageNum);
+		
+		request.setAttribute("search_word", keyword);
+		request.setAttribute("totalCount", totalResult);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("searchListDtos", searchListDtos);
+		model.addAttribute("currPage", pageNum);
+		
+		return "searchResult";
+	}
+	
+	@RequestMapping(value = "/searchOrderBy")
+	public String searchOrderBy(HttpServletRequest request, Model model, Criteria criteria) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		// 페이징
+		int pageNum = 0;
+		
+		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+		if(request.getParameter("pageNum") == null) {
+			pageNum = 1;
+			criteria.setPageNum(pageNum);
+		} else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			criteria.setPageNum(pageNum);
+		}
+		
+		String keyword = request.getParameter("keyword");
+		
+		int totalResult = dao.totalSearchResultCount(keyword); // 모든 글의 개수
+		
+		PageDto pageDto = new PageDto(criteria, totalResult);
+		String orderOption = request.getParameter("orderOption");
+		
+		List<EventDto> searchListDtos = new ArrayList<>();
+		
+		if(orderOption.equals("startRecent")) {
+			searchListDtos = dao.searchOrderByStartRecent(keyword, criteria.getCountList(), pageNum);
+		}
+		else if(orderOption.equals("startLate")) {
+			searchListDtos = dao.searchOrderByStartLate(keyword, criteria.getCountList(), pageNum);
+		} 
+		else if(orderOption.equals("endRecent")) {
+			searchListDtos = dao.searchOrderByEndRecent(keyword, criteria.getCountList(), pageNum);
+		}
+		else {
+			searchListDtos = dao.searchOrderByEndLate(keyword, criteria.getCountList(), pageNum);
+		}
+		
+		request.setAttribute("search_word", keyword);
+		request.setAttribute("totalCount", totalResult);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("searchListDtos", searchListDtos);
+		model.addAttribute("currPage", pageNum);
+		
+		return "searchOrderBy";
+	}
+	
 	
 }

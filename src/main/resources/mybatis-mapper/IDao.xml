@@ -39,6 +39,67 @@
 	    OR UPPER(type) LIKE '%' || #{param1} || '%'
 	</select>
 	
+	<!-- 검색 정렬 -->
+	<select id="searchOrderByStartRecent" resultType="com.festicket.dto.EventDto">
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+			 	FROM event
+			 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+			 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+			 	ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') ASC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
+	</select>
+	
+	<select id="searchOrderByStartLate" resultType="com.festicket.dto.EventDto">
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+			 	FROM event
+			 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+			 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+			 	ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
+	</select>
+	
+	<select id="searchOrderByEndRecent" resultType="com.festicket.dto.EventDto">
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+			 	FROM event
+			 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+			 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+			 	ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') ASC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
+	</select>
+	
+	<select id="searchOrderByEndLate" resultType="com.festicket.dto.EventDto">
+	 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+	    FROM (
+	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+	        FROM (
+	            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+			 	FROM event
+			 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+			 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+			 	ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
+	        ) A
+	    )
+	    WHERE PAGE=#{param3}
+	</select>
+	
 	<!-- 페스티벌 탑5 리스트 / 예매율 = (예매된 티켓 수 / 전체 좌석 수) * 100-->
 	<select id="top5FestivalListDao" resultType="com.festicket.dto.EventDto">
 		SELECT eventNum, main_img, title, gunName, type
@@ -189,6 +250,7 @@
 		WHERE end_date <![CDATA[>]]>= SYSDATE
 		AND start_date <![CDATA[<]]>= SYSDATE
 		AND rgstDate <![CDATA[<]]>= SYSDATE
+		ORDER BY end_date ASC
 	</select>
 	 
 	 <!-- 축제 페이지 -->
