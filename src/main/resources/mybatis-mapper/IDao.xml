@@ -676,7 +676,7 @@
 		INSERT INTO 
 			eventCSanswer(ca_idx, ca_userId, ca_content, ca_boardNum)
 				VALUES
-					(ecsa_seq.nextval, '관리자', #{param1}, #{param2})
+					(ecsa_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
 	
 	<update id="replyCountDao">

@@ -26,15 +26,7 @@ public class QAController {
 	
 	@RequestMapping(value = "/qaView")
 	public String qaView(HttpSession session, Model model, HttpServletRequest request) {
-		
-		String sessionId = (String)session.getAttribute("sessionId");
-		
-		int adminCheck = 0;
-		
-		if(sessionId != null && sessionId.equals("admin")) {
-			adminCheck = 1;
-		}
-		
+
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		String strQAnum = request.getParameter("selectedQA");
@@ -43,7 +35,6 @@ public class QAController {
 		
 		dao.qaHitDao(qaNum);
 		
-		request.setAttribute("adminCheck", adminCheck);
 		model.addAttribute("qaDto", dao.getQaDao(qaNum));
 		model.addAttribute("QAreplyList", dao.QAreplyListDao(strQAnum));
 		
@@ -56,13 +47,6 @@ public class QAController {
 		String sessionId = (String)session.getAttribute("sessionId");
 		int eventNum = (int)session.getAttribute("eventNum");
 		
-		int adminCheck = 0;
-		
-		if(sessionId.equals("admin")) {
-			adminCheck = 1;
-		}
-		
-		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
 		
@@ -96,15 +80,11 @@ public class QAController {
 		String sessionId = (String)session.getAttribute("sessionId");
 		
 		int loginOk = 0;
-		int adminCheck = 0;
 		
-		if(sessionId != null && !sessionId.equals("admin")) {
+		if(sessionId != null) {
 			loginOk = 1;
 		}
-		if(sessionId != null && sessionId.equals("admin")) {
-			adminCheck = 1;
-		}
-		
+
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		// 선택한 이벤트 번호 등을 세션에 저장하고 이후에 필요한 곳에서 사용
@@ -126,7 +106,6 @@ public class QAController {
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);	
 				
-		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
