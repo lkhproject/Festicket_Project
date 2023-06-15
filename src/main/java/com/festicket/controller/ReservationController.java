@@ -22,13 +22,9 @@ public class ReservationController {
 	SqlSession sqlSession;
 	
 	@RequestMapping(value = "/reservation")
-	public String reservation(HttpServletRequest request, Model model) {
+	public String reservation(HttpSession session, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		int totalCount = dao.totalEventCountDao();
-		
-		request.setAttribute("totalCount", totalCount);
 		
 		model.addAttribute("event", dao.eventAllListDao());
 		
@@ -42,7 +38,7 @@ public class ReservationController {
 		
 		int loginOk = 0;
 		
-		if(sessionId != null && !sessionId.isEmpty()) {
+		if(sessionId != null) {
 			loginOk = 1;
 		}
 		
@@ -120,5 +116,6 @@ public class ReservationController {
 		
 		return "reservation/confirmRev";
 	}
+
 	
 }

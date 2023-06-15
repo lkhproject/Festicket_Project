@@ -26,7 +26,6 @@
 
 <%
 	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
-	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
 %>
 <input type="hidden" id="login-ok" value="<%= loginOk %>">
 
@@ -34,7 +33,6 @@
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
 	
-	<!-- 예매 영역 시작 -->
 	<div class="container" style="margin-top: 30px">
 	<div class="container" id="rvView_page_form">
 			<div class="container" id="rev_detail_container_1">
@@ -126,129 +124,126 @@
 				<input type="hidden" name="selectedEventNum" id="selectedEventNum" value="${event.eventNum }">
 				<input type="hidden" name="eventPrice" id="eventPrice" value="${eventPrice }">
 				<!-- 로그인시에만 예매가능 -->
-			  <%
-		      	if(adminCheck == 1) {
-		      %>
-		      		<input type="button" value="수정하기" id="adminBtn" onclick="script:window.location.href='adminModify?selectedEvent=${event.eventNum }'">
-		      <%
-		      	} else if(loginOk == 1) {
-		      %>
-		      		<input type="submit" value="예매하기" onclick="return confirmRev(event)">
-		      <%
-		      	}
-		      %>
+				<c:choose>
+				      <c:when test="${sessionId eq 'admin'}">
+				      		<input type="button" value="수정하기" id="adminBtn" onclick="script:window.location.href='adminModify?selectedEvent=${event.eventNum }'">
+				      </c:when>
+				      <c:otherwise>
+				      		<input type="submit" value="예매하기" onclick="return confirmRev(event)">
+				      </c:otherwise>
+			      </c:choose>
 			</form>
 		</div>
 	<!-- 예매 영역 끝 -->
 		
-	<!-- 리뷰 시작 -->
-	<div class="container" id="reviewContainer">
-	  <table class="table table-hover">
-	    <thead>
-	      <tr>
-	        <th scope="col" style="font-size: 16px">평점</th>
-	        <th scope="col" colspan="4" style="font-size: 16px">리뷰</th>
-	      </tr>
-	    </thead>
-	    <tbody class="table-group-divider" id="reviewTableBody">
-	      <c:choose>
-	        <c:when test="${not empty reviewList}">
-	          <c:forEach items="${reviewList}" var="review">
-	            <tr class="reviewRow" id="reviewRow" style="display: none;">
-	              <td id="tb_num1">${review.rw_rating}/5</td>
-	              <th id="tb_num2">
-	                <c:choose>
-	                  <c:when test="${fn:length(review.rw_content) gt 22}">
-	                    ${fn:substring(review.rw_content, 0, 21)}...
-	                  </c:when>
-	                  <c:otherwise>
-	                    ${review.rw_content}
-	                  </c:otherwise>
-	                </c:choose>
-	              </th>
-	              <td id="tb_num3">${review.rw_userId}</td>
-	              <td id="tb_num3">${review.rw_date}</td>
-	              <td id="tb_num3">
-	                <button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like" onclick="reviewLikeClicked(this)">
-	                  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
-	                </button>
-	              </td>
-	              <!-- 본인이면 수정버튼 추가 -->
-	            </tr>
-	          </c:forEach>
-	
-	          <!-- 더보기 버튼 표시 -->
-	          <tr id="showMoreRow">
-	            <td colspan="5">
-	              <div id="showMoreButtonWrapper">
-	                <h6 onclick="showMoreReviews()" id="showMoreButton">
-	                  더보기 <i class="bi bi-caret-down-fill"></i>
-	                </h6>
-	              </div>
-	            </td>
-	          </tr>
-	        </c:when>
-	        <c:otherwise>
-	          <tr>
-	            <td colspan="5">등록된 리뷰가 존재하지 않습니다.</td>
-	          </tr>
-	        </c:otherwise>
-	      </c:choose>
-	    </tbody>
-	  </table>
-	<!-- 리뷰 끝 -->
+		<!-- 리뷰 시작 -->
+<div class="container" id="reviewContainer">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="font-size: 16px">평점</th>
+        <th scope="col" colspan="4" style="font-size: 16px">리뷰</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider" id="reviewTableBody">
+      <c:choose>
+        <c:when test="${not empty reviewList}">
+          <c:forEach items="${reviewList}" var="review">
+            <tr class="reviewRow" id="reviewRow" style="display: none;">
+              <td id="tb_num1">${review.rw_rating}/5</td>
+              <th id="tb_num2">
+                <c:choose>
+                  <c:when test="${fn:length(review.rw_content) gt 22}">
+                    ${fn:substring(review.rw_content, 0, 21)}...
+                  </c:when>
+                  <c:otherwise>
+                    ${review.rw_content}
+                  </c:otherwise>
+                </c:choose>
+              </th>
+              <td id="tb_num3">${review.rw_userId}</td>
+              <td id="tb_num3">${review.rw_date}</td>
+              <td id="tb_num3">
+                <button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like" onclick="reviewLikeClicked(this)">
+                  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
+                </button>
+              </td>
+              <!-- 본인이면 수정버튼 추가 -->
+            </tr>
+          </c:forEach>
+
+          <!-- 더보기 버튼 표시 -->
+          <tr id="showMoreRow">
+            <td colspan="5">
+              <div id="showMoreButtonWrapper">
+                <h6 onclick="showMoreReviews()" id="showMoreButton">
+                  더보기 <i class="bi bi-caret-down-fill"></i>
+                </h6>
+              </div>
+            </td>
+          </tr>
+        </c:when>
+        <c:otherwise>
+          <tr>
+            <td colspan="5">등록된 리뷰가 존재하지 않습니다.</td>
+          </tr>
+        </c:otherwise>
+      </c:choose>
+    </tbody>
+  </table>
+		<!-- 리뷰 끝 -->
 		
-	<!-- Q&A 시작 -->
-		<table class="table table-hover">
-		  <thead>
-		    <tr>
-		      <th scope="col" colspan="4" style="font-size: 16px">Q<c:out value="&"></c:out>A</th>
-		    </tr>
-		  </thead>
-		  <tbody class="table-group-divider">
-		  <c:choose>
-		  		<c:when test="${not empty QA_List }">
-				  <c:forEach items="${QA_List }" var="QA" begin="0" end="5">
-				    <tr>
-				      <td id="tb_num1">${QA.q_idx }</td>
-				      <th id="tb_num2">
-					      <div style="cursor:pointer;" onclick="script:window.location.href='qaView?selectedQA=${QA.q_idx }'">
-						      <c:choose>	
-						      	<c:when test="${fn:length(QA.q_title) gt 22 }">
-						      		${fn:substring(QA.q_title, 0, 21) }...
-						      	</c:when>
-						      	<c:otherwise>
-						      		${QA.q_title }
-						      	</c:otherwise>
-						      </c:choose>
-						  </div>
-				      </th>
-				      <td id="tb_num3">${QA.q_userId }</td>
-				      <td id="tb_num3">${QA.q_writeDate }</td>
-				      <td id="tb_num3" style="text-align: center;">${QA.q_hit }</td>
-				    </tr>
-				  </c:forEach>
-			  	</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="5">등록된 Q&A가 존재하지 않습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		  </tbody>
-		</table>
-		<input type="button" value="QA 목록" id="moreQAbtn" onclick="script:window.location.href='qaBoardList?eventNum=${event.eventNum}'">
-	<%
-		if(loginOk == 1) {
-	%>
-		<input type="button" value="문의하기" id="inquiry" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
-	<%
-		}
-	%>
+<!-- Q&A 시작 -->
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th scope="col" colspan="4" style="font-size: 16px">Q<c:out value="&"></c:out>A</th>
+	    </tr>
+	  </thead>
+	  <tbody class="table-group-divider">
+	  <c:choose>
+	  		<c:when test="${not empty QA_List }">
+			  <c:forEach items="${QA_List }" var="QA" begin="0" end="5">
+			    <tr>
+			      <td id="tb_num1">${QA.q_idx }</td>
+			      <th id="tb_num2">
+				      <div style="cursor:pointer;" onclick="script:window.location.href='qaView?selectedQA=${QA.q_idx }'">
+					      <c:choose>	
+					      	<c:when test="${fn:length(QA.q_title) gt 22 }">
+					      		${fn:substring(QA.q_title, 0, 21) }...
+					      	</c:when>
+					      	<c:otherwise>
+					      		${QA.q_title }
+					      	</c:otherwise>
+					      </c:choose>
+					  </div>
+			      </th>
+			      <td id="tb_num3">${QA.q_userId }</td>
+			      <td id="tb_num3">${QA.q_writeDate }</td>
+			      <td id="tb_num3" style="text-align: center;">${QA.q_hit }</td>
+			    </tr>
+			  </c:forEach>
+		  	</c:when>
+			<c:otherwise>
+				<tr>
+					<td colspan="5">등록된 Q&A가 존재하지 않습니다.</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
+	  </tbody>
+	</table>
+	<input type="button" value="QA 목록" id="moreQAbtn" onclick="script:window.location.href='qaBoardList?eventNum=${event.eventNum}'">
+<%
+	if(loginOk == 1) {
+%>
+	<input type="button" value="문의하기" id="inquiry" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+<%
+	}
+%>
+</div>
+<!-- Q&A 끝 -->
 	</div>
-	<!-- Q&A 끝 -->
-		</div>
-	</div>
+</div>
 	
 	<!-- 푸터 -->
 	<%@ include file="../include/footer.jsp" %>
