@@ -49,7 +49,7 @@ h2.adminTitle {
 	margin-right: 10px;
 }
 
-#start_date_error, #end_date_error, #rgstDate_error {
+#start_date_error, #end_date_error {
 	display: inline-block;
 	width: 31%;
 }

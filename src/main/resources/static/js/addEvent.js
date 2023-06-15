@@ -13,9 +13,6 @@ function checkVal() {
   var endDate = document.getElementById("datepicker_2").value;
   var endDateError = document.getElementById("end_date_error");
 
-  var rgstDate = document.getElementById("datepicker_3").value;
-  var rgstDateError = document.getElementById("rgstDate_error");
-
   var gunName = document.getElementsByName("gunName")[0].value;
   var gunNameError = document.getElementById("gunName_error");
 
@@ -35,7 +32,6 @@ function checkVal() {
   titleError.innerHTML = "";
   startDateError.innerHTML = "";
   endDateError.innerHTML = "";
-  rgstDateError.innerHTML = "";
   gunNameError.innerHTML = "";
   placeError.innerHTML = "";
   orgLinkError.innerHTML = "";
@@ -62,11 +58,6 @@ function checkVal() {
   // 종료일 유효성 검사
   if (endDate.trim().length === 0) {
     endDateError.innerHTML = "※ 종료일을 입력해주세요.";
-    isValid = false;
-  }
-  // 신청일 유효성 검사
-  if (rgstDate.trim().length === 0) {
-    rgstDateError.innerHTML = "※ 신청일을 입력해주세요.";
     isValid = false;
   }
   // 자치구 유효성 검사

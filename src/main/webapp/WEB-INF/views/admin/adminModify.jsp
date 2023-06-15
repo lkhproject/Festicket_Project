@@ -50,7 +50,7 @@
 				  <label class="input-group-text" for="inputGroupSelect01">행사분류*</label>
 				  <select class="form-select" id="inputGroupSelect01" name="inputGroupSelect01">
 				    <option>Choose...</option>
-				    <option value="1"
+				    <option value="페스티벌"
 				    	<%
 				    		if(event.getType().equals("페스티벌")) {
 				    	%>
@@ -59,7 +59,7 @@
 				    		}
 				    	%>
 				    	>페스티벌</option>
-				    <option value="2"
+				    <option value="전시"
 				    	<%
 				    		if(event.getType().equals("전시")) {
 				    	%>
@@ -79,7 +79,6 @@
 				
 				<div id="start_date_error" class="error"></div>
 				<div id="end_date_error" class="error"></div>
-				<div id="rgstDate_error" class="error"></div>
 				
 				<div class="input-group mb-3" id="dateInput">
 					<span class="input-group-text" id="basic-addon1">시작일*</span>
@@ -89,11 +88,6 @@
 				<div class="input-group mb-3" id="dateInput">
 					<span class="input-group-text" id="basic-addon1">종료일*</span>
 	  				<input type="date" id="datepicker_2" name="end_date" value="${event.end_date}" class="form-control" aria-describedby="basic-addon1">
-				</div>
-				
-				<div class="input-group mb-3" id="dateInput">
-					<span class="input-group-text" id="basic-addon1">신청일*</span>
-	  				<input type="date" id="datepicker_3" name="rgstDate" value="${event.rgstDate}" class="form-control" aria-describedby="basic-addon1">
 				</div>
 					
 				<div id="gunName_error" class="error"></div>
