@@ -1,7 +1,21 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
 
-div {
+body {
+	margin: 0;
+	padding: 0;
+	background: #eeeeee;
+}
+
+thead {
+	background-color: #eeeeee
+}
+
+th, td {
+	text-align: center;
+}
+
+div.container {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 15px;
 }
@@ -9,18 +23,13 @@ div {
 h2.adminTitle {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 35px;
-	padding-top: 60px
+	font-weight: bold;
+	padding-top: 60px;
+	color: #404040;
 }
 
 div.container_1 {
 	padding: 50px 0px;
-}
-
-div.container_2 {
-	background-color: white;
-	margin: 0px 170px;
-	padding: 0px 50px 120px;
-	border-radius: 0.8em;
 }
 
 #pagingNum {
@@ -32,21 +41,40 @@ div.container_2 {
 }
 
 input[type="button"] {
+	font-weight: bold;
 	background: #6800b8;
 	color: white;
 	padding: 5px 40px;
 	border-radius : 0.8em;
 }
 
-#adminTable {
-	line-height: 3rem;
-	margin-top: 40px;
+input[type="button"]:hover {
+	background: #5c00a2;
+	color: white;
 }
 
-input.search_box_little {
+p {
+	margin-top: 30px;
+}
+
+#adminListTable {
+	line-height: 3rem;
+}
+
+div.search_board_area {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* 작은 검색창 */
+div.search_board {
+	position: relative;
 	width: 220px;
-	height: 40px;  
-	padding:0 20px;
+}
+
+input.search_board_box {
+	width: 100%;
+	height: 40px;
 	border: 1px solid #e0e0e0;
 	border-radius: 0.8em;
 	outline: none;
@@ -54,16 +82,28 @@ input.search_box_little {
 	color: #999;
 }
 
-div.search_btn_img_little {
-	position:absolute;
-	bottom:30px;
-	left:540px;
+input.search_board_img {
+	position : absolute;
+	width: 20px;
+	top: 10px;
+	right: 12px;
+	margin: 0;
 }
+/* 작은 검색창 끝 */
 
 #admin_page_form {
-	background-color: white;
-	padding-right: 50px;
+	width: 80%;
 	padding-left: 50px;
-	border-radius: 0.8em;
+	padding-right: 50px;
 	padding-bottom: 50px;
+	border-radius: 0.8em;
+	background-color: white;
+	margin: auto;
+}
+
+#noResult {
+	padding-top: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	
 }

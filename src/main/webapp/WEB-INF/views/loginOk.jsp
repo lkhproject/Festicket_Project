@@ -31,11 +31,11 @@
 	    }
 	%>
 
-	<!-- 헤더 시작 -->
+	<!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
-	<!-- 푸터 시작 -->
+	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 </body>

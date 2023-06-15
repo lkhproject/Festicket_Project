@@ -8,8 +8,7 @@ div {
 
 h2.title {
 	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 22px;
-	font-weight: 900;
+	font-size: 20px;
 }
 
 div.container_1 {
@@ -54,7 +53,7 @@ div.container_2 {
 	border-radius: 0.8em;
 }
 
-#festPagingNum {
+#PagingNum {
 	margin-top: 40px;
 	display: flex;
 	justify-content: center;
@@ -98,6 +97,10 @@ img.listImg {
 	cursor:pointer;
 }
 
+p {
+	line-height: 6px;
+}
+
 #tableCenter {
 	display:table-cell;
 	vertical-align:middle;
@@ -119,5 +122,3 @@ img.listImg {
 	font-weight: bold;
 	
 }
-
-

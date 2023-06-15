@@ -61,7 +61,7 @@ public class MyPageController {
 			model.addAttribute("revListDtos", revListDtos);
 			model.addAttribute("currPage", pageNum);
 		}
-		return "myPage";
+		return "myPage/myPage";
 	}
 	
 	@RequestMapping(value = "/detailedRev") // 예매내역으로 바로 이동
@@ -77,7 +77,23 @@ public class MyPageController {
 		
 		model.addAttribute("details", reserved);
 		
-		return "detailedRev";
+		return "myPage/detailedRev";
 	}
 	
+	@RequestMapping(value = "/cancelRev") // 예매 취소
+	public String cancelRev(HttpSession session, Model model, HttpServletRequest request) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int revNum = Integer.parseInt(request.getParameter("re_idx"));
+		int eventNum = Integer.parseInt(request.getParameter("re_eventNum"));
+		
+		int revTicketCount = dao.getTicketCountByidx(revNum);
+		dao.addTicketDao(eventNum, revTicketCount);
+		dao.cancelRevDao(sessionId, revNum);
+		
+		return "redirect:myPage";
+	}
 }

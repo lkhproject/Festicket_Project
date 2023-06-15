@@ -5,16 +5,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/csBoardList.css">
-<script src="/resources/js/bootstrap.min.js"></script>
-<title>페스티켓</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/csBoardList.css">
+	<script src="/resources/js/bootstrap.min.js"></script>
+	<title>페스티켓</title>
 </head>
+
 <body>
-	<!-- 헤더 시작 -->
-	<%@ include file="include/header.jsp" %>
+	<!-- 헤더 -->
+	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
 
 	<!-- 게시글 리스트 시작 -->
@@ -126,8 +128,8 @@
 	</div>
 	</div>
 	
-	<!-- 푸터 시작 -->
-	<%@ include file="include/footer.jsp" %>
+	<!-- 푸터 -->
+	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 </body>
 </html>

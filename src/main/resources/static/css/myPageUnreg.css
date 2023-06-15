@@ -9,25 +9,6 @@ body {
 	background: #eeeeee;
 }
 
-thead {
-	display: table-header-group;
-    vertical-align: middle;
-    border-color: inherit;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-tbody {
-	display: table-row-group;
-    vertical-align: middle;
-    border-color: inherit;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
 /* 상단 box css 시작 */
 
 i {
@@ -128,17 +109,17 @@ div.help_cont{
 	border-bottom: 1px solid #ecedf2;
     background: #ffffff;
     width: 260px;
-    height:550px;
+    height:495px;
 	overflow:hidden;
   	float: left;
 }
+
 ul.help_lmenu{
 	float: left;
     width: 255px;
     padding-top: 15px;
     list-style: none;
 }
-
 
 ul.help_submenu{
 	list-style: none;
@@ -156,10 +137,68 @@ li.has_sub{
 
 span.help_submenu_tit{
 	width: 100%;
-	height: 10%;
+	height: 0%;
 	line-height: 60px;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;	
+}
+
+.help_lmenu li.has_sub li.on a {
+    color: #6800b8;
+    position: relative;
+    font-weight: bold;
+}
+
+/* 왼쪽 box css 끝 */
+
+/* 가운데 box css 시작*/
+
+td.contentbox {
+	float: center;
+    width: 1000px;
+    padding: 38px 59px 100px 60px;
+    box-sizing: border-box;
+    background-color: #ffffff ;
+	height : 450px;
+	text-align: center;
+}
+
+input.inputbox01 {
+	width:500px;
+	height:45px;  
+	padding:0 10px;
+	margin: 0px;
+	border:1px solid #e0e0e0;
+	border-radius:3px;
+	outline: none;
+	font-size:15px;
+	color:#999;
+	display: flex;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+td.content_text {
+	font-family: 'Noto Sans KR', sans-serif;
+	
+}
+
+input.content_btn01{
+	width:200px;
+	height:50px;  
+	padding:0 20px;
+	margin: 1px;
+	border:1px solid #6800b8;
+	border-radius:10px;
+	outline: none;
+	font-size:20px;
+	color:#ffffff;
+	background: #6800b8;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+h5 {
+	font-family: 'Noto Sans KR', sans-serif;
+	
 }
 
 li.has_sub_last{
@@ -173,126 +212,4 @@ li.has_sub_last{
     position: relative;
     font-weight: bold;
 }
-
-/* 왼쪽 box css 끝 */
-
-/* 가운데 box css */
-
-div.help_rcont{
-    width: 1120px;
-    padding: 38px 59px 100px 60px;
-    margin-bottom: 60px;
-    box-sizing: border-box;
-    background-color: #ffffff ;
-	height:auto;	
-}
-
-div.h3_line {
-	position: relative;
-	float: left;
-	padding: 10px;
-	margin-left : 40px;
-	border-bottom: 2px solid;
-}
-
-h4.tit_reserve01{
-	display: block;
-	margin-bottom: 15px;
-	font-size: 26px;
-	line-height: 26px;
-	font-weight: bold;
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
-div.guide_txt{
-	margin-top:80px;
-	margin-left : 250px;
-	text-align: left;	
-}
-
-p.guide_txt{
-	position: relative;
-    font-size: 13px;
-    letter-spacing: -0.5px;
-    line-height: 20px;
-    color: #878d95;
-    margin: 27px 0 30px;
-    font-family: 'Noto Sans KR', sans-serif;
-}
-
-span.color_point{
-	color: #fa2828 !important;
-}
-
-div.sortbx{
-	font-size: 18px;
-    float: left;
-    padding-left: 50px;
-    font-family: 'Noto Sans KR', sans-serif;
-    
-}
-
-dl.daysortbx fl{
-	float: left;
-}
-
-
-ul.daysort{
-	display: inline-block;
-	overflow: hidden;
-	padding-left: 1px;
-	border-radius: 2px;
-	vertical-align: middle;
-	list-style: none;
-	font-family: 'Noto Sans KR', sans-serif;
-	margin-top: 36px;
-}
-
-li.ng-scope{
-	float: left;
-}
-
-p.guide_text{
-	font-family: 'Noto Sans KR', sans-serif;
-	position: relative;
-    font-size: 13px;
-    text-align: right;
-
-}
-a.color_point{
-	color: #fa2828 !important;
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
-div.container{
-	padding-left: 270px;
-}
-
-div.basic_tbl basic_tbl_v3{
-	font-family: 'Noto Sans KR', sans-serif;
-	float: center;
-	border-bottom: 1px solid #ecedf2;
-	padding-left: 20px;
-}
-
-td.no_data{
-	padding: 14px 4px;
-	font-family: 'Noto Sans KR', sans-serif;
-	text-align: center;
-}
-
-a.ng-binding{
-	display: inline-block;
-	width: 62px;
-	box-sizing: border-box;
-	margin-left: -1px;
-	border :1px solid #ecedf2;
-	color: #242428;
-	text-align:center;
-	height: 28px;
-	line-height: 27px;
-	font-size: 12px;
-	font-weight:500;
-}
-
 /* 가운데 box css 끝*/

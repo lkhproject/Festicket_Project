@@ -61,11 +61,12 @@ public class ReviewController {
 			model.addAttribute("revListDtos", revListDtos);
 			model.addAttribute("currPage", pageNum);
 			}
-			return "myPageReview";
+			return "myPage/myPageReview";
 	}
 	
 	@RequestMapping(value = "/reviewWrite")
 	public String reviewWrite(HttpServletRequest request, HttpSession session, Model model) {
+		
 		String sessionId = (String)session.getAttribute("sessionId");
 		
 		int loginOk = 0;
@@ -76,7 +77,7 @@ public class ReviewController {
 		} else {
 			loginOk = 1;
 		}
-		return "reviewWrite";
+		return "myPage/reviewWrite";
 	}
 	
     @RequestMapping(value = "/reviewWriteOk")

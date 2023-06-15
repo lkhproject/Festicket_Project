@@ -7,27 +7,28 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/reviewWrite.css">
-<link rel="stylesheet" href="/resources/css/star.css">
+<link rel="stylesheet" href="/resources/css/ratingStar.css">
 <script src="/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
 <body>
-<%
-    int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
 
-    if(loginOk == 0) {
-        String previousPage = request.getRequestURL().toString();
-        session.setAttribute("previousPage", previousPage);
-%>
-    <script>
-        alert("접근 권한이 없는 페이지입니다. 로그인이 필요합니다.");
-        window.location.href = "login";
-    </script>
-<%
-    }
-%>
+	<%
+	    int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+	
+	    if(loginOk == 0) {
+	        String previousPage = request.getRequestURL().toString();
+	        session.setAttribute("previousPage", previousPage);
+	%>
+	    <script>
+	        alert("접근 권한이 없는 페이지입니다. 로그인이 필요합니다.");
+	        window.location.href = "login";
+	    </script>
+	<%
+	    }
+	%>
 	<!-- 헤더 -->
-	<%@ include file="include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
 	<div class="container">
@@ -79,9 +80,8 @@
 		</div>
 	</div>
 	
-	
 	<!-- 푸터 -->
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 	
 	<script>
@@ -113,5 +113,6 @@
 	  return isValid;
 	}
 	</script>
+	
 </body>
 </html>

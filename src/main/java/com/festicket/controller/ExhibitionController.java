@@ -1,5 +1,6 @@
 package com.festicket.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +50,55 @@ public class ExhibitionController {
 		model.addAttribute("exhibitionDtos", exhibitionDtos);
 		model.addAttribute("currPage", pageNum);
 		
-		return "exhibition";
+		return "exhibition/exhibition";
+	}
+	
+	@RequestMapping(value = "/exhibitionOrderBy")
+	public String exhibitionOrderBy(HttpServletRequest request, Model model, Criteria criteria) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		// 페이징
+		int pageNum = 0;
+		
+		// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+		if(request.getParameter("pageNum") == null) {
+			pageNum = 1;
+			criteria.setPageNum(pageNum);
+		} else {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			criteria.setPageNum(pageNum);
+		}
+		
+		int totalCount = dao.totalExhibitionCountDao();
+		String orderOption = request.getParameter("orderOption");
+		
+		PageDto pageDto = new PageDto(criteria, totalCount);
+		
+		List<EventDto> exhibitionDtos = new ArrayList<>();
+		
+		System.out.println(orderOption);
+		
+		if(orderOption.equals("startRecent")) {
+			exhibitionDtos = dao.exhibitionOrderByStartRecent(criteria.getCountList(), pageNum);
+		}
+		else if(orderOption.equals("startLate")) {
+			exhibitionDtos = dao.exhibitionOrderByStartLate(criteria.getCountList(), pageNum);
+		} 
+		else if(orderOption.equals("endRecent")) {
+			exhibitionDtos = dao.exhibitionOrderByEndRecent(criteria.getCountList(), pageNum);
+		}
+		else {
+			exhibitionDtos = dao.exhibitionOrderByEndLate(criteria.getCountList(), pageNum);
+		}
+		
+		request.setAttribute("totalCount", totalCount);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("exhibitionDtos", exhibitionDtos);
+		model.addAttribute("currPage", pageNum);
+		
+		
+		return "exhibition/exhibitionOrderBy";
 	}
 	
 }

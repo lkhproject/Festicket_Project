@@ -50,7 +50,7 @@ public class CSboardController {
 		model.addAttribute("csBoardDtos", CSboardDtos);
 		model.addAttribute("currPage", pageNum);
 		
-		return "csBoardList";
+		return "CS/csBoardList";
 	}
 	
 	@RequestMapping(value = "/csBoardWrite")
@@ -66,7 +66,7 @@ public class CSboardController {
 	      
 	      request.setAttribute("loginOk", loginOk);
 	      
-	      return "csBoardWrite";
+	      return "CS/csBoardWrite";
 	   }
 	
 	@RequestMapping(value = "/csBoardWriteOk")
@@ -96,7 +96,7 @@ public class CSboardController {
 		model.addAttribute("replyList", dao.replyListDao(request.getParameter("c_idx")));
 		model.addAttribute("sessionId", sessionId);
 		
-		return "csBoardView";
+		return "CS/csBoardView";
 	}
 	
 	@RequestMapping(value = "/csBoardModify")
@@ -106,7 +106,7 @@ public class CSboardController {
 		
 		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("c_idx")));
 		
-		return "csBoardModify";
+		return "CS/csBoardModify";
 	}
 	
 	@RequestMapping(value = "csBoardModifyOk")
@@ -123,7 +123,7 @@ public class CSboardController {
 		
 		model.addAttribute("csBoardDto", dao.csViewDao(c_idx)); // 수정이 된 후 글내용
 		
-		return "csBoardModifyOk";
+		return "CS/csBoardModifyOk";
 	}
 	
 	@RequestMapping(value = "/csBoardDelete")
@@ -192,6 +192,36 @@ public class CSboardController {
 			model.addAttribute("CSboardDtos", CSboardDtos);
 			model.addAttribute("currPage", pageNum);
 		}
-		return "csBoardSearch";
+		return "CS/csBoardSearch";
+	}
+	
+	@RequestMapping(value = "/replyWrite")
+	public String replyWrite(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.replyWriteDao(request.getParameter("sessionId"), request.getParameter("ca_content"), request.getParameter("ca_boardNum"));
+		dao.replyCountDao(request.getParameter("ca_boardNum")); // 원글의 댓글 수를 1증가
+		
+		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("ca_boardNum")));
+		model.addAttribute("replyList", dao.replyListDao(request.getParameter("ca_boardNum")));
+		
+		return "CS/csBoardView";
+	}
+	
+	@RequestMapping(value = "/replyDelete")
+	public String reply_delete(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.replyDeleteDao(request.getParameter("ca_idx")); // 댓글 삭제
+		dao.replyCountMinusDao(request.getParameter("ca_boardNum")); // 댓글 개수 1개 삭제
+		
+		model.addAttribute("csBoardDto", dao.csViewDao(request.getParameter("ca_boardNum")));	
+		model.addAttribute("replyList", dao.replyListDao(request.getParameter("ca_boardNum")));
+		
+		return "CS/csBoardView";
 	}
 }

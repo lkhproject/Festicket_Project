@@ -15,7 +15,7 @@
 
 <body>
     <!-- 헤더 -->
-    <%@ include file="include/header.jsp" %>
+    <%@ include file="../include/header.jsp" %>
     <!-- 헤더 끝 -->
 
     <!-- 게시글 영역 시작 -->
@@ -65,8 +65,8 @@
 				    <table id="reply_list" cellspacing="0">
 				      <tr>
 				        <td id="reply_list_id">
+				        <!-- 댓글 아이디가 'admin'이면 아이디 대신 '관리자'로 뜨게 -->
 				          <c:choose>
-				          	<!-- 댓글 아이디가 'admin'이면 아이디 대신 '관리자'로 뜨게 -->
 				            <c:when test="${replyDto.ca_userId eq 'admin'}">
 				              <span style='color:#1e6ec9; font-weight:bold;'>관리자</span>
 				            </c:when>
@@ -117,7 +117,7 @@
     </div>
 
     <!-- 푸터 -->
-    <%@ include file="include/footer.jsp" %>
+    <%@ include file="../include/footer.jsp" %>
     <!-- 푸터 끝 -->
 	
 	<script>
@@ -163,6 +163,7 @@
 	    }
 	    return true;
 	}
+	
 	</script>
 </body>
 </html>

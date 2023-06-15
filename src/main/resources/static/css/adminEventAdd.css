@@ -1,0 +1,83 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #eeeeee;
+}
+
+thead {
+	background-color: #eeeeee
+}
+
+th, td {
+	text-align: center;
+}
+
+div.container {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px;
+}
+
+div.container_1 {
+	padding: 50px 0px;
+}
+
+div.container_2 {
+	width: 80%;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 100px;
+	border-radius: 0.8em;
+	background-color: white;
+	margin: auto;
+}
+
+h2.adminTitle {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 35px;
+	font-weight: bold;
+	padding-top: 60px;
+	color: #404040;
+	margin-bottom: 30px;
+}
+
+#dateInput {
+	width: 30%;
+	float: left;
+	margin-right: 10px;
+}
+
+#start_date_error, #end_date_error, #rgstDate_error {
+	display: inline-block;
+	width: 31%;
+}
+
+#gunName_error {
+	width: 30%;
+	margin-right: 10px;
+}
+
+input[type="submit"] {
+	background: #6800b8;
+	color: white;
+	padding: 6px 40px;
+	border-radius : 0.8em;
+	border: none;
+	font-size: 16px;
+}
+
+input[type="button"] {
+	background: gray;
+	color: white;
+	padding: 6px 40px;
+	border-radius : 0.8em;
+	border: none;
+	font-size: 16px;
+	margin: 10px 0px 0px 3px;
+}
+
+#detail_form {
+	margin: 50px 0px 10px;
+}

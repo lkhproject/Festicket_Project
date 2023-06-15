@@ -15,8 +15,8 @@
 </head>
 
 <body>
-    <!-- 헤더 시작 -->
-    <%@ include file="include/header.jsp" %>
+    <!-- 헤더 -->
+    <%@ include file="../include/header.jsp" %>
     <!-- 헤더 끝-->
 
     <!-- 게시글 리스트 시작 -->
@@ -130,8 +130,8 @@
         </div>
     </div>
 
-    <!-- 푸터 시작 -->
-    <%@ include file="include/footer.jsp" %>
+    <!-- 푸터 -->
+    <%@ include file="../include/footer.jsp" %>
     <!-- 푸터 끝 -->
 </body>
 

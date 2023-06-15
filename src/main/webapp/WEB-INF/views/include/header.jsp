@@ -38,7 +38,18 @@
 					}
 				%>
 				<td class="margin02">&nbsp;</td>
+				<%
+					if(sessionId == null) {
+				%>
 				<td class="toptext"><a href="myPage">마이페이지</a></td>
+				<%
+					}
+					else if(sessionId.equals("admin")) {
+				%>
+				<td class="toptext"><a href="adminList">관리자페이지</a></td>
+				<%
+					}
+				%>
 				<td class="margin02">&nbsp;</td>
 				<td class="toptext"><a href="csBoardList">고객센터</a></td>
 				<td class="margin02">&nbsp;</td>
@@ -57,9 +68,9 @@
 		</div>
 		
 		<div class="search">
-			<form class="search" method='get' action=''>
+			<form class="search" method='get' action='searchResult'>
 			  <div class="search_btn">
-			    <input class="search_box" type=text id="search_word" placeholder='검색어를 입력하세요.'>
+			    <input class="search_box" type="text" name="keyword" placeholder='검색어를 입력하세요.'>
 			    <div class="search_btn_img">
 			      <input type="image" src='/resources/img/search_btn.png' alt='검색하기'>
 			    </div>
