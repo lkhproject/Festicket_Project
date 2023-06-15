@@ -464,7 +464,7 @@
 	<!-- *** 댓글 관련 끝 *** -->
 
 	
-	<!-- *** 페스티벌, 전시 관련 -->
+	<!-- *** 페스티벌, 전시 관련 *** -->
 		 <!-- 축제 페이지 -->
 		 <select id="festivalListDao" resultType="com.festicket.dto.EventDto">
 		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
@@ -618,6 +618,6 @@
 			WHERE PAGE=#{param2}
 		</select>
 		<!-- 전시 정렬 끝 -->
-	<!-- *** 페스티벌, 전시 관련 끝 -->
+	<!-- *** 페스티벌, 전시 관련 끝 *** -->
 
 </mapper>
