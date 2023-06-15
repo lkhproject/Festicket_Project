@@ -1,5 +1,9 @@
 package com.festicket.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.festicket.dao.IDao;
-import com.festicket.dto.CSboardDto;
 import com.festicket.dto.Criteria;
 import com.festicket.dto.EventDto;
 import com.festicket.dto.PageDto;
@@ -40,6 +43,27 @@ public class HomeController {
 		return "login";
 	}
 	
+	@RequestMapping(value = "/loginOk")
+	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
+		
+		String userId = request.getParameter("userId");
+		String userPassword = request.getParameter("userPassword");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int checkIdPwFlag = dao.checkIdPwDao(userId,userPassword);
+		// 1이면 로그인 성공, 0이면 로그인 실패
+		
+		model.addAttribute("checkIdPwFlag", checkIdPwFlag);
+		
+		if(checkIdPwFlag == 1) { // 로그인 성공 실행
+			session.setAttribute("sessionId", userId);			
+			model.addAttribute("memberDto", dao.getMemberInfo(userId));
+		}
+		
+		return "loginOk";
+	}
+	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
 		
@@ -54,25 +78,46 @@ public class HomeController {
 		return "join";
 	}
 	
-	@RequestMapping(value = "/loginOk")
-	public String loginOk(HttpServletRequest request, Model model, HttpSession session) {
+	@RequestMapping(value = "/joinOk")
+	public String joinOk(HttpServletRequest request, Model model) throws ParseException {
 		
 		String userId = request.getParameter("userId");
 		String userPassword = request.getParameter("userPassword");
-		
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String userPhone = request.getParameter("userPhone");
+
 		IDao dao = sqlSession.getMapper(IDao.class);
+	
+		int joinCheck = 0;
 		
-		int checkIdPwFlag = dao.checkIdPwDao(userId,userPassword);
-		//1이면 로그인 성공, 0이면 로그인 실패
+		int checkId = dao.checkIdDao(userId); // 가입하려는 id 존재여부 체크 1이면 이미 존재
+		int checkEmail = dao.checkEmailDao(email);
 		
-		model.addAttribute("checkIdPwFlag", checkIdPwFlag);
-		
-		if(checkIdPwFlag == 1) {//로그인 성공 실행
-			session.setAttribute("sessionId", userId);			
-			model.addAttribute("memberDto", dao.getMemberInfo(userId));
+		if(checkId == 0 && checkEmail == 0) {
+			Date now = new Date();
+		    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	        String strToday = formatter.format(now);
+	        Date today = formatter.parse(strToday);
+	        
+			joinCheck = dao.joinDao(userId, userPassword, userPhone, email, name, today);
+			model.addAttribute("checkId", checkId);
+			model.addAttribute("checkEmail", checkEmail);
+		//joinCheck 값이 1이면 회원가입 성공, 아니면 가입실패
+		} else {
+			model.addAttribute("checkId", checkId);
+			model.addAttribute("checkEmail", checkEmail);
 		}
 		
-		return "loginOk";
+		if(joinCheck == 1) {
+			model.addAttribute("joinFlag", joinCheck);
+			model.addAttribute("memberName", name);
+			model.addAttribute("memberId", userId);
+		} else {//회원가입실패
+			model.addAttribute("joinFlag", joinCheck);
+		}
+		
+		return "joinOk";
 	}
 	
 	@RequestMapping(value = "/searchResult")
@@ -156,6 +201,5 @@ public class HomeController {
 		
 		return "searchOrderBy";
 	}
-	
 	
 }
