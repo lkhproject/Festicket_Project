@@ -22,10 +22,13 @@ public class ReservationController {
 	SqlSession sqlSession;
 	
 	@RequestMapping(value = "/reservation")
-	public String reservation(HttpSession session, Model model) {
+	public String reservation(HttpServletRequest request, HttpSession session, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
+		int totalCount = dao.totalFestivalCountDao();
+		
+		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("event", dao.eventAllListDao());
 		
 		return "reservation/reservation";
