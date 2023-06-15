@@ -74,16 +74,18 @@ public class QAController {
 		return "redirect:qaBoardList";
 	}
 	
+	@RequestMapping(value = "/qaBoardDelete")
+	public String qaBoardDelete(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
+		
+		// delete 추가
+		
+		return "redirect:qaBoardList";
+	}
+	
 	@RequestMapping(value = "/qaBoardList")
 	public String qaBoardList(HttpSession session, Model model, HttpServletRequest request, Criteria criteria) throws ParseException {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
-		
-		int loginOk = 0;
-		
-		if(sessionId != null) {
-			loginOk = 1;
-		}
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -106,7 +108,6 @@ public class QAController {
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);	
 				
-		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
 		// 리스트로 넘어가기 때문에 title은 따로 넘겨줘야함 
@@ -126,13 +127,11 @@ public class QAController {
 		
 		int qa = Integer.parseInt(request.getParameter("selectedQA"));
 		
-		System.out.println(qa);
-		
 		dao.QAreplyWriteDao(request.getParameter("sessionId"), request.getParameter("selectedQA"), request.getParameter("qa_content"));
 		dao.QAreplyCountDao(request.getParameter("selectedQA")); // 원글의 댓글 수를 1증가
 		
 		model.addAttribute("qaDto", dao.getQaDao(qa));
-		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("qa_boardNum")));
+		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("selectedQA")));
 		
 		return "QA/qaView";
 	}
@@ -142,8 +141,12 @@ public class QAController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
+		System.out.println(request.getParameter("qa_idx"));
+		System.out.println(request.getParameter("qa_boardNum"));
+		
 		dao.QAreplyDeleteDao(request.getParameter("qa_idx")); // 댓글 삭제
 		dao.QAreplyCountMinusDao(request.getParameter("qa_boardNum")); // 댓글 개수 1개 삭제
+		// 삭제안됌-- null값
 		
 		int qa = Integer.parseInt(request.getParameter("qa_boardNum"));
 		

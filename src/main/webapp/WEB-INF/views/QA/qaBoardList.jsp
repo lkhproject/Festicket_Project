@@ -13,10 +13,6 @@
 <title>페스티켓</title>
 </head>
 <body>
-<%
-	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
-%>
-
 	<!-- 헤더 시작 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
@@ -53,6 +49,10 @@
 							</c:otherwise>
 						</c:choose>
 						</a>
+						<!-- 댓글 수 -->
+						<c:if test="${qaList.q_replyCount != 0 }">
+			            	<span class="badge">${qaList.q_replyCount }</span>
+			            </c:if>   
 				      </td>
 				      <td>${qaList.q_userId }</td>
 				      <td><fmt:formatDate value="${qaList.q_writeDate }" pattern="yyyy-MM-dd"/></td>
@@ -62,14 +62,9 @@
 	  		</tbody>
 	  	</table>
 	  	<input type="button" value="돌아가기" id="QAbtn" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'">
-	  	<!-- 로그인시 문의하기 버튼 추가 -->
-	<%
-		if(loginOk == 1) {
-	%>
-		<input type="button" value="문의하기" id="QAbtn" style="margin-right: 3px" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
-	<% 
-		}
-	%>
+	  	<c:if test="${sessionId != null && sessionId ne 'admin'}">
+			<input type="button" value="문의하기" id="inquiry" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+		</c:if>
 	<!-- 게시글 리스트 끝 -->
 	
 	<!-- 페이징 시작 -->

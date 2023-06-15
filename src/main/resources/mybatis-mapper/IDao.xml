@@ -472,11 +472,11 @@
 	
 	<!-- QA -->
 	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
-		SELECT *
-		  FROM event_QABoard er
-		  LEFT OUTER JOIN event e
-		    ON er.q_eventNum = e.eventNum
-		 WHERE er.q_eventNum=#{param1}
+	    SELECT *
+	    FROM event_QABoard er
+	    LEFT OUTER JOIN event e ON er.q_eventNum = e.eventNum
+	    WHERE er.q_eventNum = #{param1} AND ROWNUM <![CDATA[<=]]> 6
+	    ORDER BY er.q_idx DESC
 	</select>
 	
 	<select id="getQAListPagingDao" resultType="com.festicket.dto.QABoardDto">
@@ -525,7 +525,7 @@
 	</insert>
 	
 	<update id="QAreplyCountDao">
-		UPDATE event_QAboard SET q_replyCount=q_replyCount+1 WHERE qa_idx=#{param1}
+		UPDATE event_QAboard SET q_replyCount=q_replyCount+1 WHERE q_idx=#{param1}
 	</update>
 	
 	<select id="QAreplyListDao" resultType="com.festicket.dto.QAanswerDto">
@@ -537,7 +537,7 @@
 	</delete>
 	
 	<update id="QAreplyCountMinusDao">
-		UPDATE event_QAboard SET q_replyCount=q_replyCount-1 WHERE qa_idx=#{param1}
+		UPDATE event_QAboard SET q_replyCount=q_replyCount-1 WHERE q_idx=#{param1}
 	</update>
 	
 	<delete id="QAboardReplyDeleteDao">

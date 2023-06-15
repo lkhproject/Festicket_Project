@@ -9,7 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/adminEventAdd.css">
 	<script type="text/javascript" src="/resources/js/addEvent.js"></script>
-	<!--  <script src="/resources/js/bootstrap.min.js"></script>-->
 	
 <!-- jquery -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  

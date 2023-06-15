@@ -21,7 +21,7 @@
 		<div class="container_1">
 		<div id="csBoard_page_form">
 		<h2 class="csBoardTitle" style="margin-bottom: 35px">Q&A</h2>
-			<form action="" method="" id="">
+		
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">제목</span>
 	  				<input type="text" class="form-control" aria-describedby="basic-addon1" 
@@ -49,7 +49,7 @@
 				<!-- 댓글 쓰기 -->
                 <!-- 세션 아이디가 작성자와 같거나 'admin'일 때만 댓글창 보이기 -->
                 <c:if test="${qaDto.q_userId eq sessionId or sessionId eq 'admin'}">
-                <form action="QAreplyWrite" method="post" onsubmit="return replyValidateCheck()">
+                <form action="QAreplyWrite" method="get">
                     <input type="hidden" name="sessionId" value="${sessionId}">
                     <input type="hidden" name="selectedQA" value="${qaDto.q_idx }">
                     <div class="reply_write">
@@ -100,23 +100,26 @@
 				<!-- 세션 아이디를 userId 변수에 저장 -->
 				<!-- 수정, 삭제, 목록 버튼 -->
 				<div class="container" style="padding-top: 10px">
-				<div class="button_area">
-				<c:if test="${sessionId eq qaDto.q_userId}">
-					<div class="button_modify">
-						<input type="button" class="btn" id="buttons" value="수정" onclick="script:window.location.href=''">
-					</div>
-					<div class="button_delete">
-						<input type="button" class="btn" id="buttons" value="삭제" onclick="script:window.location.href=''">
-					</div>
-				</c:if>
-					<div class="button_list">
-						<input type="button" class="btn" id="buttons" value="목록" onclick="window.location='qaBoardList'">
-					</div>
-				</div>
+				    <div class="button_area">
+				        <!-- 작성자와 세션 아이디 비교하여 수정, 삭제 버튼 보이기 -->
+				        <c:if test="${qaDto.q_userId eq sessionId}">
+				            <div class="button_modify">
+				                <form action="qaBoardModify" method="post" onsubmit="return replyValidateCheck()">
+				                    <input type="hidden" name="q_idx" value="${qaDto.q_idx}">
+				                    <input type="submit" class="btn" id="buttons" value="수정">
+				                </form>
+				            </div>
+				            <div class="button_delete">
+				                <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
+				            </div>
+				        </c:if>
+				        <div class="button_list">
+				            <input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='qaBoardList'">
+				        </div>
+				    </div>
 				</div>
 				<!-- 수정, 삭제, 목록 버튼 끝 -->
 				
-			</form>
 		</div>
 		</div>
 	</div>
@@ -130,7 +133,7 @@
 	<!-- 글 삭제시 경고창 -->
 	function removeCheck() {
 		if (confirm("삭제하시겠습니까?") == true){
-			location.href='qaBoardDelete?c_idx=${qaBoardDto.c_idx}&qa_boardNum=${qaBoardDto.c_idx}'
+			location.href='qaBoardDelete?q_idx=${qaDto.q_idx}&qa_boardNum=${qaDto.q_idx}'
 	 	} else {return false;}
 	}
 	
@@ -138,7 +141,7 @@
 	function replyRemoveCheck(qa_idx) {
 		 if (confirm("삭제하시겠습니까?") == true) {
 		   var form = document.createElement("form");
-		   form.action = 'replyDelete';
+		   form.action = 'QAreplyDelete';
 		   form.method = 'post';
 	
 		   var qa_idxInput = document.createElement("input");
@@ -150,7 +153,7 @@
 		   var qa_boardNumInput = document.createElement("input");
 		   qa_boardNumInput.type = 'hidden';
 		   qa_boardNumInput.name = 'qa_boardNum';
-		   qa_boardNumInput.value = '${qaBoardDto.c_idx }';
+		   qa_boardNumInput.value = '${qaDto.q_idx }';
 		   form.appendChild(qa_boardNumInput);
 	
 		   document.documentElement.appendChild(form);

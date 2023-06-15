@@ -32,32 +32,6 @@ function reviewLikeClicked(button) {
     button.classList.toggle("text-bg-danger");
   }
   
-function confirmRev() {
-	event.preventDefault();
-	
-	var loginOkElement = document.getElementById('login-ok');
-	var loginOk = loginOkElement.value;
-	
-	if (loginOk === '0') {
-		window.location.href="login";
-    } else {
-		var selectedDate = $("#selectedDate").val();
-	  
-	  	if (selectedDate === "") {
-		  alert("날짜를 선택해주세요.");
-		  return false;
-		}
-		
-		var confirmed = confirm("예약을 진행하시겠습니까?");
-	
-	    if (!confirmed) {
-	    	return false;
-		}
-		
-    }
-	document.confirm.submit();
-}
-
   var startIndex = 0;
   var endIndex = 5;
 
