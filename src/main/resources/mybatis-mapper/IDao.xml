@@ -42,9 +42,10 @@
 	
 	
 	<!-- *** 회원 탈퇴 *** -->		
-	<delete id="deleteUser" parameterType="int">
-		DELETE FROM eventMemberDB WHERE user_id = #{param1} AND user_password = #{param2}
-	</delete>	
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM eventMember
+		WHERE userId = #{param1} AND userPassword = #{param2}
+	</delete>
 	<!-- *** 회원 탈퇴 끝 *** -->
 	
 	
@@ -59,11 +60,14 @@
 	
 	<update id="ticketReservedDao">
 		UPDATE event
-		SET ticketCount = ticketCount - #{param2} WHERE eventNum = #{param1}
+		SET ticketCount = ticketCount - #{param2}
+		WHERE eventNum = #{param1}
 	</update>
 	
 	<select id="getTotalTicketDao" resultType="int">
-		SELECT ticketCount FROM event WHERE eventNum=#{param1}
+		SELECT ticketCount
+		FROM event
+		WHERE eventNum=#{param1}
 	</select>
 	<!-- *** 행사 관련 끝 *** -->
 
@@ -86,9 +90,70 @@
 		
 		<select id="totalSearchResultCount" resultType="int">
 		    SELECT COUNT(*)
-		    	FROM event
-		    		WHERE UPPER(title) LIKE '%' || #{param1} || '%'
-		    			OR UPPER(type) LIKE '%' || #{param1} || '%'
+		    FROM event
+		    WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+		    OR UPPER(type) LIKE '%' || #{param1} || '%'
+		</select>
+		
+		<!-- 검색 정렬 -->
+		<select id="searchOrderByStartRecent" resultType="com.festicket.dto.EventDto">
+		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+		    FROM (
+		        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+		        FROM (
+		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+				 	FROM event
+				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') ASC
+		        ) A
+		    )
+		    WHERE PAGE=#{param3}
+		</select>
+		
+		<select id="searchOrderByStartLate" resultType="com.festicket.dto.EventDto">
+		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+		    FROM (
+		        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+		        FROM (
+		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+				 	FROM event
+				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') DESC
+		        ) A
+		    )
+		    WHERE PAGE=#{param3}
+		</select>
+		
+		<select id="searchOrderByEndRecent" resultType="com.festicket.dto.EventDto">
+		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+		    FROM (
+		        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+		        FROM (
+		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+				 	FROM event
+				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') ASC
+		        ) A
+		    )
+		    WHERE PAGE=#{param3}
+		</select>
+		
+		<select id="searchOrderByEndLate" resultType="com.festicket.dto.EventDto">
+		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
+		    FROM (
+		        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+		        FROM (
+		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+				 	FROM event
+				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
+		        ) A
+		    )
+		    WHERE PAGE=#{param3}
 		</select>
 		
 		<!-- 페스티벌 탑5 리스트 / 예매율 = (예매된 티켓 수 / 전체 좌석 수) * 100-->
@@ -102,7 +167,7 @@
 			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
 			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 			)
-			WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '축제%'
+			WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '페스티벌%'
 		</select>
 		
 		<!-- 전시 탑5 리스트 -->
@@ -333,8 +398,8 @@
 	<!-- *** 랭킹 관련 끝 *** -->
 	
 
-	<!-- *** 관리자 관련 *** -->
-   	<select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
+	<!-- *** 관리자(admin) 관련 *** -->
+    <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
        SELECT eventNum, gunName, title, eventDate
        FROM (
            SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
@@ -348,10 +413,10 @@
     </select>
     
     <insert id="eventAddDao">
-       INSERT INTO event
+       INSERT INTO event(eventNum, type, gunName, title, eventDate, place, org_name, use_trgt, player, program, org_link, main_img,
+            start_date, end_date, eventPrice, ticketCount)
        VALUES(e_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, 
-             #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, 
-             #{param12}, #{param13}, #{param14}, #{param15}, #{param16})
+             #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, #{param13}, #{param14}, #{param15})
     </insert>
     
     <update id="eventUpdateDao">
@@ -368,14 +433,13 @@
 	        program = #{param10},
 	        org_link = #{param11},
 	        main_img = #{param12},
-	        rgstDate = #{param13},
-	        start_date = #{param14},
-	        end_date = #{param15},
-	        eventPrice = #{param16},
-	        ticketCount = #{param17}
+	        start_date = #{param13},
+	        end_date = #{param14},
+	        eventPrice = #{param15},
+	        ticketCount = #{param16}
 	    WHERE eventNum = #{param1}
     </update>
-	<!-- *** 관리자 관련 끝 *** -->
+	<!-- *** 관리자(admin) 관련 끝 *** -->
 	
 	
 	<!-- *** 고객센터 관련 *** -->
@@ -511,7 +575,7 @@
 
 	
 	<!-- *** 페스티벌, 전시 관련 *** -->
-		 <!-- 축제 페이지 -->
+		 <!-- 페스티벌 페이지 -->
 		 <select id="festivalListDao" resultType="com.festicket.dto.EventDto">
 		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		    FROM (
@@ -519,7 +583,7 @@
 		        FROM (
 		            SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		            FROM event
-		            WHERE UPPER(type) LIKE '축제%'
+		            WHERE UPPER(type) LIKE '페스티벌%'
 		            ORDER BY eventNum DESC
 		        ) A
 		    )
@@ -527,10 +591,10 @@
 		 </select>
 		 
 		 <select id="totalFestivalCountDao" resultType="int">
-			SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '축제%'
+			SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '페스티벌%'
 		</select>
 		
-		<!-- 축제 정렬 시작 -->
+		<!-- 페스티벌 정렬 시작 -->
 		<select id="festivalOrderByStartRecent" resultType="com.festicket.dto.EventDto">
 			SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			FROM (
@@ -538,7 +602,7 @@
 			    FROM (
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
-			        WHERE UPPER(type) LIKE '축제%'
+			        WHERE UPPER(type) LIKE '페스티벌%'
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') ASC
 			    ) A
 			)
@@ -552,7 +616,7 @@
 			    FROM (
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
-			        WHERE UPPER(type) LIKE '축제%'
+			        WHERE UPPER(type) LIKE '페스티벌%'
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') DESC
 			    ) A
 			)
@@ -566,7 +630,7 @@
 			    FROM (
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
-			        WHERE UPPER(type) LIKE '축제%'
+			        WHERE UPPER(type) LIKE '페스티벌%'
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') ASC
 			    ) A
 			)
@@ -580,13 +644,13 @@
 			    FROM (
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
-			        WHERE UPPER(type) LIKE '축제%'
+			        WHERE UPPER(type) LIKE '%'
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
 			    ) A
 			)
 			WHERE PAGE=#{param2}
 		</select>
-		<!-- 축제 정렬 끝 -->
+		<!-- 페스티벌 정렬 끝 -->
 	 
 		<!-- 전시 페이지 -->
 		 <select id="exhibitionListDao" resultType="com.festicket.dto.EventDto">

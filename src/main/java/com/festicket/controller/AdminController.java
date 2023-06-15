@@ -23,7 +23,7 @@ import com.festicket.dto.PageDto;
 public class AdminController {
 	
 	@Autowired
-	SqlSession sqlSession;
+	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "/adminList")
 	public String adminList(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) {
@@ -121,11 +121,8 @@ public class AdminController {
        String program = request.getParameter("program");
        String org_link = request.getParameter("org_link");
        String main_img = request.getParameter("main_img");
-       String rgstDateStr = request.getParameter("rgstDate");
        
-       Date rgstDate = null;
 	   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	   rgstDate = dateFormat.parse(rgstDateStr);
                
        String start_dateStr = request.getParameter("start_date");
 	   Date start_date = null;
@@ -141,7 +138,7 @@ public class AdminController {
        String eventDate = start_dateStr + "~" + end_dateStr;
       
 	   dao.eventAddDao(type, gunName, title, eventDate, place, org_name, use_trgt,
-	            player, program, org_link, main_img, rgstDate,
+	            player, program, org_link, main_img,
 	            start_date, end_date, eventPrice, ticketCount);
       
       return "redirect:adminList";
@@ -166,11 +163,8 @@ public class AdminController {
        String program = request.getParameter("program");
        String org_link = request.getParameter("org_link");
        String main_img = request.getParameter("main_img");
-       String rgstDateStr = request.getParameter("rgstDate");
        
-       Date rgstDate = null;
 	   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	   rgstDate = dateFormat.parse(rgstDateStr);
                
        String start_dateStr = request.getParameter("start_date");
 	   Date start_date = null;
@@ -187,8 +181,9 @@ public class AdminController {
        
        dao.eventUpdateDao(eventNum, type, gunName, title, eventDate,
      			  place, org_name, use_trgt, player, program, org_link, main_img,
-     			  rgstDate, start_date, end_date, eventPrice, ticketCount);
+     			  start_date, end_date, eventPrice, ticketCount);
       
       return "redirect:adminList";
    }
+	
 }

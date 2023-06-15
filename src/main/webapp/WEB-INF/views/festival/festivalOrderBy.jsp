@@ -75,8 +75,8 @@
 					  </c:forEach>
 			  		</c:when>
 			  		<c:otherwise>
-	                    <div id="noResult">조회된 결과가 없습니다.</div>
-		            </c:otherwise>
+	                    <div id="noResult">조회된 결과가 없습니다.</div>
+		            </c:otherwise>
 			  	</c:choose>
 			</tbody>
 		</table>

@@ -85,13 +85,13 @@ public interface IDao {
 	public List<EventDto> getTopFiveEventsDao(); // 행사 탑5 리스트 
 	public List<EventDto> getOngoingEventDao(); // 진행중인 행사 리스트
 
-	// 관리자
+	// 관리자(admin)
 	public List<EventDto> eventListPagingDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징
 	public void eventAddDao(String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
-            String player, String program, String org_link, String main_img, Date rgstDate,
+            String player, String program, String org_link, String main_img,
             Date start_date, Date end_date, String eventPrice, int ticketCount); // 행사 추가
 	public void eventUpdateDao(int eventNum, String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
-            String player, String program, String org_link, String main_img, Date rgstDate,
+            String player, String program, String org_link, String main_img,
             Date start_date, Date end_date, String eventPrice, int ticketCount); // 행사 수정
 	
 	// 고객센터 게시판
