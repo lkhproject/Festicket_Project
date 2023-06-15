@@ -19,6 +19,7 @@ public class QABoardDto {
 	private Date q_writeDate;
 	private Date q_modifyDate;
 	private int q_hit;
+	private int q_replyCount;
 	
 	// event 테이블
 	private String title;

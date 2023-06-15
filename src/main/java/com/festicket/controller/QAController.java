@@ -37,12 +37,15 @@ public class QAController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		int qaNum = Integer.parseInt(request.getParameter("selectedQA"));
+		String strQAnum = request.getParameter("selectedQA");
+		
+		int qaNum = Integer.parseInt(strQAnum);
 		
 		dao.qaHitDao(qaNum);
 		
 		request.setAttribute("adminCheck", adminCheck);
 		model.addAttribute("qaDto", dao.getQaDao(qaNum));
+		model.addAttribute("QAreplyList", dao.QAreplyListDao(strQAnum));
 		
 		return "QA/qaView";
 	}
@@ -133,5 +136,39 @@ public class QAController {
 		request.setAttribute("event", dao.getEventDao(eventNum));
 		
 		return "QA/qaBoardList";
+	}
+	
+	@RequestMapping(value = "/QAreplyWrite")
+	public String QAreplyWrite(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
+
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.QAreplyWriteDao(request.getParameter("sessionId"), request.getParameter("qa_content"), request.getParameter("qa_boardNum"));
+		dao.QAreplyCountDao(request.getParameter("qa_boardNum")); // 원글의 댓글 수를 1증가
+		
+		int qa = Integer.parseInt(request.getParameter("qa_boardNum"));
+		
+		model.addAttribute("qaDto", dao.getQaDao(qa));
+		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("qa_boardNum")));
+		
+		return "QA/qaView";
+	}
+	
+	@RequestMapping(value = "/QAreplyDelete")
+	public String QAreply_delete(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.QAreplyDeleteDao(request.getParameter("qa_idx")); // 댓글 삭제
+		dao.QAreplyCountMinusDao(request.getParameter("qa_boardNum")); // 댓글 개수 1개 삭제
+		
+		int qa = Integer.parseInt(request.getParameter("qa_boardNum"));
+		
+		model.addAttribute("qaDto", dao.getQaDao(qa));	
+		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("qa_boardNum")));
+		
+		return "QA/qaView";
 	}
 }

@@ -487,6 +487,35 @@
 		VALUES (eqab_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, 0)
 	</insert>
 	
+	<!-- QA 답변 -->
+	<insert id="QAreplyWriteDao">
+		INSERT INTO 
+			event_QAanswer(qa_idx, qa_userId, qa_content, qa_boardNum)
+				VALUES
+					(eqaa_seq.nextval, #{param1}, #{param2}, #{param3})
+	</insert>
+	
+	<update id="QAreplyCountDao">
+		UPDATE event_QAboard SET q_replyCount=q_replyCount+1 WHERE qa_idx=#{param1}
+	</update>
+	
+	<select id="QAreplyListDao" resultType="com.festicket.dto.QAanswerDto">
+		SELECT * FROM event_QAanswer WHERE qa_boardNum=#{param1} ORDER BY qa_idx ASC
+	</select>
+	
+	<delete id="QAreplyDeleteDao">
+		DELETE FROM event_QAanswer WHERE qa_idx=#{param1}
+	</delete>
+	
+	<update id="QAreplyCountMinusDao">
+		UPDATE event_QAboard SET q_replyCount=q_replyCount-1 WHERE qa_idx=#{param1}
+	</update>
+	
+	<delete id="QAboardReplyDeleteDao">
+		DELETE FROM event_QAanswer WHERE qa_boardNum=#{param1}
+	</delete>
+	<!-- QA 답변 끝 -->
+	
 	<!-- *** 예약 *** -->
 	
 	<!-- 예약 리스트 최신순으로 가져오기 -->

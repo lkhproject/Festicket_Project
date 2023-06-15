@@ -9,6 +9,7 @@ import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
 import com.festicket.dto.MemberDto;
 import com.festicket.dto.QABoardDto;
+import com.festicket.dto.QAanswerDto;
 import com.festicket.dto.ReserveDto;
 import com.festicket.dto.ReviewDto;
 
@@ -92,6 +93,14 @@ public interface IDao {
 	public void qaHitDao(int q_idx); // 조회수 증가
 	public void qaWriteDao(int eventNum, String userId, String title, String content, Date writeDate, int hit); // 문의하기
 	
+	// QA 답변
+	public int QAreplyWriteDao(String qa_userId, String qa_content, String qa_boardNum); // QA 댓글 입력
+	public void QAreplyCountDao(String qa_boardNum); // QA 댓글이 달린 원글의 댓글 필드 값 +1
+	public List<QAanswerDto> QAreplyListDao(String qa_boardNum); // 해당 원글에 달린 QA 댓글의 리스트 가져오기
+	public void QAreplyDeleteDao(String qa_idx); // QA 댓글 삭제
+	public void QAreplyCountMinusDao(String qa_boardNum); // QA 댓글이 달린 원글의 댓글 필드 값 -1
+	public void QAboardReplyDeleteDao(String qa_boardNum); // 삭제한 게시글 QA 댓글 모두 삭제
+	
 //***************
 	// 예약확인
 	public List<ReserveDto> getReservationListDao(String userId, int countList, int pageNum); // 예약 목록 가져오기
@@ -100,16 +109,16 @@ public interface IDao {
 	public int reservationConfirmedDao(String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate); // 예약 디테일 db에 넣어주기
 	public int checkDupRevDao(int eventNum); // 같은 행사, 같은 날에 예약된게 있는지 확인
 	
-	// 고객센터 게시판 기능
+	// 고객센터 게시판
 	public List<CSboardDto> csListDao(int countList, int pageNum); // 게시글 목록 모두 가져오기
 	public void csWriteDao(String c_userId, String c_title, String c_content); // 게시글 쓰기
 	public CSboardDto csViewDao(String c_idx); // 클릭한 게시글 내용 보기
-	public void csModifyDao(String c_idx, String c_title, String c_content); // 게시글 수정
+	public void csModifyDao(String c_idx, String c_userId, String c_title, String c_content); // 게시글 수정
 	public void csDeleteDao(String c_idx); // 게시글 삭제
 	public void csHitDao(String c_idx); // 조회수 증가
 	public int csListTotalCountDao(); // 총 게시글 개수 반환
 	
-	// 고객센터 검색 기능
+	// 고객센터 검색
 	public int totalcsSearch_TitleCount(String keyword); // 타이틀로 CS 검색결과
 	public int totalcsSearch_IdCount(String keyword); // 아이디로 CS 검색결과
 	public int totalcsSearch_ContentCount(String keyword); // 내용으로 CS 검색결과
@@ -118,7 +127,7 @@ public interface IDao {
 	public List<CSboardDto> csSearchWriterDao(String keyword, int countList, int pageNum); // 아이디로 검색
 	
 	// 댓글 기능
-	public int replyWriteDao(String ca_content, String ca_boardNum); // 댓글 입력
+	public void replyWriteDao(String ca_userId, String ca_content, String ca_boardNum); // 댓글 입력
 	public void replyCountDao(String ca_boardNum); // 댓글이 달린 원글의 댓글 필드 값 +1
 	public List<CSanswerDto> replyListDao(String ca_boardNum); // 해당 원글에 달린 댓글의 리스트 가져오기
 	public void replyDeleteDao(String ca_idx); // 댓글 삭제
