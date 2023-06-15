@@ -12,9 +12,17 @@
 	<div class="headerline">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr class="top_menu">
-				<td class="margin01">&nbsp;</td>
+				<td>&nbsp;</td>
 				<%
-					String sessionId = (String)session.getAttribute("sessionId");
+					String sessionId = (String) session.getAttribute("sessionId");
+					if (sessionId != null) {
+				%>
+					<td class="toptext_userId"><b>${sessionId}</b>님 환영합니다!</td>
+				<%
+					}
+				%>
+				<td>&nbsp;</td>
+				<%
 					if(sessionId == null) {
 				%>
 				<td class="toptext"><a href="login">로그인</a></td>
@@ -25,7 +33,7 @@
 				<%
 					}
 				%>
-				<td class="margin02">&nbsp;</td>
+				<td>&nbsp;</td>
 				<%
 					if(sessionId == null) {
 				%>
@@ -37,22 +45,25 @@
 				<%
 					}
 				%>
-				<td class="margin02">&nbsp;</td>
+				<td>&nbsp;</td>
 				<%
-					if(sessionId == null) {
+					if (sessionId == null) {
 				%>
-				<td class="toptext"><a href="myPage">마이페이지</a></td>
+					<td class="toptext"><a href="myPage">마이페이지</a></td>
+				<%
+					} else if (sessionId.equals("admin")) {
+				%>
+					<td class="toptext"><a href="adminList">관리자페이지</a></td>
+				<%
+					} else {
+				%>
+					<td class="toptext"><a href="myPage">마이페이지</a></td>
 				<%
 					}
-					else if(sessionId.equals("admin")) {
 				%>
-				<td class="toptext"><a href="adminList">관리자페이지</a></td>
-				<%
-					}
-				%>
-				<td class="margin02">&nbsp;</td>
+				<td>&nbsp;</td>
 				<td class="toptext"><a href="csBoardList">고객센터</a></td>
-				<td class="margin02">&nbsp;</td>
+				<td>&nbsp;</td>
 			</tr>
 		</table>
 		<hr class="line">
