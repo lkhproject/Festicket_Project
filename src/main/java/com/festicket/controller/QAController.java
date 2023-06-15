@@ -145,10 +145,12 @@ public class QAController {
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		dao.QAreplyWriteDao(request.getParameter("sessionId"), request.getParameter("qa_content"), request.getParameter("qa_boardNum"));
-		dao.QAreplyCountDao(request.getParameter("qa_boardNum")); // 원글의 댓글 수를 1증가
+		int qa = Integer.parseInt(request.getParameter("selectedQA"));
 		
-		int qa = Integer.parseInt(request.getParameter("qa_boardNum"));
+		System.out.println(qa);
+		
+		dao.QAreplyWriteDao(request.getParameter("sessionId"), request.getParameter("selectedQA"), request.getParameter("qa_content"));
+		dao.QAreplyCountDao(request.getParameter("selectedQA")); // 원글의 댓글 수를 1증가
 		
 		model.addAttribute("qaDto", dao.getQaDao(qa));
 		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("qa_boardNum")));

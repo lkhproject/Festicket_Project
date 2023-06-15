@@ -12,11 +12,6 @@
 	<script type="text/javascript" src="/resources/js/festival.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
-
-<%
-	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
-%>
-
 <!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
 <!-- 헤더 끝 -->
@@ -71,17 +66,14 @@
 						  	</p>
 					      </td>
 					      <!-- 세션으로 관리자는 버튼 value="수정하기" -->
-					      <%
-					      	if(adminCheck == 1) {
-					      %>
-					      		<td id="reserve"><input type="button" value="수정하기" onclick="script:window.location.href='adminModify?selectedEvent=${search.eventNum }'"></td>
-					      <%
-					      	} else {
-					      %>
-					      		<td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${search.eventNum }'"></td>
-					      <%
-					      	}
-					      %>
+					      <c:choose>
+						      <c:when test="${sessionId eq 'admin'}">
+						      		<td id="reserve"><input type="button" value="수정하기" onclick="script:window.location.href='adminModify?selectedEvent=${search.eventNum }'"></td>
+						      </c:when>
+						      <c:otherwise>
+						      		<td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${search.eventNum }'"></td>
+						      </c:otherwise>
+					      </c:choose>
 					    </tr>
 					  </c:forEach>
 			  		</c:when>

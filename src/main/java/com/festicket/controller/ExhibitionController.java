@@ -26,14 +26,6 @@ public class ExhibitionController {
 	@RequestMapping(value = "/exhibition")
 	public String exhibition(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) {
 
-		String sessionId = (String)session.getAttribute("sessionId");
-		
-		int adminCheck = 0;
-		
-		if(sessionId.equals("admin")) {
-			adminCheck = 1;
-		}
-		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		// 페이징
@@ -54,7 +46,6 @@ public class ExhibitionController {
 		
 		List<EventDto> exhibitionDtos = dao.exhibitionListDao(criteria.getCountList(), pageNum);
 		
-		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("exhibitionDtos", exhibitionDtos);
@@ -65,15 +56,7 @@ public class ExhibitionController {
 	
 	@RequestMapping(value = "/exhibitionOrderBy")
 	public String exhibitionOrderBy(HttpSession session, HttpServletRequest request, Model model, Criteria criteria) {
-		
-		String sessionId = (String)session.getAttribute("sessionId");
-		
-		int adminCheck = 0;
-		
-		if(sessionId.equals("admin")) {
-			adminCheck = 1;
-		}
-		
+
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		// 페이징
@@ -110,7 +93,6 @@ public class ExhibitionController {
 			exhibitionDtos = dao.exhibitionOrderByEndLate(criteria.getCountList(), pageNum);
 		}
 		
-		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("exhibitionDtos", exhibitionDtos);

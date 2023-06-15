@@ -77,15 +77,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/searchResult")
 	public String searchResult(HttpServletRequest request, Model model, Criteria criteria, HttpSession session) {
-		
-		String sessionId = (String)session.getAttribute("sessionId");
-		
-		int adminCheck = 0;
-		
-		if(sessionId.equals("admin")) {
-			adminCheck = 1;
-		}
-		
+
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		// 페이징
@@ -108,7 +100,6 @@ public class HomeController {
 		
 		List<EventDto> searchListDtos = dao.getSearchResult(keyword, criteria.getCountList(), pageNum);
 		
-		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("search_word", keyword);
 		request.setAttribute("totalCount", totalResult);
 		model.addAttribute("pageMaker", pageDto);
@@ -120,15 +111,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/searchOrderBy")
 	public String searchOrderBy(HttpServletRequest request, Model model, Criteria criteria, HttpSession session) {
-		
-		String sessionId = (String)session.getAttribute("sessionId");
 
-		int adminCheck = 0;
-		
-		if(sessionId.equals("admin")) {
-			adminCheck = 1;
-		}
-		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		// 페이징
@@ -165,7 +148,6 @@ public class HomeController {
 			searchListDtos = dao.searchOrderByEndLate(keyword, criteria.getCountList(), pageNum);
 		}
 		
-		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("search_word", keyword);
 		request.setAttribute("totalCount", totalResult);
 		model.addAttribute("pageMaker", pageDto);

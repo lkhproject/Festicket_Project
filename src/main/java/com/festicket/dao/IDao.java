@@ -94,7 +94,7 @@ public interface IDao {
 	public void qaWriteDao(int eventNum, String userId, String title, String content, Date writeDate, int hit); // 문의하기
 	
 	// QA 답변
-	public int QAreplyWriteDao(String qa_userId, String qa_content, String qa_boardNum); // QA 댓글 입력
+	public int QAreplyWriteDao(String qa_userId, String qa_boardNum, String qa_content); // QA 댓글 입력
 	public void QAreplyCountDao(String qa_boardNum); // QA 댓글이 달린 원글의 댓글 필드 값 +1
 	public List<QAanswerDto> QAreplyListDao(String qa_boardNum); // 해당 원글에 달린 QA 댓글의 리스트 가져오기
 	public void QAreplyDeleteDao(String qa_idx); // QA 댓글 삭제

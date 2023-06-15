@@ -490,7 +490,7 @@
 	<!-- QA 답변 -->
 	<insert id="QAreplyWriteDao">
 		INSERT INTO 
-			event_QAanswer(qa_idx, qa_userId, qa_content, qa_boardNum)
+			event_QAanswer(qa_idx, qa_userId, qa_boardNum, qa_content)
 				VALUES
 					(eqaa_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
