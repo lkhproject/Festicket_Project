@@ -13,18 +13,19 @@
 </head>
 <body>
 <%
-	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+    int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
 
-	if(loginOk == 0) {
+    if(loginOk == 0) {
+        String previousPage = request.getRequestURL().toString();
+        session.setAttribute("previousPage", previousPage);
 %>
-	<script>
-		alert("접근 권한이 없는 페이지입니다. 로그인이 필요합니다.");
-		window.location.href = "login";
-	</script>
+    <script>
+        alert("접근 권한이 없는 페이지입니다. 로그인이 필요합니다.");
+        window.location.href = "login";
+    </script>
 <%
-	}
+    }
 %>
-
 	<!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
