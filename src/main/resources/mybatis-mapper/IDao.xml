@@ -29,11 +29,23 @@
 	<select id="checkEmailDao" resultType="int">
 		SELECT COUNT(*) FROM eventMember WHERE email = #{param1}
 	</select>
+	<!-- *** 회원가입 끝 *** -->
 	
+	
+	<!-- *** 회원정보 수정 *** -->
+	<update id="modifyMemberDao">
+    UPDATE eventMember 
+    	SET userPassword=#{param2}, userPhone=#{param3}, email=#{param4}, name=#{param5} 
+			WHERE userId=#{param1}
+	</update>
+	<!-- *** 회원정보 수정 끝 *** -->
+	
+	
+	<!-- *** 회원 탈퇴 *** -->		
 	<delete id="deleteUser" parameterType="int">
 		DELETE FROM eventMemberDB WHERE user_id = #{param1} AND user_password = #{param2}
-	</delete>
-	<!-- *** 회원가입 끝 *** -->
+	</delete>	
+	<!-- *** 회원 탈퇴 끝 *** -->
 	
 	
 	<!-- *** 행사 관련 *** -->

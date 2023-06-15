@@ -23,8 +23,10 @@ public interface IDao {
 	public int checkEmailDao(String email); // 가입하려는 이메일의 존재여부 체크
 	public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date signupDate); // 회원가입
 	
+	// 회원정보 수정
+	public void modifyMemberDao(String userId, String userPassword, String userPhone, String email, String name);
+	
 	// 회원탈퇴
-	public void deleteDao(String parameter);
 	
 	// 행사
 	public EventDto getEventDao(int eventNum); // 행사 하나만 가져오기
@@ -52,8 +54,8 @@ public interface IDao {
 	// QA
 	public List<QABoardDto> getQAListDao(int eventNum); // QA 글 리스트 가져오기
 	public List<QABoardDto> getQAListPagingDao(int eventNum, int countList, int pageNum); // QA 글 리스트 가져오기 + 페이징
-	public QABoardDto getQaDao(int qaNum); // qa 글 하나 가져오기
-	public int totalQAListCountDao(int eventNum); // qa개수 가져오기
+	public QABoardDto getQaDao(int qaNum); // QA 글 하나 가져오기
+	public int totalQAListCountDao(int eventNum); // QA 개수 가져오기
 	public void qaHitDao(int q_idx); // 조회수 증가
 	public void qaWriteDao(int eventNum, String userId, String title, String content, Date writeDate, int hit); // 문의하기
 	
