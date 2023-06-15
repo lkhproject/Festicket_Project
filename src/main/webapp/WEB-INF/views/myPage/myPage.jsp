@@ -95,7 +95,7 @@
 			</div>
 			<div class="guide_txt">
 				<p class="guide_txt">
-					<span class="color_point">예매번호</span>를 클릭하면 예매 상세 내용을 확인할 수 있습니다.<br>
+					<span class="color_point">티켓명</span>을 클릭하면 예매 상세 내용을 확인할 수 있습니다.<br>
 					공연/전시 예매 내역은 하단의 공연/전시 탭을 선택하면 확인할 수 있습니다.
 				</p>
 			</div>
