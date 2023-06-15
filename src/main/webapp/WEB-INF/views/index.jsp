@@ -19,6 +19,11 @@
 	
 	<!-- 롤링배너 -->
 	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="margin: 50px 0px 0px">
+	  <div class="carousel-indicators">
+	    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+	    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+	    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  	  </div>
 	  <div class="carousel-inner">
 	    <div class="carousel-item active" >
 	      <img src="/resources/img/rolling_banner_01.jpg" class="d-block w-100">
