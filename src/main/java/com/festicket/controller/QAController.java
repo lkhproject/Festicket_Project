@@ -27,12 +27,21 @@ public class QAController {
 	@RequestMapping(value = "/qaView")
 	public String qaView(HttpSession session, Model model, HttpServletRequest request) {
 		
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		int adminCheck = 0;
+		
+		if(sessionId != null && sessionId.equals("admin")) {
+			adminCheck = 1;
+		}
+		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		int qaNum = Integer.parseInt(request.getParameter("selectedQA"));
 		
 		dao.qaHitDao(qaNum);
 		
+		request.setAttribute("adminCheck", adminCheck);
 		model.addAttribute("qaDto", dao.getQaDao(qaNum));
 		
 		return "QA/qaView";
@@ -44,6 +53,13 @@ public class QAController {
 		String sessionId = (String)session.getAttribute("sessionId");
 		int eventNum = (int)session.getAttribute("eventNum");
 		
+		int adminCheck = 0;
+		
+		if(sessionId.equals("admin")) {
+			adminCheck = 1;
+		}
+		
+		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
 		
@@ -65,7 +81,7 @@ public class QAController {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String strToday = formatter.format(now);
         Date today = formatter.parse(strToday);
-
+        
 		dao.qaWriteDao(q_eventNum, sessionId, q_title, q_content, today, 0);
 		
 		return "redirect:qaBoardList";
@@ -77,9 +93,13 @@ public class QAController {
 		String sessionId = (String)session.getAttribute("sessionId");
 		
 		int loginOk = 0;
+		int adminCheck = 0;
 		
-		if(sessionId != null && !sessionId.isEmpty()) {
+		if(sessionId != null && !sessionId.equals("admin")) {
 			loginOk = 1;
+		}
+		if(sessionId != null && sessionId.equals("admin")) {
+			adminCheck = 1;
 		}
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
@@ -103,6 +123,7 @@ public class QAController {
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);	
 				
+		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);

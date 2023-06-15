@@ -13,6 +13,11 @@
 	<script type="text/javascript" src="/resources/js/festival.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
+
+<%
+	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
+%>
+
 <!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 <!-- 헤더 끝 -->
@@ -64,7 +69,17 @@
 							  	</c:choose>
 						  	</div>
 					      </td>
-					      <td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"></td>
+					      <%
+					      	if(adminCheck == 1) {
+					      %>
+					      		<td id="reserve"><input type="button" value="수정하기" onclick="script:window.location.href='adminModify?selectedEvent=${festival.eventNum }'"></td>
+					      <%
+					      	} else {
+					      %>
+					      		<td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"></td>
+					      <%
+					      	}
+					      %>
 					    </tr>
 					  </c:forEach>
 			  		</c:when>

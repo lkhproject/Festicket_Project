@@ -26,6 +26,7 @@
 
 <%
 	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
 %>
 <input type="hidden" id="login-ok" value="<%= loginOk %>">
 
@@ -124,7 +125,17 @@
 				<input type="hidden" name="selectedEventNum" id="selectedEventNum" value="${event.eventNum }">
 				<input type="hidden" name="eventPrice" id="eventPrice" value="${eventPrice }">
 				<!-- 로그인시에만 예매가능 -->
-				<input type="submit" value="예매하기" onclick="return confirmRev(event)">
+			  <%
+		      	if(adminCheck == 1) {
+		      %>
+		      		<input type="button" value="수정하기" id="adminBtn" onclick="script:window.location.href='adminModify?selectedEvent=${event.eventNum }'">
+		      <%
+		      	} else if(loginOk == 1) {
+		      %>
+		      		<input type="submit" value="예매하기" onclick="return confirmRev(event)">
+		      <%
+		      	}
+		      %>
 			</form>
 		</div>
 	<!-- 예매 영역 끝 -->
@@ -229,7 +240,7 @@
 <%
 	if(loginOk == 1) {
 %>
-	<input type="button" value="문의하기" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+	<input type="button" value="문의하기" id="inquiry" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
 <%
 	}
 %>

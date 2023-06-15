@@ -1,3 +1,4 @@
+<%@page import="com.festicket.dto.QABoardDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,6 +12,11 @@
 <title>페스티켓</title>
 </head>
 <body>
+
+<%
+	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
+%>
+
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
@@ -48,15 +54,18 @@
 
 				<!-- 댓글 영역 끝 -->
 				
+				<!-- 세션 아이디를 userId 변수에 저장 -->
 				<!-- 수정, 삭제, 목록 버튼 -->
 				<div class="container" style="padding-top: 10px">
 				<div class="button_area">
+				<c:if test="${not empty sessionId and sessionId eq qaDto.q_userId}">
 					<div class="button_modify">
 						<input type="button" class="btn" id="buttons" value="수정" onclick="script:window.location.href=''">
 					</div>
 					<div class="button_delete">
 						<input type="button" class="btn" id="buttons" value="삭제" onclick="script:window.location.href=''">
 					</div>
+				</c:if>
 					<div class="button_list">
 						<input type="button" class="btn" id="buttons" value="이전" onclick="window.location=document.referrer">
 					</div>

@@ -15,6 +15,7 @@
 <body>
 <%
 	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
 %>
 
 	<!-- 헤더 시작 -->
