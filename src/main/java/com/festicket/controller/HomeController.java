@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,54 +48,9 @@ public class HomeController {
 		return "find";
 	}
 	
-	@PostMapping("/finduserInfo")
-	    public ModelAndView findUserInfo(@RequestParam("email") String email,
-	                                     @RequestParam("userPhone") String userPhone,
-	                                     @RequestParam(value = "findIdBtn", required = false) String findIdBtn,
-	                                     @RequestParam(value = "findPwdBtn", required = false) String findPwdBtn) {
-	        ModelAndView modelAndView = new ModelAndView();
-
-	        if (findIdBtn != null) {
-	            // 아이디 찾기 버튼이 클릭된 경우의 로직
-	            String userId = findUserIdByEmailAndPhone(email, userPhone);
-	            if (userId != null) {
-	                modelAndView.addObject("userId", userId);
-	                modelAndView.setViewName("findIdSuccess"); // 아이디가 존재하는 경우의 결과 페이지
-	            } else {
-	                modelAndView.setViewName("findIdFailure"); // 아이디가 존재하지 않는 경우의 결과 페이지
-	            }
-	        } else if (findPwdBtn != null) {
-	            // 비밀번호 찾기 버튼이 클릭된 경우의 로직
-	            // 비밀번호 재설정 등의 처리 로직을 구현
-	        }
-	        
-	        return modelAndView;
-	    }
-	    
-	    // 아이디 찾기를 위한 메소드 예시
-	    private String findUserIdByEmailAndPhone(String email, String phone) {
-	        // 이메일과 휴대폰번호를 사용하여 데이터베이스에서 아이디를 조회하는 로직을 구현해야 함
-	        // 실제로 데이터베이스 조회를 수행하거나 다른 방식으로 아이디를 찾는 로직을 작성해야 함
-	        // 조회 결과에 따라 아이디를 반환하거나 null을 반환할 수 있음
-	        
-	        // 아래는 예시로 하드코딩된 값으로 아이디를 반환하는 예시 로직
-	        if (email.equals("example@example.com") && phone.equals("01012345678")) {
-	            return "finduserInfo";
-	        } else {
-	            return null;
-	        }
-	    }
-	
-	@RequestMapping(value = "/myPageUnreg")
-	public String myPageUnreg(HttpServletRequest request) {
-		
-//		IDao dao = sqlSession.getMapper(IDao.class);
-//		
-//		dao.deleteDao(request.getParameter("userId"));
-//		dao.deleteDao(request.getParameter("userPassword"));
-//		
-		
-		return "myPageUnreg";
+	@RequestMapping(value = "/finduserIdInfo")
+	public String finduserIdInfo() {	
+		return "finduserIdInfo";
 	}
 	
 	@RequestMapping(value = "/myPage")
@@ -104,11 +60,39 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/myPageModify")
-	public String myPageModify() {
+	public String myPageModify(HttpSession session, Model model) {
+		
+		String userId = (String) session.getAttribute("sessionId");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("memberDto", dao.getMemberInfo(userId));		
 		
 		return "myPageModify";
 	}
-
+	
+	@RequestMapping(value = "/myPageModifyOk")
+	public String myPageModifyOk(HttpServletRequest request, Model model) {
+		
+		String userId = request.getParameter("userId");
+		String userPassword = request.getParameter("userPassword");
+		String userPhone = request.getParameter("userPhone");
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.modifyMemberDao(userId, userPassword, userPhone, email, name);
+		
+		return "redirect:myPage";
+	}
+	
+	@RequestMapping(value = "/myPageUnreg")
+	public String myPageUnreg() {
+		
+		return "myPageUnreg";
+	}
+	
 	@RequestMapping(value = "/joinOk")
 	public String joinOk(HttpServletRequest request, Model model) throws ParseException {
 		
@@ -181,7 +165,6 @@ public class HomeController {
 	    // 세션 무효화 (세션 제거)
 	    session.invalidate();
 	    
-	    // 로그아웃 후 리다이렉트할 경로를 리턴합니다.
 	    return "logout";
 	
 	}
