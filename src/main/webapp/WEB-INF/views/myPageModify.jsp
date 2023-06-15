@@ -136,7 +136,7 @@ function validateForm() {
                 <center>
                     <img src="/resources/img/festicket_logo.png" width="30%">
                     <br><br>
-                    <form action="myPage" method="post" name="myPageModify_frm" onsubmit="return validateForm()">
+                    <form action="myPageModifyOk" method="post" name="myPageModifyOk_frm" onsubmit="return validateForm()">
                         <h5><b> 회원정보수정 </b></h5>
                         <table border="0" cellspacing="0" cellpadding="10">
                             <tr>
@@ -165,7 +165,7 @@ function validateForm() {
                             </tr>
                             <tr>
                                 <td colspan="2" align="center">
-                                    <input class="content_btn01" type="submit" value="수정완료" onclick="return joinCheck();">&nbsp;&nbsp;
+                                    <input class="content_btn01" type="submit" value="수정완료" onclick="return validateForm();">&nbsp;&nbsp;
                                     <input class="content_btn02" type="button" value="취소" onclick="script:window.location.href='index'">
                                 </td>
                             </tr>
