@@ -20,4 +20,6 @@ public class QABoardDto {
 	private Date q_modifyDate;
 	private int q_hit;
 	
+	// event 테이블
+	private String title;
 }

@@ -1,5 +1,7 @@
 package com.festicket.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,8 +24,9 @@ public class EventDto {
    private String org_link; // 홈페이지주소
    private String main_img; // 대표이미지
    private String rgstDate; // 신청일
-   private String start_date; // 시작일
-   private String end_date; // 종료일
+   private Date start_date; // 시작일
+   private Date end_date; // 종료일
    private String eventPrice; // 이용요금
+   private int ticketCount; // 총 티켓 개수
    
 }
