@@ -200,6 +200,6 @@ public class MyPageController {
 	
 	@RequestMapping(value = "/myPageUnreg") // 회원탈퇴
 	public String myPageUnreg() {
-		return "myPageUnreg";
+		return "myPage/myPageUnreg";
 	}
 }
