@@ -85,6 +85,37 @@ public class QAController {
 		return "redirect:qaBoardList";
 	}
 	
+	@RequestMapping(value = "/qaBoardModify")
+	public String qaBoardModify(HttpSession session, Model model, HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int qaNum = Integer.parseInt(request.getParameter("selectedQA"));
+		
+		model.addAttribute("qaDto", dao.getQaDao(qaNum));
+		
+		return "QA/qaBoardModify";
+	}
+	
+	@RequestMapping(value = "/qaBoardModifyOk")
+	public String qaBoardModifyOk(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
+		
+		String q_idx = request.getParameter("selectedQA");
+		String q_userId = request.getParameter("q_userId");
+		String q_title = request.getParameter("q_title");
+		String q_content = request.getParameter("q_content");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.qaModifyDao(q_idx, q_userId, q_title, q_content);
+		
+		int q_idxInt = Integer.parseInt(q_idx);
+		
+		model.addAttribute("qaDto", dao.getQaDao(q_idxInt));
+		
+		return "QA/qaBoardModifyOk";
+	}
+	
 	@RequestMapping(value = "/qaBoardList")
 	public String qaBoardList(HttpSession session, Model model, HttpServletRequest request, Criteria criteria) throws ParseException {
 		

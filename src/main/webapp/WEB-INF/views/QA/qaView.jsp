@@ -104,7 +104,7 @@
 				        <!-- 작성자와 세션 아이디 비교하여 수정, 삭제 버튼 보이기 -->
 				        <c:if test="${qaDto.q_userId eq sessionId}">
 				            <div class="button_modify">
-				                <form action="qaBoardModify" method="post" onsubmit="return replyValidateCheck()">
+				                <form action="qaBoardModify" method="get">
 				                    <input type="hidden" name="selectedQA" value="${qaDto.q_idx}">
 				                    <input type="submit" class="btn" id="buttons" value="수정">
 				                </form>

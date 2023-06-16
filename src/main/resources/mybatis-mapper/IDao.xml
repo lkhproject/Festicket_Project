@@ -521,7 +521,7 @@
 	</insert>
 	
 	<update id="qaModifyDao">
-		UPDATE event_QAboard SET q_title=#{param2}, q_content=#{param3} WHERE q_idx=#{param1}
+		UPDATE event_QAboard SET q_userId=#{param2}, q_title=#{param3}, q_content=#{param4} WHERE q_idx=#{param1}
 	</update>
 	
 	<delete id="qaDeleteDao">
