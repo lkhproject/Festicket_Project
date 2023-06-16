@@ -77,18 +77,21 @@
 	  				<input type="text" name="title" id="title" value="${event.title}" class="form-control" aria-describedby="basic-addon1">
 				</div>
 				
+			<div id="dateInput">
 				<div id="start_date_error" class="error"></div>
-				<div id="end_date_error" class="error"></div>
-				
-				<div class="input-group mb-3" id="dateInput">
+				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">시작일*</span>
-	  				<input type="date" id="datepicker_1" name="start_date" value="${event.start_date}" class="form-control" aria-describedby="basic-addon1">
+	  				<input type="date" id="datepicker_1" name="start_date" class="form-control" aria-describedby="basic-addon1">
 				</div>
+			</div>
 				
-				<div class="input-group mb-3" id="dateInput">
+			<div id="dateInput">
+				<div id="end_date_error" class="error"></div>
+				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">종료일*</span>
-	  				<input type="date" id="datepicker_2" name="end_date" value="${event.end_date}" class="form-control" aria-describedby="basic-addon1">
+	  				<input type="date" id="datepicker_2" name="end_date" class="form-control" aria-describedby="basic-addon1">
 				</div>
+			</div>
 					
 				<div id="gunName_error" class="error"></div>
 				<div class="input-group mb-3">
@@ -160,7 +163,6 @@
 <!-- 푸터 -->
 	<%@ include file="../include/footer.jsp" %>
 <!-- 푸터 끝 -->
-
 
 </body>
 </html>

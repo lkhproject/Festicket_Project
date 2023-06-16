@@ -22,13 +22,10 @@ public class ReservationController {
 	SqlSession sqlSession;
 	
 	@RequestMapping(value = "/reservation")
-	public String reservation(HttpServletRequest request, HttpSession session, Model model) {
+	public String reservation(HttpSession session, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		int totalCount = dao.totalFestivalCountDao();
-		
-		request.setAttribute("totalCount", totalCount);
 		model.addAttribute("event", dao.eventAllListDao());
 		
 		return "reservation/reservation";
@@ -39,18 +36,11 @@ public class ReservationController {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
 		
-		int loginOk = 0;
-		
-		if(sessionId != null) {
-			loginOk = 1;
-		}
-		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
 		session.setAttribute("eventNum", eventNum);
 		
-		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("event", dao.getEventDao(eventNum));
 		model.addAttribute("reviewList", dao.reviewListDao(eventNum, 0, 0));
 		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
