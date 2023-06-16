@@ -198,12 +198,7 @@ public class MyPageController {
 	     
 	     return "redirect:myPage";
 	  }
-	
-	 @RequestMapping(value = "/find") // 아이디.비밀번호 찾기
-		public String find() {
-			return "myPage/find";
-		}
-	 
+
 	 @RequestMapping(value = "/myPageUnreg")
 		public String memberdelete(HttpSession session, Model model) {		
 			

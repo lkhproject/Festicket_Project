@@ -28,8 +28,8 @@
                     	<input class="login-button" type="submit" value="로그인"></input>
                     </form>
                  	<br>
-                    <div class="joinpage"><a  href="find"><b>아이디/비밀번호찾기</b></a></div>
-					<div class="joinpage"><a  href="join">처음이신가요? <b>회원가입</b></a></div>
+                    <div class="joinpage"><a href="find"><b>아이디/비밀번호찾기</b></a></div>
+					<div class="joinpage"><a href="join">처음이신가요? <b>회원가입</b></a></div>
 						</table>
 					</center>
 					</td>

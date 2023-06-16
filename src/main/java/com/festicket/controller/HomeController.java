@@ -120,6 +120,11 @@ public class HomeController {
 		return "joinOk";
 	}
 	
+	 @RequestMapping(value = "/find") // 아이디.비밀번호 찾기
+		public String find() {
+			return "find";
+		}
+	
 	@RequestMapping(value = "/searchResult")
 	public String searchResult(HttpServletRequest request, Model model, Criteria criteria, HttpSession session) {
 
