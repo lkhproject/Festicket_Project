@@ -83,7 +83,7 @@
 							<a href="myPageModify">회원정보수정</a>
 						</li>
 						<li>
-							<a href="/myPage/myPageUnreg">회원탈퇴</a>
+							<a href="myPageUnreg">회원탈퇴</a>
 						</li>
 					</ul>
 				</li>
