@@ -153,13 +153,13 @@ span.help_submenu_tit{
 
 /* 가운데 box css 시작*/
 
-td.contentbox {
+div.contentbox {
 	float: center;
-    width: 1000px;
+    width: 1120px;
     padding: 38px 59px 100px 60px;
     box-sizing: border-box;
     background-color: #ffffff ;
-	height : 450px;
+	height : 495px;
 	text-align: center;
 }
 

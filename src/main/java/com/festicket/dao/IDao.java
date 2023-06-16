@@ -27,6 +27,7 @@ public interface IDao {
 	public void modifyMemberDao(String userId, String userPassword, String userPhone, String email, String name);
 	
 	// 회원탈퇴
+	public void deleteMember(String userId, String userPassword);
 	
 	// 행사
 	public EventDto getEventDao(int eventNum); // 행사 하나만 가져오기
@@ -147,7 +148,7 @@ public interface IDao {
 		//
 		
 		public int totalExhibitionCountDao();
-		public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트
+		public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트	
 	
 // *******************************************************************************************************
 	

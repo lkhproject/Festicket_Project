@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.festicket.dao.IDao;
 import com.festicket.dto.Criteria;
+import com.festicket.dto.MemberDto;
 import com.festicket.dto.PageDto;
 import com.festicket.dto.ReserveDto;
 
@@ -198,13 +199,39 @@ public class MyPageController {
 	     return "redirect:myPage";
 	  }
 	
-	 @RequestMapping(value = "/find") // 아이디 비밀번호 찾기
+	 @RequestMapping(value = "/find") // 아이디.비밀번호 찾기
 		public String find() {
 			return "myPage/find";
 		}
 	 
-	@RequestMapping(value = "/myPageUnreg") // 회원탈퇴
-	public String myPageUnreg() {
-		return "myPage/myPageUnreg";
+	 @RequestMapping(value = "/myPageUnreg")
+		public String memberdelete(HttpSession session, Model model) {		
+			
+			String userId = (String) session.getAttribute("sessionId");
+			
+			IDao dao = sqlSession.getMapper(IDao.class);
+			System.out.println(userId);
+			model.addAttribute("memberDto", dao.getMemberInfo(userId));		
+			
+			return "myPage/myPageUnreg";
+		}
+		
+	@RequestMapping(value = "/myPageUnregOk")
+	public String delete_form(HttpServletRequest request, Model model, HttpSession session) {
+		
+		 String userId = request.getParameter("userId");
+	     String userPassword = request.getParameter("userPassword");
+	     
+	     IDao dao = sqlSession.getMapper(IDao.class);
+	     
+	     dao.deleteMember(userId, userPassword);
+	  	     
+	     HttpSession session1 = request.getSession(false);
+	     if (session1 != null) {
+	         session1.invalidate(); // 세션 만료
+	     }
+		
+		return  "redirect:index";
 	}
+	
 }

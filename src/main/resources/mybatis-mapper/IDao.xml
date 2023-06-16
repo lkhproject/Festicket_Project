@@ -42,9 +42,10 @@
 	
 	
 	<!-- *** 회원 탈퇴 *** -->		
-	<delete id="deleteMember" parameterType="String">
+	<delete id="deleteMember">
 		DELETE FROM eventMember
-		WHERE userId = #{param1} AND userPassword = #{param2}
+		WHERE userId = #{param1} 
+		AND userPassword = #{param2}
 	</delete>
 	<!-- *** 회원 탈퇴 끝 *** -->
 	
