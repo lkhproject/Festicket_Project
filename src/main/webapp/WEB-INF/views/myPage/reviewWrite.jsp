@@ -14,9 +14,9 @@
 <body>
 
 	<%
-	    int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+	    Integer loginOk = (Integer) request.getAttribute("loginOk");
 	
-	    if(loginOk == 0) {
+	    if (loginOk != null && loginOk == 0) {
 	        String previousPage = request.getRequestURL().toString();
 	        session.setAttribute("previousPage", previousPage);
 	%>
@@ -27,6 +27,7 @@
 	<%
 	    }
 	%>
+	
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
@@ -65,6 +66,8 @@
 				<div class="container" style="padding-top: 10px">
 				<div class="button_area">
 					<div class="button_submit">
+					   	<input type="hidden" name="sessionId" value="${sessionId}">
+                    	<input type="hidden" name="eventNum" value="${eventNum}">
 						<input type="hidden" name="rw_rating" id="rw_rating">
 						<input type="submit" class="btn" id="button_submit" value="등록">
 					</div>

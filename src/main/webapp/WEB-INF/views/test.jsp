@@ -11,40 +11,31 @@
 </head>
 <body>
 
-<table id="details">
-<thead>
-  <tr>
-    <th class="eventTitle" colspan="2">${event.title }</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>장소: </td>
-    <td>${event.place }</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td colspan="2"></td>
-  </tr>
-  <tr>
-    <td colspan="2"></td>
-  </tr>
-</tbody>
-</table>
+<script>
+  var startIndex = 0;
+  var endIndex = 5;
+
+  function showMoreQAs() {
+    var QARow = document.getElementsByClassName("QARow");
+    for (var i = startIndex; i < endIndex; i++) {
+      if (QARows[i]) {
+    	  QARows[i].style.display = "table-row";
+      }
+    }
+    startIndex += 6;
+    endIndex += 6;
+    if (endIndex >= QARows.length) {
+      document.getElementById("showMoreRow2").style.display = "none";
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", function() {
+	  showMoreQAs();
+  });
+  
+
+  
+</script>
 
 
 </body>

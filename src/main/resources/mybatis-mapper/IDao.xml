@@ -444,25 +444,44 @@
 		  LEFT OUTER JOIN event e
 		    ON er.rw_eventNum = e.eventNum
 		 WHERE er.rw_eventNum=#{param1}
+		 ORDER BY er.rw_idx DESC
 	</select>
 	
-	<!-- 리뷰 좋아요 -->
-	<insert id="reviewLiker">
-		INSERT INTO eventReviewLike
-		VALUES(#{param1}, #{param2})
-	</insert>
+	<!-- *** 리뷰 관련 *** -->
+		<!-- 리뷰 글 가져오기 -->
+		<select id="reviewListDao" resultType="com.festicket.dto.ReviewDto">
+			SELECT *
+			FROM eventReview er
+			LEFT OUTER JOIN event e
+			    ON er.rw_eventNum = e.eventNum
+			WHERE er.rw_eventNum = #{param1}
+			ORDER BY er.rw_idx DESC
+		</select>
+		
+		<!-- 리뷰 쓰기 -->
+		<insert id="reviewWriteDao">
+			INSERT INTO 
+				eventReview(rw_idx, rw_userId, rw_eventNum, rw_rating, rw_content)
+					VALUES
+						(erw_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4})
+	    </insert>
+		
+		<!-- 리뷰 좋아요 -->
+		<insert id="reviewLiker">
+			INSERT INTO eventReviewLike VALUES(#{param1}, #{param2})
+		</insert>
+	
+		<!-- 리뷰 좋아요 취소 -->
+		<delete id="reviewEventLiker">
+			DELETE FROM eventReviewLike WHERE reviewIdx=#{param1} AND reviewLikerId=#{param2}
+		</delete>
+	<!-- *** 리뷰 관련 끝 *** -->
 	
 	<!-- 행사 좋아요 -->
 	<insert id="eventLiker">
 		INSERT INTO eventLike
 		VALUES(#{param1}, #{param2})
 	</insert>
-	
-	<!-- 리뷰 좋아요 취소 -->
-	<delete id="reviewEventLiker">
-		DELETE FROM eventReviewLike
-		WHERE reviewIdx=#{param1} AND reviewLikerId=#{param2}
-	</delete>
 	
 	<!-- 행사 좋아요 취소 -->
 	<delete id="cancelEventLiker">
@@ -477,7 +496,7 @@
 		  SELECT *
 		  FROM event_QABoard er
 		  LEFT OUTER JOIN event e ON er.q_eventNum = e.eventNum
-		  WHERE er.q_eventNum = 6
+		  WHERE er.q_eventNum = #{param1}
 		  ORDER BY er.q_idx DESC
 		)
 		WHERE ROWNUM <![CDATA[<=]]> 6
@@ -565,7 +584,7 @@
 		FROM (
 		    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
 		    FROM (
-		        SELECT er.re_idx, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title
+		        SELECT er.re_idx, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title, er.re_eventNum
 		        FROM eventReservation er
 		        JOIN event e ON er.re_eventNum = e.eventNum
 		        WHERE er.re_userId = #{param1}

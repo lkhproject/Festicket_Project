@@ -147,5 +147,8 @@ public interface IDao {
 	public void replyCountMinusDao(String ca_boardNum); // 댓글이 달린 원글의 댓글 필드 값 -1
 	public void boardReplyDeleteDao(String ca_boardNum); // 삭제한 게시글 댓글 모두 삭제
 	
+	// 리뷰
+	public List<ReviewDto> reviewListDao(int eventNum, int countList, int pageNum); // 리뷰 글 리스트 가져오기 + 페이징
+	public void reviewWriteDao(String c_userId, int rw_eventNum, String rw_rating, String rw_content); // 리뷰 쓰기
 	
 }

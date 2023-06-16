@@ -175,9 +175,6 @@ public class QAController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		System.out.println(request.getParameter("qa_idx"));
-		System.out.println(request.getParameter("qa_boardNum"));
-		
 		dao.QAreplyDeleteDao(request.getParameter("qa_idx")); // 댓글 삭제
 		dao.QAreplyCountMinusDao(request.getParameter("qa_boardNum")); // 댓글 개수 1개 삭제
 		// 삭제안됌-- null값
