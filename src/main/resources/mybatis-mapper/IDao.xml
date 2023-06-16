@@ -226,11 +226,15 @@
 
 	<!-- *** QA *** -->
 	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
-		SELECT *
+	    SELECT *
+		FROM (
+		  SELECT *
 		  FROM event_QABoard er
-		  LEFT OUTER JOIN event e
-		    ON er.q_eventNum = e.eventNum
-		 WHERE er.q_eventNum=#{param1}
+		  LEFT OUTER JOIN event e ON er.q_eventNum = e.eventNum
+		  WHERE er.q_eventNum = 6
+		  ORDER BY er.q_idx DESC
+		)
+		WHERE ROWNUM <![CDATA[<=]]> 6
 	</select>
 	
 	<select id="getQAListPagingDao" resultType="com.festicket.dto.QABoardDto">
@@ -269,6 +273,14 @@
 		INSERT INTO event_QAboard(q_idx, q_eventNum, q_userId, q_title, q_content, q_writeDate, q_hit)
 		VALUES (eqab_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, 0)
 	</insert>
+	
+	<update id="qaModifyDao">
+		UPDATE event_QAboard SET q_userId=#{param2}, q_title=#{param3}, q_content=#{param4} WHERE q_idx=#{param1}
+	</update>
+	
+	<delete id="qaDeleteDao">
+		DELETE FROM event_QAboard WHERE q_idx=#{param1}
+	</delete>
 	<!-- *** QA 끝 *** -->
 	
 	
@@ -281,7 +293,7 @@
 	</insert>
 	
 	<update id="QAreplyCountDao">
-		UPDATE event_QAboard SET q_replyCount=q_replyCount+1 WHERE qa_idx=#{param1}
+		UPDATE event_QAboard SET q_replyCount=q_replyCount+1 WHERE q_idx=#{param1}
 	</update>
 	
 	<select id="QAreplyListDao" resultType="com.festicket.dto.QAanswerDto">
@@ -293,7 +305,7 @@
 	</delete>
 	
 	<update id="QAreplyCountMinusDao">
-		UPDATE event_QAboard SET q_replyCount=q_replyCount-1 WHERE qa_idx=#{param1}
+		UPDATE event_QAboard SET q_replyCount=q_replyCount-1 WHERE q_idx=#{param1}
 	</update>
 	
 	<delete id="QAboardReplyDeleteDao">

@@ -74,16 +74,52 @@ public class QAController {
 		return "redirect:qaBoardList";
 	}
 	
+	@RequestMapping(value = "/qaBoardDelete")
+	public String qaBoardDelete(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.qaDeleteDao(request.getParameter("selectedQA"));	
+		dao.QAboardReplyDeleteDao(request.getParameter("qa_boardNum"));
+		
+		return "redirect:qaBoardList";
+	}
+	
+	@RequestMapping(value = "/qaBoardModify")
+	public String qaBoardModify(HttpSession session, Model model, HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int qaNum = Integer.parseInt(request.getParameter("selectedQA"));
+		
+		model.addAttribute("qaDto", dao.getQaDao(qaNum));
+		
+		return "QA/qaBoardModify";
+	}
+	
+	@RequestMapping(value = "/qaBoardModifyOk")
+	public String qaBoardModifyOk(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
+		
+		String q_idx = request.getParameter("selectedQA");
+		String q_userId = request.getParameter("q_userId");
+		String q_title = request.getParameter("q_title");
+		String q_content = request.getParameter("q_content");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.qaModifyDao(q_idx, q_userId, q_title, q_content);
+		
+		int q_idxInt = Integer.parseInt(q_idx);
+		
+		model.addAttribute("qaDto", dao.getQaDao(q_idxInt));
+		
+		return "QA/qaBoardModifyOk";
+	}
+	
 	@RequestMapping(value = "/qaBoardList")
 	public String qaBoardList(HttpSession session, Model model, HttpServletRequest request, Criteria criteria) throws ParseException {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
-		
-		int loginOk = 0;
-		
-		if(sessionId != null) {
-			loginOk = 1;
-		}
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -106,7 +142,6 @@ public class QAController {
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);	
 				
-		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("pageMaker", pageDto);
 		// 리스트로 넘어가기 때문에 title은 따로 넘겨줘야함 
@@ -126,13 +161,11 @@ public class QAController {
 		
 		int qa = Integer.parseInt(request.getParameter("selectedQA"));
 		
-		System.out.println(qa);
-		
 		dao.QAreplyWriteDao(request.getParameter("sessionId"), request.getParameter("selectedQA"), request.getParameter("qa_content"));
 		dao.QAreplyCountDao(request.getParameter("selectedQA")); // 원글의 댓글 수를 1증가
 		
 		model.addAttribute("qaDto", dao.getQaDao(qa));
-		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("qa_boardNum")));
+		model.addAttribute("QAreplyList", dao.QAreplyListDao(request.getParameter("selectedQA")));
 		
 		return "QA/qaView";
 	}
@@ -142,8 +175,12 @@ public class QAController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
+		System.out.println(request.getParameter("qa_idx"));
+		System.out.println(request.getParameter("qa_boardNum"));
+		
 		dao.QAreplyDeleteDao(request.getParameter("qa_idx")); // 댓글 삭제
 		dao.QAreplyCountMinusDao(request.getParameter("qa_boardNum")); // 댓글 개수 1개 삭제
+		// 삭제안됌-- null값
 		
 		int qa = Integer.parseInt(request.getParameter("qa_boardNum"));
 		

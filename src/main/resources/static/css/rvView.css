@@ -70,7 +70,13 @@ div.cal {
 	margin: 20px 0px;
 }
 
-input[type="submit"] {
+span.badge {
+	background:#aaa; 
+	color:#fff; 
+	padding:4px 5px;
+}
+
+input[type="submit"], #adminBtn {
 	background: #6800b8;
 	color: white;
 	margin-top: 15px;
@@ -81,7 +87,7 @@ input[type="submit"] {
 	font-weight: bold;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, #adminBtn:hover {
 	background: #5c00a2;
 	color: white;
 }
@@ -128,7 +134,7 @@ i {
  	color: #555;
 }
 
-input[type="button"] {
+#inquiry {
 	font-size: 13px;
 	background: gray;
 	color: white;
@@ -139,5 +145,12 @@ input[type="button"] {
 }
 
 #moreQAbtn {
+	font-size: 13px;
+	background: gray;
+	color: white;
+	padding: 5px 15px;
+	border-radius : 0.8em;
+	border: none;
+	float: right;
 	margin-left: 3px;
 }

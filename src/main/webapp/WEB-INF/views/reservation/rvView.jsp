@@ -23,12 +23,6 @@
 <title>페스티켓</title>
 </head>
 <body>
-
-<%
-	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
-%>
-<input type="hidden" id="login-ok" value="<%= loginOk %>">
-
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
@@ -126,10 +120,10 @@
 				<!-- 로그인시에만 예매가능 -->
 				<c:choose>
 				      <c:when test="${sessionId eq 'admin'}">
-				      		<input type="button" value="수정하기" id="adminBtn" onclick="script:window.location.href='adminModify?selectedEvent=${event.eventNum }'">
+				      	<input type="button" value="수정하기" id="adminBtn" onclick="script:window.location.href='adminModify?selectedEvent=${event.eventNum }'">
 				      </c:when>
 				      <c:otherwise>
-				      		<input type="submit" value="예매하기" onclick="return confirmRev(event)">
+				      	<input type="submit" value="예매하기" onclick="confirmRev(event)">
 				      </c:otherwise>
 			      </c:choose>
 			</form>
@@ -216,6 +210,9 @@
 					      		${QA.q_title }
 					      	</c:otherwise>
 					      </c:choose>
+					      <c:if test="${QA.q_replyCount != 0 }">
+			            	<span class="badge">${QA.q_replyCount }</span>
+			            </c:if>
 					  </div>
 			      </th>
 			      <td id="tb_num3">${QA.q_userId }</td>
@@ -233,13 +230,9 @@
 	  </tbody>
 	</table>
 	<input type="button" value="QA 목록" id="moreQAbtn" onclick="script:window.location.href='qaBoardList?eventNum=${event.eventNum}'">
-<%
-	if(loginOk == 1) {
-%>
-	<input type="button" value="문의하기" id="inquiry" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
-<%
-	}
-%>
+	<c:if test="${sessionId != null && sessionId ne 'admin'}">
+		<input type="button" value="문의하기" id="inquiry" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+	</c:if>
 </div>
 <!-- Q&A 끝 -->
 	</div>
@@ -248,6 +241,32 @@
 	<!-- 푸터 -->
 	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
+
+<script type="text/javascript">
+function confirmRev() {
+	event.preventDefault();
+	
+	var sessionId = "<%= session.getAttribute("sessionId") %>";
+	
+	if (sessionId == null) { // 이게 안걸림
+		window.location.href="login";
+    } else {
+		var selectedDate = $("#selectedDate").val();
+	  
+	  	if (selectedDate === "") {
+		  alert("날짜를 선택해주세요.");
+		  return false;
+		}
+		
+		var confirmed = confirm("예약을 진행하시겠습니까?");
+	
+	    if (!confirmed) {
+	    	return false;
+		}
+		
+    }
+	document.confirm.submit();
+}</script>
 
 </body>
 </html>

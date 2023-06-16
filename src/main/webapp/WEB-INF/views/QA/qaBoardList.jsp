@@ -13,10 +13,6 @@
 <title>페스티켓</title>
 </head>
 <body>
-<%
-	int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
-%>
-
 	<!-- 헤더 시작 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝-->
@@ -25,8 +21,7 @@
 	<div class="container">
 	<div class="container_1">
 	<div id="csBoard_page_form">
-		<h2 class="csBoardTitle">QA 게시판</h2>
-		<h5 style="float: right;">${event.title }</h5>
+		<h2 class="csBoardTitle">고객센터</h2>
 		<table class="table table-hover" id="csListTable">
 			<thead>
 				<tr>
@@ -38,60 +33,92 @@
 	    		</tr>
 	  		</thead>
 	  		<tbody class="table-group-divider">
-		  		<c:forEach items="${QAListDtos }" var="qaList"  begin="0" end="11">
+		  		<c:forEach items="${csBoardDtos }" var="csList"  begin="0" end="11">
 				    <tr>
-				      <th scope="row">${qaList.q_idx }</th>
+				      <th scope="row">${csList.c_idx }</th>
 				      <td>
-						<a href="qaView?selectedQA=${qaList.q_idx }">
+						<a href="csBoardView?c_idx=${csList.c_idx }">
 						<!-- 제목 글자수 제한 -->
 						<c:choose>
-							<c:when test="${fn:length(qaList.q_title) > 20}">
-								<c:out value="${fn:substring(qaList.q_title, 0, 19)}"></c:out>...
+							<c:when test="${fn:length(csList.c_title) > 25}">
+								<c:out value="${fn:substring(csList.c_title, 0, 24)}"></c:out>...
 							</c:when>
 							<c:otherwise>
-								<c:out value="${qaList.q_title }"></c:out>
+								<c:out value="${csList.c_title }"></c:out>
 							</c:otherwise>
 						</c:choose>
 						</a>
+						<!-- 댓글 수 -->
+						<c:if test="${csList.c_replyCount != 0 }">
+			            	<span class="badge">${csList.c_replyCount }</span>
+			            </c:if>   
 				      </td>
-				      <td>${qaList.q_userId }</td>
-				      <td><fmt:formatDate value="${qaList.q_writeDate }" pattern="yyyy-MM-dd"/></td>
-				      <td>${qaList.q_hit }</td>
+				      <td>${csList.c_userId }</td>
+				      <td><fmt:formatDate value="${csList.c_writeDate }" pattern="yyyy-MM-dd"/></td>
+				      <td>${csList.c_hit }</td>
 				    </tr>
 			  	</c:forEach>
 	  		</tbody>
-	  	</table>
-	  	<input type="button" value="돌아가기" id="QAbtn" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'">
-	  	<!-- 로그인시 문의하기 버튼 추가 -->
-	<%
-		if(loginOk == 1) {
-	%>
-		<input type="button" value="문의하기" id="QAbtn" style="margin-right: 3px" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
-	<% 
-		}
-	%>
+	  	</table>	  		
 	<!-- 게시글 리스트 끝 -->
+	 
+	<!-- 검색 기능, 등록 버튼 시작 -->
+	<div class="container">
+	  <form action="csBoardSearch" method="get" class="search_form">
+	  	<div class="search_button_area">    
+	      <div class="search_select">
+	        <select class="form-select" name="searchOption">
+	          <option value="title">제목</option>
+	          <option value="content">내용</option>
+	          <option value="writer">아이디</option>
+	        </select>
+	      </div>
+	      <div class="search_board">
+	        <input class="search_board_box" type="text" name="keyword">
+	        <input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색버튼'>
+	      </div>
+	      <div class="button">
+	        <input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">
+	      </div>
+	    </div>
+	   </form>
+	</div>
+	<!-- 검색 기능, 등록 버튼 끝 -->
 	
 	<!-- 페이징 시작 -->
 	<div class="container" id="csPagingNum">
-		<c:if test="${pageMaker.prev }">
-			<a href="qaBoardList?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
-		</c:if>
+	  <ul class="pagination">
+    	<li class="page-item" id="page-item">
+			<c:if test="${pageMaker.prev }">
+				<a class="page-link" aria-label="Previous" href="csBoardList?pageNum=${pageMaker.startPage-5 }">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</c:if>
+		</li>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
 			<c:choose>
 				<c:when test="${currPage == num }">
-					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+					<li class="page-item">
+						<span class="page-link" style="font-weight: bold;">${num }</span>
+					</li>
 				</c:when>
 				<c:otherwise>
-					<a href="qaBoardList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+					<li class="page-item">
+						<a class="page-link" href="csBoardList?pageNum=${num }">${num }</a>
+					</li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
-		<c:if test="${pageMaker.next }">
-			<a href="qaBoardList?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
-		</c:if>
+		<li class="page-item">
+			<c:if test="${pageMaker.next }">
+				<a class="page-link" aria-label="Next" href="csBoardList?pageNum=${pageMaker.startPage+5 }">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</c:if>
+		</li>
+	  </ul>
 	</div>
 	<!-- 페이징 끝 -->
 

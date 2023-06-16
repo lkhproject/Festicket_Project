@@ -11,11 +11,6 @@
 <title>페스티켓</title>
 </head>
 <body>
-
-<%
-	int adminCheck = Integer.parseInt((request.getAttribute("adminCheck")).toString());
-%>
-
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
