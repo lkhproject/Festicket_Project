@@ -63,7 +63,7 @@
 	  	</table>
 	  	<input type="button" value="돌아가기" id="QAbtn" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'">
 	  	<c:if test="${sessionId != null && sessionId ne 'admin'}">
-			<input type="button" value="문의하기" id="inquiry" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
+			<input type="button" value="문의하기" id="QAbtn" style="margin-right: 3px;" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
 		</c:if>
 	<!-- 게시글 리스트 끝 -->
 	
