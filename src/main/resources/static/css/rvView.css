@@ -70,6 +70,12 @@ div.cal {
 	margin: 20px 0px;
 }
 
+span.badge {
+	background:#aaa; 
+	color:#fff; 
+	padding:4px 5px;
+}
+
 input[type="submit"], #adminBtn {
 	background: #6800b8;
 	color: white;

@@ -210,6 +210,9 @@
 					      		${QA.q_title }
 					      	</c:otherwise>
 					      </c:choose>
+					      <c:if test="${QA.q_replyCount != 0 }">
+			            	<span class="badge">${QA.q_replyCount }</span>
+			            </c:if>
 					  </div>
 			      </th>
 			      <td id="tb_num3">${QA.q_userId }</td>

@@ -9,7 +9,6 @@
 <title>페스티켓</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
@@ -22,10 +21,13 @@
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="margin: 50px 0px 0px">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://img.freepik.com/free-photo/cloud-and-blue-sky_1150-35749.jpg" class="d-block w-100" style="height: 500px">
+      <img src="/resources/img/rolling_banner_01.jpg" class="d-block w-100" style="height: 500px">
     </div>
     <div class="carousel-item">
-      <img src="/resources/img/search_btn.png" class="d-block w-100" style="height: 500px">
+      <img src="/resources/img/rolling_banner_02.jpg" class="d-block w-100" style="height: 500px">
+    </div>
+    <div class="carousel-item">
+      <img src="/resources/img/rolling_banner_03.jpg" class="d-block w-100" style="height: 500px">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
