@@ -24,13 +24,13 @@
 					<table border="0" cellspacing="0" cellpadding="10">
                     <img src = "/resources/img/festicket_logo.png" width="25%">
                     <form action="loginOk" method="post">
-	                    <input type="text" name="userId" class="login_box" placeholder="아이디" id="userId" autocomplete="off">
-	                    <input type="password" name="userPassword" class="login_box" placeholder="・・・・" id="userPassword" autocomplete="off">
+	                    <input type="text" name="userId" class="login_box" placeholder="아이디" id="userId" autocomplete="off" onfocus="this.placeholder = ''">
+	                    <input type="password" name="userPassword" class="login_box" placeholder="・・・・・・" id="userPassword"  autocomplete="off" onfocus="this.placeholder = ''">
                     	<input class="login-button" type="submit" value="로그인"></input>
                     </form>
                  	<br>
                     <div class="joinpage"><a  href="find"><b>아이디/비밀번호찾기</b></a></div>
-					<div class="joinpage"><a  href="join">처음이신가요?<b>회원가입</b></a></div>
+					<div class="joinpage"><a  href="join">처음이신가요? <b>회원가입</b></a></div>
 						</table>
 					</center>
 					</td>

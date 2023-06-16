@@ -39,7 +39,7 @@ i {
 div.inner{
 	padding-top: 50px;
 	width: 1120px;
-    margin: 0 auto;
+    margin: auto;
     position: relative;
 }
 
@@ -128,17 +128,17 @@ div.help_cont{
 	border-bottom: 1px solid #ecedf2;
     background: #ffffff;
     width: 260px;
-    height:550px;
+    height: auto;
 	overflow:hidden;
   	float: left;
 }
+
 ul.help_lmenu{
 	float: left;
     width: 255px;
     padding-top: 15px;
     list-style: none;
 }
-
 
 ul.help_submenu{
 	list-style: none;
@@ -184,7 +184,7 @@ div.help_rcont{
     margin-bottom: 60px;
     box-sizing: border-box;
     background-color: #ffffff ;
-	height:auto;	
+	height:auto;
 }
 
 div.h3_line {
@@ -192,7 +192,8 @@ div.h3_line {
 	float: left;
 	padding: 10px;
 	margin-left : 40px;
-	border-bottom: 2px solid;
+	text-decoration: underline;
+	text-underline-offset : 15px;
 }
 
 h4.tit_reserve01{
@@ -296,4 +297,3 @@ a.ng-binding{
 }
 
 /* 가운데 box css 끝*/
-

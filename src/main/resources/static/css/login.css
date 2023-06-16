@@ -1,16 +1,12 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+
 body {
 	margin: 0;
 	padding: 0;
 	background: #eeeeee;
 }
 
-a:hover {
-	color: #6800b8;
-	font-weight: bolder;
-	font-family: 'Noto Sans KR', sans-serif;
-}
 
 input.login_box {
 	width:500px;
@@ -57,7 +53,6 @@ div.joinpage {
 	padding: 10px;
 	display: inline-block;
 }
-
 
 
 

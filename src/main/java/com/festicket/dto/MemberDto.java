@@ -1,6 +1,6 @@
 package com.festicket.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +17,4 @@ public class MemberDto {
 	private String email; // 멤버이메일
 	private String name; // 멤버이름
 	private Date signupDate; // 가입일
-	   
-	
 }

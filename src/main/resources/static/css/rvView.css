@@ -1,0 +1,156 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #eeeeee;
+}
+
+div.container {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px;
+}
+
+img.img-thumbnail {
+	width: 450px;
+	height: 600px;
+}
+
+div.eventTitle {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 20px;
+	color: #404040;
+}
+
+#rvView_page_form {
+	width: 80%;
+	padding-left: 50px;
+	margin: auto;
+}
+
+#rev_detail_container_1 {
+	float: left;
+	width: 50%;
+	font-size: 16px;
+}
+
+#rev_detail_container_2 {
+	float: left;
+	width: 50%;
+	font-size: 16px;
+	padding-left: 40px;
+	padding-bottom: 20px;
+}
+
+#like_btn {
+	margin: 5px 0px 20px;
+}
+
+div.detailTitle {
+	margin-top: 10px;
+}
+
+#details_1 {
+	float: left;
+	font-weight: bold;
+	margin-right: 69px;
+}
+
+#details {
+	float: left;
+	font-weight: bold;
+	margin-right: 40px;
+}
+
+div.cal {
+	margin: 20px 0px;
+}
+
+span.badge {
+	background:#aaa; 
+	color:#fff; 
+	padding:4px 5px;
+}
+
+input[type="submit"], #adminBtn {
+	background: #6800b8;
+	color: white;
+	margin-top: 15px;
+	padding: 15px 118px;
+	border-radius : 1em;
+	border: none;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+input[type="submit"]:hover, #adminBtn:hover {
+	background: #5c00a2;
+	color: white;
+}
+
+#btn_like {
+	margin-right: 10px;
+}
+
+#tb_num1 {
+	padding-left: 15px;
+	width: 10%;
+}
+
+#tb_num2 {
+	text-align: left;
+	width: 40%;
+}
+
+#tb_num3 {
+	text-align: left;
+	width: 15%;
+}
+
+#reviewContainer {
+	clear: left;
+	margin: 0px 0px 30px 10px;
+	width: 85%;
+	padding: 20px 50px 50px;
+	background-color: white;
+	border-radius: 0.8em;
+}
+
+#showMoreButtonWrapper {
+	display: flex;
+	justify-content: center;
+}
+
+h6 {
+	padding-top: 5px;
+	cursor: pointer;
+}
+
+i {
+ 	color: #555;
+}
+
+#inquiry {
+	font-size: 13px;
+	background: gray;
+	color: white;
+	padding: 5px 15px;
+	border-radius : 0.8em;
+	border: none;
+	float: right;
+}
+
+#moreQAbtn {
+	font-size: 13px;
+	background: gray;
+	color: white;
+	padding: 5px 15px;
+	border-radius : 0.8em;
+	border: none;
+	float: right;
+	margin-left: 3px;
+}
