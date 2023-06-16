@@ -57,40 +57,38 @@ function validateForm() {
 <!-- 헤더 끝 -->
 
 <!-- 상단 box 시작 -->
-<div class="inner">
-    <div class="quick_menu_wrap">
-        <div class="title">
-            <h2 class="title_txt">마이페이지</h2>
-        </div>
-        <ul class="quick_menu_list">
-            <li class="quick_menu_item">
-                <a href="" class="quick_link">
-                    <div class="qmemu_box">
-                        <span class="qmenu_tit">
-                            <i class="bi bi-ticket-perforated"></i>
-                        </span>
-                    </div>
-                    <div class="qmemu_box01">
-                        <span class="qmenu_tit"> 나의 예매내역 </span>
-                    </div>
-                </a>
-            </li>
-
-            <li class="quick_menu_item">
-                <a href="" class="quick_link">
-                    <div class="qmemu_box">
-                        <span class="qmenu_tit">
-                            <i class="bi bi-person-gear"></i>
-                        </span>
-                    </div>
-                    <div class="qmemu_box01">
-                        <span class="qmenu_tit"> 나의 회원정보 </span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- 상단 box 끝 -->
+			<div class="inner">
+				<div class="quick_menu_wrap">
+    			<div class="title"><h2 class="title_txt">마이페이지</h2></div>
+			<ul class="quick_menu_list">
+    	    <li class="quick_menu_item">
+    	    <a href="myPage" class="quick_link">
+				<div class="qmemu_box">
+                   		<span class="qmenu_tit">
+                   			<i class="bi bi-ticket-perforated"></i>
+                   		</span>
+                </div>
+                 <div class="qmemu_box01">
+                    <span class="qmenu_tit"> 나의 예매내역 </span>
+                </div>
+            </a>
+        	</li>
+        	
+      		<li class="quick_menu_item">
+            <a href="myPageModify" class="quick_link">
+                <div class="qmemu_box">
+                    <span class="qmenu_tit">
+                  	 	<i class="bi bi-person-gear"></i>
+                    </span>
+                </div>
+                 <div class="qmemu_box01">
+                    <span class="qmenu_tit"> 나의 회원정보 </span>
+                </div>
+            </a>
+      	  	</li>
+  		  	</ul>
+				</div>
+	<!-- 상단 box 끝 -->
 
 
     <!-- 왼쪽 box -->
@@ -109,7 +107,7 @@ function validateForm() {
                 <span class="help_submenu_tit">활동관리</span>
                 <ul class="help_submenu">
                     <li>
-                        <a href="">나의 후기</a>
+                        <a href="myPageReview">나의 후기</a>
                     </li>
                 </ul>
             </li>

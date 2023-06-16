@@ -80,10 +80,10 @@
 					<span class="help_submenu_tit">회원정보관리</span>
 					<ul class="help_submenu">
 						<li>
-							<a href="myPageModify" class="my_lmenu52">회원정보수정</a>
+							<a href="myPageModify">회원정보수정</a>
 						</li>
 						<li>
-							<a href="myPageUnreg" class="my_lmenu53">회원탈퇴</a>
+							<a href="/myPage/myPageUnreg">회원탈퇴</a>
 						</li>
 					</ul>
 				</li>
@@ -105,16 +105,16 @@
 					<dd>
 						<ul class="daysort">
 							<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-								<a href="" ng-click="periodSelection.select(period)" class="ng-binding">15일</a>
+								<a ng-click="periodSelection.select(period)" class="ng-binding">15일</a>
 							</li>
 							<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope on">
-								<a href="" ng-click="periodSelection.select(period)" class="ng-binding">1개월</a>
+								<a ng-click="periodSelection.select(period)" class="ng-binding">1개월</a>
 							</li>
 							<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-								<a href="" ng-click="periodSelection.select(period)" class="ng-binding">2개월</a>
+								<a ng-click="periodSelection.select(period)" class="ng-binding">2개월</a>
 							</li>
 							<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-								<a href="" ng-click="periodSelection.select(period)" class="ng-binding">3개월</a>
+								<a ng-click="periodSelection.select(period)" class="ng-binding">3개월</a>
 							</li>
 						</ul>
 					</dd>
