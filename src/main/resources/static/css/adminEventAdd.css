@@ -43,20 +43,19 @@ h2.adminTitle {
 	margin-bottom: 30px;
 }
 
-#dateInput {
-	width: 30%;
+#start_date_error, #end_date_error {
 	float: left;
-	margin-right: 10px;
 }
 
-#start_date_error, #end_date_error, #rgstDate_error {
-	display: inline-block;
-	width: 31%;
+#dateInput {
+	margin-top: 17px;
+	width: 30%;
+	margin-right: 10px;
+	float: left;
 }
 
 #gunName_error {
-	width: 30%;
-	margin-right: 10px;
+	clear:both;
 }
 
 input[type="submit"] {
