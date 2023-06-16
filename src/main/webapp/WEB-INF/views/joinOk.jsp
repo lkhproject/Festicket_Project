@@ -13,23 +13,31 @@
 </head>
 <body>
 	<%
-		//int checkId = Integer.parseInt(request.getAttribute("checkId").toString());
-		
-		//if(checkId == 1) {
+		int checkId = Integer.parseInt(request.getAttribute("checkId").toString());
+		int checkEmail = Integer.parseInt(request.getAttribute("checkEmail").toString());
+	
+		if(checkId == 1) {
 	%>
-	<!-- 
 		<script type="text/javascript">
 			alert("입력하신 아이디는 이미 가입된 아이디 입니다. 다시 입력해 주세요.");
 			history.go(-1);
 		</script>
-		 -->
 	<%			
-		//}	
+		}
+		if(checkEmail == 1) {
 	%>
+		<script type="text/javascript">
+			alert("입력하신 이메일은 이미 존재하는 이메일 입니다. 다시 입력해 주세요.");
+			history.go(-1);
+		</script>
+	<%			
+		}	
+	%>
+	
 	<!-- 헤더 시작 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
-	
+
 	<div class="container">
 		<div class="container_1">
 			<div class="joinOk_container">
@@ -44,6 +52,5 @@
 	</div>
 	
 	<%@ include file="include/footer.jsp" %>
-	
 </body>
 </html>

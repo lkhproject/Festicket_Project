@@ -5,14 +5,12 @@
 <meta charset="UTF-8">
 <title>페스티켓</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/join.css">
 	<script src="/resources/js/join.js"></script>
 </head>
 <body>
-	<!-- 헤더 -->
 	<%@ include file="include/header.jsp" %>
-	<!-- 헤더 끝 -->
-	
 	<center>
 		<table border="0" cellspacing="0" cellpadding="20" width="40%">	
 			<tr>
@@ -63,8 +61,6 @@
 		</table>
 	</center>
 	
-	<!-- 푸터 -->
 	<%@ include file="include/footer.jsp" %>
-	<!-- 푸터 끝 -->
 </body>
 </html>
