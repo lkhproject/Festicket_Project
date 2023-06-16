@@ -197,8 +197,6 @@ public class CSboardController {
 	
 	@RequestMapping(value = "/replyWrite")
 	public String replyWrite(HttpServletRequest request, HttpSession session, Model model) {
-		
-		String sessionId = (String)session.getAttribute("sessionId");
 
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
