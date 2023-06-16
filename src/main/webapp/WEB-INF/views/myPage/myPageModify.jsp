@@ -53,7 +53,7 @@ function validateForm() {
 </head>
 <body>
 <!-- 헤더 시작 -->
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <!-- 헤더 끝 -->
 
 <!-- 상단 box 시작 -->
@@ -177,6 +177,6 @@ function validateForm() {
     </table>
 </div>
 
-<%@ include file="include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

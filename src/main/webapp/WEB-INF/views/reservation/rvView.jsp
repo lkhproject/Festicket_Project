@@ -246,9 +246,9 @@
 function confirmRev() {
 	event.preventDefault();
 	
-	var sessionId = "<%= session.getAttribute("sessionId") %>";
+	var sessionId = '<%=(String)session.getAttribute("sessionId") %>';
 	
-	if (sessionId == null) { // 이게 안걸림
+	if (sessionId === "null") {
 		window.location.href="login";
     } else {
 		var selectedDate = $("#selectedDate").val();
@@ -263,10 +263,10 @@ function confirmRev() {
 	    if (!confirmed) {
 	    	return false;
 		}
-		
+	    document.confirm.submit();
     }
-	document.confirm.submit();
-}</script>
+}
+</script>
 
 </body>
 </html>
