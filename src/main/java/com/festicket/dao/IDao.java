@@ -103,6 +103,8 @@ public interface IDao {
 	public int totalQAListCountDao(int eventNum); // qa개수 가져오기
 	public void qaHitDao(int q_idx); // 조회수 증가
 	public void qaWriteDao(int eventNum, String userId, String title, String content, Date writeDate, int hit); // 문의하기
+	public void qaModifyDao(String q_idx, String q_userId, String q_title, String q_content); // 게시글 수정
+	public void qaDeleteDao(String q_idx); // 게시글 삭제
 	
 	// QA 답변
 	public int QAreplyWriteDao(String qa_userId, String qa_boardNum, String qa_content); // QA 댓글 입력

@@ -77,7 +77,10 @@ public class QAController {
 	@RequestMapping(value = "/qaBoardDelete")
 	public String qaBoardDelete(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
 		
-		// delete 추가
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.qaDeleteDao(request.getParameter("selectedQA"));	
+		dao.QAboardReplyDeleteDao(request.getParameter("qa_boardNum"));
 		
 		return "redirect:qaBoardList";
 	}

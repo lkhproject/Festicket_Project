@@ -105,7 +105,7 @@
 				        <c:if test="${qaDto.q_userId eq sessionId}">
 				            <div class="button_modify">
 				                <form action="qaBoardModify" method="post" onsubmit="return replyValidateCheck()">
-				                    <input type="hidden" name="q_idx" value="${qaDto.q_idx}">
+				                    <input type="hidden" name="selectedQA" value="${qaDto.q_idx}">
 				                    <input type="submit" class="btn" id="buttons" value="수정">
 				                </form>
 				            </div>
@@ -133,7 +133,7 @@
 	<!-- 글 삭제시 경고창 -->
 	function removeCheck() {
 		if (confirm("삭제하시겠습니까?") == true){
-			location.href='qaBoardDelete?q_idx=${qaDto.q_idx}&qa_boardNum=${qaDto.q_idx}'
+			location.href='qaBoardDelete?selectedQA=${qaDto.q_idx}&qa_boardNum=${qaDto.q_idx}'
 	 	} else {return false;}
 	}
 	

@@ -520,6 +520,14 @@
 		VALUES (eqab_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, 0)
 	</insert>
 	
+	<update id="qaModifyDao">
+		UPDATE event_QAboard SET q_title=#{param2}, q_content=#{param3} WHERE q_idx=#{param1}
+	</update>
+	
+	<delete id="qaDeleteDao">
+		DELETE FROM event_QAboard WHERE q_idx=#{param1}
+	</delete>
+	
 	<!-- QA 답변 -->
 	<insert id="QAreplyWriteDao">
 		INSERT INTO 
