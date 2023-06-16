@@ -78,7 +78,7 @@
 					<span class="help_submenu_tit">활동관리</span>
 					<ul class="help_submenu">
 						<li class="on">
-							<a href="myPageReview" class="my_lmenu32">나의 후기</a>
+							<a href="myPageReview">나의 후기</a>
 						</li>
 					</ul>
 				</li>
@@ -86,10 +86,10 @@
 					<span class="help_submenu_tit">회원정보관리</span>
 					<ul class="help_submenu">
 						<li>
-							<a href="myPageModify" class="my_lmenu52">회원정보수정</a>
+							<a href="myPageModify" >회원정보수정</a>
 						</li>
 						<li>
-							<a href="myPageUnreg" class="my_lmenu53">회원탈퇴</a>
+							<a href="myPageUnreg">회원탈퇴</a>
 						</li>
 					</ul>
 				</li>
