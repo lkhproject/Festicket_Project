@@ -166,7 +166,7 @@ function validateForm() {
                             <tr>
                                 <td colspan="2" align="center">
                                     <input class="content_btn01" type="submit" value="수정완료" onclick="return joinCheck();">&nbsp;&nbsp;
-                                    <input class="content_btn02" type="button" value="취소" onclick="script:window.location.href='index'">
+                                    <input class="content_btn02" type="button" value="취소" onclick="script:window.location.href='myPage'">
                                 </td>
                             </tr>
                         </table>
