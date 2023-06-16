@@ -164,7 +164,7 @@
 			           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / 
 										CASE WHEN e.ticketCount = 0 THEN 1 ELSE e.ticketCount END)*100 DESC) AS rnk
 			    FROM event e
-			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+			    LEFT JOIN eventReservation er ON er.re_eventNum = e.eventNum
 			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 			)
 			WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '페스티벌%'
@@ -178,7 +178,7 @@
 			           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / 
 										CASE WHEN e.ticketCount = 0 THEN 1 ELSE e.ticketCount END)*100 DESC) AS rnk
 			    FROM event e
-			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+			    LEFT JOIN eventReservation er ON er.re_eventNum = e.eventNum
 			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 			)
 			WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '전시%'
@@ -187,40 +187,37 @@
 	
 
 	<!-- *** 예매 관련 *** -->
-		<!-- 모든 행사 리스트 -->
+		<!-- 예매 페이지 -->
 		<select id="eventAllListDao" resultType="com.festicket.dto.EventDto">
 			SELECT * FROM event ORDER BY eventNum DESC
 		</select>
 		
-		<!-- 예매한 행사 개수 -->
+		<!-- 마이페이지 -->
 		<select id="getReservationCountDao" resultType="int">
-			SELECT COUNT(*) FROM eventReservation WHERE re_userId=#{param1}
-		</select>
-		
-		<!-- 예매 티켓 매수 확인 -->
-		<select id="getTicketCountByidx" resultType="int">
-			SELECT re_ticketCount FROM eventreservation WHERE re_idx=#{param1}
+			SELECT COUNT(*)
+			FROM eventReservation
+			WHERE re_userId=#{param1}
 		</select>
 		
 		<!-- 예매 취소 -->
 		<delete id="cancelRevDao">
-			DELETE FROM eventreservation WHERE re_userId=#{param1} AND re_idx=#{param2}
+			DELETE FROM eventReservation
+			WHERE re_userId=#{param1} AND re_idx=#{param2}
 		</delete>
+		
+		<!-- 예매 티켓 매수 확인 -->
+		<select id="getTicketCountByidx" resultType="int">
+			SELECT re_ticketCount
+			FROM eventReservation
+			WHERE re_idx=#{param1}
+		</select>
 		
 		<!-- 예매 취소 후 총 티켓 수 증가 -->
 		<update id="addTicketDao">
-			UPDATE event SET ticketCount = ticketCount + #{param2} WHERE eventNum = #{param1}
+			UPDATE event
+			SET ticketCount = ticketCount + #{param2}
+			WHERE eventNum = #{param1}
 		</update>
-		
-		<!-- 행사 좋아요 -->
-		<insert id="eventLiker">
-			INSERT INTO eventLike VALUES(#{param1}, #{param2})
-		</insert>
-		
-		<!-- 행사 좋아요 취소 -->
-		<delete id="cancelEventLiker">
-			DELETE FROM eventLike WHERE eventIdx=#{param1} AND eventLikerId=#{param2}
-		</delete>
 	<!-- *** 예매 관련 끝 *** -->
 
 
@@ -316,13 +313,21 @@
 	
 	<!-- *** 리뷰 관련 *** -->
 		<!-- 리뷰 글 가져오기 -->
-		<select id="getReviewListDao" resultType="com.festicket.dto.ReviewDto">
+		<select id="reviewListDao" resultType="com.festicket.dto.ReviewDto">
 			SELECT *
 			FROM eventReview er
 			LEFT OUTER JOIN event e
 			    ON er.rw_eventNum = e.eventNum
 			WHERE er.rw_eventNum = #{param1}
 		</select>
+		
+		<!-- 리뷰 쓰기 -->
+		<insert id="reviewWriteDao">
+			INSERT INTO 
+				eventReview(rw_idx, rw_userId, rw_eventNum, rw_rating, rw_content)
+					VALUES
+						(erw_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4})
+	    </insert>
 		
 		<!-- 리뷰 좋아요 -->
 		<insert id="reviewLiker">
@@ -343,7 +348,7 @@
 			FROM (
 			    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
 			    FROM (
-			        SELECT er.re_idx, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title
+			        SELECT er.re_idx, er.re_eventNum, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title
 			        FROM eventReservation er
 			        JOIN event e ON er.re_eventNum = e.eventNum
 			        WHERE er.re_userId = #{param1}
@@ -375,7 +380,7 @@
 		
 		<!-- 예약DB에 넣어주기 -->
 		<insert id="reservationConfirmedDao">
-			INSERT INTO eventreservation
+			INSERT INTO eventReservation
 				VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
 		</insert>
 	<!-- *** 예약 관련 끝 *** -->
@@ -389,7 +394,7 @@
 			    SELECT e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount,
 			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) DESC, e.ticketCount ASC) AS rnk
 			    FROM event e
-			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+			    LEFT JOIN eventReservation er ON er.re_eventNum = e.eventNum
 			    GROUP BY e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount
 			)
 			WHERE rnk <![CDATA[<]]>= 5

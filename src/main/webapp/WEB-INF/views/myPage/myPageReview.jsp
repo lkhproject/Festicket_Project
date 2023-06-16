@@ -105,14 +105,14 @@
 					운영정책에 위반되거나, 후기의 성격에 맞지 않는 글은 고객님께 사전 통보 없이 삭제될 수 있습니다.
 				</p>
 			</div>
-			<br>
+			<br><br>
 			<div class="container">
 				<div class="basic_tbl basic_tbl_v3">
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th scope="col" style="width:45%">행사명</th>
-								<th scope="col" style="width:35%">예약일시</th>
+								<th scope="col" style="width:50%">행사명</th>
+								<th scope="col" style="width:30%">예약일시</th>
 								<th scope="col" style="width:20%">후기작성</th>
 							</tr>
 						</thead>
@@ -126,21 +126,23 @@
 								<c:otherwise>
 									<c:forEach items="${revListDtos }" var="revList">
 										<tr>
-											<td id="revDetailsNum">${revList.re_idx }</td>
 											<td id="revDetails">
-												<div style="cursor:pointer;" onclick="script:window.location.href='detailedRev?selectedRev=${revList.re_idx}'">
+												<div>
 													<c:choose>
-									                  <c:when test="${fn:length(revList.title) gt 40}">
-									                    ${fn:substring(revList.title, 0, 39)}...
+									                  <c:when test="${fn:length(revList.title) gt 30}">
+									                    ${fn:substring(revList.title, 0, 29)}...
 									                  </c:when>
 									                  <c:otherwise>
 									                    ${revList.title}
 									                  </c:otherwise>
 									                </c:choose>
 									            </div>
+								            </td>
+											<td id="revDetails">${revList.re_date }</td>
+											<td id="revDetailsNum">
+												<!-- 후기작성 버튼 -->
+												<input type="button" class="btn" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}'" value="작성하기">
 											</td>
-											<td id="revDetails">${revList.re_ticketDate }</td>
-											<td id="revDetailsNum">${revList.re_ticketCount }</td>
 										</tr>
 									</c:forEach>
 								</c:otherwise>
@@ -192,7 +194,7 @@
 	
 	<!-- 푸터 -->
 		<%@ include file="../include/footer.jsp" %>
-	<!-- 푸터 끝 -->
-	
+	<!-- 푸터 끝 -->	
+
 </body>
 </html>

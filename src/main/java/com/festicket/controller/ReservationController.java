@@ -52,7 +52,7 @@ public class ReservationController {
 		
 		request.setAttribute("loginOk", loginOk);
 		model.addAttribute("event", dao.getEventDao(eventNum));
-		model.addAttribute("reviewList", dao.getReviewListDao(eventNum));
+		model.addAttribute("reviewList", dao.reviewListDao(eventNum, 0, 0));
 		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
 		
 		return "reservation/rvView";

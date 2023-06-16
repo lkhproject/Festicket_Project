@@ -128,44 +128,48 @@ public class MyPageController {
 			
 			PageDto pageDto = new PageDto(criteria, totalCount);
 			
-			List<ReserveDto> revListDtos = dao.getReservationListDao(sessionId ,criteria.getCountList(), pageNum);
+			List<ReserveDto> revListDtos = dao.getReservationListDao(sessionId, criteria.getCountList(), pageNum);
 			
 			request.setAttribute("loginOk", loginOk);
 			request.setAttribute("totalCount", totalCount);
+			
 			model.addAttribute("pageMaker", pageDto);
-			model.addAttribute("revListDtos", revListDtos);
 			model.addAttribute("currPage", pageNum);
+			model.addAttribute("revListDtos", revListDtos);
+			
+			ReserveDto reserveDto = revListDtos.get(0);
+			int eventNum = reserveDto.getRe_eventNum();
+			
+			session.setAttribute("eventNum", eventNum);
+
 		}
-			return "myPage/myPageReview";
+		return "myPage/myPageReview";
 	}
 	
 	@RequestMapping(value = "/reviewWrite") // 후기 작성
-	public String reviewWrite(HttpServletRequest request, HttpSession session, Model model) {
+	public String reviewWrite(HttpServletRequest request, HttpSession session) {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
+		int eventNum = (int)session.getAttribute("eventNum");
 		
-		int loginOk = 0;
+		request.setAttribute("sessionId", sessionId);
+		request.setAttribute("eventNum", eventNum);
 		
-		// 세션 아이디가 없다면 접근불가
-		if(sessionId == null || sessionId.isEmpty()) {
-			request.setAttribute("loginOk", loginOk);
-		} else {
-			loginOk = 1;
-		}
 		return "myPage/reviewWrite";
 	}
 	
     @RequestMapping(value = "/reviewWriteOk")
-    public String reviewWriteOk(HttpServletRequest request) {
-      
-    	String rw_userId = request.getParameter("rw_userId");
-    	String rw_eventNum = request.getParameter("rw_eventNum");
+    public String reviewWriteOk(HttpServletRequest request, HttpSession session) {
+    	
+    	String sessionId = (String)session.getAttribute("sessionId");
+    	
+    	int rw_eventNum = (int)session.getAttribute("eventNum");
 	    String rw_rating = request.getParameter("rw_rating");
 	    String rw_content = request.getParameter("rw_content");
 	      
 	    IDao dao = sqlSession.getMapper(IDao.class);
 	      
-	    dao.reviewWriteDao(rw_userId, rw_eventNum, rw_rating, rw_content);
+	    dao.reviewWriteDao(sessionId, rw_eventNum, rw_rating, rw_content);
 	    
 	    return "redirect:myPageReview";
 	}
