@@ -108,6 +108,22 @@ public class MyPageController {
 		
 		return "myPage/myPageModify";
 	}
+	
+	@RequestMapping(value = "/myPageModifyOk")
+	 public String myPageModifyOk(HttpServletRequest request, Model model) {
+	     
+	     String userId = request.getParameter("userId");
+	     String userPassword = request.getParameter("userPassword");
+	     String userPhone = request.getParameter("userPhone");
+	     String email = request.getParameter("email");
+	     String name = request.getParameter("name");
+	     
+	     IDao dao = sqlSession.getMapper(IDao.class);
+	     
+	     dao.modifyMemberDao(userId, userPassword, userPhone, email, name);
+	     
+	     return "redirect:myPage";
+	  }
 
 	@RequestMapping(value = "/myPageUnreg")
 	public String myPageUnreg() {

@@ -53,7 +53,7 @@ function validateForm() {
 </head>
 <body>
 <!-- 헤더 시작 -->
-<%@ include file="../include/header.jsp" %>
+<%@ include file="include/header.jsp" %>
 <!-- 헤더 끝 -->
 
 <!-- 상단 box 시작 -->
@@ -136,7 +136,7 @@ function validateForm() {
                 <center>
                     <img src="/resources/img/festicket_logo.png" width="30%">
                     <br><br>
-                    <form action="myPage" method="post" name="myPageModify_frm" onsubmit="return validateForm()">
+                    <form action="myPageModifyOk" method="post" name="myPageModifyOk_frm" onsubmit="return validateForm()">
                         <h5><b> 회원정보수정 </b></h5>
                         <table border="0" cellspacing="0" cellpadding="10">
                             <tr>
@@ -166,7 +166,7 @@ function validateForm() {
                             <tr>
                                 <td colspan="2" align="center">
                                     <input class="content_btn01" type="submit" value="수정완료" onclick="return joinCheck();">&nbsp;&nbsp;
-                                    <input class="content_btn02" type="button" value="취소" onclick="script:window.location.href='index'">
+                                    <input class="content_btn02" type="button" value="취소" onclick="script:window.location.href='myPage'">
                                 </td>
                             </tr>
                         </table>
@@ -177,6 +177,6 @@ function validateForm() {
     </table>
 </div>
 
-<%@ include file="../include/footer.jsp" %>
+<%@ include file="include/footer.jsp" %>
 </body>
 </html>
