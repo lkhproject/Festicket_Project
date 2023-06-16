@@ -35,31 +35,40 @@
 	    		</tr>
 	  		</thead>
 	  		<tbody class="table-group-divider">
-		  		<c:forEach items="${csBoardDtos }" var="csList"  begin="0" end="11">
-				    <tr>
-				      <th scope="row">${csList.c_idx }</th>
-				      <td>
-						<a href="csBoardView?c_idx=${csList.c_idx }">
-						<!-- 제목 글자수 제한 -->
-						<c:choose>
-							<c:when test="${fn:length(csList.c_title) > 25}">
-								<c:out value="${fn:substring(csList.c_title, 0, 24)}"></c:out>...
-							</c:when>
-							<c:otherwise>
-								<c:out value="${csList.c_title }"></c:out>
-							</c:otherwise>
-						</c:choose>
-						</a>
-						<!-- 댓글 수 -->
-						<c:if test="${csList.c_replyCount != 0 }">
-			            	<span class="badge">${csList.c_replyCount }</span>
-			            </c:if>   
-				      </td>
-				      <td>${csList.c_userId }</td>
-				      <td><fmt:formatDate value="${csList.c_writeDate }" pattern="yyyy-MM-dd"/></td>
-				      <td>${csList.c_hit }</td>
-				    </tr>
-			  	</c:forEach>
+					<c:choose>
+						<c:when test="${totalCount == 0}">
+							<tr ng-show="reserveList.length === 0">
+								<td colspan="6" class="no_data">등록된 게시글이 없습니다.</td>
+							</tr>
+						</c:when>
+					<c:otherwise>
+				  		<c:forEach items="${csBoardDtos }" var="csList"  begin="0" end="11">
+						    <tr>
+						      <th scope="row">${csList.c_idx }</th>
+						      <td>
+								<a href="csBoardView?c_idx=${csList.c_idx }">
+								<!-- 제목 글자수 제한 -->
+								<c:choose>
+									<c:when test="${fn:length(csList.c_title) > 25}">
+										<c:out value="${fn:substring(csList.c_title, 0, 24)}"></c:out>...
+									</c:when>
+									<c:otherwise>
+										<c:out value="${csList.c_title }"></c:out>
+									</c:otherwise>
+								</c:choose>
+								</a>
+								<!-- 댓글 수 -->
+								<c:if test="${csList.c_replyCount != 0 }">
+					            	<span class="badge">${csList.c_replyCount }</span>
+					            </c:if>   
+						      </td>
+						      <td>${csList.c_userId }</td>
+						      <td><fmt:formatDate value="${csList.c_writeDate }" pattern="yyyy-MM-dd"/></td>
+						      <td>${csList.c_hit }</td>
+						    </tr>
+					  	</c:forEach>
+			  		</c:otherwise>
+				</c:choose>
 	  		</tbody>
 	  	</table>	  		
 	<!-- 게시글 리스트 끝 -->
