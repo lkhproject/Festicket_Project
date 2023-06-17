@@ -165,10 +165,15 @@ public class MyPageController {
 			model.addAttribute("currPage", pageNum);
 			model.addAttribute("revListDtos", revListDtos);
 			
-			ReserveDto reserveDto = revListDtos.get(0);
-			int eventNum = reserveDto.getRe_eventNum();
-			
-			session.setAttribute("eventNum", eventNum);
+			if (!revListDtos.isEmpty()) {
+			    ReserveDto reserveDto = revListDtos.get(0);
+			    int eventNum = reserveDto.getRe_eventNum();
+			    
+			    session.setAttribute("eventNum", eventNum);
+			} else {
+			    // 리스트가 비어있을 때의 처리
+			    session.removeAttribute("eventNum"); // eventNum 제거 또는 기본값 설정
+			}
 
 		}
 		return "myPage/myPageReview";
