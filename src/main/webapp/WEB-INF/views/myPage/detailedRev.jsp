@@ -59,7 +59,10 @@
    </div>
 		<!-- 마이페이지에 예약목록으로 보내기 -->
 		<input type="button" value="예매목록" onclick="script:window.location.href='myPage'" style="margin-left: 3px;">
-		<input type="button" value="예매취소" onclick="return cancelReserve(${details.re_idx}, ${details.re_eventNum })">
+		<!-- 예약일이 지났을 경우 예매취소 불가 -->
+		<c:if test="${details.re_ticketDate >= today}">
+			<input type="button" value="예매취소" onclick="return cancelReserve(${details.re_idx}, ${details.re_eventNum })">
+		</c:if>
 	</div>
 	
 </div>
