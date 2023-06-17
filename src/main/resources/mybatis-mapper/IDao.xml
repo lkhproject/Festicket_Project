@@ -325,13 +325,13 @@
 	
 	<!-- *** 리뷰 관련 *** -->
 		<!-- 리뷰 글 가져오기 -->
-		<select id="reviewListDao" resultType="com.festicket.dto.ReviewDto">
-		   SELECT *
-		     FROM eventReview er
-		     LEFT OUTER JOIN event e
-		       ON er.rw_eventNum = e.eventNum
-		    WHERE er.rw_eventNum=#{param1}
-		    ORDER BY er.rw_idx DESC
+		<select id="getReviewListDao" resultType="com.festicket.dto.ReviewDto">
+			SELECT *
+			  FROM eventReview er
+			  LEFT OUTER JOIN event e
+			    ON er.rw_eventNum = e.eventNum
+			 WHERE er.rw_eventNum=#{param1}
+			 ORDER BY er.rw_idx DESC
 		</select>
 		
 		<!-- 리뷰 쓰기 -->

@@ -34,20 +34,20 @@ public class ReservationController {
 	
 	@RequestMapping(value = "/rvView")
 	public String rvView(HttpSession session, Model model, HttpServletRequest request) {
-         
+		
 		String sessionId = (String)session.getAttribute("sessionId");
-         
+		
 		IDao dao = sqlSession.getMapper(IDao.class);
-         
+		
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
 		session.setAttribute("eventNum", eventNum);
-         
+		
 		model.addAttribute("event", dao.getEventDao(eventNum));
-      	model.addAttribute("reviewList", dao.reviewListDao(eventNum));
-      	model.addAttribute("QA_List", dao.getQAListDao(eventNum));
-         
-      	return "reservation/rvView";
-   }
+		model.addAttribute("reviewList", dao.getReviewListDao(eventNum));
+		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
+		
+		return "reservation/rvView";
+	}
 	
 	@RequestMapping(value = "/confirmRev")
 	public String confirmRev(HttpSession session, Model model, HttpServletRequest request) throws ParseException {
