@@ -64,7 +64,7 @@ public class MyPageController {
 		return "myPage/myPage";
 	}
 	
-	@RequestMapping(value = "/detailedRev") // 예매내역 상세
+	@RequestMapping(value = "/detailedRev") // 예매내역으로 바로 이동
 	public String detailedRev(HttpServletRequest request, Model model, HttpSession session, Criteria criteria) {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
@@ -97,6 +97,34 @@ public class MyPageController {
 		return "redirect:myPage";
 	}
 	
+	@RequestMapping(value = "/myPageModify")
+	public String myPageModify(HttpSession session, Model model) {
+		
+		String userId = (String) session.getAttribute("sessionId");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("memberDto", dao.getMemberInfo(userId));		
+		
+		return "myPage/myPageModify";
+	}
+	
+	@RequestMapping(value = "/myPageModifyOk")
+	 public String myPageModifyOk(HttpServletRequest request, Model model) {
+	     
+	     String userId = request.getParameter("userId");
+	     String userPassword = request.getParameter("userPassword");
+	     String userPhone = request.getParameter("userPhone");
+	     String email = request.getParameter("email");
+	     String name = request.getParameter("name");
+	     
+	     IDao dao = sqlSession.getMapper(IDao.class);
+	     
+	     dao.modifyMemberDao(userId, userPassword, userPhone, email, name);
+	     
+	     return "redirect:myPage";
+	  }
+
 	@RequestMapping(value = "/myPageReview") // 후기 리스트
 	public String myPageReview(HttpServletRequest request, Model model, HttpSession session, Criteria criteria) {
 		
@@ -150,7 +178,7 @@ public class MyPageController {
 	public String reviewWrite(HttpServletRequest request, HttpSession session) {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
-		int eventNum = (int)session.getAttribute("eventNum");
+		int eventNum = Integer.parseInt(request.getParameter("re_eventNum"));
 		
 		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
@@ -163,7 +191,7 @@ public class MyPageController {
     	
     	String sessionId = (String)session.getAttribute("sessionId");
     	
-    	int rw_eventNum = (int)session.getAttribute("eventNum");
+    	int rw_eventNum = Integer.parseInt(request.getParameter("eventNum"));
 	    String rw_rating = request.getParameter("rw_rating");
 	    String rw_content = request.getParameter("rw_content");
 	      
@@ -173,37 +201,9 @@ public class MyPageController {
 	    
 	    return "redirect:myPageReview";
 	}
-	
-	@RequestMapping(value = "/myPageModify") // 회원정보 수정
-	public String myPageModify(HttpSession session, Model model) {
-		
-		String userId = (String) session.getAttribute("sessionId");
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		
-		model.addAttribute("memberDto", dao.getMemberInfo(userId));		
-		
-		return "myPage/myPageModify";
-	}
-	
-	 @RequestMapping(value = "/myPageModifyOk")
-	 public String myPageModifyOk(HttpServletRequest request, Model model) {
-	     
-	     String userId = request.getParameter("userId");
-	     String userPassword = request.getParameter("userPassword");
-	     String userPhone = request.getParameter("userPhone");
-	     String email = request.getParameter("email");
-	     String name = request.getParameter("name");
-	     
-	     IDao dao = sqlSession.getMapper(IDao.class);
-	     
-	     dao.modifyMemberDao(userId, userPassword, userPhone, email, name);
-	     
-	     return "redirect:myPage";
-	  }
-	
-	@RequestMapping(value = "/myPageUnreg") // 회원탈퇴
+    
+    @RequestMapping(value = "/myPageUnreg") // 회원탈퇴
 	public String myPageUnreg() {
-		return "myPageUnreg";
+		return "myPage/myPageUnreg";
 	}
 }

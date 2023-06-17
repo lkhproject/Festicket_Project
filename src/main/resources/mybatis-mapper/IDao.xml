@@ -218,21 +218,33 @@
 			SET ticketCount = ticketCount + #{param2}
 			WHERE eventNum = #{param1}
 		</update>
+		
+		<!-- 행사 좋아요 -->
+		<insert id="eventLiker">
+			INSERT INTO eventLike
+			VALUES(#{param1}, #{param2})
+		</insert>
+		
+		<!-- 행사 좋아요 취소 -->
+		<delete id="cancelEventLiker">
+			DELETE FROM eventLike
+			WHERE eventIdx=#{param1} AND eventLikerId=#{param2}
+		</delete>
 	<!-- *** 예매 관련 끝 *** -->
 
 
 	<!-- *** QA *** -->
 	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
-	    SELECT *
-		FROM (
-		  SELECT *
-		  FROM event_QABoard er
-		  LEFT OUTER JOIN event e ON er.q_eventNum = e.eventNum
-		  WHERE er.q_eventNum = 6
-		  ORDER BY er.q_idx DESC
-		)
-		WHERE ROWNUM <![CDATA[<=]]> 6
-	</select>
+       SELECT *
+      FROM (
+        SELECT *
+        FROM event_QABoard er
+        LEFT OUTER JOIN event e ON er.q_eventNum = e.eventNum
+        WHERE er.q_eventNum = #{param1}
+        ORDER BY er.q_idx DESC
+      )
+      WHERE ROWNUM <![CDATA[<=]]> 6
+   	</select>
 	
 	<select id="getQAListPagingDao" resultType="com.festicket.dto.QABoardDto">
 		 SELECT *
@@ -314,11 +326,12 @@
 	<!-- *** 리뷰 관련 *** -->
 		<!-- 리뷰 글 가져오기 -->
 		<select id="reviewListDao" resultType="com.festicket.dto.ReviewDto">
-			SELECT *
-			FROM eventReview er
-			LEFT OUTER JOIN event e
-			    ON er.rw_eventNum = e.eventNum
-			WHERE er.rw_eventNum = #{param1}
+		   SELECT *
+		     FROM eventReview er
+		     LEFT OUTER JOIN event e
+		       ON er.rw_eventNum = e.eventNum
+		    WHERE er.rw_eventNum=#{param1}
+		    ORDER BY er.rw_idx DESC
 		</select>
 		
 		<!-- 리뷰 쓰기 -->

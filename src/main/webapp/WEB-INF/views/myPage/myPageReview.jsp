@@ -140,10 +140,9 @@
 								            </td>
 											<td id="revDetails">${revList.re_date }</td>
 											<td id="revDetailsNum">
-												<!-- 후기작성 버튼 -->
 												<input type="button" class="btn" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}'" value="작성하기">
 											</td>
-										</tr>
+										</tr>			
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -151,11 +150,11 @@
 					</table>
 					
 		<!-- 페이징 시작 -->
-		<div class="container" id="csPagingNum">
+		<div class="container" id="reviewPagingNum">
 		  <ul class="pagination">
 	    	<li class="page-item" id="page-item">
 				<c:if test="${pageMaker.prev }">
-					<a class="page-link" aria-label="Previous" href="myPage?pageNum=${pageMaker.startPage-5 }">
+					<a class="page-link" aria-label="Previous" href="myPageReview?pageNum=${pageMaker.startPage-5 }">
 						<span aria-hidden="true">&laquo;</span>
 					</a>
 				</c:if>
@@ -170,7 +169,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item">
-							<a class="page-link" href="myPage?pageNum=${num }">${num }</a>
+							<a class="page-link" href="myPageReview?pageNum=${num }">${num }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -178,7 +177,7 @@
 			
 			<li class="page-item">
 				<c:if test="${pageMaker.next }">
-					<a class="page-link" aria-label="Next" href="myPage?pageNum=${pageMaker.startPage+5 }">
+					<a class="page-link" aria-label="Next" href="myPageReview?pageNum=${pageMaker.startPage+5 }">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</c:if>

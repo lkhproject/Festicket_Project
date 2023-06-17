@@ -70,9 +70,10 @@ public interface IDao {
 	public void QAboardReplyDeleteDao(String qa_boardNum); // 삭제한 게시글 QA 댓글 모두 삭제
 	
 	// 리뷰
-	public List<ReviewDto> reviewListDao(int eventNum, int countList, int pageNum); // 리뷰 글 리스트 가져오기 + 페이징
+	public List<ReviewDto> reviewListDao(int rw_eventNum); // 리뷰 글 리스트 가져오기
 	public void reviewWriteDao(String c_userId, int rw_eventNum, String rw_rating, String rw_content); // 리뷰 쓰기
 	public int reviewLiker(int reviewIdx, String userId); // 리뷰 좋아요
+	public void cancelReviewLiker(int reviewIdx, String userId); // 리뷰 좋아요 취소
 	
 	// 예약 확인
 	public List<ReserveDto> getReservationListDao(String userId, int countList, int pageNum); // 예약 목록 가져오기
@@ -113,7 +114,7 @@ public interface IDao {
 	public List<CSboardDto> csSearchContentDao(String keyword, int countList, int pageNum); // 내용으로 검색
 	public List<CSboardDto> csSearchWriterDao(String keyword, int countList, int pageNum); // 아이디로 검색
 	
-	// 댓글
+	// 고객센터 댓글
 	public void replyWriteDao(String ca_userId, String ca_content, String ca_boardNum); // 댓글 쓰기
 	public void replyCountDao(String ca_boardNum); // 댓글이 달린 원글의 댓글 필드 값 +1
 	public List<CSanswerDto> replyListDao(String ca_boardNum); // 해당 원글에 달린 댓글의 리스트 가져오기
