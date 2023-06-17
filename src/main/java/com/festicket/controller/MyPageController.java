@@ -1,5 +1,8 @@
 package com.festicket.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +68,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/detailedRev") // 예매내역으로 바로 이동
-	public String detailedRev(HttpServletRequest request, Model model, HttpSession session, Criteria criteria) {
+	public String detailedRev(HttpServletRequest request, Model model, HttpSession session, Criteria criteria) throws ParseException {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
 		
@@ -73,9 +76,14 @@ public class MyPageController {
 		
 		int reservedNum = Integer.parseInt(request.getParameter("selectedRev"));
 		
-		ReserveDto reserved = dao.getReservationDao(reservedNum, sessionId);
+		Date now = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String today = formatter.format(now);
 		
+		ReserveDto reserved = dao.getReservationDao(reservedNum, sessionId);
+
 		model.addAttribute("details", reserved);
+		request.setAttribute("today", today);
 		
 		return "myPage/detailedRev";
 	}
@@ -167,14 +175,12 @@ public class MyPageController {
 			
 			if (!revListDtos.isEmpty()) {
 			    ReserveDto reserveDto = revListDtos.get(0);
-			    int eventNum = reserveDto.getRe_eventNum();
-			    
+			    int eventNum = reserveDto.getRe_eventNum();    
 			    session.setAttribute("eventNum", eventNum);
 			} else {
 			    // 리스트가 비어있을 때의 처리
 			    session.removeAttribute("eventNum"); // eventNum 제거 또는 기본값 설정
 			}
-
 		}
 		return "myPage/myPageReview";
 	}
