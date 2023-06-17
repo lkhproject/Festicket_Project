@@ -96,8 +96,8 @@
 		</div>
 		<div class="guide_txt">
 			<p class="guide_txt">
-				<span class="color_point">예매번호</span>를 클릭하면 예매 상세 내용을 확인할 수 있습니다.<br>
-				공연/전시 예매 내역은 하단의 공연/전시 탭을 선택하면 확인할 수 있습니다.
+				<span class="color_point">티켓명</span>을 클릭하면 예매 상세 내용을 확인할 수 있습니다.<br>
+					공연/전시 예매 내역은 하단의 공연/전시 탭을 선택하면 확인할 수 있습니다.
 			</p>
 		</div>
 		<div class="sortbx">
@@ -122,7 +122,7 @@
 			</dl>
 		</div>
 		<br><br><br><br>
-		<p class="guide_text">예매한 내역이 확인이 안되실 경우 <a href="" class="color_point">1:1 상담 문의</a>를 이용해주세요.</p>
+		<p class="guide_text">예매한 내역이 확인이 안되실 경우 <a href="csBoardList" class="color_point">고객센터</a>를 이용해주세요.</p>
 		<br>
 		<div class="container">
 			<div class="basic_tbl basic_tbl_v3">
