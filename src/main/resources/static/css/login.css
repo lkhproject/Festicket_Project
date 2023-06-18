@@ -7,6 +7,10 @@ body {
 	background: #eeeeee;
 }
 
+img {
+	margin-bottom: 20px;
+}
+
 input.login_box {
 	width:500px;
 	height:65px;  
