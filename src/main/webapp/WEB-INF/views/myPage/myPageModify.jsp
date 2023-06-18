@@ -64,7 +64,7 @@ function validateForm() {
         </div>
         <ul class="quick_menu_list">
             <li class="quick_menu_item">
-                <a href="" class="quick_link">
+                <a href="myPage" class="quick_link">
                     <div class="qmemu_box">
                         <span class="qmenu_tit">
                             <i class="bi bi-ticket-perforated"></i>
@@ -77,7 +77,7 @@ function validateForm() {
             </li>
 
             <li class="quick_menu_item">
-                <a href="" class="quick_link">
+                <a href="myPageModify" class="quick_link">
                     <div class="qmemu_box">
                         <span class="qmenu_tit">
                             <i class="bi bi-person-gear"></i>
@@ -109,7 +109,7 @@ function validateForm() {
                 <span class="help_submenu_tit">활동관리</span>
                 <ul class="help_submenu">
                     <li>
-                        <a href="">나의 후기</a>
+                        <a href="myPageReview">나의 후기</a>
                     </li>
                 </ul>
             </li>
@@ -129,39 +129,37 @@ function validateForm() {
     </div>
 
     <!-- 가운데 box -->
+    <div class="help_rcont">
     <table border="0" cellspacing="0" cellpadding="0" width="0">
         <tr>
-
             <td class="contentbox">
                 <center>
-                    <img src="/resources/img/festicket_logo.png" width="30%">
-                    <br><br>
+                	<h5><b> 회원정보 수정 </b></h5>
                     <form action="myPageModifyOk" method="post" name="myPageModifyOk_frm" onsubmit="return validateForm()">
-                        <h5><b> 회원정보수정 </b></h5>
                         <table border="0" cellspacing="0" cellpadding="10">
                             <tr>
                                 <td class="content_text">아이디
-                                    <input class="inputbox01" type="text" name="userId" value="${memberDto.userId }" readonly="readonly" placeholder="아이디" ></td>
+                                    <input class="inputbox01" type="text" name="userId" value="${memberDto.userId }" readonly="readonly"></td>
                             </tr>
                             <tr>
                                 <td class="content_text">비밀번호
-                                    <input class="inputbox01" type="password" name="userPassword" placeholder="비밀번호"></td>
+                                    <input class="inputbox02" type="password" name="userPassword"></td>
                             </tr>
                             <tr>
                                 <td class="content_text">비밀번호확인
-                                    <input class="inputbox01" type="password" name="userPasswordCheck" placeholder="비밀번호확인"></td>
+                                    <input class="inputbox02" type="password" name="userPasswordCheck"></td>
                             </tr>
                             <tr>
                                 <td class="content_text">이름
-                                    <input class="inputbox01" type="text" name="name" value="${memberDto.name }" readonly="readonly" placeholder="이름"></td>
+                                    <input class="inputbox01" type="text" name="name" value="${memberDto.name }" readonly="readonly"></td>
                             </tr>
                             <tr>
                                 <td class="content_text">이메일
-                                    <input class="inputbox01" type="text" name="email" value="${memberDto.email }" placeholder="이메일"></td>
+                                    <input class="inputbox02" type="text" name="email" value="${memberDto.email }"></td>
                             </tr>
                             <tr>
                                 <td class="content_text">휴대폰번호
-                                    <input class="inputbox01" type="text" name="userPhone" value="${memberDto.userPhone }" placeholder="휴대폰번호"></td>
+                                    <input class="inputbox02" type="text" name="userPhone" value="${memberDto.userPhone }"></td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center">
@@ -175,6 +173,7 @@ function validateForm() {
             </td>
         </tr>
     </table>
+</div>
 </div>
 
 <%@ include file="../include/footer.jsp" %>
