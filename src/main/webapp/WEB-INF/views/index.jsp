@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/footer_main.css">
     <script src="/resources/js/bootstrap.min.js"></script>
 </head>
 
@@ -117,7 +118,12 @@
     <!-- 이미지, 디테일 넘김 끝 -->
 
     <!-- 푸터 -->
-    <%@ include file="include/footer.jsp" %>
+    <div class="footer_wrap">
+		<footer class="footer">
+			<div class="footerText">(주)페스티켓</div>
+			<div class="footerText">Hosting by Festicket Team | Copyright @ Festicket All Rights Reserved</div>
+		</footer>
+    </div>
     <!-- 푸터 끝 -->
 
 </body>

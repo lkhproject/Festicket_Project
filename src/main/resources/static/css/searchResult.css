@@ -118,9 +118,11 @@ p {
 }
 
 #noResult {
-	padding-top: 10px;
-	font-size: 18px;
+	padding-top: 250px;
+	font-size: 20px;
 	font-weight: bold;
+	text-align: center;
+	height:500px;
 }
 
 .page-link {
