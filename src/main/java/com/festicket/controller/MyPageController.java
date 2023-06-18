@@ -190,8 +190,21 @@ public class MyPageController {
 	public String reviewWrite(HttpServletRequest request, HttpSession session) {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
-		int eventNum = Integer.parseInt(request.getParameter("re_eventNum"));
 		
+		int loginOk = 0;
+		  
+		if(sessionId != null && !sessionId.isEmpty()) {
+		   loginOk = 1;
+		}
+		
+	    String eventNumParam = request.getParameter("re_eventNum");
+	    int eventNum = 0;
+
+	    if (eventNumParam != null && !eventNumParam.isEmpty()) {
+	        eventNum = Integer.parseInt(eventNumParam);
+	    }
+		
+		request.setAttribute("loginOk", loginOk);
 		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
 		
