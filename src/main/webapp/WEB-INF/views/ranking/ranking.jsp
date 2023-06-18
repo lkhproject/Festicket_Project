@@ -21,9 +21,9 @@
 	<!-- 탑 5 리스트 -->
 	<!-- 이벤트 5개 이미지, 자치구, 행사분류, 행사명 넘김 -->
 		<div class="container">
-	<div style="margin-top: 40px">
-		<div class="top5">
-			TOP 5
+		<div style="float: left;">
+			<h2 class="title">예매순위</h2>
+			<div class="top5">TOP 5</div>
 		</div>
 		<div class="card-group center-block" id="rankingCardBox">
 				<div class="row justify-content-center">
@@ -44,7 +44,6 @@
 			  </c:forEach>
 			 </div>
 		 </div>
-	</div>
 	  </div>
 	<!-- 탑 5 리스트 끝 -->
 	
