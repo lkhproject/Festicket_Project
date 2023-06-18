@@ -5,7 +5,7 @@
   var isLiked = false; // 좋아요 상태를 나타내는 변수
 
   // 버튼 클릭 이벤트 핸들러 함수
-function likeButtonClicked() {
+function eventLikeClicked() {
     var likeButton = document.getElementById("like_btn");
     
     if (isLiked) {
@@ -25,12 +25,7 @@ function likeButtonClicked() {
     }
   }
 
-function reviewLikeClicked(button) {
-    button.classList.toggle("bg-dark");
-    button.classList.toggle("btn-light");
-    button.classList.toggle("text-white");
-    button.classList.toggle("text-bg-danger");
-  }
+
   
   var startIndex = 0;
   var endIndex = 5;
@@ -52,4 +47,7 @@ function reviewLikeClicked(button) {
   window.addEventListener("DOMContentLoaded", function() {
     showMoreReviews();
   });
+  
+  
+
   

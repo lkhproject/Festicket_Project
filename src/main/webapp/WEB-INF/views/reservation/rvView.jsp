@@ -31,7 +31,7 @@
 	<div class="container" id="rvView_page_form">
 			<div class="container" id="rev_detail_container_1">
 				<img src="${event.main_img }" class="img-thumbnail" alt="포스터"><br>
-				<button type="button" class="btn rounded-pill btn-light" id="like_btn" onclick="likeButtonClicked()">
+				<button type="button" class="btn rounded-pill btn-light" id="event_like" > <!-- onclick="eventLikeClicked()" -->
 				  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
 				</button>
 			</div>
@@ -39,20 +39,19 @@
 		<!-- method 설정 필요 -->
 			<form action="confirmRev" name="confirm">
 				<div class="eventTitle">${event.title }</div>
-				<div class="detailTitle">
-					<div id="details_1">장소: </div><div>${event.place }</div>
-					<div id="details">공연기간: </div><div>${event.eventDate }</div>
-					<div id="details">관람연령: </div><div>${event.use_trgt }</div>
-					<div id="details_1">가격: </div><div>
+					<div style="margin-top: 10px;">
+						<div id="details_1">장소: </div><div id="eventDetails">${event.place }</div>
+					</div>
+					<div id="details">공연기간: </div><div id="eventDetails">${event.eventDate }</div>
+					<div id="details">관람연령: </div><div id="eventDetails">${event.use_trgt }</div>
+					<div id="details_1">가격: </div><div id="eventDetails">
 					<c:set var="eventPrice" value="${event.eventPrice}" />
 						<c:if test="${empty eventPrice}">
 						    <c:set var="eventPrice" value="무료" />
 						</c:if>
 						${eventPrice}
 					</div>
-				</div>
 				<div class="cal">
-				<!-- 따로 js 파일로 뺄 수 있는지 -->
 					<script type="text/javascript"> 
 	                    $(function(){ 
 	                    	var dateRange = "${event.eventDate}".split("~");
@@ -93,7 +92,6 @@
 	                    }); 
 	                </script> 
 	                <div style="width:110px;" id="datepicker"></div>
-	                <!-- 값 표시 안됨 -->
 				</div>
 				<div>티켓매수(최대 5매 선택가능)</div>
 				<div>
@@ -158,7 +156,7 @@
               <td id="tb_num3">${review.rw_userId}</td>
               <td id="tb_num3">${review.rw_date}</td>
               <td id="tb_num3">
-                <button type="button" class="btn btn-sm btn-light rounded-pill" id="btn_like" onclick="reviewLikeClicked(this)">
+                <button type="button" class="btn btn-sm btn-light rounded-pill review_like" id="likeButton_${review.rw_idx}" onclick="reviewLikeClicked(${event.eventNum}, ${review.rw_idx})">
                   <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
                 </button>
               </td>
@@ -243,10 +241,12 @@
 	<!-- 푸터 끝 -->
 
 <script type="text/javascript">
+
+	// 세션 아이디 가져오기
+	var sessionId = '<%=(String)session.getAttribute("sessionId") %>';
+	
 function confirmRev() {
 	event.preventDefault();
-	
-	var sessionId = '<%=(String)session.getAttribute("sessionId") %>';
 	
 	if (sessionId === "null") {
 		window.location.href="login";
@@ -266,6 +266,133 @@ function confirmRev() {
 	    document.confirm.submit();
     }
 }
+
+//리뷰 좋아요
+var eventNum; // 전역 변수로 선언
+
+$(document).ready(function() {
+	var eventNum = '<%=(int)session.getAttribute("eventNum") %>'; // 서버에서 전달된 eventNum 값을 가져옴
+	
+	// 페이지 로드 시 초기 좋아요 상태를 확인
+	if (sessionId != null && sessionId !== "null") {
+	    // 로그인 상태인 경우에만 초기 좋아요 상태를 확인
+	    checkInitialLikeStatus(eventNum);
+	}
+});
+
+	var isLiked = false; // 좋아요 상태를 나타내는 변수
+
+// 페이지 로드 시 초기 좋아요 상태를 확인하고 버튼 색상을 설정하는 함수
+function checkInitialLikeStatus(eventNum) {
+    // 서버에 AJAX 요청을 보내서 좋아요 상태를 확인하는 코드
+	$.ajax({
+	    url: "likeStatus",
+	    type: "POST",
+	    data: { sessionId: sessionId, eventNum: eventNum },
+	    success: function(response) {
+	        var likedReviewList = JSON.parse(response);
+	        
+	        var reviewIdxList = [];
+
+	        <c:forEach items="${reviewList}" var="review">
+	            reviewIdxList.push(${review.rw_idx});
+	        </c:forEach>
+
+	        likedReviewList.forEach(function(review) {
+	            if (reviewIdxList.includes(review.reviewIdx)) {
+	                setLikedButtonStyle(review.reviewIdx);
+	                isLiked = true;
+	            } else {
+	                console.log(review);
+	                setUnlikedButtonStyle(review.reviewIdx);
+	                isLiked = false;
+	            }
+	        }); // forEach 블록 종료
+	    },
+	    error: function(xhr, status, error) {
+	        console.log("좋아요 상태 확인 요청이 실패하였습니다. 오류: " + error);
+	    }
+	});
+}
+
+// 좋아요 버튼을 클릭하는 함수
+function reviewLikeClicked(eventNum, reviewNum) {
+    var likeButton = document.getElementById("likeButton_" + reviewNum);
+    console.log(likeButton);
+    var isLiked = false;
+    
+    if(sessionId != "null") {
+	    if (isLiked == true) {
+	        // 좋아요 취소
+	        sendLikeRequest(eventNum, reviewNum, false);
+	        setUnlikedButtonStyle(reviewNum);
+	        isLiked = false;
+	    } else {
+	        // 좋아요 요청
+	        sendLikeRequest(eventNum, reviewNum, true);
+	        setLikedButtonStyle(reviewNum);
+	        isLiked = true;
+	    }
+    } else {
+    	alert("로그인이 필요합니다.");
+    	return false;
+    }
+}
+
+// 좋아요 요청을 보내는 함수
+function sendLikeRequest(eventNum, reviewNum, isLiked) {
+    $.ajax({
+        url: "reviewLike", // 좋아요 요청을 처리하는 URL을 입력하세요.
+        type: "POST",
+        data: {eventNum: eventNum, reviewNum: reviewNum, isLiked: isLiked },
+        success: function(response) {
+            // 요청 성공 시의 동작 처리
+            console.log("좋아요 요청이 성공하였습니다.");
+            // 추가적인 동작 처리
+        },
+        error: function(xhr, status, error) {
+            // 요청 실패 시의 동작 처리
+            console.log("좋아요 요청이 실패하였습니다. 오류: " + error);
+        }
+    });
+}
+
+//좋아요 취소 요청을 보내는 함수
+function sendUnlikeRequest(eventNum, reviewNum, isLiked) {
+    $.ajax({
+        url: "reviewUnlike", // 취소 요청을 처리하는 URL을 입력하세요.
+        type: "POST",
+        data: {eventNum: eventNum, reviewNum: reviewNum, isLiked: isLiked },
+        success: function(response) {
+            // 취소 요청 성공 시의 동작 처리
+            console.log("좋아요가 취소되었습니다.");
+            // 추가적인 동작 처리
+        },
+        error: function(xhr, status, error) {
+            // 취소 요청 실패 시의 동작 처리
+            console.log("좋아요 취소 요청이 실패하였습니다. 오류: " + error);
+        }
+    });
+}
+
+// 좋아요 상태에 따라 버튼 스타일을 변경하는 함수
+function setLikedButtonStyle(reviewIdx) {
+    var likeButton = document.getElementById("likeButton_" + reviewIdx);
+    likeButton.classList.add("bg-dark");
+    likeButton.classList.remove("btn-light");
+    likeButton.classList.add("text-white");
+    likeButton.classList.remove("text-bg-danger");
+}
+
+function setUnlikedButtonStyle(reviewIdx) {
+    var likeButton = document.getElementById("likeButton_" + reviewIdx);
+    likeButton.classList.remove("bg-dark");
+    likeButton.classList.add("btn-light");
+    likeButton.classList.remove("text-white");
+    likeButton.classList.remove("text-bg-danger");
+}
+
+
 </script>
 
 </body>

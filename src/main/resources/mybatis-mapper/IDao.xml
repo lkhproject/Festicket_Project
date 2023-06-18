@@ -472,9 +472,17 @@
 		</insert>
 	
 		<!-- 리뷰 좋아요 취소 -->
-		<delete id="reviewEventLiker">
+		<delete id="cancelReviewLiker">
 			DELETE FROM eventReviewLike WHERE reviewIdx=#{param1} AND reviewLikerId=#{param2}
 		</delete>
+		
+		<!-- 리뷰 좋아요 리스트 가져오기 -->
+		<select id="getLikedReviewList" resultType="com.festicket.dto.EventReviewLikeDto">
+			SELECT er.reviewIdx, er.reviewLikerId
+			FROM eventReviewLike er
+			LEFT OUTER JOIN eventReview e ON er.reviewIdx = e.rw_idx
+			WHERE e.rw_userId = #{param1} AND e.rw_eventNum = #{param2}
+		</select>
 	<!-- *** 리뷰 관련 끝 *** -->
 	
 	<!-- 행사 좋아요 -->

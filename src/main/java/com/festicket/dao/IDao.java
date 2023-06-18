@@ -2,11 +2,11 @@ package com.festicket.dao;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import com.festicket.dto.CSanswerDto;
 import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
+import com.festicket.dto.EventReviewLikeDto;
 import com.festicket.dto.MemberDto;
 import com.festicket.dto.QABoardDto;
 import com.festicket.dto.QAanswerDto;
@@ -92,9 +92,10 @@ public interface IDao {
 	
 	// 리뷰
 	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 글 리스트 가져오기
-	public int reviewLiker(int reviewIdx, String userId); // 리뷰 좋아요
 	public void reviewWriteDao(String c_userId, String rw_eventNum, String rw_rating, String rw_content); // 리뷰 쓰기
+	public int reviewLiker(int reviewIdx, String userId); // 리뷰 좋아요
 	public void cancelReviewLiker(int reviewIdx, String userId); // 리뷰 좋아요 취소
+	public List<EventReviewLikeDto> getLikedReviewList(String userId, String eventNum); // 리뷰 좋아요 리스트 
 	
 	// QA
 	public List<QABoardDto> getQAListDao(int eventNum); // QA 글 리스트 가져오기
