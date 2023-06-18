@@ -11,20 +11,22 @@
 <title>페스티켓</title>
 </head>
 <body>
-<%
-    int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
 
-    if(loginOk == 0) {
-        String previousPage = request.getRequestURL().toString();
-        session.setAttribute("previousPage", previousPage);
-%>
-    <script>
-        alert("회원만 글쓰기가 가능합니다.");
-        window.location.href = "login";
-    </script>
-<%
-    }
-%>
+	<%
+	  int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+	
+	  if(loginOk == 0) {
+	      String previousPage = request.getRequestURL().toString();
+	      session.setAttribute("previousPage", previousPage);
+	%>
+	  <script>
+	      alert("회원만 글쓰기가 가능합니다.");
+	      window.location.href = "login";
+	  </script>
+	<%
+	  }
+	%>
+	
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
@@ -104,5 +106,6 @@
 	  return isValid;
 	}
 	</script>
+	
 </body>
 </html>
