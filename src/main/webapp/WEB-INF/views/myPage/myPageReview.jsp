@@ -111,8 +111,8 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th scope="col" style="width:50%">행사명</th>
-								<th scope="col" style="width:30%">예약일시</th>
+								<th scope="col" style="width:50%">&nbsp;행사명</th>
+								<th scope="col" style="width:30%">행사일자</th>
 								<th scope="col" style="width:20%">후기작성</th>
 							</tr>
 						</thead>
@@ -142,7 +142,7 @@
 										                </c:choose>
 										            </div>
 									            </td>
-												<td id="revDetails">${revList.re_date }</td>
+												<td id="revDetails">${revList.re_ticketDate }</td>
 												<td id="revDetailsNum">
 													<input type="button" class="btn" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}'" value="작성하기">
 												</td>
