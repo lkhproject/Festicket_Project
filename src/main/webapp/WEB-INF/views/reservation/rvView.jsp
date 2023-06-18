@@ -179,7 +179,7 @@
         </c:when>
         <c:otherwise>
           <tr>
-            <td colspan="5" style="text-align: center;">등록된 리뷰가 없습니다.</td>
+            <td colspan="5" style="text-align:center;">등록된 리뷰가 없습니다.</td>
           </tr>
         </c:otherwise>
       </c:choose>
