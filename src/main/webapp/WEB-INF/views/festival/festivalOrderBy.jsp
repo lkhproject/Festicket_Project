@@ -84,27 +84,41 @@
 
 	<!-- 페이징 시작 -->
 	<div class="container" id="festPagingNum">
-		<c:if test="${pageMaker.prev }">
-			<a href="festivalOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.orderOption}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
-		</c:if>
+		<ul class="pagination">
+    		<li class="page-item" id="page-item">
+				<c:if test="${pageMaker.prev }">
+					<a class="page-link" aria-label="Previous" href="festivalOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.orderOption}">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</c:if>
+			</li>
 		
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-			<c:choose>
-				<c:when test="${currPage == num }">
-					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
-				</c:when>
-				<c:otherwise>
-					<a href="festivalOrderBy?pageNum=${num }&orderOption=${param.orderOption}">${num }</a>&nbsp;&nbsp;&nbsp;
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
+			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+				<c:choose>
+					<c:when test="${currPage == num }">
+						<li class="page-item">
+							<span class="page-link" style="font-weight: bold;">${num }</span>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a class="page-link" href="festivalOrderBy?pageNum=${num }&orderOption=${param.orderOption}">${num }</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
 		
-		<c:if test="${pageMaker.next }">
-			<a href="festivalOrderBy?pageNum=${pageMaker.startPage+5 }&orderOption=${param.orderOption}"><c:out value="${'>' }"></c:out></a>
-		</c:if>
+			<li class="page-item">
+				<c:if test="${pageMaker.next }">
+					<a class="page-link" href="festivalOrderBy?pageNum=${pageMaker.startPage+5 }&orderOption=${param.orderOption}">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</c:if>
+			</li>
+		</ul>
 	</div>
 	<!-- 페이징 끝 -->
-		
+			
 	</div>
 <!-- 페스티벌 리스트 끝 -->
 

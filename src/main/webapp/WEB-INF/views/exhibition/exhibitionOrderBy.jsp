@@ -20,10 +20,10 @@
 <div class="container_1">
 <div class="continer_select">
   <div style="float: left;">
-	<h2 class="title">페스티벌</h2>
+	<h2 class="title">전시</h2>
 	<div class="totalNum">총 ${totalCount }건</div>
   </div>
-	<form action="festivalOrderBy" onsubmit="return validateForm()">
+	<form action="exhibitionOrderBy" onsubmit="return validateForm()">
 	<div style="float: right;">
 		<div class="selectorBtn">
 			<button type="submit" id="orderBtn">정렬</button>
@@ -47,61 +47,75 @@
 			<tbody>
 				<c:choose>
 					<c:when test="${totalCount > 0 }">
-					  <c:forEach items="${festivalDtos }" var="festival">
-					  <input type="hidden" value="${festival.eventNum }">
+					  <c:forEach items="${exhibitionDtos }" var="exhibition">
+					  <input type="hidden" value="${exhibition.eventNum }">
 					    <tr>
-					      <td scope="row" id="eventImgCell"><img src="${festival.main_img }" class="listImg"
-					      	onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"></td>
+					      <td scope="row" id="eventImgCell"><img src="${exhibition.main_img }" class="listImg"
+					      	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"></td>
 					      <td id="tableCenter">
-					      	<div id="eventTitle">${festival.title }</div>
-					      	<div id="eventDetail"><b>장 소:</b> ${festival.place }</div>
-						  	<div id="eventDetail"><b>기 간:</b> ${festival.eventDate }</div>
+					      	<div id="eventTitle">${exhibition.title }</div>
+					      	<div id="eventDetail"><b>장 소:</b> ${exhibition.place }</div>
+						  	<div id="eventDetail"><b>기 간:</b> ${exhibition.eventDate }</div>
 						  	<div id="eventDetail"><b>관람가:</b> 
 							  	<c:choose>
-								  	<c:when test="${festival.eventPrice == null}">무료</c:when>
-								  	<c:otherwise>${festival.eventPrice }</c:otherwise>
+								  	<c:when test="${exhibition.eventPrice == null}">무료</c:when>
+								  	<c:otherwise>${exhibition.eventPrice }</c:otherwise>
 							  	</c:choose>
 						  	</div>
 					      </td>
 					      <c:choose>
 						      <c:when test="${sessionId eq 'admin'}">
-						      		<td id="reserve"><input type="button" value="수정하기" onclick="script:window.location.href='adminModify?selectedEvent=${festival.eventNum }'"></td>
+						      		<td id="reserve"><input type="button" value="수정하기" onclick="script:window.location.href='adminModify?selectedEvent=${exhibition.eventNum }'"></td>
 						      </c:when>
 						      <c:otherwise>
-						      		<td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"></td>
+						      		<td id="reserve"><input type="button" value="예매하기" onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"></td>
 						      </c:otherwise>
 					      </c:choose>
 					    </tr>
 					  </c:forEach>
 			  		</c:when>
 			  		<c:otherwise>
-	                    <div id="noResult">조회된 결과가 없습니다.</div>
-		            </c:otherwise>
+	                    <div id="noResult">조회된 결과가 없습니다.</div>
+		            </c:otherwise>
 			  	</c:choose>
 			</tbody>
 		</table>
 <!-- 페스티벌 리스트 끝 -->
 
-	<!-- 페이징 시작 -->
+	<!-- 페이징 시작 searchOption 안넘어옴 확인필요-->
 	<div class="container" id="festPagingNum">
-		<c:if test="${pageMaker.prev }">
-			<a href="festivalOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.orderOption}"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
-		</c:if>
+		<ul class="pagination">
+    		<li class="page-item" id="page-item">
+				<c:if test="${pageMaker.prev }">
+					<a class="page-link" aria-label="Previous" href="exhibitionOrderBy?pageNum=${pageMaker.startPage-5 }&orderOption=${param.orderOption}">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</c:if>
+			</li>
 		
-		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-			<c:choose>
-				<c:when test="${currPage == num }">
-					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
-				</c:when>
-				<c:otherwise>
-					<a href="festivalOrderBy?pageNum=${num }&orderOption=${param.orderOption}">${num }</a>&nbsp;&nbsp;&nbsp;
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
+			<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
+				<c:choose>
+					<c:when test="${currPage == num }">
+						<li class="page-item">
+							<span class="page-link" style="font-weight: bold;">${num }</span>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a class="page-link" href="exhibitionOrderBy?pageNum=${num }&orderOption=${param.orderOption}">${num }</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
 		
-		<c:if test="${pageMaker.next }">
-			<a href="festivalOrderBy?pageNum=${pageMaker.startPage+5 }&orderOption=${param.orderOption}"><c:out value="${'>' }"></c:out></a>
-		</c:if>
+			<li class="page-item">
+				<c:if test="${pageMaker.next }">
+					<a class="page-link" href="exhibitionOrderBy?pageNum=${pageMaker.startPage+5 }&orderOption=${param.orderOption}">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</c:if>
+			</li>
+		</ul>
 	</div>
 	<!-- 페이징 끝 -->
 		
