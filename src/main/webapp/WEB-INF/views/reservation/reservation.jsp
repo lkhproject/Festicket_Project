@@ -21,7 +21,7 @@
   <!-- 이벤트 이미지, 자치구, 행사분류, 행사명 넘김 -->
 	<div class="container">
 	  <div id="reservation_page">
-	    <h2 class="rvTitle">예매</h2>
+	    <h2 class="title">전체</h2>
 	    <div class="totalNum">총 ${totalCount}건</div>
 	    <div class="card-group center-block" id="cardBox">
 	      <div class="row">
