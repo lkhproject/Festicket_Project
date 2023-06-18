@@ -37,7 +37,7 @@
 	  		<tbody class="table-group-divider">
 					<c:choose>
 						<c:when test="${totalCount == 0}">
-							<tr ng-show="reserveList.length === 0">
+							<tr ng-show="csList.length === 0">
 								<td colspan="6" class="no_data">등록된 게시글이 없습니다.</td>
 							</tr>
 						</c:when>
