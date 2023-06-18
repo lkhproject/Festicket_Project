@@ -166,13 +166,6 @@ public class MyPageController {
 			
 			List<ReserveDto> revListDtos = dao.getReservationListDao(sessionId, criteria.getCountList(), pageNum);
 			
-			request.setAttribute("loginOk", loginOk);
-			request.setAttribute("totalCount", totalCount);
-			
-			model.addAttribute("pageMaker", pageDto);
-			model.addAttribute("currPage", pageNum);
-			model.addAttribute("revListDtos", revListDtos);
-			
 			if (!revListDtos.isEmpty()) {
 			    ReserveDto reserveDto = revListDtos.get(0);
 			    int eventNum = reserveDto.getRe_eventNum();    
@@ -181,6 +174,14 @@ public class MyPageController {
 			    // 리스트가 비어있을 때의 처리
 			    session.removeAttribute("eventNum"); // eventNum 제거 또는 기본값 설정
 			}
+			
+			request.setAttribute("loginOk", loginOk);
+			request.setAttribute("totalCount", totalCount);
+			
+			model.addAttribute("pageMaker", pageDto);
+			model.addAttribute("currPage", pageNum);
+			model.addAttribute("revListDtos", revListDtos);
+			
 		}
 		return "myPage/myPageReview";
 	}
