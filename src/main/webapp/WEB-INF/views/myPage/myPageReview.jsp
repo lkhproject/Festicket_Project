@@ -125,24 +125,29 @@
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${revListDtos }" var="revList">
-										<tr>
-											<td id="revDetails">
-												<div>
-													<c:choose>
-									                  <c:when test="${fn:length(revList.title) gt 30}">
-									                    ${fn:substring(revList.title, 0, 29)}...
-									                  </c:when>
-									                  <c:otherwise>
-									                    ${revList.title}
-									                  </c:otherwise>
-									                </c:choose>
-									            </div>
-								            </td>
-											<td id="revDetails">${revList.re_date }</td>
-											<td id="revDetailsNum">
-												<input type="button" class="btn" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}'" value="작성하기">
-											</td>
-										</tr>			
+									  <c:set var="ticketDate" value="${revList.re_ticketDate}" />
+									  <c:set var="currentDate" value="<%= new java.util.Date() %>" />
+									  	  <!-- 행사일이 지났을 경우 리뷰 작성 가능 -->
+										  <c:if test="${ticketDate.before(currentDate)}">
+											<tr>
+												<td id="revDetails">
+													<div style="cursor:pointer;" onclick="script:window.location.href='detailedRev?selectedRev=${revList.re_idx}'">
+														<c:choose>
+										                  <c:when test="${fn:length(revList.title) gt 30}">
+										                    ${fn:substring(revList.title, 0, 29)}...
+										                  </c:when>
+										                  <c:otherwise>
+										                    ${revList.title}
+										                  </c:otherwise>
+										                </c:choose>
+										            </div>
+									            </td>
+												<td id="revDetails">${revList.re_date }</td>
+												<td id="revDetailsNum">
+													<input type="button" class="btn" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}'" value="작성하기">
+												</td>
+											</tr>
+											</c:if>		
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
