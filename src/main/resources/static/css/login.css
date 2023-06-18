@@ -7,7 +7,6 @@ body {
 	background: #eeeeee;
 }
 
-
 input.login_box {
 	width:500px;
 	height:65px;  
@@ -18,8 +17,7 @@ input.login_box {
 	outline: none;
 	font-size:15px;
 	color:#999;
-	display: flex;
-	
+	display: flex;	
 }	
 
 input.login-button {
@@ -34,25 +32,26 @@ input.login-button {
 	color:#ffffff;
 	background: #6800b8;
 	font-family: 'Noto Sans KR', sans-serif;
-	
-    }
+}
     
 td.contentbox {
 	background-color: #ffffff ;
 	height : 500px;
 	text-align: center;
-	border-radius: 8px;
-	
+	border-radius: 8px;	
+}
+
+div.joinpage_cover {
+	width: 500px;
+	display: flex;
+    justify-content: space-between;
 }
 
 div.joinpage {
-	font-size:15px;
+	font-size:14px;
 	color:#999;
 	font-family: 'Noto Sans KR', sans-serif;
 	margin: 1px;
 	padding: 10px;
 	display: inline-block;
 }
-
-
-
