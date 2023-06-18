@@ -140,11 +140,13 @@ span.help_submenu_tit{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;	
 }
+
 .has_sub_last ul.help_submenu li.on {
     color: #6800b8;
     position: relative;
     font-weight: bold;
 }
+
 li.has_sub_last{
 	padding: 10px 18px 20px 26px;
     position: relative;
@@ -228,7 +230,7 @@ input.content_btn02{
 h5 {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 25px;
-	margin-top: 20px;
+	margin-top: 40px;
 }
 
 div.help_rcont{

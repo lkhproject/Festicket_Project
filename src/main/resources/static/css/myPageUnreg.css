@@ -109,7 +109,7 @@ div.help_cont{
 	border-bottom: 1px solid #ecedf2;
     background: #ffffff;
     width: 260px;
-    height:495px;
+    height: auto;
 	overflow:hidden;
   	float: left;
 }
@@ -207,9 +207,23 @@ li.has_sub_last{
     box-sizing: border-box;
 }
 
-.help_lmenu li.has_sub li.on a {
+.has_sub_last ul.help_submenu li.on {
     color: #6800b8;
     position: relative;
     font-weight: bold;
 }
 /* 가운데 box css 끝*/
+
+h5 {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 25px;
+	margin-top: 40px;
+}
+
+div.help_rcont{
+    width: 1120px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+	height:auto;
+	margin-bottom: 50px;
+}
