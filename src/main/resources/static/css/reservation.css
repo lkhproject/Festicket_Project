@@ -75,6 +75,8 @@ h5.card-title {
 
 #reservation_page {
 	width: 95%;
+	height:auto;
+	overflow:hidden;
 	padding-left: 50px;
 	padding-right: 50px;
 	padding-bottom: 50px;
