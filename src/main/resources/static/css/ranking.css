@@ -71,10 +71,21 @@ div.top5 {
 	height: 300px;
 }
 
+#overlayText {
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	width: 41px;
+	height: 60px;
+	background-image: url("/resources/img/ranking_flag.png");
+	background-size: cover;
+}
+
 h1.rankingCount {
-	color: white;
-	font-weight: 900;
-	text-shadow: -1px 0px blue, 0px 1px blue, 1px 0px blue, 0px -1px blue;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 25px;
+	margin: 0 0 20px 0;
 }
 
 #ongoingDate {
