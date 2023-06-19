@@ -75,6 +75,7 @@ public interface IDao {
 	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 글 리스트 가져오기
 	public void reviewWriteDao(String c_userId, int rw_eventNum, String rw_rating, String rw_content); // 리뷰 쓰기
 	public void reviewWrittenDao(int re_idx); // 리뷰 작성 여부 (작성시 값 +1)
+	public ReviewDto reviewViewDao(String rw_idx); // 클릭한 리뷰 내용 보기
 	public void reviewLiker(int reviewIdx, String userId); // 리뷰 좋아요
 	public void cancelReviewLiker(int reviewIdx, String userId); // 리뷰 좋아요 취소
 	public List<EventReviewLikeDto> getLikedReviewList(String userId, String eventNum); // 리뷰 좋아요 리스트 

@@ -53,13 +53,11 @@
 			</form>
 			<!-- 별점 기능 끝 -->
 			
-			<!-- 게시글 작성 폼 -->
+			<!-- 리뷰 작성 폼 -->
 			<form action="reviewWriteOk" method="post" id="detail_form" onsubmit="return validateCheck()">
-				<div id="title_error" class="error"></div>
 				<div class="input-group mt-3">
 	  				<textarea class="form-control" placeholder="최소 10자 이상 입력해주세요." aria-label="With textarea" name="rw_content" id="rw_content"></textarea>
 				</div>
-				<div id="content_error" class="error"></div>
 				
 				<!-- 등록, 취소 버튼 -->
 				<div class="container" style="padding-top: 10px">
@@ -67,6 +65,7 @@
 					<div class="button_submit">
 					   	<input type="hidden" name="sessionId" value="${sessionId}">
                     	<input type="hidden" name="eventNum" value="${eventNum}">
+                    	<input type="hidden" name="re_idx" value="${re_idx}">
 						<input type="hidden" name="rw_rating" id="rw_rating">
 						<input type="submit" class="btn" id="button_submit" value="등록">
 					</div>
@@ -77,7 +76,7 @@
 				</div>
 				<!-- 등록, 취소 버튼 끝 -->
 			</form>
-			<!-- 게시글 작성 끝 -->
+			<!-- 리뷰 작성 끝 -->
 		</div>
 		</div>
 	</div>

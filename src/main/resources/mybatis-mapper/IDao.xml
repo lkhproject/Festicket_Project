@@ -348,6 +348,11 @@
 			UPDATE eventReservation SET re_written = re_written + 1 WHERE re_idx = #{param1}
 		</update>
 		
+		<!-- 클릭한 리뷰 내용 보기 -->
+		<select id="reviewViewDao" resultType="com.festicket.dto.ReviewDto">
+			SELECT * FROM eventReview WHERE rw_idx=#{param1}
+		</select>
+		
 		<!-- 리뷰 좋아요 -->
 		<insert id="reviewLiker">
 			INSERT INTO eventReviewLike VALUES(#{param1}, #{param2})
