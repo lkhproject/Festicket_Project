@@ -65,26 +65,30 @@
 
   <!-- 더보기 버튼 기능 (16개씩 나오게 하기) -->
   <script>
-    var startIndex = 0;
-    var endIndex = 15;
+  var startIndex = 0;
+  var endIndex = 15;
+  var cards = document.getElementsByClassName("card");
 
-    function showMoreEvents() {
-      var cards = document.getElementsByClassName("card");
-      for (var i = startIndex; i <= endIndex; i++) {
-        if (cards[i]) {
-          cards[i].classList.remove("hidden");
-        }
-      }
-      startIndex += 16;
-      endIndex += 16;
-      if (endIndex >= cards.length) {
-        document.getElementById("showMoreButtonWrapper").style.display = "none";
+  function showMoreEvents() {
+    for (var i = startIndex; i <= endIndex; i++) {
+      if (cards[i]) {
+        cards[i].classList.remove("hidden");
       }
     }
+    if (endIndex >= cards.length - 1) {
+      document.getElementById("showMoreButtonWrapper").style.display = "none";
+    }
+    startIndex += 16;
+    endIndex += 16;
+  }
 
-    window.addEventListener("DOMContentLoaded", function() {
-      showMoreEvents();
-    });
+  window.addEventListener("DOMContentLoaded", function() {
+    showMoreEvents();
+    if (cards.length <= endIndex) {
+      endIndex = cards.length - 1;
+      document.getElementById("showMoreButtonWrapper").style.display = "none";
+    }
+  });
   </script>
   
 </body>
