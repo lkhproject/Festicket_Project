@@ -153,6 +153,7 @@ public interface IDao {
 		
 		public int totalExhibitionCountDao();
 		public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트	
+	
 		
 	
 // *******************************************************************************************************
