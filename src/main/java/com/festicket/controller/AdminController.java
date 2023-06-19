@@ -141,7 +141,7 @@ public class AdminController {
 	            player, program, org_link, main_img,
 	            start_date, end_date, eventPrice, ticketCount);
       
-      return "redirect:adminList";
+      return "admin/adminEventAddOk";
    }
 	
 	@RequestMapping(value = "/adminEventUpdate")
@@ -185,5 +185,7 @@ public class AdminController {
       
       return "redirect:adminList";
    }
+	
+	
 	
 }
