@@ -133,28 +133,28 @@
 	<select id="top5FestivalListDao" resultType="com.festicket.dto.EventDto">
 		SELECT eventNum, main_img, title, gunName, type
 		FROM (
-		    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount,
-		           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / 
-									CASE WHEN e.ticketCount = 0 THEN 1 ELSE e.ticketCount END)*100 DESC) AS rnk
+		    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type,
+		           RANK() OVER (ORDER BY COUNT(er.re_eventNum) / NULLIF(e.ticketCount, 0) * 100 DESC) AS rnk
 		    FROM event e
 		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+		    WHERE e.type LIKE '%페스티벌%'
 		    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 		)
-		WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '페스티벌%'
+		WHERE rnk <![CDATA[<=]]> 5
 	</select>
 	
 	<!-- 전시 탑5 리스트 -->
 	<select id="top5ExhibitionListDao" resultType="com.festicket.dto.EventDto">
 		SELECT eventNum, main_img, title, gunName, type
 		FROM (
-		    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount,
-		           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / 
-									CASE WHEN e.ticketCount = 0 THEN 1 ELSE e.ticketCount END)*100 DESC) AS rnk
+		    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type,
+		           RANK() OVER (ORDER BY COUNT(er.re_eventNum) / NULLIF(e.ticketCount, 0) * 100 DESC) AS rnk
 		    FROM event e
 		    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+		    WHERE e.type LIKE '%전시%'
 		    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 		)
-		WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '전시%'
+		WHERE rnk <![CDATA[<=]]> 5
 	</select>
 	
 	<!-- 예매 페이지 -->
