@@ -6,6 +6,7 @@ import java.util.List;
 import com.festicket.dto.CSanswerDto;
 import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
+import com.festicket.dto.EventLikeDto;
 import com.festicket.dto.EventReviewLikeDto;
 import com.festicket.dto.MemberDto;
 import com.festicket.dto.QABoardDto;
@@ -54,10 +55,11 @@ public interface IDao {
 	
 	// 행사
 	public EventDto getEventDao(int eventNum); // 행사 하나만 가져오기
-	public int eventLiker(int eventIdx, String userId); // 행사 좋아요
-	public void cancelEventLiker(int eventIdx, String userId); // 행사 좋아요 취소
+	public void eventLiker(String eventIdx, String userId); // 행사 좋아요
+	public void cancelEventLiker(String eventIdx, String userId); // 행사 좋아요 취소
 	public void ticketReservedDao(int eventNum, int reservedTicket); // 예약 후 티켓 총 개수 감소
 	public int getTotalTicketDao(int eventNum); // 행사 남은 티켓수
+	public int getLikedEvent(String userId, String eventNum); // 행사 좋아요 dto
 	
 	// admin
 	public List<EventDto> eventListPagingDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징

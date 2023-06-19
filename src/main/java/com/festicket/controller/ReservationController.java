@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.festicket.dao.IDao;
+import com.festicket.dto.EventLikeDto;
 import com.festicket.dto.EventReviewLikeDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,9 +47,6 @@ public class ReservationController {
 		
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
 		
-		System.out.println("rvView");
-		System.out.println(eventNum);
-		
 		session.setAttribute("eventNum", eventNum);
 		
 		model.addAttribute("event", dao.getEventDao(eventNum));
@@ -58,9 +56,27 @@ public class ReservationController {
 		return "reservation/rvView";
 	}
 	
-	@RequestMapping(value = "/likeStatus", method = RequestMethod.POST)
+	@RequestMapping(value = "/eventLikeStatus", method = RequestMethod.POST)
 	@ResponseBody
-	public String likeStatus(HttpSession session, Model model, HttpServletRequest request) throws JsonProcessingException {
+	public int eventLikeStatus(HttpSession session, Model model, HttpServletRequest request) throws JsonProcessingException {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+
+		String sessionId = (String)session.getAttribute("sessionId");
+		String selectedEvent = request.getParameter("selectedEvent");
+		
+		int isEventLiked = dao.getLikedEvent(sessionId, selectedEvent);
+		
+		System.out.println("eventLikeStatus");
+		System.out.println(selectedEvent);
+		System.out.println(isEventLiked);
+		
+		return isEventLiked;
+	}
+	
+	@RequestMapping(value = "/reviewLikeStatus", method = RequestMethod.POST)
+	@ResponseBody
+	public String reviewLikeStatus(HttpSession session, Model model, HttpServletRequest request) throws JsonProcessingException {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 
@@ -80,6 +96,42 @@ public class ReservationController {
 		return jsonLikedReviewList;
 	}
 	
+	@RequestMapping(value = "/eventLike")
+	public String eventLike(HttpSession session, Model model, HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+
+		String sessionId = (String)session.getAttribute("sessionId");
+		String selectedEvent = request.getParameter("selectedEvent");
+		
+		System.out.println("eventLike");
+		System.out.println(sessionId);
+		System.out.println(selectedEvent);
+		
+		dao.eventLiker(selectedEvent, sessionId);
+		model.addAttribute("selectedEvent", selectedEvent);
+		
+		return "reservation/rvView";
+	}
+	
+	@RequestMapping(value = "/eventUnlike")
+	public String eventUnlike(HttpSession session, Model model, HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+
+		String sessionId = (String)session.getAttribute("sessionId");
+		String selectedEvent = request.getParameter("selectedEvent");
+		
+		System.out.println("eventUnlike");
+		System.out.println(sessionId);
+		System.out.println(selectedEvent);
+		
+		dao.cancelEventLiker(selectedEvent, sessionId);
+		model.addAttribute("selectedEvent", selectedEvent);
+		
+		return "reservation/rvView";
+	}
+	
 	@RequestMapping(value = "/reviewLike")
 	public String reviewLiked(HttpSession session, Model model, HttpServletRequest request) {
 		
@@ -97,7 +149,7 @@ public class ReservationController {
 		dao.reviewLiker(reviewNum, sessionId);
 		model.addAttribute("selectedEvent", selectedEvent);
 		
-		return "redirect:rvView";
+		return "reservation/rvView";
 	}
 	
 	@RequestMapping(value = "/reviewUnlike")
@@ -116,7 +168,7 @@ public class ReservationController {
 		dao.cancelReviewLiker(reviewNum, sessionId);
 		model.addAttribute("selectedEvent", selectedEvent);
 		
-		return "redirect:rvView";
+		return "reservation/rvView";
 	}
 	
 	@RequestMapping(value = "/confirmRev")

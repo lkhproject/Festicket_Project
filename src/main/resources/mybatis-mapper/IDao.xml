@@ -497,6 +497,13 @@
 		WHERE eventIdx=#{param1} AND eventLikerId=#{param2}
 	</delete>
 	
+	<!-- 행사 좋아요 boolean 값으로 있나확인 -->
+	<select id="getLikedEvent" resultType="int">
+		SELECT COUNT(*)
+		FROM eventLike
+		WHERE eventLikerId = #{param1} AND eventIdx = #{param2}
+	</select>
+	
 	<!-- QA -->
 	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
 	    SELECT *
