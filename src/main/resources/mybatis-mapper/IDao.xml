@@ -429,7 +429,7 @@
 	
 
 	<!-- *** 관리자(admin) 관련 *** -->
-    <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
+   <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
        SELECT eventNum, gunName, title, eventDate
        FROM (
            SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
