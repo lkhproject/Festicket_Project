@@ -33,6 +33,7 @@ public class ReservationController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		model.addAttribute("event", dao.eventAllListDao());
+		model.addAttribute("totalCount", dao.totalEventCountDao());
 		
 		return "reservation/reservation";
 	}
