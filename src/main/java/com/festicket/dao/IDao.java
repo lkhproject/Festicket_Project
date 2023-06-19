@@ -27,6 +27,7 @@ public interface IDao {
 	public void modifyMemberDao(String userId, String userPassword, String userPhone, String email, String name);
 	
 	// 회원탈퇴
+	public void deleteMember(String userId, String userPassword);
 	
 	// 행사
 	public EventDto getEventDao(int eventNum); // 행사 하나만 가져오기
