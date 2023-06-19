@@ -161,28 +161,28 @@
 		<select id="top5FestivalListDao" resultType="com.festicket.dto.EventDto">
 			SELECT eventNum, main_img, title, gunName, type
 			FROM (
-			    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount,
-			           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / 
-										CASE WHEN e.ticketCount = 0 THEN 1 ELSE e.ticketCount END)*100 DESC) AS rnk
+			    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type,
+			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) / NULLIF(e.ticketCount, 0) * 100 DESC) AS rnk
 			    FROM event e
-			    LEFT JOIN eventReservation er ON er.re_eventNum = e.eventNum
+			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+			    WHERE e.type LIKE '%페스티벌%'
 			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 			)
-			WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '페스티벌%'
+			WHERE rnk <![CDATA[<=]]> 5
 		</select>
 		
 		<!-- 전시 탑5 리스트 -->
 		<select id="top5ExhibitionListDao" resultType="com.festicket.dto.EventDto">
 			SELECT eventNum, main_img, title, gunName, type
 			FROM (
-			    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount,
-			           RANK() OVER (ORDER BY (COUNT(er.re_eventNum) / 
-										CASE WHEN e.ticketCount = 0 THEN 1 ELSE e.ticketCount END)*100 DESC) AS rnk
+			    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type,
+			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) / NULLIF(e.ticketCount, 0) * 100 DESC) AS rnk
 			    FROM event e
-			    LEFT JOIN eventReservation er ON er.re_eventNum = e.eventNum
+			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+			    WHERE e.type LIKE '%전시%'
 			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 			)
-			WHERE rnk <![CDATA[<]]>= 5 AND UPPER(type) LIKE '전시%'
+			WHERE rnk <![CDATA[<=]]> 5
 		</select>
 	<!-- *** 메인 페이지(index), 검색 기능 끝 *** -->
 	
@@ -342,6 +342,11 @@
 					VALUES
 						(erw_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4})
 	    </insert>
+	    
+	    <!-- 리뷰 작성 여부 -->
+	    <update id="reviewWrittenDao">
+			UPDATE eventReservation SET re_written=re_written+1 WHERE re_eventNum=#{param1}
+		</update>
 		
 		<!-- 리뷰 좋아요 -->
 		<insert id="reviewLiker">
@@ -362,7 +367,7 @@
 			FROM (
 			    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
 			    FROM (
-			        SELECT er.re_idx, er.re_eventNum, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title
+			        SELECT er.re_idx, er.re_eventNum, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, er.re_written, e.title
 			        FROM eventReservation er
 			        JOIN event e ON er.re_eventNum = e.eventNum
 			        WHERE er.re_userId = #{param1}
