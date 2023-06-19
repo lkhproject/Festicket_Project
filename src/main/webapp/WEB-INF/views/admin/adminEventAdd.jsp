@@ -44,7 +44,7 @@
 		<!-- 행사 디테일 폼 입력 -->
 				<div id="event_type_error" class="error"></div>
 				<div class="input-group mb-3">
-				  <label class="input-group-text" for="inputGroupSelect01">행사분류*</label>
+				  <label class="input-group-text" id="basic-addon1" for="inputGroupSelect01">행사분류*</label>
 				  <select class="form-select" id="inputGroupSelect01" name="inputGroupSelect01">
 				    <option selected>Choose...</option>
 				    <option value="페스티벌">페스티벌</option>
