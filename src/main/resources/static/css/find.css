@@ -26,9 +26,9 @@ input.login_box {
 	
 }	
 
-input.login-button {
-    width:230px;
-	height:55px;  
+input.IDPWbutton {
+    width:245px;
+	height:65px;  
 	padding:0 20px;
 	margin: 1px;
 	border:1px solid #6800b8;
@@ -37,6 +37,21 @@ input.login-button {
 	font-size:20px;
 	color:#ffffff;
 	background: #6800b8;
+	font-family: 'Noto Sans KR', sans-serif;
+	
+    }
+    
+input.IDPWbutton01 {
+    width:245px;
+	height:65px;  
+	padding:0 20px;
+	margin: 1px;
+	border:1px solid #999;;
+	border-radius:20px;
+	outline: none;
+	font-size:20px;
+	color:#ffffff;
+	background: #999;
 	font-family: 'Noto Sans KR', sans-serif;
 	
     }

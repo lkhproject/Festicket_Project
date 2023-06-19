@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.festicket.dao.IDao;
 import com.festicket.dto.Criteria;
@@ -120,9 +122,15 @@ public class HomeController {
 		return "joinOk";
 	}
 	
-	 @RequestMapping(value = "/find") // 아이디.비밀번호 찾기
-		public String find() {
-			return "find";
+	 @RequestMapping(value = "/findId") // 아이디 찾기
+		public String findId() {
+			return "findId";
+		}
+	
+	 
+	 @RequestMapping(value = "/findPw") // 비밀번호 찾기
+		public String findPw() {
+			return "findPw";
 		}
 	
 	@RequestMapping(value = "/searchResult")
