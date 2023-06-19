@@ -51,25 +51,44 @@
 	
 	
 	<!-- *** 행사 관련 *** -->
-	<select id="eventListDao" resultType="com.festicket.dto.EventDto">
-		SELECT * FROM event ORDER BY eventNum DESC
-	</select>
+		<select id="eventListDao" resultType="com.festicket.dto.EventDto">
+			SELECT * FROM event ORDER BY eventNum DESC
+		</select>
+		
+		<select id="totalEventCountDao" resultType="int">
+			SELECT COUNT(*) FROM event
+		</select>
+		
+		<update id="ticketReservedDao">
+			UPDATE event
+			SET ticketCount = ticketCount - #{param2}
+			WHERE eventNum = #{param1}
+		</update>
+		
+		<select id="getTotalTicketDao" resultType="int">
+			SELECT ticketCount
+			FROM event
+			WHERE eventNum=#{param1}
+		</select>
 	
-	<select id="totalEventCountDao" resultType="int">
-		SELECT COUNT(*) FROM event
-	</select>
-	
-	<update id="ticketReservedDao">
-		UPDATE event
-		SET ticketCount = ticketCount - #{param2}
-		WHERE eventNum = #{param1}
-	</update>
-	
-	<select id="getTotalTicketDao" resultType="int">
-		SELECT ticketCount
-		FROM event
-		WHERE eventNum=#{param1}
-	</select>
+		<!-- 행사 좋아요 -->
+		<insert id="eventLiker">
+			INSERT INTO eventLike
+			VALUES(#{param1}, #{param2})
+		</insert>
+		
+		<!-- 행사 좋아요 취소 -->
+		<delete id="cancelEventLiker">
+			DELETE FROM eventLike
+			WHERE eventIdx=#{param1} AND eventLikerId=#{param2}
+		</delete>
+		
+		<!-- 행사 좋아요 int 값으로 있나확인 -->
+		<select id="getLikedEvent" resultType="int">
+			SELECT COUNT(*)
+			FROM eventLike
+			WHERE eventLikerId = #{param1} AND eventIdx = #{param2}
+		</select>
 	<!-- *** 행사 관련 끝 *** -->
 
 
@@ -219,18 +238,6 @@
 			SET ticketCount = ticketCount + #{param2}
 			WHERE eventNum = #{param1}
 		</update>
-		
-		<!-- 행사 좋아요 -->
-		<insert id="eventLiker">
-			INSERT INTO eventLike
-			VALUES(#{param1}, #{param2})
-		</insert>
-		
-		<!-- 행사 좋아요 취소 -->
-		<delete id="cancelEventLiker">
-			DELETE FROM eventLike
-			WHERE eventIdx=#{param1} AND eventLikerId=#{param2}
-		</delete>
 	<!-- *** 예매 관련 끝 *** -->
 
 
@@ -415,6 +422,32 @@
 			INSERT INTO eventReservation
 				VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7})
 		</insert>
+		
+		<!-- 오늘부터 선택일 전까지의 행사예약일 기준 행사 리스트, 총 개수 -->
+		<select id="getRevList_days" resultType="com.festicket.dto.ReserveDto">
+			SELECT *
+			FROM (
+			    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
+			    FROM (
+			        SELECT er.re_idx, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title, er.re_eventNum
+					FROM eventreservation er
+	                JOIN event e ON er.re_eventNum = e.eventNum
+					WHERE re_userId = #{param1}
+				    AND re_ticketDate <![CDATA[>=]]> SYSDATE - #{param4}
+				    AND re_ticketDate <![CDATA[<=]]> SYSDATE
+	                ORDER BY er.re_ticketDate DESC
+			    ) A
+			)
+			WHERE PAGE = #{param3}
+		</select>
+		
+		<select id="countRevList_days" resultType="int">
+			SELECT COUNT(*)
+		    FROM eventreservation
+		    WHERE re_userId = #{param1}
+		    AND re_ticketDate <![CDATA[>=]]> SYSDATE - #{param2}
+		    AND re_ticketDate <![CDATA[<=]]> SYSDATE
+		</select>
 	<!-- *** 예약 관련 끝 *** -->
 	
 	

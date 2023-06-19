@@ -32,10 +32,11 @@ public interface IDao {
 	
 	// 행사
 	public EventDto getEventDao(int eventNum); // 행사 하나만 가져오기
-	public int eventLiker(int eventIdx, String userId); // 행사 좋아요
-	public void cancelEventLiker(int eventIdx, String userId); // 행사 좋아요 취소
+	public void eventLiker(String eventIdx, String userId); // 행사 좋아요
+	public void cancelEventLiker(String eventIdx, String userId); // 행사 좋아요 취소
 	public void ticketReservedDao(int eventNum, int reservedTicket); // 예약 후 티켓 총 개수 감소
 	public int getTotalTicketDao(int eventNum); // 행사 남은 티켓수
+	public int getLikedEvent(String userId, String eventNum); // 행사 좋아요 dto
 	
 	// 검색
 	public List<EventDto> getSearchResult(String keyword, int countList, int pageNum); // 검색 결과 가져오기
@@ -85,7 +86,9 @@ public interface IDao {
 	public ReserveDto getReservationDao(int re_idx, String userId); // 예약번호로 예약 디테일 하나 가져오기
 	public ReserveDto getReservationByRecentDao(int eventNum, String userId); // 가장 최신 예약 하나 디테일 가져오기
 	public int reservationConfirmedDao(String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate, int written); // 예약 디테일 db에 넣어주기
-	public int checkDupRevDao(int eventNum); // 같은 행사, 같은 날에 예약된게 있는지 확인	
+	public int checkDupRevDao(int eventNum); // 같은 행사, 같은 날에 예약된게 있는지 확인
+	public List<ReserveDto> getRevList_days(String userId, int countList, int pageNum, int days); // 오늘부터 15일 전까지의 행사 예약일 기준 행사 리스트
+	public int countRevList_days(String userId, int days); // 오늘부터 15일 전까지의 행사 예약일 기준 행사
 	
 	// 랭킹
 	public List<EventDto> eventListDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징

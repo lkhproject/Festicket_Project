@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.festicket.dao.IDao;
 import com.festicket.dto.Criteria;
@@ -57,7 +58,7 @@ public class MyPageController {
 			
 			PageDto pageDto = new PageDto(criteria, totalCount);
 			
-			List<ReserveDto> revListDtos = dao.getReservationListDao(sessionId ,criteria.getCountList(), pageNum);
+			List<ReserveDto> revListDtos = dao.getReservationListDao(sessionId, criteria.getCountList(), pageNum);
 			
 			request.setAttribute("loginOk", loginOk);
 			request.setAttribute("totalCount", totalCount);
@@ -66,6 +67,52 @@ public class MyPageController {
 			model.addAttribute("currPage", pageNum);
 		}
 		return "myPage/myPage";
+	}
+	
+	@RequestMapping("/myPageDaysBefore")
+	public String myPageDaysBefore(@RequestParam("days") int days, HttpServletRequest request, Model model, HttpSession session, Criteria criteria) {
+	    
+	    String sessionId = (String)session.getAttribute("sessionId");
+	    
+		int loginOk = 0;
+		
+		// 세션 아이디가 없다면 접근불가
+		if(sessionId == null || sessionId.isEmpty()) {
+			request.setAttribute("loginOk", loginOk);
+		} else {
+			loginOk = 1;
+			
+			IDao dao = sqlSession.getMapper(IDao.class);
+			
+			// 페이징
+			int pageNum = 0;
+			
+			// 처음에는 request 객체에 넘어오는 값이 없기 떄문에 null 값이 옴
+			if(request.getParameter("pageNum") == null) {
+				pageNum = 1;
+				criteria.setPageNum(pageNum);
+			} else {
+				pageNum = Integer.parseInt(request.getParameter("pageNum"));
+				criteria.setPageNum(pageNum);
+			}
+			
+			int totalCount = dao.countRevList_days(sessionId, days);
+			
+			System.out.println(totalCount);
+			
+			PageDto pageDto = new PageDto(criteria, totalCount);
+			
+			List<ReserveDto> revListDtos = dao.getRevList_days(sessionId, criteria.getCountList(), pageNum, days);
+			
+			request.setAttribute("loginOk", loginOk);
+			request.setAttribute("totalCount", totalCount);
+			request.setAttribute("days", days);
+			model.addAttribute("pageMaker", pageDto);
+			model.addAttribute("revListDtos", revListDtos);
+			model.addAttribute("currPage", pageNum);
+		}
+
+	    return "myPage/myPageDaysBefore"; // 결과를 보여줄 뷰 이름 반환
 	}
 	
 	@RequestMapping(value = "/detailedRev") // 예매내역으로 바로 이동
