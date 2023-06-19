@@ -119,7 +119,7 @@
 	<%@ include file="../include/footer.jsp" %>
 	<!-- 푸터 끝 -->
 	
-		<script>
+	<script>
 		function confirmDelete() {
 	        var userId = document.getElementById("userId").value;
 	        var password = document.getElementById("userPassword").value;
