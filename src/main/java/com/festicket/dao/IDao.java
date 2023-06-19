@@ -24,6 +24,10 @@ public interface IDao {
 	public int checkEmailDao(String email); // 가입하려는 이메일의 존재여부 체크
 	public int joinDao(String userId, String userPassword, String userPhone, String email, String name, Date signupDate); // 회원가입
 	
+	// 아이디,비밀번호 찾기
+	public String findId_result(String name, String userPhone);
+	public String findPw_result(String userId, String email, String userPhone);
+	
 	// 회원정보 수정
 	public void modifyMemberDao(String userId, String userPassword, String userPhone, String email, String name);
 	
