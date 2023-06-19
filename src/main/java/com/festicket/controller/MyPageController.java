@@ -205,7 +205,6 @@ public class MyPageController {
 			String userId = (String) session.getAttribute("sessionId");
 			
 			IDao dao = sqlSession.getMapper(IDao.class);
-			System.out.println(userId);
 			model.addAttribute("memberDto", dao.getMemberInfo(userId));		
 			
 			return "myPage/myPageUnreg";

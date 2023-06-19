@@ -196,6 +196,20 @@ input.content_btn01{
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+input.content_btn02{
+	width:200px;
+	height:50px;  
+	padding:0 20px;
+	margin: 1px;
+	border:1px solid #808080;
+	border-radius:10px;
+	outline: none;
+	font-size:20px;
+	color:#ffffff;
+	background: #808080;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 h5 {
 	font-family: 'Noto Sans KR', sans-serif;
 	

@@ -90,10 +90,10 @@
 					<br><br>
 					<h5><b>회원탈퇴</b></h5>
 					<table border="0" cellspacing="0" cellpadding="10">
-						<form action="myPageUnregOk" method="post" name="myPageUnreg_frm">
+						<form action="myPageUnregOk" method="post" name="myPageUnregOk_frm">
 						    <tr>
 						        <td class="content_text">아이디
-						            <input class="inputbox01" type="text" name="userId" id="userId" value="${memberDto.userId }" readonly="readonly" placeholder="아이디" required>
+						            <input class="inputbox01" type="text" name="userId" id="userId" value="${memberDto.userId }" readonly="readonly" placeholder="아이디" >
 						        </td>
 						    </tr>
 						    <tr>
@@ -104,6 +104,7 @@
 						    <tr>
 						        <td colspan="2" align="center">
 						            <input class="content_btn01" type="submit" value="탈퇴하기" onclick="confirmDelete()">
+						            <input class="content_btn02" type="button" value="취소" onclick="script:window.location.href='index'" >
 						        </td>
 						    </tr>
 						</form>
