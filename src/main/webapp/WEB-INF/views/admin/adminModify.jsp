@@ -164,5 +164,6 @@
 	<%@ include file="../include/footer.jsp" %>
 <!-- 푸터 끝 -->
 
+
 </body>
 </html>
