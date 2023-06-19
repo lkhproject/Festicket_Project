@@ -16,8 +16,8 @@
 			<tr>
 				<br><br>
 				<td class="contentbox">
-					<center>
-					<img src="/resources/img/festicket_logo.png" width="30%"> 
+					<center><br>
+					<img src="/resources/img/festicket_logo.png" width="35%"> 
 					<br><br>
 						<h5><b> 회원가입 </b></h5>
 						<form action="joinOk" method="post" name="join_frm">
@@ -44,9 +44,8 @@
 								</tr>
 								<tr>
 									<td class="content_text">휴대폰번호
-									<input class="inputbox01" type="text" name="userPhone" placeholder="휴대폰번호"></td>
+									<input class="inputbox01" type="text" name="userPhone" placeholder="휴대폰번호"><br></td>
 								</tr>
-			
 								<tr>
 									<td colspan="2" align="center">
 										<input class="content_btn01" type="submit" value="가입완료" onclick="return joinCheck()" >&nbsp;&nbsp;
@@ -54,6 +53,7 @@
 									</td>										
 								</tr>
 							</table>
+							<br>
 						</form>
 					</center>
 				</td>

@@ -40,7 +40,7 @@
 
 	<div class="container">
 		<div class="container_1">
-			<div class="joinOk_container">
+			<div class="joinOk_container"><br>
 				<img src = "/resources/img/festicket_logo.png" id="logoImg"> 
 				
 				<div class="confirm"><b>${memberName}</b>님 회원가입을 축하드립니다!</div>
