@@ -30,7 +30,6 @@ input.inputbox01 {
 
 td.content_text {
 	font-family: 'Noto Sans KR', sans-serif;
-	
 }
 
 input.content_btn01{
@@ -62,6 +61,9 @@ input.content_btn02{
 }
 
 h5 {
-	font-family: 'Noto Sans KR', sans-serif;
-	
+	font-family: 'Noto Sans KR', sans-serif;	
+}
+
+div.container {
+	margin-top: 25px;
 }

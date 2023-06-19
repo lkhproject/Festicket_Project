@@ -7,10 +7,6 @@ body {
 	background: #eeeeee;
 }
 
-img {
-	margin-bottom: 20px;
-}
-
 input.login_box {
 	width:500px;
 	height:65px;  
@@ -39,10 +35,10 @@ input.login-button {
 }
     
 td.contentbox {
-	background-color: #ffffff ;
-	height : 500px;
+	background-color: #ffffff;
+	height: 500px;
 	text-align: center;
-	border-radius: 8px;	
+	border-radius: 8px;
 }
 
 div.joinpage_cover {
@@ -58,4 +54,12 @@ div.joinpage {
 	margin: 1px;
 	padding: 10px;
 	display: inline-block;
+}
+
+div.container {
+	margin-top: 25px;
+}
+
+#logo {
+	margin-bottom: 20px;
 }

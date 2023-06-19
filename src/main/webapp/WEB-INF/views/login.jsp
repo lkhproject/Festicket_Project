@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <title>페스티켓</title>
     <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/header.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
 </head>
 
@@ -17,6 +16,7 @@
     
     <br><Br>
     <center>
+    	<div class="container">
         <table border="0" cellspacing="0" cellpadding="20" width="75%">
             <tr>
                 <td>
@@ -26,7 +26,7 @@
                                 <td class="contentbox">
                                     <center>
                                         <table border="0" cellspacing="0" cellpadding="10">
-                                            <img src="/resources/img/festicket_logo.png" width="30%">
+                                            <img id="logo" src="/resources/img/festicket_logo.png" width="30%">
                                             <form action="loginOk" method="post">
                                                 <input type="text" name="userId" class="login_box" placeholder="아이디" id="userId" autocomplete="off" onfocus="this.placeholder = ''">
                                                 <input type="password" name="userPassword" class="login_box" placeholder="・・・・・・" id="userPassword" autocomplete="off" onfocus="this.placeholder = ''">
@@ -46,6 +46,7 @@
                 </td>
             </tr>
         </table>
+        </div>
     </center>
     
     <%@ include file="include/footer.jsp" %>
