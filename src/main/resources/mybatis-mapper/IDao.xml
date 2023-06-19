@@ -481,7 +481,7 @@
 			SELECT er.reviewIdx, er.reviewLikerId
 			FROM eventReviewLike er
 			LEFT OUTER JOIN eventReview e ON er.reviewIdx = e.rw_idx
-			WHERE e.rw_userId = #{param1} AND e.rw_eventNum = #{param2}
+			WHERE er.reviewLikerId = #{param1} AND e.rw_eventNum = #{param2}
 		</select>
 	<!-- *** 리뷰 관련 끝 *** -->
 	

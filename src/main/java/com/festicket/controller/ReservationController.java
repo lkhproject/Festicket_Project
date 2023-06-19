@@ -45,6 +45,10 @@ public class ReservationController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
+		
+		System.out.println("rvView");
+		System.out.println(eventNum);
+		
 		session.setAttribute("eventNum", eventNum);
 		
 		model.addAttribute("event", dao.getEventDao(eventNum));
@@ -61,10 +65,12 @@ public class ReservationController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 
 		String sessionId = (String)session.getAttribute("sessionId");
-		String selectedEvent = request.getParameter("eventNum");
+		String selectedEvent = request.getParameter("selectedEvent");
 		
 		List<EventReviewLikeDto> likedReviewList = dao.getLikedReviewList(sessionId, selectedEvent);
 		
+		System.out.println("likeStatus");
+		System.out.println(selectedEvent);
 		System.out.println(likedReviewList);
 		
 		// ObjectMapper를 사용하여 JSON 형식으로 변환
@@ -81,8 +87,9 @@ public class ReservationController {
 
 		String sessionId = (String)session.getAttribute("sessionId");
 		int reviewNum = Integer.parseInt(request.getParameter("reviewNum"));
-		String selectedEvent = request.getParameter("eventNum");
+		String selectedEvent = request.getParameter("selectedEvent");
 		
+		System.out.println("reviewLike");
 		System.out.println(sessionId);
 		System.out.println(request.getParameter("reviewNum"));
 		System.out.println(selectedEvent);

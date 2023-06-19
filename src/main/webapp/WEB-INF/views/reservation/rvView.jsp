@@ -281,6 +281,8 @@ $(document).ready(function() {
 });
 
 	var isLiked = false; // 좋아요 상태를 나타내는 변수
+	var reviewIdxList = []; // 좋아요 배열
+	var reviewLikes = {}; // reviewNum과 isLiked 값을 저장할 객체 (전역 변수)
 
 // 페이지 로드 시 초기 좋아요 상태를 확인하고 버튼 색상을 설정하는 함수
 function checkInitialLikeStatus(eventNum) {
@@ -288,24 +290,29 @@ function checkInitialLikeStatus(eventNum) {
 	$.ajax({
 	    url: "likeStatus",
 	    type: "POST",
-	    data: { sessionId: sessionId, eventNum: eventNum },
+	    data: { sessionId: sessionId, selectedEvent: eventNum },
 	    success: function(response) {
 	        var likedReviewList = JSON.parse(response);
 	        
-	        var reviewIdxList = [];
-
+	        // likedReviewList 타입 확인 후 null값 확인
+	        console.log(likedReviewList);
+	        
+	        if (Object.keys(likedReviewList).length == 0) {
+                console.log("likedReviewList 값이 null입니다. 함수를 종료합니다.");
+                return ;
+            }
+	        
 	        <c:forEach items="${reviewList}" var="review">
-	            reviewIdxList.push(${review.rw_idx});
+		    	reviewIdxList.push(${review.rw_idx});
 	        </c:forEach>
-
+	        
 	        likedReviewList.forEach(function(review) {
 	            if (reviewIdxList.includes(review.reviewIdx)) {
 	                setLikedButtonStyle(review.reviewIdx);
-	                isLiked = true;
+	                reviewLikes[review.reviewIdx] = true; // 해당 reviewIdx를 true로 설정
 	            } else {
-	                console.log(review);
 	                setUnlikedButtonStyle(review.reviewIdx);
-	                isLiked = false;
+	                reviewLikes[review.reviewIdx] = false; // 해당 reviewIdx를 false로 설정
 	            }
 	        }); // forEach 블록 종료
 	    },
@@ -322,17 +329,17 @@ function reviewLikeClicked(eventNum, reviewNum) {
     var isLiked = false;
     
     if(sessionId != "null") {
-	    if (isLiked == true) {
-	        // 좋아요 취소
-	        sendLikeRequest(eventNum, reviewNum, false);
-	        setUnlikedButtonStyle(reviewNum);
-	        isLiked = false;
-	    } else {
-	        // 좋아요 요청
-	        sendLikeRequest(eventNum, reviewNum, true);
-	        setLikedButtonStyle(reviewNum);
-	        isLiked = true;
-	    }
+    	if (reviewLikes[reviewNum] === true) {
+            // 좋아요 취소
+            sendUnlikeRequest(eventNum, reviewNum, false);
+            setUnlikedButtonStyle(reviewNum);
+            reviewLikes[reviewNum] = false; // 해당 reviewNum을 false로 설정
+        } else {
+            // 좋아요 요청
+            sendLikeRequest(eventNum, reviewNum, true);
+            setLikedButtonStyle(reviewNum);
+            reviewLikes[reviewNum] = true; // 해당 reviewNum을 true로 설정
+        }
     } else {
     	alert("로그인이 필요합니다.");
     	return false;
@@ -344,13 +351,14 @@ function sendLikeRequest(eventNum, reviewNum, isLiked) {
     $.ajax({
         url: "reviewLike", // 좋아요 요청을 처리하는 URL을 입력하세요.
         type: "POST",
-        data: {eventNum: eventNum, reviewNum: reviewNum, isLiked: isLiked },
+        data: {selectedEvent: eventNum, reviewNum: reviewNum, isLiked: isLiked },
         success: function(response) {
             // 요청 성공 시의 동작 처리
             console.log("좋아요 요청이 성공하였습니다.");
             // 추가적인 동작 처리
         },
         error: function(xhr, status, error) {
+        	console.log(eventNum);
             // 요청 실패 시의 동작 처리
             console.log("좋아요 요청이 실패하였습니다. 오류: " + error);
         }
@@ -362,7 +370,7 @@ function sendUnlikeRequest(eventNum, reviewNum, isLiked) {
     $.ajax({
         url: "reviewUnlike", // 취소 요청을 처리하는 URL을 입력하세요.
         type: "POST",
-        data: {eventNum: eventNum, reviewNum: reviewNum, isLiked: isLiked },
+        data: {selectedEvent: eventNum, reviewNum: reviewNum, isLiked: isLiked },
         success: function(response) {
             // 취소 요청 성공 시의 동작 처리
             console.log("좋아요가 취소되었습니다.");
