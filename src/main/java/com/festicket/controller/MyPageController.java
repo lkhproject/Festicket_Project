@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.festicket.dao.IDao;
 import com.festicket.dto.Criteria;
@@ -65,6 +66,16 @@ public class MyPageController {
 			model.addAttribute("currPage", pageNum);
 		}
 		return "myPage/myPage";
+	}
+	
+	@RequestMapping("/myPageDaysBefore")
+	public String myPageDaysBefore(@RequestParam("days") int days) {
+	    // days 값 사용
+	    System.out.println("days: " + days);
+
+	    // 처리 로직 작성
+
+	    return "myPageDaysBefore"; // 결과를 보여줄 뷰 이름 반환
 	}
 	
 	@RequestMapping(value = "/detailedRev") // 예매내역으로 바로 이동

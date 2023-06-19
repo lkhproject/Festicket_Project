@@ -117,6 +117,12 @@ public interface IDao {
 	public void QAreplyCountMinusDao(String qa_boardNum); // QA 댓글이 달린 원글의 댓글 필드 값 -1
 	public void QAboardReplyDeleteDao(String qa_boardNum); // 삭제한 게시글 QA 댓글 모두 삭제
 	
+	// 예약확인 추가 기능
+	public List<ReserveDto> getRevList_15days(String userId, int countList, int pageNum, String days); // 오늘부터 15일 전까지의 행사예약일 기준 행사 리스트
+	public List<ReserveDto> getRevList_30days(String userId, int countList, int pageNum); // 오늘부터 30일 전까지의 행사예약일 기준 행사 리스트
+	public List<ReserveDto> getRevList_60days(String userId, int countList, int pageNum); // 오늘부터 60일 전까지의 행사예약일 기준 행사 리스트
+	public List<ReserveDto> getRevList_90days(String userId, int countList, int pageNum); // 오늘부터 90일 전까지의 행사예약일 기준 행사 리스트
+	
 //***************
 	// 예약확인
 	public List<ReserveDto> getReservationListDao(String userId, int countList, int pageNum); // 예약 목록 가져오기

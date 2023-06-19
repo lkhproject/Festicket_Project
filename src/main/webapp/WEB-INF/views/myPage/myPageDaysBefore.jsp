@@ -106,7 +106,7 @@
 				<dd>
 					<ul class="daysort">
 						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-							<a href="myPageDaysBefore?days=15" class="ng-binding">15일</a>
+							<a href="" class="ng-binding">15일</a>
 						</li>
 						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope on">
 							<a href="" ng-click="periodSelection.select(period)" class="ng-binding">1개월</a>
