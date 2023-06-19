@@ -34,11 +34,11 @@
 	
 	<!-- *** 아이디/비밀번호 찾기 시작 *** -->
 	<select id="findId_result" resultType="String">
-		select * from eventMember where name=#{param1} and userPhone=#{param2}
+		select userId from eventMember where name=#{param1} and userPhone=#{param2}
 	</select>
 
 	<select id="findPw_result" resultType="String">
-		select * from eventMember where userId=#{param1} and email=#{param2} and userPhone=#{param3}
+		select userPassword from eventMember where userId=#{param1} and email=#{param2} and userPhone=#{param3}
 	</select>
 	<!-- *** 아이디/비밀번호 찾기 끝 *** -->
 	
