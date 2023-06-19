@@ -345,7 +345,7 @@
 	    
 	    <!-- 리뷰 작성 여부 -->
 	    <update id="reviewWrittenDao">
-			UPDATE eventReservation SET re_written=re_written+1 WHERE re_eventNum=#{param1}
+			UPDATE eventReservation SET re_written = re_written + 1 WHERE re_idx = #{param1}
 		</update>
 		
 		<!-- 리뷰 좋아요 -->
@@ -354,9 +354,17 @@
 		</insert>
 	
 		<!-- 리뷰 좋아요 취소 -->
-		<delete id="reviewEventLiker">
+		<delete id="cancelReviewLiker">
 			DELETE FROM eventReviewLike WHERE reviewIdx=#{param1} AND reviewLikerId=#{param2}
 		</delete>
+		
+		<!-- 리뷰 좋아요 리스트 가져오기 -->
+		<select id="getLikedReviewList" resultType="com.festicket.dto.EventReviewLikeDto">
+			SELECT er.reviewIdx, er.reviewLikerId
+			FROM eventReviewLike er
+			LEFT OUTER JOIN eventReview e ON er.reviewIdx = e.rw_idx
+			WHERE er.reviewLikerId = #{param1} AND e.rw_eventNum = #{param2}
+		</select>
 	<!-- *** 리뷰 관련 끝 *** -->
 	
 	
@@ -400,7 +408,7 @@
 		<!-- 예약DB에 넣어주기 -->
 		<insert id="reservationConfirmedDao">
 			INSERT INTO eventReservation
-				VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
+				VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7})
 		</insert>
 	<!-- *** 예약 관련 끝 *** -->
 	

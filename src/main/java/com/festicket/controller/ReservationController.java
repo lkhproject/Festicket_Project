@@ -3,6 +3,7 @@ package com.festicket.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,8 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.festicket.dao.IDao;
+import com.festicket.dto.EventReviewLikeDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class ReservationController {
@@ -40,6 +46,10 @@ public class ReservationController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
+		
+		System.out.println("rvView");
+		System.out.println(eventNum);
+		
 		session.setAttribute("eventNum", eventNum);
 		
 		model.addAttribute("event", dao.getEventDao(eventNum));
@@ -47,6 +57,67 @@ public class ReservationController {
 		model.addAttribute("QA_List", dao.getQAListDao(eventNum));
 		
 		return "reservation/rvView";
+	}
+	
+	@RequestMapping(value = "/likeStatus", method = RequestMethod.POST)
+	@ResponseBody
+	public String likeStatus(HttpSession session, Model model, HttpServletRequest request) throws JsonProcessingException {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+
+		String sessionId = (String)session.getAttribute("sessionId");
+		String selectedEvent = request.getParameter("selectedEvent");
+		
+		List<EventReviewLikeDto> likedReviewList = dao.getLikedReviewList(sessionId, selectedEvent);
+		
+		System.out.println("likeStatus");
+		System.out.println(selectedEvent);
+		System.out.println(likedReviewList);
+		
+		// ObjectMapper를 사용하여 JSON 형식으로 변환
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    String jsonLikedReviewList = objectMapper.writeValueAsString(likedReviewList);
+		
+		return jsonLikedReviewList;
+	}
+	
+	@RequestMapping(value = "/reviewLike")
+	public String reviewLiked(HttpSession session, Model model, HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+
+		String sessionId = (String)session.getAttribute("sessionId");
+		int reviewNum = Integer.parseInt(request.getParameter("reviewNum"));
+		String selectedEvent = request.getParameter("selectedEvent");
+		
+		System.out.println("reviewLike");
+		System.out.println(sessionId);
+		System.out.println(request.getParameter("reviewNum"));
+		System.out.println(selectedEvent);
+		
+		dao.reviewLiker(reviewNum, sessionId);
+		model.addAttribute("selectedEvent", selectedEvent);
+		
+		return "redirect:rvView";
+	}
+	
+	@RequestMapping(value = "/reviewUnlike")
+	public String reviewUnlike(HttpSession session, Model model, HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+
+		String sessionId = (String)session.getAttribute("sessionId");
+		int reviewNum = Integer.parseInt(request.getParameter("reviewNum"));
+		String selectedEvent = request.getParameter("eventNum");
+		
+		System.out.println(sessionId);
+		System.out.println(request.getParameter("reviewNum"));
+		System.out.println(selectedEvent);
+		
+		dao.cancelReviewLiker(reviewNum, sessionId);
+		model.addAttribute("selectedEvent", selectedEvent);
+		
+		return "redirect:rvView";
 	}
 	
 	@RequestMapping(value = "/confirmRev")
@@ -77,7 +148,7 @@ public class ReservationController {
 		
 //		총 티켓 개수보다 많이 예약 or 남은 티켓이 없다면 돌려보내기
 		if(ticketLeft >= re_ticketCount) {
-			revCheck = dao.reservationConfirmedDao(sessionId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate);
+			revCheck = dao.reservationConfirmedDao(sessionId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate, 1);
 			noTicket = 1;
 			lessTicket = 1;
 		} else if(ticketLeft == 0) {
