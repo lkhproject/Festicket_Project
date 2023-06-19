@@ -91,21 +91,22 @@
 					<center>
 						<h5><b> 회원탈퇴 </b></h5>
 						<table border="0" cellspacing="0" cellpadding="10">
-							<form action="joinOk" method="post" name="join_frm">
-					<tr>
-						<td class="content_text">아이디
-						<input class="inputbox01" type="text" name="mid" placeholder="아이디"></td>
-					</tr>
-					<tr>
-						<td class="content_text">비밀번호
-						<input class="inputbox01" type="password" name="mpw" placeholder="비밀번호"></td>
-					</tr>
-					<tr>
-					<tr>
-				        <td colspan="2" align="center">
-				            <input class="content_btn01" type="submit" value="탈퇴하기" onclick="confirmDelete()">
-				        </td>									
-					</tr>
+							<form action="myPageUnregOk" method="post" name="myPageUnreg_frm">
+							    <tr>
+							        <td class="content_text">아이디
+							            <input class="inputbox01" type="text" name="userId" id="userId" value="${memberDto.userId }" readonly="readonly" placeholder="아이디" required>
+							        </td>
+							    </tr>
+							    <tr>
+							        <td class="content_text">비밀번호
+							            <input class="inputbox01" type="password" name="userPassword" id="userPassword" placeholder="비밀번호" required>
+							        </td>
+							    </tr>
+							    <tr>
+							        <td colspan="2" align="center">
+							            <input class="content_btn01" type="submit" value="탈퇴하기" onclick="confirmDelete()">
+							        </td>
+							    </tr>
 							</form>
 						</table>
 					</center>
