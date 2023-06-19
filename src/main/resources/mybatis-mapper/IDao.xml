@@ -497,7 +497,7 @@
 		WHERE eventIdx=#{param1} AND eventLikerId=#{param2}
 	</delete>
 	
-	<!-- 행사 좋아요 boolean 값으로 있나확인 -->
+	<!-- 행사 좋아요 int 값으로 있나확인 -->
 	<select id="getLikedEvent" resultType="int">
 		SELECT COUNT(*)
 		FROM eventLike
@@ -635,71 +635,32 @@
 		VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
 	</insert>
 	
-	<!-- 오늘부터 선택일 전까지의 행사예약일 기준 행사 리스트 -->
-	<!-- 15일 전 -->
-	<select id="getRevList_15days" resultType="com.festicket.dto.ReserveDto">
-	    SELECT *
+	<!-- 오늘부터 선택일 전까지의 행사예약일 기준 행사 리스트, 총 개수 -->
+	<select id="getRevList_days" resultType="com.festicket.dto.ReserveDto">
+		SELECT *
 		FROM (
 		    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
 		    FROM (
-		        SELECT *
-				FROM eventreservation
+		        SELECT er.re_idx, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, e.title, er.re_eventNum
+				FROM eventreservation er
+                JOIN event e ON er.re_eventNum = e.eventNum
 				WHERE re_userId = #{param1}
-			    AND re_ticketDate
-			    BETWEEN TRUNC(SYSDATE - INTERVAL '#{param4}' DAY) AND SYSDATE
+			    AND re_ticketDate <![CDATA[>=]]> SYSDATE - #{param4}
+			    AND re_ticketDate <![CDATA[<=]]> SYSDATE
+                ORDER BY er.re_ticketDate DESC
 		    ) A
 		)
 		WHERE PAGE = #{param3}
 	</select>
 	
-	<!-- 한달 전 -->
-	<select id="getRevList_30days" resultType="com.festicket.dto.ReserveDto">
-		SELECT *
-		FROM (
-		    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
-		    FROM (
-		        SELECT *
-				FROM eventreservation
-				WHERE re_userId = #{param1}
-			    AND re_ticketDate
-			    BETWEEN TRUNC(SYSDATE - INTERVAL '30' DAY) AND SYSDATE
-		    ) A
-		)
-		WHERE PAGE = #{param3}
+	<select id="countRevList_days" resultType="int">
+		SELECT COUNT(*)
+	    FROM eventreservation
+	    WHERE re_userId = #{param1}
+	    AND re_ticketDate <![CDATA[>=]]> SYSDATE - #{param2}
+	    AND re_ticketDate <![CDATA[<=]]> SYSDATE
 	</select>
-	
-	<!-- 두달 전 -->
-	<select id="getRevList_60days" resultType="com.festicket.dto.ReserveDto">
-		SELECT *
-		FROM (
-		    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
-		    FROM (
-		        SELECT *
-				FROM eventreservation
-				WHERE re_userId = #{param1}
-			    AND re_ticketDate
-			    BETWEEN TRUNC(SYSDATE - INTERVAL '60' DAY) AND SYSDATE
-		    ) A
-		)
-		WHERE PAGE = #{param3}
-	</select>
-	
-	<!-- 세달 전 -->
-	<select id="getRevList_90days" resultType="com.festicket.dto.ReserveDto">
-		SELECT *
-		FROM (
-		    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
-		    FROM (
-		        SELECT *
-				FROM eventreservation
-				WHERE re_userId = #{param1}
-			    AND re_ticketDate
-			    BETWEEN TRUNC(SYSDATE - INTERVAL '90' DAY) AND SYSDATE
-		    ) A
-		)
-		WHERE PAGE = #{param3}
-	</select>
-	<!-- 오늘부터 선택일 전까지의 행사예약일 기준 행사 리스트 끝 -->
+	<!-- 오늘부터 선택일 전까지의 행사예약일 기준 행사 리스트, 총 개수 끝 -->
 
 <!-- *******************CS************************* -->
 	<!-- 고객센터 게시판 관련 -->

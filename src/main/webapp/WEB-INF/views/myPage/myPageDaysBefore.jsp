@@ -104,18 +104,22 @@
 			<dl class="daysortbx fl">
 				<dt>기간별 조회</dt>
 				<dd>
+				<p class="guide_text" style="margin-top: 10px">기간별 조회는 오늘부터 선택 기간 전까지 <span class="color_point">예약일</span>을 기준으로 조회됩니다.</p>
 					<ul class="daysort">
-						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-							<a href="" class="ng-binding">15일</a>
+						<li class="ng-scope">
+							<a href="myPage" class="ng-binding">전체</a>
 						</li>
-						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope on">
-							<a href="" ng-click="periodSelection.select(period)" class="ng-binding">1개월</a>
+						<li class="ng-scope">
+							<a href="myPageDaysBefore?days=15" class="ng-binding">15일</a>
 						</li>
-						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-							<a href="" ng-click="periodSelection.select(period)" class="ng-binding">2개월</a>
+						<li class="ng-scope on">
+							<a href="myPageDaysBefore?days=30" class="ng-binding">1개월</a>
 						</li>
-						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-							<a href="" ng-click="periodSelection.select(period)" class="ng-binding">3개월</a>
+						<li class="ng-scope">
+							<a href="myPageDaysBefore?days=60" class="ng-binding">2개월</a>
+						</li>
+						<li class="ng-scope">
+							<a href="myPageDaysBefore?days=90" class="ng-binding">3개월</a>
 						</li>
 					</ul>
 				</dd>
@@ -150,8 +154,8 @@
 										<td id="revDetails">
 											<div style="cursor:pointer;" onclick="script:window.location.href='detailedRev?selectedRev=${revList.re_idx}'">
 												<c:choose>
-								                  <c:when test="${fn:length(revList.title) gt 40}">
-								                    ${fn:substring(revList.title, 0, 39)}...
+								                  <c:when test="${fn:length(revList.title) gt 32}">
+								                    ${fn:substring(revList.title, 0, 31)}...
 								                  </c:when>
 								                  <c:otherwise>
 								                    ${revList.title}
@@ -173,7 +177,7 @@
 	  <ul class="pagination">
     	<li class="page-item" id="page-item">
 			<c:if test="${pageMaker.prev }">
-				<a class="page-link" aria-label="Previous" href="myPage?pageNum=${pageMaker.startPage-5 }">
+				<a class="page-link" aria-label="Previous" href="myPageDaysBefore?days=${days }&pageNum=${pageMaker.startPage-5 }">
 					<span aria-hidden="true">&laquo;</span>
 				</a>
 			</c:if>
@@ -188,7 +192,7 @@
 				</c:when>
 				<c:otherwise>
 					<li class="page-item">
-						<a class="page-link" href="myPage?pageNum=${num }">${num }</a>
+						<a class="page-link" href="myPageDaysBefore?days=${days }&pageNum=${num }">${num }</a>
 					</li>
 				</c:otherwise>
 			</c:choose>
@@ -196,7 +200,7 @@
 		
 		<li class="page-item">
 			<c:if test="${pageMaker.next }">
-				<a class="page-link" aria-label="Next" href="myPage?pageNum=${pageMaker.startPage+5 }">
+				<a class="page-link" aria-label="Next" href="myPageDaysBefore?days=${days }&pageNum=${pageMaker.startPage+5 }">
 					<span aria-hidden="true">&raquo;</span>
 				</a>
 			</c:if>

@@ -97,25 +97,29 @@
 		<div class="guide_txt">
 			<p class="guide_txt">
 				<span class="color_point">티켓명</span>을 클릭하면 예매 상세 내용을 확인할 수 있습니다.<br>
-					공연/전시 예매 내역은 하단의 공연/전시 탭을 선택하면 확인할 수 있습니다.
+					공연/전시 예매 내역은 하단의 공연/전시 탭을 선택하면 확인할 수 있습니다.<br>
 			</p>
 		</div>
 		<div class="sortbx">
 			<dl class="daysortbx fl">
 				<dt>기간별 조회</dt>
 				<dd>
+				<p class="guide_text" style="margin-top: 10px">기간별 조회는 오늘부터 선택 기간 전까지 <span class="color_point">예약일</span>을 기준으로 조회됩니다.</p>
 					<ul class="daysort">
-						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
+						<li class="ng-scope">
+							<a href="myPage" class="ng-binding">전체</a>
+						</li>
+						<li class="ng-scope">
 							<a href="myPageDaysBefore?days=15" class="ng-binding">15일</a>
 						</li>
-						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope on">
-							<a href="" ng-click="periodSelection.select(period)" class="ng-binding">1개월</a>
+						<li class="ng-scope on">
+							<a href="myPageDaysBefore?days=30" class="ng-binding">1개월</a>
 						</li>
-						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-							<a href="" ng-click="periodSelection.select(period)" class="ng-binding">2개월</a>
+						<li class="ng-scope">
+							<a href="myPageDaysBefore?days=60" class="ng-binding">2개월</a>
 						</li>
-						<li ng-repeat="period in periodList" ng-class="{'on' : period.name == search.period.name}" class="ng-scope">
-							<a href="" ng-click="periodSelection.select(period)" class="ng-binding">3개월</a>
+						<li class="ng-scope">
+							<a href="myPageDaysBefore?days=90" class="ng-binding">3개월</a>
 						</li>
 					</ul>
 				</dd>
@@ -150,8 +154,8 @@
 										<td id="revDetails">
 											<div style="cursor:pointer;" onclick="script:window.location.href='detailedRev?selectedRev=${revList.re_idx}'">
 												<c:choose>
-								                  <c:when test="${fn:length(revList.title) gt 40}">
-								                    ${fn:substring(revList.title, 0, 39)}...
+								                  <c:when test="${fn:length(revList.title) gt 32}">
+								                    ${fn:substring(revList.title, 0, 31)}...
 								                  </c:when>
 								                  <c:otherwise>
 								                    ${revList.title}
