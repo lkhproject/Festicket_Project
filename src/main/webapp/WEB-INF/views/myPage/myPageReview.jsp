@@ -108,10 +108,10 @@
 			<br><br>
 			<div class="container">
 				<div class="basic_tbl basic_tbl_v3">
-					<table class="table table-striped">
+					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th scope="col" style="width:50%">&nbsp;행사명</th>
+								<th scope="col" style="width:50%">행사명</th>
 								<th scope="col" style="width:30%">행사일자</th>
 								<th scope="col" style="width:20%">후기작성</th>
 							</tr>
@@ -144,7 +144,14 @@
 									            </td>
 												<td id="revDetails">${revList.re_ticketDate }</td>
 												<td id="revDetailsNum">
-													<input type="button" class="btn" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}'" value="작성하기">
+												    <c:choose>
+												        <c:when test="${revList.re_written == 1}">
+												            <input type="button" class="btn button-confirm" onclick="window.location.href='reviewView?re_eventNum=${revList.re_eventNum}'" value="후기확인">
+												        </c:when>
+												        <c:otherwise>
+												           	 <input type="button" class="btn button-write" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}'" value="작성하기">
+												        </c:otherwise>
+												    </c:choose>
 												</td>
 											</tr>
 											</c:if>		
