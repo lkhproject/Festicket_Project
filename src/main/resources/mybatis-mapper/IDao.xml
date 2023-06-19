@@ -47,8 +47,17 @@
 		WHERE userId = #{param1} 
 		AND userPassword = #{param2}
 	</delete>
-	<!-- *** 회원 탈퇴 끝 *** -->
+	<!-- *** 회원 탈퇴 끝 *** -->	
 	
+	<!-- *** 아이디 비밀번호 비밀번호 찾기 시작 *** -->
+	<select id="findId_result" resultType="String">
+		select * from eventMember where name=#{param1} and userPhone=#{param2}
+	</select>
+
+	<select id="findPw_result" resultType="String">
+		select * from eventMember where userId=#{param1} and email=#{param2} and userPhone=#{param3}
+	</select>
+	 
 	
 	<!-- *** 행사 관련 *** -->
 	<select id="eventListDao" resultType="com.festicket.dto.EventDto">

@@ -124,13 +124,43 @@ public class HomeController {
 	
 	 @RequestMapping(value = "/findId") // 아이디 찾기
 		public String findId() {
+		 
 			return "findId";
 		}
 	
+	 @RequestMapping(value = "/findId_result") // 아이디 찾기
+		public String findId_result(HttpServletRequest request, Model model) {
+			
+		 IDao dao = sqlSession.getMapper(IDao.class);
+		 
+		 String name = request.getParameter("name");
+		 String userPhone = request.getParameter("userPhone");
+
+		 String findId = dao.findId_result(name, userPhone);
+		 model.addAttribute("findId", findId);
+
+		 return "findId_result";
+		}
+	 
 	 
 	 @RequestMapping(value = "/findPw") // 비밀번호 찾기
 		public String findPw() {
 			return "findPw";
+		}
+	 
+	 @RequestMapping(value = "/findPw_result") // 비밀번호 찾기
+	 public String findPw_result(HttpServletRequest request, Model model) {
+			
+		 IDao dao = sqlSession.getMapper(IDao.class);
+		 
+		 String userId = request.getParameter("userId");
+		 String email = request.getParameter("email");
+		 String userPhone = request.getParameter("userPhone");
+
+		 String findPw = dao.findPw_result(userId, email, userPhone);
+		 model.addAttribute("findPw", findPw);
+
+		 return "findPw_result";
 		}
 	
 	@RequestMapping(value = "/searchResult")

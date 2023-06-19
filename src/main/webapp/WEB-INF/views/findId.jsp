@@ -31,8 +31,7 @@
 					<tr>
 						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호">
 					</tr>
-                    <input class="IDPWbutton" type="submit" value="아이디 찾기"onclick=""></input>
-                    <input class="IDPWbutton01" type="submit" value="취소"onclick="script:window.location.href='index'"></input>
+                    <input class="IDPWbutton" type="submit" value="아이디 찾기" onclick="return showIdPopup();"></input>
                     </form>
                     <br>
                     <div class="joinpage"><a href="findPw"><b>비밀번호 찾기</b></a></div>

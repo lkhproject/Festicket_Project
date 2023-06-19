@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +9,8 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/find.css">
 </head>
 <body>
-
+	당신의 비밀번호는 <%=
+	request.getAttribute("findPw").toString()
+			%> 입니다.
 </body>
 </html>
