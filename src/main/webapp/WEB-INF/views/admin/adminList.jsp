@@ -35,7 +35,7 @@
 <div class="container_1">
 <div id="admin_page_form">
 	<h2 class="adminTitle">관리자 페이지</h2>
-	<div style="margin-bottom: 5px;">총 <b>${totalCount }</b>개의 행사가 조회되었습니다.</div>
+	<div style="margin-bottom: 10px;">총 <b>${totalCount }</b>개의 행사가 조회되었습니다.</div>
 	<table class="table table-hover" id="adminListTable">
 	  <thead style="background-color: #eeeeee">
 	    <tr>
@@ -45,7 +45,7 @@
 	      <th scope="col">행사기간</th>
 	    </tr>
 	  </thead>
-	  <tbody>
+	  <tbody class="table-group-divider">
 	  <c:choose>
 		<c:when test="${totalCount > 0 }">
 		  <c:forEach items="${eventListDtos }" var="event">
@@ -92,25 +92,38 @@
 
 <!-- 페이징 -->
 	<div class="container" id="pagingNum">
-		
-		<c:if test="${pageMaker.prev }">
-			<a href="adminList?pageNum=${pageMaker.startPage-5 }"><c:out value="${'<' }"></c:out></a>&nbsp;&nbsp;&nbsp;
-		</c:if>
+	  <ul class="pagination">
+    	<li class="page-item" id="page-item">
+			<c:if test="${pageMaker.prev }">
+				<a class="page-link" aria-label="Previous" href="adminList?pageNum=${pageMaker.startPage-5 }">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</c:if>
+		</li>
 		
 		<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
 			<c:choose>
 				<c:when test="${currPage == num }">
-					<span style="font-weight: bold;">${num }</span>&nbsp;&nbsp;&nbsp;
+					<li class="page-item">
+						<span class="page-link" style="font-weight: bold;">${num }</span>
+					</li>
 				</c:when>
 				<c:otherwise>
-					<a href="adminList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+					<li class="page-item">
+						<a class="page-link" href="adminList?pageNum=${num }">${num }</a>
+					</li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
-		<c:if test="${pageMaker.next }">
-			<a href="adminList?pageNum=${pageMaker.startPage+5 }"><c:out value="${'>' }"></c:out></a>
-		</c:if>
+		<li class="page-item">
+			<c:if test="${pageMaker.next }">
+				<a class="page-link" aria-label="Next" href="adminList?pageNum=${pageMaker.startPage+5 }">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</c:if>
+		</li>
+	  </ul>
 	</div>
 	
 <!-- 페이징 끝 -->
