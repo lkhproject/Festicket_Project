@@ -66,6 +66,7 @@
 					   	<input type="hidden" name="sessionId" value="${sessionId}">
                     	<input type="hidden" name="eventNum" value="${eventNum}">
                     	<input type="hidden" name="re_idx" value="${re_idx}">
+                    	<input type="hidden" name="rw_idx" value="${rw_idx}">
 						<input type="hidden" name="rw_rating" id="rw_rating">
 						<input type="submit" class="btn" id="button_submit" value="등록">
 					</div>

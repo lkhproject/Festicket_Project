@@ -185,24 +185,22 @@ public class MyPageController {
 			PageDto pageDto = new PageDto(criteria, totalCount);
 			
 			List<ReserveDto> revListDtos = dao.getReservationListDao(sessionId, criteria.getCountList(), pageNum);
-
+		
 			if (!revListDtos.isEmpty()) {
 			    ReserveDto reserveDto = revListDtos.get(0);
 			    int eventNum = reserveDto.getRe_eventNum();
 			    session.setAttribute("eventNum", eventNum);
-			    
 			} else {
 			    // 리스트가 비어있을 때의 처리
 			    session.removeAttribute("eventNum"); // eventNum 제거 또는 기본값 설정
 			}
-			
+		    
 			request.setAttribute("loginOk", loginOk);
 			request.setAttribute("totalCount", totalCount);
 			
 			model.addAttribute("pageMaker", pageDto);
 			model.addAttribute("currPage", pageNum);
 			model.addAttribute("revListDtos", revListDtos);
-				
 		}
 		return "myPage/myPageReview";
 	}
@@ -229,11 +227,12 @@ public class MyPageController {
 		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
 		request.setAttribute("re_idx", request.getParameter("re_idx"));
+		request.setAttribute("rw_idx", request.getParameter("rw_idx"));
 		
 		return "myPage/reviewWrite";
 	}
 	
-    @RequestMapping(value = "/reviewWriteOk")
+    @RequestMapping(value = "/reviewWriteOk") // 리뷰 작성
     public String reviewWriteOk(HttpServletRequest request, HttpSession session) {
     	
     	String sessionId = (String)session.getAttribute("sessionId");
@@ -246,12 +245,19 @@ public class MyPageController {
 	    IDao dao = sqlSession.getMapper(IDao.class);
 	      
 	    dao.reviewWriteDao(sessionId, rw_eventNum, rw_rating, rw_content);
-	    dao.reviewWrittenDao(re_idx);
+	    
+	    List<ReviewDto> reviewDtos = dao.getReviewListDao(rw_eventNum);
+	    ReviewDto reviewDto = reviewDtos.get(0); // 방금 쓴 글
+	    int reviewNum = reviewDto.getRw_idx(); // 방금 쓴 글 번호(파일이 첨부된 글의 번호)
+	    
+	    dao.reviewWrittenDao(re_idx, reviewNum);
+	    
+	    request.setAttribute("reviewListDtos", reviewDtos);
 	    
 	    return "redirect:myPageReview";
 	}
     
-    @RequestMapping(value = "/reviewView")
+    @RequestMapping(value = "/reviewView") // 리뷰 내용 보기
     public String reviewView(HttpServletRequest request, HttpSession session, Model model) {
     	
 		String sessionId = (String)session.getAttribute("sessionId");
@@ -265,6 +271,42 @@ public class MyPageController {
     	
     	return "myPage/reviewView";
     }
+    
+	@RequestMapping(value = "/reviewModify") // 리뷰 수정
+	public String csBoardModify(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("reviewDto", dao.reviewViewDao(request.getParameter("rw_idx")));
+		
+		return "myPage/reviewModify";
+	}
+	
+	@RequestMapping(value = "reviewModifyOk") // 리뷰 수정
+	public String csBoardModifyOk(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		String rw_idx = request.getParameter("rw_idx");
+		String rw_rating = request.getParameter("rw_rating");
+		String rw_content = request.getParameter("rw_content");
+		
+		dao.reviewModifyDao(rw_idx, rw_rating, rw_content);
+		
+		model.addAttribute("reviewDto", dao.reviewViewDao(rw_idx)); // 수정이 된 후 글내용
+		
+		return "myPage/reviewModifyOk";
+	}
+	
+	@RequestMapping(value = "/reviewDelete") // 리뷰 삭제
+	public String reviewDelete(HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.reviewDeleteDao(request.getParameter("rw_idx"));
+		
+		return "redirect:myPageReview";
+	}
     
 	@RequestMapping(value = "/myPageModify")
 	public String myPageModify(HttpSession session, Model model) {

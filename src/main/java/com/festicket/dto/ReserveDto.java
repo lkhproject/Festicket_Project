@@ -18,7 +18,7 @@ public class ReserveDto {
 	private Date re_date;
 	private int re_ticketCount;
 	private Date re_ticketDate;
-	private int re_written;
+	private int re_reviewNum;
 	
 //	event 테이블
 	private String title;

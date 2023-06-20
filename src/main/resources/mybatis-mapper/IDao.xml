@@ -343,7 +343,7 @@
 	
 	
 	<!-- *** 리뷰 관련 *** -->
-		<!-- 리뷰 글 가져오기 -->
+		<!-- 리뷰 리스트 가져오기 -->
 		<select id="getReviewListDao" resultType="com.festicket.dto.ReviewDto">
 			SELECT *
 			  FROM eventReview er
@@ -361,15 +361,25 @@
 						(erw_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4})
 	    </insert>
 	    
-	    <!-- 리뷰 작성 여부 -->
+	    <!-- 예매 DB에 리뷰 글번호 넣어주기 -->
 	    <update id="reviewWrittenDao">
-			UPDATE eventReservation SET re_written = re_written + 1 WHERE re_idx = #{param1}
+			UPDATE eventReservation SET re_reviewNum = #{param2} WHERE re_idx = #{param1}
 		</update>
 		
 		<!-- 클릭한 리뷰 내용 보기 -->
 		<select id="reviewViewDao" resultType="com.festicket.dto.ReviewDto">
 			SELECT * FROM eventReview WHERE rw_idx=#{param1}
 		</select>
+		
+		<!-- 리뷰 수정 -->
+		<update id="reviewModifyDao">
+			UPDATE eventReview SET rw_rating=#{param2}, rw_content=#{param3} WHERE rw_idx=#{param1}
+		</update>
+		
+		<!-- 리뷰 삭제 -->
+		<delete id="reviewDeleteDao">
+			DELETE FROM eventReview WHERE rw_idx=#{param1}
+		</delete>
 		
 		<!-- 리뷰 좋아요 -->
 		<insert id="reviewLiker">
@@ -398,7 +408,7 @@
 			FROM (
 			    SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM
 			    FROM (
-			        SELECT er.re_idx, er.re_eventNum, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, er.re_written, e.title
+			        SELECT er.re_idx, er.re_eventNum, er.re_price, er.re_date, er.re_ticketCount, er.re_ticketDate, er.re_reviewNum, e.title
 			        FROM eventReservation er
 			        JOIN event e ON er.re_eventNum = e.eventNum
 			        WHERE er.re_userId = #{param1}

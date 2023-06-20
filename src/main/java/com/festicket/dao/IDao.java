@@ -77,10 +77,12 @@ public interface IDao {
 	public void QAboardReplyDeleteDao(String qa_boardNum); // 삭제한 게시글 QA 댓글 모두 삭제
 	
 	// 리뷰
-	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 글 리스트 가져오기
-	public void reviewWriteDao(String c_userId, int rw_eventNum, String rw_rating, String rw_content, int rw_revNum); // 리뷰 쓰기
-	public void reviewWrittenDao(int re_idx); // 리뷰 작성 여부 (작성시 값 +1)
+	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 리스트 가져오기
+	public void reviewWriteDao(String rw_userId, int rw_eventNum, String rw_rating, String rw_content); // 리뷰 쓰기
+	public void reviewWrittenDao(int re_idx, int re_reviewNum); // 예매 DB에 리뷰 글번호 넣어주기
 	public ReviewDto reviewViewDao(String rw_idx); // 클릭한 리뷰 내용 보기
+	public void reviewModifyDao(String rw_idx, String rw_rating, String rw_content); // 리뷰 수정
+	public void reviewDeleteDao(String rw_idx); // 리뷰 삭제
 	public void reviewLiker(int reviewIdx, String userId); // 리뷰 좋아요
 	public void cancelReviewLiker(int reviewIdx, String userId); // 리뷰 좋아요 취소
 	public List<EventReviewLikeDto> getLikedReviewList(String userId, String eventNum); // 리뷰 좋아요 리스트 
@@ -89,7 +91,7 @@ public interface IDao {
 	public List<ReserveDto> getReservationListDao(String userId, int countList, int pageNum); // 예약 목록 가져오기
 	public ReserveDto getReservationDao(int re_idx, String userId); // 예약번호로 예약 디테일 하나 가져오기
 	public ReserveDto getReservationByRecentDao(int eventNum, String userId); // 가장 최신 예약 하나 디테일 가져오기
-	public int reservationConfirmedDao(String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate, int written); // 예약 디테일 db에 넣어주기
+	public int reservationConfirmedDao(String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate, int reviewNum); // 예약 디테일 db에 넣어주기
 	public int checkDupRevDao(int eventNum); // 같은 행사, 같은 날에 예약된게 있는지 확인
 	public List<ReserveDto> getRevList_days(String userId, int countList, int pageNum, int days); // 오늘부터 15일 전까지의 행사 예약일 기준 행사 리스트
 	public int countRevList_days(String userId, int days); // 오늘부터 15일 전까지의 행사 예약일 기준 행사
