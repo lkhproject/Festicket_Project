@@ -46,12 +46,13 @@ div.eventTitle {
 	padding-bottom: 20px;
 }
 
-#like_btn {
+#event_like {
 	margin: 5px 0px 20px;
 }
 
-div.detailTitle {
-	margin-top: 10px;
+#eventDetails {
+	width: 250px;
+	float: left;
 }
 
 #details_1 {
@@ -68,6 +69,7 @@ div.detailTitle {
 
 div.cal {
 	margin: 20px 0px;
+	clear: both;
 }
 
 span.badge {
@@ -92,7 +94,7 @@ input[type="submit"]:hover, #adminBtn:hover {
 	color: white;
 }
 
-#btn_like {
+.review_like {
 	margin-right: 10px;
 }
 
