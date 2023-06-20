@@ -502,71 +502,71 @@
 	
 
 	<!-- *** 관리자(admin) 관련 *** -->
-    <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
-       SELECT eventNum, gunName, title, eventDate
-       FROM (
-           SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
-           FROM (
-               SELECT eventNum, gunName, title, eventDate
-               FROM event
-               ORDER BY eventNum DESC
-           ) A
-       )
-       WHERE PAGE=#{param2}
-    </select>
-    
-    <insert id="eventAddDao">
-       INSERT INTO event(eventNum, type, gunName, title, eventDate, place, org_name, use_trgt, player, program, org_link, main_img,
-            start_date, end_date, eventPrice, ticketCount)
-       VALUES(e_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, 
-             #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, #{param13}, #{param14}, #{param15})
-    </insert>
-    
-    <update id="eventUpdateDao">
-		UPDATE event
-    	SET
-	        type = #{param2},
-	        gunName = #{param3},
-	        title = #{param4},
-	        eventDate = #{param5},
-	        place = #{param6},
-	        org_name = #{param7},
-	        use_trgt = #{param8},
-	        player = #{param9},
-	        program = #{param10},
-	        org_link = #{param11},
-	        main_img = #{param12},
-	        start_date = #{param13},
-	        end_date = #{param14},
-	        eventPrice = #{param15},
-	        ticketCount = #{param16}
-	    WHERE eventNum = #{param1}
-    </update>
-    
-    <!-- 행사 삭제 -->
-    <delete id="eventDelete">
-    	DELETE FROM event
-    	WHERE eventNum=#{param1}
-    </delete>
-    
-    <!-- main_img 파일 업로드, 저장 -->
- 	<insert id="fileInfoCreateDao">
- 		INSERT INTO event_main_img
-	 	VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
- 	</insert>
- 	
- 	<!-- 대표 이미지 삭제 -->
- 	<delete id="deleteMainImg">
- 		DELETE FROM event_main_img
- 		WHERE filenum=#{param1}
- 	</delete>
- 	
- 	<!-- main_img Dto 불러오기 -->
- 	<select id="getMainImgInfo" resultType="com.festicket.dto.MainImgDto">
- 		SELECT *
- 		FROM event_main_img
- 		WHERE filenum=#{param1}
- 	</select>
+	    <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
+	       SELECT eventNum, gunName, title, eventDate
+	       FROM (
+	           SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
+	           FROM (
+	               SELECT eventNum, gunName, title, eventDate
+	               FROM event
+	               ORDER BY eventNum DESC
+	           ) A
+	       )
+	       WHERE PAGE=#{param2}
+	    </select>
+	    
+	    <insert id="eventAddDao">
+	       INSERT INTO event(eventNum, type, gunName, title, eventDate, place, org_name, use_trgt, player, program, org_link, main_img,
+	            start_date, end_date, eventPrice, ticketCount)
+	       VALUES(e_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, 
+	             #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, #{param13}, #{param14}, #{param15})
+	    </insert>
+	    
+	    <update id="eventUpdateDao">
+			UPDATE event
+	    	SET
+		        type = #{param2},
+		        gunName = #{param3},
+		        title = #{param4},
+		        eventDate = #{param5},
+		        place = #{param6},
+		        org_name = #{param7},
+		        use_trgt = #{param8},
+		        player = #{param9},
+		        program = #{param10},
+		        org_link = #{param11},
+		        main_img = #{param12},
+		        start_date = #{param13},
+		        end_date = #{param14},
+		        eventPrice = #{param15},
+		        ticketCount = #{param16}
+		    WHERE eventNum = #{param1}
+	    </update>
+	    
+	    <!-- 행사 삭제 -->
+	    <delete id="eventDelete">
+	    	DELETE FROM event
+	    	WHERE eventNum=#{param1}
+	    </delete>
+	    
+	    <!-- main_img 파일 업로드, 저장 -->
+	 	<insert id="fileInfoCreateDao">
+	 		INSERT INTO event_main_img
+		 	VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+	 	</insert>
+	 	
+	 	<!-- 대표 이미지 삭제 -->
+	 	<delete id="deleteMainImg">
+	 		DELETE FROM event_main_img
+	 		WHERE filenum=#{param1}
+	 	</delete>
+	 	
+	 	<!-- main_img Dto 불러오기 -->
+	 	<select id="getMainImgInfo" resultType="com.festicket.dto.MainImgDto">
+	 		SELECT *
+	 		FROM event_main_img
+	 		WHERE filenum=#{param1}
+	 	</select>
 	<!-- *** 관리자(admin) 관련 끝 *** -->
 	
 	
