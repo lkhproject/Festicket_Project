@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>페스티켓</title>
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/header.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/joinOk.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
@@ -19,7 +18,7 @@
 		if(checkId == 1) {
 	%>
 		<script type="text/javascript">
-			alert("입력하신 아이디는 이미 가입된 아이디 입니다. 다시 입력해 주세요.");
+			alert("입력하신 아이디는 이미 가입된 아이디입니다. 다시 입력해 주세요.");
 			history.go(-1);
 		</script>
 	<%			
@@ -27,7 +26,7 @@
 		if(checkEmail == 1) {
 	%>
 		<script type="text/javascript">
-			alert("입력하신 이메일은 이미 존재하는 이메일 입니다. 다시 입력해 주세요.");
+			alert("입력하신 이메일은 이미 존재하는 이메일입니다. 다시 입력해 주세요.");
 			history.go(-1);
 		</script>
 	<%			
