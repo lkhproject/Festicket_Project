@@ -44,7 +44,7 @@
 		<!-- 행사 디테일 폼 입력 -->
 				<div id="event_type_error" class="error"></div>
 				<div class="input-group mb-3">
-				  <label class="input-group-text" for="inputGroupSelect01">행사분류*</label>
+				  <label class="input-group-text justify-content-center" for="inputGroupSelect01">행사분류*</label>
 				  <select class="form-select" id="inputGroupSelect01" name="inputGroupSelect01">
 				    <option selected>Choose...</option>
 				    <option value="페스티벌">페스티벌</option>
@@ -54,14 +54,14 @@
 				
 				<div id="title_error" class="error"></div>
 				<div class="input-group">
-					<span class="input-group-text" id="basic-addon1">행사명*</span>
+					<span class="input-group-text justify-content-center" id="basic-addon1">행사명*</span>
 	  				<input type="text" name="title" id="title" class="form-control" aria-describedby="basic-addon1">
 				</div>
 				
 			<div id="dateInput">
 				<div id="start_date_error" class="error"></div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1">시작일*</span>
+					<span class="input-group-text justify-content-center" id="basic-addon1">시작일*</span>
 	  				<input type="date" id="datepicker_1" name="start_date" class="form-control" aria-describedby="basic-addon1">
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 			<div id="dateInput">
 				<div id="end_date_error" class="error"></div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1">종료일*</span>
+					<span class="input-group-text justify-content-center" id="basic-addon1">종료일*</span>
 	  				<input type="date" id="datepicker_2" name="end_date" class="form-control" aria-describedby="basic-addon1">
 				</div>
 			</div>
@@ -77,51 +77,51 @@
 					
 				<div id="gunName_error" class="error"></div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1">자치구*</span>
+					<span class="input-group-text justify-content-center" id="basic-addon1">자치구*</span>
 	  				<input type="text" name="gunName" id="gunName" class="form-control" aria-describedby="basic-addon1">
 				</div>
 					
 				<div id="place_error" class="error"></div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1">장소*</span>
+					<span class="input-group-text justify-content-center" id="basic-addon1">장소*</span>
 	  				<textarea class="form-control" name="place" aria-label="With textarea"></textarea>
 				</div>
 			
 				<div class="input-group mb-3">
-				  <span class="input-group-text" id="basic-addon1">기관명</span>
+				  <span class="input-group-text justify-content-center" id="basic-addon1">기관명</span>
 				  <input type="text" class="form-control" name="org_name" aria-describedby="basic-addon1">
 				</div>
 				
 				<div class="input-group mb-3">
-				  <span class="input-group-text" id="basic-addon1">이용대상</span>
+				  <span class="input-group-text justify-content-center" id="basic-addon1">이용대상</span>
 				  <input type="text" class="form-control" name="use_trgt" aria-describedby="basic-addon1">
 				</div>
 				
 				<div class="input-group mb-3">
-				  <span class="input-group-text" id="basic-addon1">출연자정보</span>
+				  <span class="input-group-text justify-content-center" id="basic-addon1">출연자정보</span>
 				  <input type="text" class="form-control" name="player" aria-describedby="basic-addon1">
 				</div>
 				
 				<div id="org_link_error" class="error"></div>
 				<div class="input-group mb-3">
-					<span class="input-group-text" id="basic-addon1">홈페이지 주소*</span>
+					<span class="input-group-text justify-content-center" id="basic-addon1">홈페이지 주소*</span>
 	  				<textarea class="form-control" name="org_link" placeholder="URL" aria-label="With textarea"></textarea>
 				</div>
 				
 				<div class="input-group mb-3">
-				  <span class="input-group-text" id="basic-addon1">이용요금</span>
+				  <span class="input-group-text justify-content-center" id="basic-addon1">이용요금</span>
 				  <input type="text" class="form-control" name="eventPrice" aria-describedby="basic-addon1">
 				</div>
 				
 				<div id="ticketCount_error" class="error"></div>
 				<div class="input-group mb-3">
-				  <span class="input-group-text" id="basic-addon1">총 티켓 매수*</span>
+				  <span class="input-group-text justify-content-center" id="basic-addon1">총 티켓 매수*</span>
 				  <input type="text" class="form-control" name="ticketCount" aria-describedby="basic-addon1">
 				</div>
 				
 				<div id="main_img_error" class="error"></div>
 				<div class="input-group mb-3">
-				  <span class="input-group-text" id="basic-addon1">대표 이미지*</span>
+				  <span class="input-group-text justify-content-center" id="basic-addon1">대표 이미지*</span>
 				  <input type="file" accept=".gif, .jpg, .png .bmp" class="form-control" name="main_img" aria-describedby="button-addon2">
 				</div>
 				

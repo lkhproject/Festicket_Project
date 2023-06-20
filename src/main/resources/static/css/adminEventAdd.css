@@ -59,6 +59,7 @@ h2.adminTitle {
 }
 
 input[type="submit"] {
+	font-weight: bold;
 	background: #6800b8;
 	color: white;
 	padding: 6px 40px;
@@ -67,14 +68,25 @@ input[type="submit"] {
 	font-size: 16px;
 }
 
+input[type="submit"]:hover {
+	background: #5c00a2;
+	color: white;
+}
+
 input[type="button"] {
-	background: gray;
+	font-weight: bold;
+	background: #818181;
 	color: white;
 	padding: 6px 40px;
 	border-radius : 0.8em;
 	border: none;
 	font-size: 16px;
 	margin: 10px 0px 0px 3px;
+}
+
+input[type="button"]:hover {
+	background: #616161;
+	color: white;
 }
 
 #detail_form {
@@ -85,27 +97,12 @@ input[type="button"] {
 	margin: 3px 0px 10px 10px;
 }
 
-.page-link {
-	color: #000; 
-	background-color: #fff;
-	border: 1px solid #ccc; 
+.input-group-text {
+	width: 125px;
+	font-weight: 700;
 }
 
-.page-item.active .page-link {
-	z-index: 1;
-	color: #555;
-	font-weight:bold;
-	background-color: #f1f1f1;
-	border-color: #ccc;
-}
-
-.page-link:focus, .page-link:hover {
-	color: #000;
-	background-color: #fafafa; 
-	border-color: #ccc;
-}
-
-.form-select:focus, .page-link:focus {
-	box-shadow: none;
-	border-color: #ced4da;
+#basic-addon1 {
+	width: 125px;
+	font-weight: 700;
 }
