@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/reviewView.css">
-<link rel="stylesheet" href="/resources/css/ratingStar.css">
+<link rel="stylesheet" href="/resources/css/ratingStar_view.css">
 <script src="/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
