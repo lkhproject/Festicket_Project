@@ -109,8 +109,7 @@ div.help_cont{
 	border-bottom: 1px solid #ecedf2;
     background: #ffffff;
     width: 260px;
-    height:495px;
-	overflow:hidden;
+	height:auto;
   	float: left;
 }
 
@@ -159,7 +158,7 @@ div.contentbox {
     padding: 38px 59px 100px 60px;
     box-sizing: border-box;
     background-color: #ffffff ;
-	height : 495px;
+	height : auto;
 	text-align: center;
 }
 
@@ -179,7 +178,6 @@ input.inputbox01 {
 
 td.content_text {
 	font-family: 'Noto Sans KR', sans-serif;
-	
 }
 
 input.content_btn01{
@@ -187,6 +185,7 @@ input.content_btn01{
 	height:50px;  
 	padding:0 20px;
 	margin: 1px;
+	margin-top: 20px;
 	border:1px solid #6800b8;
 	border-radius:10px;
 	outline: none;
@@ -212,7 +211,8 @@ input.content_btn02{
 
 h5 {
 	font-family: 'Noto Sans KR', sans-serif;
-	
+	font-size: 20px;
+	margin-bottom: 20px;
 }
 
 li.has_sub_last{
@@ -221,9 +221,13 @@ li.has_sub_last{
     box-sizing: border-box;
 }
 
-.help_lmenu li.has_sub li.on a {
+.has_sub_last ul.help_submenu li.on {
     color: #6800b8;
     position: relative;
     font-weight: bold;
 }
 /* 가운데 box css 끝*/
+
+#logo {
+	margin-top: 50px;
+}

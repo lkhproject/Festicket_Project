@@ -12,7 +12,7 @@
             var userPassword = document.getElementById("userPassword").value;
 
             if (userPassword.trim() === "") {
-                alert("비밀번호를 입력해주세요.");
+                alert("비밀번호를 입력해 주세요.");
                 return false;
             }
             
@@ -20,17 +20,17 @@
             var inputPassword = document.myPageUnregOk_frm.userPassword.value;
            
             if (storedPassword !== inputPassword) {
-                alert("가입하신 비밀번호와 일치하지 않습니다. 다시 확인 해주세요");
+                alert("가입하신 비밀번호와 일치하지 않습니다. 다시 확인해 주세요");
                 return false;
             }
 
-            var confirmation = confirm("회원탈퇴하시겠습니까?");
+            var confirmation = confirm("회원 탈퇴하시겠습니까?");
             if (!confirmation) {
             	alert("취소되었습니다.")
               return false;
              }
 
-            alert("회원탈퇴되었습니다.");
+            alert("회원 탈퇴되었습니다.");
 
             return true;
         }
@@ -76,45 +76,45 @@
 						</div>
 		<!-- 상단 box 끝 -->
 	
-	<!-- 왼쪽 box -->
-			<div class="help_cont">
-				<ul class="help_lmenu">
-				<li class="has_sub">
-						<span class="help_submenu_tit">예매관리</span>
-				<ul class="help_submenu">
-				<li >
-						<a href="myPage">예매확인/취소</a>
-				</li>
-				</ul>
-				</li>
-			
-				<li class="has_sub">
-						<span class="help_submenu_tit">활동관리</span>
-				<ul class="help_submenu">
-				<li>
-						<a href="myPageReview">나의 후기</a>
-				</li>
-				</ul>
-				</li>
-			
-				<li class="has_sub">
-					<span class="help_submenu_tit">회원정보관리</span>
-				<ul class="help_submenu">
-				<li>
-						<a href="myPageModify">회원정보수정</a>
-				</li>
-					<li  class="on">
-						<a href="myPageUnreg">회원탈퇴</a>
-					</li>
-				</ul>
-				</li>
-				</ul>
-			</div>
+    <!-- 왼쪽 box -->
+    <div class="help_cont">
+        <ul class="help_lmenu">
+            <li class="has_sub">
+                <span class="help_submenu_tit">예매관리</span>
+                <ul class="help_submenu">
+                    <li>
+                        <a href="myPage">예매확인/취소</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="has_sub">
+                <span class="help_submenu_tit">활동관리</span>
+                <ul class="help_submenu">
+                    <li>
+                        <a href="myPageReview">나의 후기</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="has_sub_last">
+                <span class="help_submenu_tit">회원정보관리</span>
+                <ul class="help_submenu">
+                    <li>
+                        <a href="myPageModify">회원정보수정</a>
+                    </li>
+                    <li class="on">
+                        <a href="myPageUnreg">회원탈퇴</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 			
 			<!-- 가운데 box -->
 			<div class="contentbox">
 				<center>
-					<img src="/resources/img/festicket_logo.png" width="30%">
+					<img id="logo" src="/resources/img/festicket_logo.png" width="25%">
 					<br><br>
 					<h5><b>회원탈퇴</b></h5>
 					<table border="0" cellspacing="0" cellpadding="10">
