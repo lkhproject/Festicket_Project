@@ -17,5 +17,6 @@ public class ReviewDto {
 	private int rw_rating; // 평점
 	private String rw_content; // 리뷰내용
 	private Date rw_date; // 리뷰쓴날
+	private int re_revNum; // 행사 예약번호
 	
 }

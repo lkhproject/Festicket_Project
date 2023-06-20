@@ -50,13 +50,11 @@
 			    <div class="button_area">
 		            <div class="button_modify">
 		                <form action="reviewModify" method="get">
-		                	<input type="hidden" name="re_idx" value="${re_idx}">
-		                    <input type="hidden" name="rw_idx" value="${rw_idx}">
+		                    <input type="hidden" name="rw_idx" value="${reviewDto.rw_idx}">
 		                    <input type="submit" class="btn" id="buttons" value="수정">
 		                </form>
 		            </div>
 		            <div class="button_delete">
-		            	<input type="hidden" name="re_idx" value="${re_idx}">
 		                <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
 		            </div>
 			        <div class="button_list">
@@ -77,7 +75,7 @@
 	<!-- 글 삭제시 경고창 -->
 	function removeCheck() {
 		if (confirm("삭제하시겠습니까?") == true){
-			location.href='reviewDelete?rw_idx=${reviewDto.rw_idx}&re_reviewNum=${reviewDto.rw_idx}'
+			location.href='reviewDelete?rw_idx=${reviewDto.rw_idx}'
 	 	} else {return false;}
 	}
 	

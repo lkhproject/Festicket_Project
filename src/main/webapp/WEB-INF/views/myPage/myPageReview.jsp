@@ -146,7 +146,7 @@
 												<td id="revDetailsNum">
 												    <c:choose>
 												        <c:when test="${revList.re_reviewNum != 0}">
-												            <input type="button" class="btn button-confirm" onclick="window.location.href='reviewView?re_idx=${revList.re_idx}&rw_idx=${revList.re_reviewNum}'" value="후기확인">
+												            <input type="button" class="btn button-confirm" onclick="window.location.href='reviewView?rw_idx=${revList.re_reviewNum}'" value="후기확인">
 												        </c:when>
 												        <c:otherwise>
 												           	 <input type="button" class="btn button-write" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}&re_idx=${revList.re_idx }'" value="작성하기">
