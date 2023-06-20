@@ -480,7 +480,7 @@
 			    SELECT e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount,
 			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) DESC, e.ticketCount ASC) AS rnk
 			    FROM event e
-			    LEFT JOIN eventReservation er ON er.re_eventNum = e.eventNum
+			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
 			    GROUP BY e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount
 			)
 			WHERE rnk <![CDATA[<]]>= 5
@@ -502,7 +502,7 @@
 	
 
 	<!-- *** 관리자(admin) 관련 *** -->
-   <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
+    <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
        SELECT eventNum, gunName, title, eventDate
        FROM (
            SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
@@ -542,6 +542,31 @@
 	        ticketCount = #{param16}
 	    WHERE eventNum = #{param1}
     </update>
+    
+    <!-- 행사 삭제 -->
+    <delete id="eventDelete">
+    	DELETE FROM event
+    	WHERE eventNum=#{param1}
+    </delete>
+    
+    <!-- main_img 파일 업로드, 저장 -->
+ 	<insert id="fileInfoCreateDao">
+ 		INSERT INTO event_main_img
+	 	VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+ 	</insert>
+ 	
+ 	<!-- 대표 이미지 삭제 -->
+ 	<delete id="deleteMainImg">
+ 		DELETE FROM event_main_img
+ 		WHERE filenum=#{param1}
+ 	</delete>
+ 	
+ 	<!-- main_img Dto 불러오기 -->
+ 	<select id="getMainImgInfo" resultType="com.festicket.dto.MainImgDto">
+ 		SELECT *
+ 		FROM event_main_img
+ 		WHERE filenum=#{param1}
+ 	</select>
 	<!-- *** 관리자(admin) 관련 끝 *** -->
 	
 	
