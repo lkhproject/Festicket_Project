@@ -248,7 +248,7 @@ public class MyPageController {
 	    
 	    List<ReviewDto> reviewDtos = dao.getReviewListDao(rw_eventNum);
 	    ReviewDto reviewDto = reviewDtos.get(0); // 방금 쓴 글
-	    int reviewNum = reviewDto.getRw_idx(); // 방금 쓴 글 번호(파일이 첨부된 글의 번호)
+	    int reviewNum = reviewDto.getRw_idx(); // 방금 쓴 글 번호
 	    
 	    dao.reviewWrittenDao(re_idx, reviewNum);
 	    
@@ -264,6 +264,7 @@ public class MyPageController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
+		request.setAttribute("re_idx", request.getParameter("re_idx"));
 		request.setAttribute("rw_idx", request.getParameter("rw_idx"));
 		
 		model.addAttribute("reviewDto", dao.reviewViewDao(request.getParameter("rw_idx")));
@@ -288,10 +289,12 @@ public class MyPageController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		String rw_idx = request.getParameter("rw_idx");
+		String rw_userId = request.getParameter("rw_userId");
+		String rw_eventNum = request.getParameter("rw_eventNum");
 		String rw_rating = request.getParameter("rw_rating");
 		String rw_content = request.getParameter("rw_content");
 		
-		dao.reviewModifyDao(rw_idx, rw_rating, rw_content);
+		dao.reviewModifyDao(rw_idx, rw_userId, rw_eventNum, rw_rating, rw_content);
 		
 		model.addAttribute("reviewDto", dao.reviewViewDao(rw_idx)); // 수정이 된 후 글내용
 		
@@ -303,8 +306,11 @@ public class MyPageController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		dao.reviewDeleteDao(request.getParameter("rw_idx"));
+		int rw_idx = Integer.parseInt(request.getParameter("rw_idx"));
 		
+		dao.reviewDeleteDao(request.getParameter("rw_idx"));
+		dao.reviewWrittenDao(rw_idx, 0);
+
 		return "redirect:myPageReview";
 	}
     

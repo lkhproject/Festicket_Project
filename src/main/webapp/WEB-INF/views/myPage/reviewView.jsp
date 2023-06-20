@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/reviewView.css">
-<link rel="stylesheet" href="/resources/css/ratingStar_view.css">
+<link rel="stylesheet" href="/resources/css/ratingStar.css">
 <script src="/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
@@ -24,6 +24,7 @@
 			<!-- 별점 기능 -->
 		 	<form class="mb-1" name="myform" id="myform" method="post">
 				<fieldset>
+					<span class="text-bold">별점을 선택해주세요</span>
 					<input type="radio" name="reviewStar" value="5" id="rate1" disabled>
 						<label for="rate1">★</label>
 					<input type="radio" name="reviewStar" value="4" id="rate2" disabled>
@@ -49,7 +50,8 @@
 			    <div class="button_area">
 		            <div class="button_modify">
 		                <form action="reviewModify" method="get">
-		                    <!-- <input type="hidden" name="reviewDto" value="${reviewDto.rw_idx}"> -->
+		                    <input type="hidden" name="rw_idx" value="${rw_idx}">
+		                    <input type="hidden" name="re_idx" value="${re_idx}">
 		                    <input type="submit" class="btn" id="buttons" value="수정">
 		                </form>
 		            </div>
@@ -76,7 +78,7 @@
 	<!-- 글 삭제시 경고창 -->
 	function removeCheck() {
 		if (confirm("삭제하시겠습니까?") == true){
-			location.href='reviewDelete?rw_idx=${reviewDto.rw_idx}'
+			location.href='reviewDelete?rw_idx=${reviewDto.rw_idx}&re_reviewNum=${reviewDto.rw_idx}'
 	 	} else {return false;}
 	}
 	

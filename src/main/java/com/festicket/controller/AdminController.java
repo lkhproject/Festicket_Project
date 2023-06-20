@@ -145,47 +145,45 @@ public class AdminController {
    }
 	
 	@RequestMapping(value = "/adminEventUpdate")
-   public String adminEventUpdate(Model model, HttpSession session, HttpServletRequest request) throws ParseException {
-      
-      String sessionId = (String)session.getAttribute("sessionId");
-      
-      int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
-      
-      IDao dao = sqlSession.getMapper(IDao.class);
-      
-      String type = request.getParameter("inputGroupSelect01");
-       String gunName = request.getParameter("gunName");
-       String title = request.getParameter("title");
-       String place = request.getParameter("place");
-       String org_name = request.getParameter("org_name");
-       String use_trgt = request.getParameter("use_trgt");
-       String player = request.getParameter("player");
-       String program = request.getParameter("program");
-       String org_link = request.getParameter("org_link");
-       String main_img = request.getParameter("main_img");
-       
-	   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-               
-       String start_dateStr = request.getParameter("start_date");
-	   Date start_date = null;
-	   start_date = dateFormat.parse(start_dateStr);
-               
-       String end_dateStr = request.getParameter("end_date");
-       Date end_date = null;
-	   end_date = dateFormat.parse(end_dateStr);
-               
-       String eventPrice = request.getParameter("eventPrice");
-       int ticketCount = Integer.parseInt(request.getParameter("ticketCount"));
-       
-       String eventDate = start_dateStr + "~" + end_dateStr;
-       
-       dao.eventUpdateDao(eventNum, type, gunName, title, eventDate,
-     			  place, org_name, use_trgt, player, program, org_link, main_img,
-     			  start_date, end_date, eventPrice, ticketCount);
-      
-      return "redirect:adminList";
-   }
-	
-	
-	
+	   public String adminEventUpdate(Model model, HttpSession session, HttpServletRequest request) throws ParseException {
+	      
+	      String sessionId = (String)session.getAttribute("sessionId");
+	      
+	      int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
+	      
+	      IDao dao = sqlSession.getMapper(IDao.class);
+	      
+	      String type = request.getParameter("inputGroupSelect01");
+	       String gunName = request.getParameter("gunName");
+	       String title = request.getParameter("title");
+	       String place = request.getParameter("place");
+	       String org_name = request.getParameter("org_name");
+	       String use_trgt = request.getParameter("use_trgt");
+	       String player = request.getParameter("player");
+	       String program = request.getParameter("program");
+	       String org_link = request.getParameter("org_link");
+	       String main_img = request.getParameter("main_img");
+	       
+		   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	               
+	       String start_dateStr = request.getParameter("start_date");
+		   Date start_date = null;
+		   start_date = dateFormat.parse(start_dateStr);
+	               
+	       String end_dateStr = request.getParameter("end_date");
+	       Date end_date = null;
+		   end_date = dateFormat.parse(end_dateStr);
+	               
+	       String eventPrice = request.getParameter("eventPrice");
+	       int ticketCount = Integer.parseInt(request.getParameter("ticketCount"));
+	       
+	       String eventDate = start_dateStr + "~" + end_dateStr;
+	       
+	       dao.eventUpdateDao(eventNum, type, gunName, title, eventDate,
+	     			  place, org_name, use_trgt, player, program, org_link, main_img,
+	     			  start_date, end_date, eventPrice, ticketCount);
+	      
+	      return "redirect:adminList";
+	   }
+
 }
