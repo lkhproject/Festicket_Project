@@ -50,12 +50,13 @@
 			    <div class="button_area">
 		            <div class="button_modify">
 		                <form action="reviewModify" method="get">
+		                	<input type="hidden" name="re_idx" value="${re_idx}">
 		                    <input type="hidden" name="rw_idx" value="${rw_idx}">
-		                    <input type="hidden" name="re_idx" value="${re_idx}">
 		                    <input type="submit" class="btn" id="buttons" value="수정">
 		                </form>
 		            </div>
 		            <div class="button_delete">
+		            	<input type="hidden" name="re_idx" value="${re_idx}">
 		                <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
 		            </div>
 			        <div class="button_list">
@@ -67,8 +68,6 @@
 		</div>
 		</div>
 	</div>
-	
-
 	
 	<!-- 푸터 -->
 	<%@ include file="../include/footer.jsp" %>
