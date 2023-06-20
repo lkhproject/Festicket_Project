@@ -109,7 +109,7 @@ div.help_cont{
 	border-bottom: 1px solid #ecedf2;
     background: #ffffff;
     width: 260px;
-    height: auto;
+    height:495px;
 	overflow:hidden;
   	float: left;
 }
@@ -153,13 +153,13 @@ span.help_submenu_tit{
 
 /* 가운데 box css 시작*/
 
-td.contentbox {
+div.contentbox {
 	float: center;
-    width: 1000px;
+    width: 1120px;
     padding: 38px 59px 100px 60px;
     box-sizing: border-box;
     background-color: #ffffff ;
-	height : 450px;
+	height : 495px;
 	text-align: center;
 }
 
@@ -196,6 +196,20 @@ input.content_btn01{
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+input.content_btn02{
+	width:200px;
+	height:50px;  
+	padding:0 20px;
+	margin: 1px;
+	border:1px solid #808080;
+	border-radius:10px;
+	outline: none;
+	font-size:20px;
+	color:#ffffff;
+	background: #808080;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 h5 {
 	font-family: 'Noto Sans KR', sans-serif;
 	
@@ -207,23 +221,9 @@ li.has_sub_last{
     box-sizing: border-box;
 }
 
-.has_sub_last ul.help_submenu li.on {
+.help_lmenu li.has_sub li.on a {
     color: #6800b8;
     position: relative;
     font-weight: bold;
 }
 /* 가운데 box css 끝*/
-
-h5 {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 25px;
-	margin-top: 40px;
-}
-
-div.help_rcont{
-    width: 1120px;
-    box-sizing: border-box;
-    background-color: #ffffff;
-	height:auto;
-	margin-bottom: 50px;
-}
