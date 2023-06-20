@@ -299,7 +299,6 @@ a.ng-binding{
 
 .button-write {
 	font-size: 14px;
-	font-weight: bold;
 	background: #6800b8;
 	color: white;
 	padding: 3px 18px;
@@ -313,7 +312,6 @@ a.ng-binding{
 
 .button-confirm {
 	font-size: 14px;
-	font-weight: bold;
 	background: #777;
 	color: white;
 	padding: 3px 18px;
