@@ -373,7 +373,7 @@
 		
 		<!-- 리뷰 수정 -->
 		<update id="reviewModifyDao">
-			UPDATE eventReview SET rw_rating=#{param2}, rw_content=#{param3} WHERE rw_idx=#{param1}
+			UPDATE eventReview SET rw_userId=#{param2}, rw_eventNum=#{param3}, rw_rating=#{param4}, rw_content=#{param4} WHERE rw_idx=#{param1}
 		</update>
 		
 		<!-- 리뷰 삭제 -->
