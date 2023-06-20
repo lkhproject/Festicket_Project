@@ -52,8 +52,19 @@
 					  <!-- eventNum 넘기기 -->
 					  <input type="hidden" value="${search.eventNum }">
 					    <tr>
-					      <td scope="row" id="eventImgCell"><img src="${search.main_img }" class="listImg"
-					      	onclick="script:window.location.href='rvView?selectedEvent=${search.eventNum }'"></td><!-- 상세페이지로 이동 -->
+					      	<c:choose>
+			  					<c:when test="${search.main_img.startsWith('http')}">
+						      <td scope="row" id="eventImgCell"><img src="${search.main_img }" class="listImg"
+						      	onclick="script:window.location.href='rvView?selectedEvent=${search.eventNum }'">
+						      </td>
+						    </c:when>
+							  <c:otherwise>
+							    <td scope="row" id="eventImgCell">
+									<img src="/resources/upload_main_img/${search.main_img.substring(search.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+										onclick="script:window.location.href='rvView?selectedEvent=${search.eventNum }'" class="listImg">
+								</td>
+							  </c:otherwise>
+							</c:choose>
 					      <td id="tableCenter">
 					      	<p id="eventTitle">${search.title }</p>
 					      	<p id="eventDetail"><b>장 소:</b> ${search.place }</p>

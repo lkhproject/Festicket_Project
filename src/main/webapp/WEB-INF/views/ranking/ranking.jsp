@@ -30,8 +30,16 @@
 			<c:forEach items="${topfiveEvent }" var="topfiveEvent"  begin="0" end="4" varStatus="status">
 		  <div class="col" style="float: none; margin 0 auto">
 		    <div class="card" id="rankingList">
-			      <img src="${topfiveEvent.main_img }" class="card-img-top" id="cardImg"
-			      	onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'">
+      			<c:choose>
+  					<c:when test="${topfiveEvent.main_img.startsWith('http')}">
+			     	 <img src="${topfiveEvent.main_img }" class="card-img-top" id="cardImg"
+			      		onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'">
+			    </c:when>
+				  <c:otherwise>
+					<img src="/resources/upload_main_img/${topfiveEvent.main_img.substring(topfiveEvent.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+						onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'" class="card-img-top" id="cardImg">
+				  </c:otherwise>
+				</c:choose>
 			      	<div class="card-img-overlay" id="overlayText">
 			      		<h1 class="rankingCount">${status.count }</h1>
 			      	</div>

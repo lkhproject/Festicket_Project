@@ -40,7 +40,7 @@
 	<div class="container_1" >
 	<div class="container_2" >
 		<h2 class="adminTitle">관리자 페이지</h2>
-			<form action="adminEventAddOk" method="post" id="detail_frm" name="detail_frm">
+			<form action="adminEventAddOk" method="post" id="detail_frm" name="detail_frm" enctype="multipart/form-data">
 		<!-- 행사 디테일 폼 입력 -->
 				<div id="event_type_error" class="error"></div>
 				<div class="input-group mb-3">
@@ -122,7 +122,7 @@
 				<div id="main_img_error" class="error"></div>
 				<div class="input-group mb-3">
 				  <span class="input-group-text" id="basic-addon1">대표 이미지*</span>
-				  <input type="file" class="form-control" name="main_img" aria-describedby="button-addon2">
+				  <input type="file" accept=".gif, .jpg, .png .bmp" class="form-control" name="main_img" aria-describedby="button-addon2">
 				</div>
 				
 				<div class="form-floating">

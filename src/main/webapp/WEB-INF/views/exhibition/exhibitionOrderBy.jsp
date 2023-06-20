@@ -50,8 +50,19 @@
 					  <c:forEach items="${exhibitionDtos }" var="exhibition">
 					  <input type="hidden" value="${exhibition.eventNum }">
 					    <tr>
-					      <td scope="row" id="eventImgCell"><img src="${exhibition.main_img }" class="listImg"
-					      	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"></td>
+					      <c:choose>
+			  					<c:when test="${exhibition.main_img.startsWith('http')}">
+						      <td scope="row" id="eventImgCell"><img src="${exhibition.main_img }" class="listImg"
+						      	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'">
+						      </td>
+						    </c:when>
+							  <c:otherwise>
+							    <td scope="row" id="eventImgCell">
+									<img src="/resources/upload_main_img/${exhibition.main_img.substring(exhibition.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+										onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'" class="listImg">
+								</td>
+							  </c:otherwise>
+							</c:choose>
 					      <td id="tableCenter">
 					      	<div id="eventTitle">${exhibition.title }</div>
 					      	<div id="eventDetail"><b>장 소:</b> ${exhibition.place }</div>

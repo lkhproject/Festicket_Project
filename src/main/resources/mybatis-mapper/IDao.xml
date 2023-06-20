@@ -251,6 +251,31 @@
 	        ticketCount = #{param16}
 	    WHERE eventNum = #{param1}
     </update>
+    
+    <!-- 행사 삭제 -->
+    <delete id="eventDelete">
+    	DELETE FROM event
+    	WHERE eventNum=#{param1}
+    </delete>
+    
+    <!-- main_img 파일 업로드, 저장 -->
+ 	<insert id="fileInfoCreateDao">
+ 		INSERT INTO event_main_img
+	 	VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+ 	</insert>
+ 	
+ 	<!-- 대표 이미지 삭제 -->
+ 	<delete id="deleteMainImg">
+ 		DELETE FROM event_main_img
+ 		WHERE filenum=#{param1}
+ 	</delete>
+ 	
+ 	<!-- main_img Dto 불러오기 -->
+ 	<select id="getMainImgInfo" resultType="com.festicket.dto.MainImgDto">
+ 		SELECT *
+ 		FROM event_main_img
+ 		WHERE filenum=#{param1}
+ 	</select>
 	
 	<!-- *** 랭킹 페이지 *** -->
 	<!-- 예매 수가 같을경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->

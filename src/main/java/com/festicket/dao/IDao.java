@@ -8,6 +8,7 @@ import com.festicket.dto.CSboardDto;
 import com.festicket.dto.EventDto;
 import com.festicket.dto.EventLikeDto;
 import com.festicket.dto.EventReviewLikeDto;
+import com.festicket.dto.MainImgDto;
 import com.festicket.dto.MemberDto;
 import com.festicket.dto.QABoardDto;
 import com.festicket.dto.QAanswerDto;
@@ -63,12 +64,16 @@ public interface IDao {
 	
 	// admin
 	public List<EventDto> eventListPagingDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징
-	public void eventAddDao(String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
+	public int eventAddDao(String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
             String player, String program, String org_link, String main_img,
             Date start_date, Date end_date, String eventPrice, int ticketCount); // 행사 추가
 	public void eventUpdateDao(int eventNum, String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
             String player, String program, String org_link, String main_img,
             Date start_date, Date end_date, String eventPrice, int ticketCount); // 행사 수정
+	public void fileInfoCreateDao(int fileNum, String fileoriname, String destinationFileName, String fileextension, String fileurl); // main_img 파일 저장
+	public void eventDelete(int eventNum); // 행사 삭제
+	public MainImgDto getMainImgInfo(int filenum); // 이미지 불러오기
+	public void deleteMainImg(int filenum); // 이미지 삭제
 	
 	// 페스티벌
 	public List<EventDto> festivalListDao(int countList, int pageNum); // 페스티벌 리스트
@@ -157,5 +162,6 @@ public interface IDao {
 	// 리뷰
 	public List<ReviewDto> reviewListDao(int eventNum, int countList, int pageNum); // 리뷰 글 리스트 가져오기 + 페이징
 	public void reviewWriteDao(String c_userId, int rw_eventNum, String rw_rating, String rw_content); // 리뷰 쓰기
+	
 	
 }

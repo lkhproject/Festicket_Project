@@ -52,8 +52,16 @@
 	  <div class="col" style="float: none; margin 0 auto">
 	  <input type="hidden" value="${festival.eventNum }">
 	    <div class="card" id="cardList">
-	      <img src="${festival.main_img }" class="card-img-top" id="card_img"
-	      		onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'"><!-- 상세페이지로 이동 -->
+		    <c:choose>
+			  <c:when test="${festival.main_img.startsWith('http')}">
+			    <img src="${festival.main_img}" class="card-img-top" id="card_img"
+			    	onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'" >
+			  </c:when>
+			  <c:otherwise>
+			    <img src="/resources/upload_main_img/${festival.main_img.substring(festival.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+			    	onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'" class="card-img-top" id="card_img">
+			  </c:otherwise>
+			</c:choose>
 	      <div class="card-body">
 	        <h5 class="card-title">
 	        	<c:choose>
@@ -87,8 +95,16 @@
 	  <div class="col" style="float: none; margin 0 auto">
 	    <div class="card" id="cardList">
 	    <input type="hidden" value="${exhibition.eventNum }">
-	      <img src="${exhibition.main_img }" class="card-img-top" id="card_img"
-	      	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'"><!-- 상세페이지로 이동 -->
+	      <c:choose>
+			  <c:when test="${exhibition.main_img.startsWith('http')}">
+			    <img src="${exhibition.main_img}" class="card-img-top" id="card_img"
+			    	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'" >
+			  </c:when>
+			  <c:otherwise>
+			    <img src="/resources/upload_main_img/${exhibition.main_img.substring(exhibition.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+			    	onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'" class="card-img-top" id="card_img">
+			  </c:otherwise>
+			</c:choose>
 	      <div class="card-body">
 	        <h5 class="card-title">
 	        	<c:choose>

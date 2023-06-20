@@ -28,8 +28,16 @@
 	          <input type="hidden" value="${event.eventNum}">
 	          <div class="col-lg-3 col-md-4 col-sm-6">
 	            <div class="card hidden" id="cardList">
-	              <img src="${event.main_img}" class="card-img-top" id="card_img"
-	                onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'" style="cursor:pointer">
+	                <c:choose>
+	  					<c:when test="${event.main_img.startsWith('http')}">
+				      	  <img src="${event.main_img }" class="card-img-top" id="card_img"
+				      		onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer">
+				    </c:when>
+					  <c:otherwise>
+						<img src="/resources/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+							onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" class="card-img-top" id="card_img" style="cursor:pointer">
+					  </c:otherwise>
+					</c:choose>
 	              <div class="card-body">
 	                <h5 class="card-title" onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum}'" style="cursor:pointer">
 	                  <c:choose>

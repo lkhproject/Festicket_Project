@@ -80,3 +80,7 @@ input[type="button"] {
 #detail_form {
 	margin: 50px 0px 10px;
 }
+
+#mainImgValue {
+	margin: 3px 0px 10px 10px;
+}
