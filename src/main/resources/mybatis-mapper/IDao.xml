@@ -376,7 +376,7 @@
 		    FROM (
 		        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		        FROM event
-		        WHERE UPPER(type) LIKE '%'
+		        WHERE UPPER(type) LIKE '페스티벌%'
 		        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
 		    ) A
 		)
@@ -503,7 +503,7 @@
 		
 		<!-- 리뷰 수정 -->
 		<update id="reviewModifyDao">
-			UPDATE eventReview SET rw_rating=#{param4}, rw_content=#{param4} WHERE rw_idx=#{param1} AND re_userId=#{param2}
+			UPDATE eventReview SET rw_rating=#{param3}, rw_content=#{param4} WHERE rw_idx=#{param1} AND rw_userId=#{param2}
 		</update>
 		
 		<!-- 리뷰 삭제 -->

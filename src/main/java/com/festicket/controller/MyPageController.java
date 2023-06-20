@@ -276,7 +276,9 @@ public class MyPageController {
     }
     
 	@RequestMapping(value = "/reviewModify") // 리뷰 수정
-	public String csBoardModify(HttpServletRequest request, Model model) {
+	public String reviewModify(HttpServletRequest request, HttpSession session, Model model) {
+		
+		String sessionId = (String)session.getAttribute("sessionId");
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -286,7 +288,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "reviewModifyOk") // 리뷰 수정
-	public String csBoardModifyOk(HttpServletRequest request, Model model, HttpSession session) {
+	public String reviewModifyOk(HttpServletRequest request, Model model, HttpSession session) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
@@ -294,6 +296,11 @@ public class MyPageController {
 		String sessionId = (String)session.getAttribute("sessionId");
 		String rw_rating = request.getParameter("rw_rating");
 		String rw_content = request.getParameter("rw_content");
+		
+		System.out.println(rw_idx);
+		System.out.println(sessionId);
+		System.out.println(rw_rating);
+		System.out.println(rw_content);
 		
 		dao.reviewModifyDao(rw_idx, sessionId, rw_rating, rw_content);
 		
@@ -310,7 +317,7 @@ public class MyPageController {
 		int rw_idx = Integer.parseInt(request.getParameter("rw_idx"));
 		
 		dao.reviewDeleteDao(rw_idx);
-		dao.reviewWrittenDao(rw_idx, 0);
+		dao.reviewWrittenDao(0, rw_idx);
 
 		return "redirect:myPageReview";
 	}
