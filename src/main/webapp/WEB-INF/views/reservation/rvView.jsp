@@ -31,7 +31,7 @@
 	<div class="container" id="rvView_page_form">
 			<div class="container" id="rev_detail_container_1">
 				<img src="${event.main_img }" class="img-thumbnail" alt="포스터"><br>
-				<button type="button" class="btn rounded-pill btn-light" id="event_like" > <!-- onclick="eventLikeClicked()" -->
+				<button type="button" class="btn rounded-pill btn-light" id="event_like" onclick="eventLikeClicked(${event.eventNum})">
 				  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
 				</button>
 			</div>
@@ -245,6 +245,7 @@
 	// 세션 아이디 가져오기
 	var sessionId = '<%=(String)session.getAttribute("sessionId") %>';
 	
+// 로그인 확인
 function confirmRev() {
 	event.preventDefault();
 	
@@ -267,7 +268,88 @@ function confirmRev() {
     }
 }
 
-//리뷰 좋아요
+//********** 이벤트 좋아요 *************
+// 이벤트 좋아요 확인은 리뷰 좋아요의 checkInitialLikeStatus에서 같이 확인
+var isEventLiked;
+
+// 이벤트 좋아요 버튼을 클릭하는 함수
+function eventLikeClicked(eventNum) {
+    var eventLikeButton = document.getElementById("event_like");
+    console.log(isEventLiked)
+    if (sessionId != "null") {
+        if (isEventLiked) {
+            // 이벤트 좋아요 취소
+            sendEventUnlikeRequest(eventNum, isEventLiked);
+            setUnlikedEventButtonStyle();
+            isEventLiked = false;
+        } else {
+            // 이벤트 좋아요 요청
+            sendEventLikeRequest(eventNum, isEventLiked);
+            setLikedEventButtonStyle();
+            isEventLiked = true;
+        }
+    } else {
+        alert("로그인이 필요합니다.");
+        return false;
+    }
+}
+
+// 이벤트 좋아요 요청을 보내는 함수
+function sendEventLikeRequest(eventNum, isEventLiked) {
+    $.ajax({
+        url: "eventLike", // 이벤트 좋아요 요청을 처리하는 URL을 입력하세요.
+        type: "POST",
+        data: { selectedEvent: eventNum, isEventLiked: isEventLiked },
+        success: function(response) {
+            // 요청 성공 시의 동작 처리
+            console.log("이벤트 좋아요 요청이 성공하였습니다.");
+            // 추가적인 동작 처리
+        },
+        error: function(xhr, status, error) {
+            // 요청 실패 시의 동작 처리
+            console.log("이벤트 좋아요 요청이 실패하였습니다. 오류: " + error);
+        }
+    });
+}
+
+// 이벤트 좋아요 취소 요청을 보내는 함수
+function sendEventUnlikeRequest(eventNum, isEventLiked) {
+    $.ajax({
+        url: "eventUnlike", // 이벤트 좋아요 취소 요청을 처리하는 URL을 입력하세요.
+        type: "POST",
+        data: { selectedEvent: eventNum, isEventLiked: isEventLiked },
+        success: function(response) {
+            // 취소 요청 성공 시의 동작 처리
+            console.log("이벤트 좋아요가 취소되었습니다.");
+            // 추가적인 동작 처리
+        },
+        error: function(xhr, status, error) {
+            // 취소 요청 실패 시의 동작 처리
+            console.log("이벤트 좋아요 취소 요청이 실패하였습니다. 오류: " + error);
+        }
+    });
+}
+
+// 이벤트 좋아요 상태에 따라 버튼 스타일을 변경하는 함수
+function setLikedEventButtonStyle() {
+    var eventLikeButton = document.getElementById("event_like");
+    eventLikeButton.classList.add("bg-dark");
+    eventLikeButton.classList.remove("btn-light");
+    eventLikeButton.classList.add("text-white");
+    eventLikeButton.classList.remove("text-bg-danger");
+}
+
+function setUnlikedEventButtonStyle() {
+    var eventLikeButton = document.getElementById("event_like");
+    eventLikeButton.classList.remove("bg-dark");
+    eventLikeButton.classList.add("btn-light");
+    eventLikeButton.classList.remove("text-white");
+    eventLikeButton.classList.remove("text-bg-danger");
+}
+
+// ********** 이벤트 좋아요 끝 *************
+
+// ********** 리뷰 좋아요 *************
 var eventNum; // 전역 변수로 선언
 
 $(document).ready(function() {
@@ -287,8 +369,33 @@ $(document).ready(function() {
 // 페이지 로드 시 초기 좋아요 상태를 확인하고 버튼 색상을 설정하는 함수
 function checkInitialLikeStatus(eventNum) {
     // 서버에 AJAX 요청을 보내서 좋아요 상태를 확인하는 코드
+    
+    // 행사 좋아요 상태 확인
+    $.ajax({
+        url: "eventLikeStatus", // 좋아요 상태를 확인하는 URL을 입력하세요.
+        type: "POST",
+        data: { sessionId: sessionId, selectedEvent: eventNum },
+        success: function(response) {
+            isEventLiked = response;
+            console.log("isEventLiked: " + isEventLiked);
+            
+            if (isEventLiked) {
+                console.log("liked");
+                setLikedEventButtonStyle(eventNum);
+            } else {
+                console.log("unliked");
+                setUnlikedEventButtonStyle(eventNum);
+            }
+        },
+        error: function(xhr, status, error) {
+        	console.log(isEventLiked);
+            console.log("좋아요 상태 확인 요청이 실패하였습니다. 오류: " + error);
+        }
+    });
+    
+	// 리뷰 좋아요 상태 확인
 	$.ajax({
-	    url: "likeStatus",
+	    url: "reviewLikeStatus",
 	    type: "POST",
 	    data: { sessionId: sessionId, selectedEvent: eventNum },
 	    success: function(response) {
@@ -400,6 +507,7 @@ function setUnlikedButtonStyle(reviewIdx) {
     likeButton.classList.remove("text-bg-danger");
 }
 
+//********** 리뷰 좋아요 끝 *************
 
 </script>
 
