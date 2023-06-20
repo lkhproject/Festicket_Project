@@ -64,7 +64,10 @@ function checkVal() {
   if (gunName.trim().length === 0) {
     gunNameError.innerHTML = "※ 자치구를 입력해주세요.";
     isValid = false;
-  }
+  } else if (gunName.trim().length > 5) {
+	  gunNameError.innerHTML = "※ 자치구는 5자 이하로 입력해주세요.";
+	  isValid = false;
+	}
   // 장소 유효성 검사
   if (place.trim().length === 0) {
     placeError.innerHTML = "※ 장소를 입력해주세요.";
@@ -74,12 +77,22 @@ function checkVal() {
   if (orgLink.trim().length === 0) {
     orgLinkError.innerHTML = "※ 홈페이지 주소를 입력해주세요.";
     isValid = false;
-  }
+  } else {
+  // 정규식을 사용하여 형식을 검사
+  const urlPattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-zA-Z0-9]+([-.][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}(:[0-9]{1,5})?(\/.*)?$/;
+  if (!urlPattern.test(orgLink.trim())) {
+	    orgLinkError.innerHTML = "※ 올바른 홈페이지 주소 형식이 아닙니다.";
+	    isValid = false;
+	  }
+	}
   // 총 티켓 매수 유효성 검사
-  if (ticketCount.trim().length === 0 && ticketCount === 0) {
+  if (ticketCount.trim().length === 0) {
     ticketCountError.innerHTML = "※ 총 티켓 매수를 입력해주세요.";
     isValid = false;
-  }
+  } else if (isNaN(ticketCount)) {
+	  ticketCountError.innerHTML = "※ 숫자만 입력해주세요.";
+	  isValid = false;
+	}
   // 대표 이미지 유효성 검사
   if (mainImg.trim().length === 0) {
     mainImgError.innerHTML = "※ 대표 이미지를 선택해주세요.";

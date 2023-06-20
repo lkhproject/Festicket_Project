@@ -78,7 +78,7 @@
 				<div id="gunName_error" class="error"></div>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">자치구*</span>
-	  				<textarea class="form-control" name="gunName" aria-label="With textarea"></textarea>
+	  				<input type="text" name="gunName" id="gunName" class="form-control" aria-describedby="basic-addon1">
 				</div>
 					
 				<div id="place_error" class="error"></div>
