@@ -66,7 +66,16 @@
 							  </c:otherwise>
 							</c:choose>
 					      <td id="tableCenter">
-					      	<p id="eventTitle">${search.title }</p>
+					      	<p id="eventTitle">
+							  <c:choose>
+			                    <c:when test="${fn:length(search.title) > 40}">
+			                      ${fn:substring(search.title, 0, 39)}...
+			                    </c:when>
+			                    <c:otherwise>
+			                      ${search.title }
+			                    </c:otherwise>
+			                  </c:choose>	
+					      	</p>
 					      	<p id="eventDetail"><b>장 소:</b> ${search.place }</p>
 						  	<p id="eventDetail"><b>기 간:</b> ${search.eventDate }</p>
 						  	<p id="eventDetail"><b>관람가:</b>
