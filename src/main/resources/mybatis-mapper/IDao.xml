@@ -47,6 +47,7 @@
 		WHERE userId = #{param1} 
 		AND userPassword = #{param2}
 	</delete>
+	
 	<!-- *** 회원 탈퇴 끝 *** -->	
 	
 	<!-- *** 아이디 비밀번호 비밀번호 찾기 시작 *** -->

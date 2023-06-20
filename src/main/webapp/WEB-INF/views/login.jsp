@@ -31,7 +31,7 @@
                     <div class="joinpage"><a href="findId"><b>아이디찾기</b></a></div>
                     <div class="joinpage"><a href="findPw"><b>비밀번호찾기</b></a></div>
 					<div class="joinpage"><a href="join">처음이신가요? <b>회원가입</b></a></div>
-						</table>
+					</table>
 					</center>
 					</td>
 				</tr>
