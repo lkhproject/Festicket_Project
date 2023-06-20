@@ -86,7 +86,7 @@ public interface IDao {
 	public void reviewDeleteDao(int rw_idx); // 리뷰 삭제
 	public void reviewLiker(int reviewIdx, String userId); // 리뷰 좋아요
 	public void cancelReviewLiker(int reviewIdx, String userId); // 리뷰 좋아요 취소
-	public List<EventReviewLikeDto> getLikedReviewList(String userId, String eventNum); // 리뷰 좋아요 리스트 
+	public List<EventReviewLikeDto> getLikedReviewList(String userId, String eventNum); // 
 	
 	// 예약 확인
 	public List<ReserveDto> getReservationListDao(String userId, int countList, int pageNum); // 예약 목록 가져오기

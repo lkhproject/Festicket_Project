@@ -12,21 +12,6 @@
 <title>페스티켓</title>
 </head>
 <body>
-
-	<%
-	  int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
-	
-	  if(loginOk == 0) {
-	      String previousPage = request.getRequestURL().toString();
-	      session.setAttribute("previousPage", previousPage);
-	%>
-	  <script>
-	      window.location.href = "login";
-	  </script>
-	<%
-	  }
-	%>
-	
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
@@ -64,6 +49,7 @@
 				<div class="button_area">
 					<div class="button_submit">
 					    <input type="hidden" name="rw_idx" value="${reviewDto.rw_idx }">
+					    <input type="hidden" name="rw_revNum" value="${reviewDto.rw_revNum }">
 		                <input type="hidden" name="rw_rating" id="rw_rating">
 						<input type="submit" class="btn" id="button_submit" value="등록">
 					</div>
@@ -88,12 +74,27 @@
 	var rwRating = "${reviewDto.rw_rating}";
 	var rateButtons = document.getElementsByName("reviewStar");
 
+	// 기존 값을 선택
 	for (var i = 0; i < rateButtons.length; i++) {
-		if (rateButtons[i].value == rwRating) {
-			rateButtons[i].checked = true;
-			break;
-		}
+	    if (rateButtons[i].value == rwRating) {
+	        rateButtons[i].checked = true;
+	        break;
+	    }
 	}
+
+	// 별점 클릭 시 선택된 값을 저장
+	for (var i = 0; i < rateButtons.length; i++) {
+	    rateButtons[i].addEventListener("click", function() {
+	        if (this.checked) {
+	            rwRating = this.value;
+	        }
+	    });
+	}
+
+	// 폼 제출 시 선택된 별점 값 전달
+	document.getElementById("detail_form").addEventListener("submit", function() {
+	    document.getElementById("rw_rating").value = rwRating;
+	});
 	
 	<!-- 글쓰기 폼 유효성 검사 -->
 	function validateCheck() {

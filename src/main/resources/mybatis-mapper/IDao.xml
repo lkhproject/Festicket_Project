@@ -346,11 +346,11 @@
 		<!-- 리뷰 리스트 가져오기 -->
 		<select id="getReviewListDao" resultType="com.festicket.dto.ReviewDto">
 			SELECT *
-			FROM eventReview er
-			LEFT OUTER JOIN event e
+			  FROM eventReview er
+			  LEFT OUTER JOIN event e
 			    ON er.rw_eventNum = e.eventNum
-			WHERE er.rw_eventNum = #{param1}
-			ORDER BY er.rw_idx DESC
+			 WHERE er.rw_eventNum=#{param1}
+			 ORDER BY er.rw_idx DESC
 		</select>
 		
 		<!-- 리뷰 쓰기 -->
@@ -373,7 +373,7 @@
 		
 		<!-- 리뷰 수정 -->
 		<update id="reviewModifyDao">
-			UPDATE eventReview SET rw_rating=#{param4}, rw_content=#{param4} WHERE rw_idx=#{param1} AND re_userId=#{param2}
+			UPDATE eventReview SET rw_rating=#{param3}, rw_content=#{param4} WHERE rw_idx=#{param1} AND rw_userId=#{param2}
 		</update>
 		
 		<!-- 리뷰 삭제 -->
@@ -772,7 +772,7 @@
 			    FROM (
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
-			        WHERE UPPER(type) LIKE '%'
+			        WHERE UPPER(type) LIKE '페스티벌%'
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
 			    ) A
 			)
