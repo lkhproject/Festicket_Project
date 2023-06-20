@@ -645,8 +645,8 @@
 				FROM eventreservation er
                 JOIN event e ON er.re_eventNum = e.eventNum
 				WHERE re_userId = #{param1}
-			    AND re_ticketDate <![CDATA[>=]]> SYSDATE - #{param4}
-			    AND re_ticketDate <![CDATA[<=]]> SYSDATE
+			    AND re_ticketDate <![CDATA[>=]]> TRUNC(SYSDATE) - #{param4}
+			    AND re_ticketDate <![CDATA[<=]]> TRUNC(SYSDATE)
                 ORDER BY er.re_ticketDate DESC
 		    ) A
 		)
@@ -657,8 +657,8 @@
 		SELECT COUNT(*)
 	    FROM eventreservation
 	    WHERE re_userId = #{param1}
-	    AND re_ticketDate <![CDATA[>=]]> SYSDATE - #{param2}
-	    AND re_ticketDate <![CDATA[<=]]> SYSDATE
+	    AND re_ticketDate <![CDATA[>=]]> TRUNC(SYSDATE) - #{param2}
+		AND re_ticketDate <![CDATA[<=]]> TRUNC(SYSDATE)
 	</select>
 	<!-- 오늘부터 선택일 전까지의 행사예약일 기준 행사 리스트, 총 개수 끝 -->
 
