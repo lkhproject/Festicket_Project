@@ -30,7 +30,15 @@
 	<div class="container" style="margin-top: 30px">
 	<div class="container" id="rvView_page_form">
 			<div class="container" id="rev_detail_container_1">
-				<img src="${event.main_img }" class="img-thumbnail" alt="포스터"><br>
+					<c:choose>
+	  					<c:when test="${event.main_img.startsWith('http')}">
+				      		<img src="${event.main_img }" class="img-thumbnail" alt="포스터"><br>
+				    </c:when>
+					  <c:otherwise>
+							<img src="/resources/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+								 class="img-thumbnail" alt="포스터"><br>
+					  </c:otherwise>
+					</c:choose>
 				<button type="button" class="btn rounded-pill btn-light" id="event_like" onclick="eventLikeClicked(${event.eventNum})">
 				  <span class="badge text-bg-danger">♥</span>&nbsp;&nbsp;좋아요
 				</button>

@@ -25,7 +25,15 @@
 		<div class="card mb-3" id="ticket">
 		  <div class="row g-0">
 		    <div class="col-md-4">
-		      <img src="${details.main_img }" class="img-fluid rounded-start" alt="${details.title }">
+		    	<c:choose>
+  					<c:when test="${details.main_img.startsWith('http')}">
+			      		<img src="${details.main_img }" class="img-fluid rounded-start" alt="${details.title }">
+			    </c:when>
+				  <c:otherwise>
+						<img src="/resources/upload_main_img/${details.main_img.substring(details.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+							  class="img-fluid rounded-start" alt="${details.title }">
+				  </c:otherwise>
+				</c:choose>
 		    </div>
 		    <div class="col-md-8">
 		      <div class="card-body" style="text-align: left;">
