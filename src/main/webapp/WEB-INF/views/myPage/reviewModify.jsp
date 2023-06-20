@@ -13,6 +13,20 @@
 </head>
 <body>
 
+	<%
+	  int loginOk = Integer.parseInt((request.getAttribute("loginOk")).toString());
+	
+	  if(loginOk == 0) {
+	      String previousPage = request.getRequestURL().toString();
+	      session.setAttribute("previousPage", previousPage);
+	%>
+	  <script>
+	      window.location.href = "login";
+	  </script>
+	<%
+	  }
+	%>
+	
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
@@ -40,19 +54,17 @@
 			<!-- 별점 기능 끝 -->
 			
 			<!-- 리뷰 작성 폼 -->
-			<form action="reviewWriteOk" method="post" id="detail_form" onsubmit="return validateCheck()">
+			<form action="reviewModifyOk" method="post" id="detail_form" onsubmit="return validateCheck()">
 				<div class="input-group mt-3">
-	  				<textarea class="form-control" placeholder="최소 10자 이상 입력해주세요." aria-label="With textarea" name="rw_content" id="rw_content"></textarea>
+	  				<textarea class="form-control" placeholder="최소 10자 이상 입력해주세요." aria-label="With textarea" name="rw_content" id="rw_content">${reviewDto.rw_content }</textarea>
 				</div>
 				
 				<!-- 등록, 취소 버튼 -->
 				<div class="container" style="padding-top: 10px">
 				<div class="button_area">
 					<div class="button_submit">
-					   	<input type="hidden" name="sessionId" value="${sessionId}">
-                    	<input type="hidden" name="eventNum" value="${eventNum}">
-                    	<input type="hidden" name="re_idx" value="${re_idx}">
-						<input type="hidden" name="rw_rating" id="rw_rating">
+					    <input type="hidden" name="rw_idx" value="${reviewDto.rw_idx }">
+		                <input type="hidden" name="rw_rating" id="rw_rating">
 						<input type="submit" class="btn" id="button_submit" value="등록">
 					</div>
 					<div class="button_cancel">
@@ -72,14 +84,15 @@
 	<!-- 푸터 끝 -->
 	
 	<script>
-	<!-- 별점 선택 시 값 설정 -->
+	<!-- 별점에 rw_rating 값 적용 -->
+	var rwRating = "${reviewDto.rw_rating}";
 	var rateButtons = document.getElementsByName("reviewStar");
-	var rwRatingInput = document.getElementById("rw_rating");
 
 	for (var i = 0; i < rateButtons.length; i++) {
-	  rateButtons[i].addEventListener("click", function() {
-	    rwRatingInput.value = this.value;
-	  });
+		if (rateButtons[i].value == rwRating) {
+			rateButtons[i].checked = true;
+			break;
+		}
 	}
 	
 	<!-- 글쓰기 폼 유효성 검사 -->

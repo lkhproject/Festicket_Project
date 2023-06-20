@@ -108,11 +108,11 @@
 			<br><br>
 			<div class="container">
 				<div class="basic_tbl basic_tbl_v3">
-					<table class="table table-striped">
+					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th scope="col" style="width:50%">행사명</th>
-								<th scope="col" style="width:30%">예약일시</th>
+								<th scope="col" style="width:30%">행사일자</th>
 								<th scope="col" style="width:20%">후기작성</th>
 							</tr>
 						</thead>
@@ -125,25 +125,36 @@
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${revListDtos }" var="revList">
-										<tr>
-											<td id="revDetails">
-												<div>
-													<c:choose>
-									                  <c:when test="${fn:length(revList.title) gt 30}">
-									                    ${fn:substring(revList.title, 0, 29)}...
-									                  </c:when>
-									                  <c:otherwise>
-									                    ${revList.title}
-									                  </c:otherwise>
-									                </c:choose>
-									            </div>
-								            </td>
-											<td id="revDetails">${revList.re_date }</td>
-											<td id="revDetailsNum">
-												<!-- 후기작성 버튼 -->
-												<input type="button" class="btn" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}'" value="작성하기">
-											</td>
-										</tr>
+									  <c:set var="ticketDate" value="${revList.re_ticketDate}" />
+									  <c:set var="currentDate" value="<%= new java.util.Date() %>" />
+									  	  <!-- 행사일이 지났을 경우 리뷰 작성 가능 -->
+										  <c:if test="${ticketDate.before(currentDate)}">
+											<tr>
+												<td id="revDetails">
+													<div style="cursor:pointer;" onclick="script:window.location.href='detailedRev?selectedRev=${revList.re_idx}'">
+														<c:choose>
+										                  <c:when test="${fn:length(revList.title) gt 30}">
+										                    ${fn:substring(revList.title, 0, 29)}...
+										                  </c:when>
+										                  <c:otherwise>
+										                    ${revList.title}
+										                  </c:otherwise>
+										                </c:choose>
+										            </div>
+									            </td>
+												<td id="revDetails">${revList.re_ticketDate }</td>
+												<td id="revDetailsNum">
+												    <c:choose>
+												        <c:when test="${revList.re_reviewNum != 0}">
+												            <input type="button" class="btn button-confirm" onclick="window.location.href='reviewView?rw_idx=${revList.re_reviewNum}'" value="후기확인">
+												        </c:when>
+												        <c:otherwise>
+												           	 <input type="button" class="btn button-write" onclick="window.location.href='reviewWrite?re_eventNum=${revList.re_eventNum}&re_idx=${revList.re_idx }'" value="작성하기">
+												        </c:otherwise>
+												    </c:choose>
+												</td>
+											</tr>
+											</c:if>		
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
@@ -151,11 +162,11 @@
 					</table>
 					
 		<!-- 페이징 시작 -->
-		<div class="container" id="csPagingNum">
+		<div class="container" id="reviewPagingNum">
 		  <ul class="pagination">
 	    	<li class="page-item" id="page-item">
 				<c:if test="${pageMaker.prev }">
-					<a class="page-link" aria-label="Previous" href="myPage?pageNum=${pageMaker.startPage-5 }">
+					<a class="page-link" aria-label="Previous" href="myPageReview?pageNum=${pageMaker.startPage-5 }">
 						<span aria-hidden="true">&laquo;</span>
 					</a>
 				</c:if>
@@ -170,7 +181,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item">
-							<a class="page-link" href="myPage?pageNum=${num }">${num }</a>
+							<a class="page-link" href="myPageReview?pageNum=${num }">${num }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -178,7 +189,7 @@
 			
 			<li class="page-item">
 				<c:if test="${pageMaker.next }">
-					<a class="page-link" aria-label="Next" href="myPage?pageNum=${pageMaker.startPage+5 }">
+					<a class="page-link" aria-label="Next" href="myPageReview?pageNum=${pageMaker.startPage+5 }">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</c:if>

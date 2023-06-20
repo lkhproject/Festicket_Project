@@ -19,6 +19,7 @@ import com.festicket.dao.IDao;
 import com.festicket.dto.Criteria;
 import com.festicket.dto.PageDto;
 import com.festicket.dto.ReserveDto;
+import com.festicket.dto.ReviewDto;
 
 @Controller
 public class MyPageController {
@@ -219,13 +220,8 @@ public class MyPageController {
 			model.addAttribute("pageMaker", pageDto);
 			model.addAttribute("currPage", pageNum);
 			model.addAttribute("revListDtos", revListDtos);
-			
-			ReserveDto reserveDto = revListDtos.get(0);
-			int eventNum = reserveDto.getRe_eventNum();
-			
-			session.setAttribute("eventNum", eventNum);
-
 		}
+		
 		return "myPage/myPageReview";
 	}
 	
@@ -234,9 +230,11 @@ public class MyPageController {
 		
 		String sessionId = (String)session.getAttribute("sessionId");
 		int eventNum = Integer.parseInt(request.getParameter("re_eventNum"));
+		int re_idx = Integer.parseInt(request.getParameter("re_idx"));
 		
 		request.setAttribute("sessionId", sessionId);
 		request.setAttribute("eventNum", eventNum);
+		request.setAttribute("re_idx", re_idx);
 		
 		return "myPage/reviewWrite";
 	}
@@ -247,14 +245,74 @@ public class MyPageController {
     	String sessionId = (String)session.getAttribute("sessionId");
     	
     	int rw_eventNum = Integer.parseInt(request.getParameter("eventNum"));
+    	int rw_revNum = Integer.parseInt(request.getParameter("re_idx"));
 	    String rw_rating = request.getParameter("rw_rating");
 	    String rw_content = request.getParameter("rw_content");
-	      
+	    
 	    IDao dao = sqlSession.getMapper(IDao.class);
+	    
+	    dao.reviewWriteDao(sessionId, rw_eventNum, rw_revNum, rw_rating, rw_content);
+	    
+	    List<ReviewDto> reviewDtos = dao.getReviewListDao(rw_eventNum);
+	    ReviewDto reviewDto = reviewDtos.get(0); // 방금 쓴 글
+	    int rw_idx = reviewDto.getRw_idx(); // 방금 쓴 글 번호
 	      
-	    dao.reviewWriteDao(sessionId, rw_eventNum, rw_rating, rw_content);
+	    dao.reviewWrittenDao(rw_idx, rw_revNum);
 	    
 	    return "redirect:myPageReview";
+	}
+    
+    @RequestMapping(value = "/reviewView") // 리뷰 내용 보기
+    public String reviewView(HttpServletRequest request, HttpSession session, Model model) {
+    	
+		String sessionId = (String)session.getAttribute("sessionId");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("reviewDto", dao.reviewViewDao(request.getParameter("rw_idx")));
+		model.addAttribute("sessionId", sessionId);
+    	
+    	return "myPage/reviewView";
+    }
+    
+	@RequestMapping(value = "/reviewModify") // 리뷰 수정
+	public String csBoardModify(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		model.addAttribute("reviewDto", dao.reviewViewDao(request.getParameter("rw_idx")));
+		
+		return "myPage/reviewModify";
+	}
+	
+	@RequestMapping(value = "reviewModifyOk") // 리뷰 수정
+	public String csBoardModifyOk(HttpServletRequest request, Model model, HttpSession session) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		String rw_idx = request.getParameter("rw_idx");
+		String sessionId = (String)session.getAttribute("sessionId");
+		String rw_rating = request.getParameter("rw_rating");
+		String rw_content = request.getParameter("rw_content");
+		
+		dao.reviewModifyDao(rw_idx, sessionId, rw_rating, rw_content);
+		
+		model.addAttribute("reviewDto", dao.reviewViewDao(rw_idx)); // 수정이 된 후 글내용
+		
+		return "myPage/reviewView";
+	}
+	
+	@RequestMapping(value = "/reviewDelete") // 리뷰 삭제
+	public String reviewDelete(HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		int rw_idx = Integer.parseInt(request.getParameter("rw_idx"));
+		
+		dao.reviewDeleteDao(rw_idx);
+		dao.reviewWrittenDao(rw_idx, 0);
+
+		return "redirect:myPageReview";
 	}
     
     @RequestMapping(value = "/myPageUnreg") // 회원탈퇴

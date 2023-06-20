@@ -198,7 +198,7 @@ public class ReservationController {
 		
 //		총 티켓 개수보다 많이 예약 or 남은 티켓이 없다면 돌려보내기
 		if(ticketLeft >= re_ticketCount) {
-			revCheck = dao.reservationConfirmedDao(sessionId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate);
+			revCheck = dao.reservationConfirmedDao(sessionId, re_eventNum, re_price, today, re_ticketCount, re_ticketDate, 0);
 			noTicket = 1;
 			lessTicket = 1;
 		} else if(ticketLeft == 0) {
