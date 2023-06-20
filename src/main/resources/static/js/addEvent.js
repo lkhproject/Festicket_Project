@@ -49,7 +49,10 @@ function checkVal() {
   if (title.trim().length === 0) {
     titleError.innerHTML = "※ 제목을 입력해주세요.";
     isValid = false;
-  }
+  } else if (title.length > 100) {
+	titleError.innerHTML = "※ 제목은 100자 이하로 입력해주세요.";
+	isValid = false;
+	}
   // 시작일 유효성 검사
   if (startDate.trim().length === 0) {
     startDateError.innerHTML = "※ 시작일을 입력해주세요.";
@@ -72,7 +75,10 @@ function checkVal() {
   if (place.trim().length === 0) {
     placeError.innerHTML = "※ 장소를 입력해주세요.";
     isValid = false;
-  }
+  } else if (title.length > 100) {
+	placeError.innerHTML = "※ 장소는 50자 이하로 입력해주세요.";
+	isValid = false;
+	}
   // 홈페이지 주소 유효성 검사
   if (orgLink.trim().length === 0) {
     orgLinkError.innerHTML = "※ 홈페이지 주소를 입력해주세요.";
