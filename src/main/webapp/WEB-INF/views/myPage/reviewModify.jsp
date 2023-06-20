@@ -49,6 +49,7 @@
 				<div class="button_area">
 					<div class="button_submit">
 					    <input type="hidden" name="rw_idx" value="${reviewDto.rw_idx }">
+					    <input type="hidden" name="rw_revNum" value="${reviewDto.rw_revNum }">
 		                <input type="hidden" name="rw_rating" id="rw_rating">
 						<input type="submit" class="btn" id="button_submit" value="등록">
 					</div>

@@ -315,9 +315,10 @@ public class MyPageController {
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
 		int rw_idx = Integer.parseInt(request.getParameter("rw_idx"));
+		int rw_revNum = Integer.parseInt(request.getParameter("rw_revNum"));
 		
 		dao.reviewDeleteDao(rw_idx);
-		dao.reviewWrittenDao(0, rw_idx);
+		dao.reviewWrittenDao(0, rw_revNum);
 
 		return "redirect:myPageReview";
 	}

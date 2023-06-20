@@ -75,7 +75,7 @@
 	<!-- 글 삭제시 경고창 -->
 	function removeCheck() {
 		if (confirm("삭제하시겠습니까?") == true){
-			location.href='reviewDelete?rw_idx=${reviewDto.rw_idx}'
+			location.href='reviewDelete?rw_idx=${reviewDto.rw_idx}&rw_revNum=${reviewDto.rw_revNum}'
 	 	} else {return false;}
 	}
 	
