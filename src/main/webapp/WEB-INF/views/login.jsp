@@ -26,7 +26,7 @@
                                 <td class="contentbox">
                                     <center>
                                         <table border="0" cellspacing="0" cellpadding="10">
-                                            <img id="logo" src="/resources/img/festicket_logo.png" width="30%">
+                                            <img id="logo" src="/resources/img/festicket_logo.png" width="35%">
                                             <form action="loginOk" method="post">
                                                 <input type="text" name="userId" class="login_box" placeholder="아이디" id="userId" autocomplete="off" onfocus="this.placeholder = ''">
                                                 <input type="password" name="userPassword" class="login_box" placeholder="・・・・・・" id="userPassword" autocomplete="off" onfocus="this.placeholder = ''">
