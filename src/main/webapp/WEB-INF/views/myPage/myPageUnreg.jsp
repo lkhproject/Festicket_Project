@@ -139,6 +139,8 @@
 					</table>
 				</center>
 			</div>
+		</div>
+			
 	<!-- 푸터 -->
 	<%@ include file="../include/footer.jsp" %>
 	
