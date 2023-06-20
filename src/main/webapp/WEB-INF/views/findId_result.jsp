@@ -6,15 +6,26 @@
 <meta charset="UTF-8">
 <title>페스티켓</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/find.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/joinOk.css">
 </head>
 <body>
-	당신의 아이디는 <%=
-	request.getAttribute("findId").toString()
-			%> 입니다.
-<script>
-
-</script>
+	<!-- 헤더 시작 -->
+	<%@ include file="include/header.jsp" %>
+	<!-- 헤더 끝 -->
+	
+	<div class="container">
+		<div class="container_1">
+			<div class="joinOk_container">
+				<img src = "/resources/img/festicket_logo.png" id="logoImg"> 
+				<div class="confirm">회원님의 아이디는<br> <b>${findId }</b> 입니다.</div>
+				<input class="content_btn01" type="button" value="로그인 바로가기" onclick="script:window.location.href='login'">
+			</div>
+		</div>
+	</div>
+	
+	<!-- 푸터 시작 -->
+	<%@ include file="include/footer.jsp" %>
+	<!-- 푸터 끝 -->
 
 </body>
 </html>
