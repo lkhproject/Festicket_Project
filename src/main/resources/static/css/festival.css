@@ -8,8 +8,9 @@ div {
 
 h2.title {
 	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 22px;
-	font-weight: 900;
+	font-size: 35px;
+	font-weight: bold;
+	color: #404040;
 }
 
 div.container_1 {
@@ -17,8 +18,8 @@ div.container_1 {
 }
 
 div.continer_select {
-	margin: 0px 170px;
-	padding-bottom: 65px;
+	margin: 50px 170px;
+	padding-bottom: 45px;
 }
 
 div.totalNum {
@@ -28,12 +29,12 @@ div.totalNum {
 
 div.selector {
 	float: right;
-	padding-top: 25px;
+	padding-top: 40px;
 }
 
 div.selectorBtn {
 	float: right;
-	padding-top: 17px;
+	padding-top: 32px;
 }
 
 #orderBtn {
@@ -117,8 +118,31 @@ img.listImg {
 	padding-top: 10px;
 	font-size: 18px;
 	font-weight: bold;
-	
 }
 
+.page-link {
+	color: #000; 
+	background-color: #fff;
+	border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+	z-index: 1;
+	color: #555;
+	font-weight:bold;
+	background-color: #f1f1f1;
+	border-color: #ccc;
+}
+
+.page-link:focus, .page-link:hover {
+	color: #000;
+	background-color: #fafafa; 
+	border-color: #ccc;
+}
+
+.form-select:focus, .page-link:focus {
+	box-shadow: none;
+	border-color: #ced4da;
+}
 
 

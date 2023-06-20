@@ -14,6 +14,7 @@ thead {
     vertical-align: middle;
     border-color: inherit;
     font-family: 'Noto Sans KR', sans-serif;
+    background-color: #eeeeee
 }
 
 tbody {
@@ -296,18 +297,55 @@ a.ng-binding{
 	font-weight:500;
 }
 
-input[type="button"] {
+.button-write {
 	font-size: 14px;
-	font-weight: bold;
 	background: #6800b8;
 	color: white;
 	padding: 3px 18px;
 	border-radius : 0.8em;
 }
 
-input[type="button"]:hover {
-	background: #5c00a2;
+.button-write:hover {
+	background: #6800b8;
+	color: white;
+}
+
+.button-confirm {
+	font-size: 14px;
+	background: #777;
+	color: white;
+	padding: 3px 18px;
+	border-radius : 0.8em;
+}
+
+.button-confirm:hover {
+	background: #777;
 	color: white;
 }
 
 /* 가운데 box css 끝*/
+
+.page-link {
+	color: #000; 
+	background-color: #fff;
+	border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+	z-index: 1;
+	color: #555;
+	font-weight:bold;
+	background-color: #f1f1f1;
+	border-color: #ccc;
+}
+
+.page-link:focus, .page-link:hover {
+	color: #000;
+	background-color: #fafafa; 
+	border-color: #ccc;
+}
+
+.form-select:focus, .page-link:focus {
+	box-shadow: none;
+	border-color: #ced4da;
+}

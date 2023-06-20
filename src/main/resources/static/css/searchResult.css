@@ -9,6 +9,7 @@ div {
 h2.title {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 20px;
+	margin-top: 25px;
 }
 
 div.container_1 {
@@ -16,8 +17,8 @@ div.container_1 {
 }
 
 div.continer_select {
-	margin: 0px 170px;
-	padding-bottom: 65px;
+	margin: 30px 170px;
+	padding-bottom: 50px;
 }
 
 div.totalNum {
@@ -117,8 +118,34 @@ p {
 }
 
 #noResult {
-	padding-top: 10px;
-	font-size: 18px;
+	padding-top: 250px;
+	font-size: 20px;
 	font-weight: bold;
-	
+	text-align: center;
+	height:500px;
+}
+
+.page-link {
+	color: #000; 
+	background-color: #fff;
+	border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+	z-index: 1;
+	color: #555;
+	font-weight:bold;
+	background-color: #f1f1f1;
+	border-color: #ccc;
+}
+
+.page-link:focus, .page-link:hover {
+	color: #000;
+	background-color: #fafafa; 
+	border-color: #ccc;
+}
+
+.form-select:focus, .page-link:focus {
+	box-shadow: none;
+	border-color: #ced4da;
 }

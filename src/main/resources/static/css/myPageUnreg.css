@@ -153,13 +153,13 @@ span.help_submenu_tit{
 
 /* 가운데 box css 시작*/
 
-td.contentbox {
+div.contentbox {
 	float: center;
-    width: 1000px;
+    width: 1120px;
     padding: 38px 59px 100px 60px;
     box-sizing: border-box;
     background-color: #ffffff ;
-	height : 450px;
+	height : 495px;
 	text-align: center;
 }
 
@@ -193,6 +193,20 @@ input.content_btn01{
 	font-size:20px;
 	color:#ffffff;
 	background: #6800b8;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+input.content_btn02{
+	width:200px;
+	height:50px;  
+	padding:0 20px;
+	margin: 1px;
+	border:1px solid #808080;
+	border-radius:10px;
+	outline: none;
+	font-size:20px;
+	color:#ffffff;
+	background: #808080;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 

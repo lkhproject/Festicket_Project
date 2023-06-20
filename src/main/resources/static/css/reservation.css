@@ -13,8 +13,7 @@ div.container {
 	font-size: 15px;
 }
 
-h2.rvTitle {
-	font-family: 'Noto Sans KR', sans-serif;
+h2.title {
 	font-size: 35px;
 	font-weight: bold;
 	padding-top: 60px;
@@ -75,6 +74,8 @@ h5.card-title {
 
 #reservation_page {
 	width: 95%;
+	height:auto;
+	overflow:hidden;
 	padding-left: 50px;
 	padding-right: 50px;
 	padding-bottom: 50px;
