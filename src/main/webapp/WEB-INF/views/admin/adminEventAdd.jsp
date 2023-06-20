@@ -40,11 +40,11 @@
 	<div class="container_1" >
 	<div class="container_2" >
 		<h2 class="adminTitle">관리자 페이지</h2>
-			<form action="adminEventAddOk" method="post" id="detail_frm" name="detail_frm">
+			<form action="adminEventAddOk" method="post" id="detail_frm" name="detail_frm" enctype="multipart/form-data">
 		<!-- 행사 디테일 폼 입력 -->
 				<div id="event_type_error" class="error"></div>
 				<div class="input-group mb-3">
-				  <label class="input-group-text" id="basic-addon1" for="inputGroupSelect01">행사분류*</label>
+				  <label class="input-group-text" for="inputGroupSelect01">행사분류*</label>
 				  <select class="form-select" id="inputGroupSelect01" name="inputGroupSelect01">
 				    <option selected>Choose...</option>
 				    <option value="페스티벌">페스티벌</option>
@@ -78,7 +78,7 @@
 				<div id="gunName_error" class="error"></div>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">자치구*</span>
-	  				<textarea class="form-control" name="gunName" aria-label="With textarea"></textarea>
+	  				<input type="text" name="gunName" id="gunName" class="form-control" aria-describedby="basic-addon1">
 				</div>
 					
 				<div id="place_error" class="error"></div>
@@ -122,7 +122,7 @@
 				<div id="main_img_error" class="error"></div>
 				<div class="input-group mb-3">
 				  <span class="input-group-text" id="basic-addon1">대표 이미지*</span>
-				  <input type="file" class="form-control" name="main_img" aria-describedby="button-addon2">
+				  <input type="file" accept=".gif, .jpg, .png .bmp" class="form-control" name="main_img" aria-describedby="button-addon2">
 				</div>
 				
 				<div class="form-floating">

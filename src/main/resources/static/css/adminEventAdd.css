@@ -59,38 +59,28 @@ h2.adminTitle {
 }
 
 input[type="submit"] {
-	font-weight: bold;
 	background: #6800b8;
 	color: white;
-	padding: 5px 40px;
+	padding: 6px 40px;
 	border-radius : 0.8em;
+	border: none;
+	font-size: 16px;
 }
-
-input[type="submit"]:hover {
-	background: #5c00a2;
-	color: white;
-}
-
 
 input[type="button"] {
-	font-weight: bold;
-	background: #818181;
+	background: gray;
 	color: white;
-	padding: 5px 40px;
+	padding: 6px 40px;
 	border-radius : 0.8em;
-	margin-top: 10px;
-}
-
-input[type="button"]:hover {
-	background: #616161;
-	color: white;
+	border: none;
+	font-size: 16px;
+	margin: 10px 0px 0px 3px;
 }
 
 #detail_form {
 	margin: 50px 0px 10px;
 }
 
-#basic-addon1 {
-	width: 125px;
-	font-weight: 700;
+#mainImgValue {
+	margin: 3px 0px 10px 10px;
 }
