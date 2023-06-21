@@ -80,7 +80,7 @@
 				        <!-- 작성자와 세션 아이디 비교하여 수정, 삭제 버튼 보이기 -->
 				        <c:if test="${csBoardDto.c_userId eq sessionId}">
 				            <div class="button_modify">
-				                <form action="csBoardModify" method="get">
+				                <form action="csBoardModify" method="post">
 				                    <input type="hidden" name="c_idx" value="${csBoardDto.c_idx}">
 				                    <input type="submit" class="btn" id="buttons" value="수정">
 				                </form>

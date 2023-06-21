@@ -78,7 +78,7 @@
 			<div class="container" style="padding-top: 10px">
 			<div class="button_area">
 				<div class="button_modify">
-					  <form action="qaBoardModify" method="get">
+					  <form action="qaBoardModify" method="post">
 					    <input type="hidden" name="selectedQA" value="${qaDto.q_idx}">
 					    <input type="submit" class="btn" id="buttons" value="수정">
 					  </form>

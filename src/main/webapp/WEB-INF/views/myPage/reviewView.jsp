@@ -51,7 +51,7 @@
 			    	<!-- 작성자와 세션 아이디 비교하여 수정, 삭제 버튼 보이기 -->
 			    	<c:if test="${reviewDto.rw_userId eq sessionId}">
 		            	<div class="button_modify">
-			                <form action="reviewModify" method="get">
+			                <form action="reviewModify" method="post">
 			                    <input type="hidden" name="rw_idx" value="${reviewDto.rw_idx}">
 			                    <input type="submit" class="btn" id="buttons" value="수정">
 			                </form>
