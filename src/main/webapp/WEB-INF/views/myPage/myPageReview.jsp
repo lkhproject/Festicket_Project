@@ -131,7 +131,7 @@
 										  <c:if test="${ticketDate.before(currentDate)}">
 											<tr>
 												<td id="revDetails">
-													<div style="cursor:pointer;" onclick="script:window.location.href='detailedRev?selectedRev=${revList.re_idx}'">
+													<div style="cursor:pointer;" onclick="script:window.location.href='rvView?selectedEvent=${revList.re_eventNum}'">
 														<c:choose>
 										                  <c:when test="${fn:length(revList.title) gt 30}">
 										                    ${fn:substring(revList.title, 0, 29)}...
