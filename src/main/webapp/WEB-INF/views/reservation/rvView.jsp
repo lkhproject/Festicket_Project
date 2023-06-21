@@ -61,45 +61,45 @@
 					</div>
 				<div class="cal">
 					<script type="text/javascript"> 
-	                    $(function(){ 
-	                    	var dateRange = "${event.eventDate}".split("~");
-	                    	var start_date = dateRange[0]; // "2023-06-28"
-	                    	var end_date = dateRange[1]; // "2023-07-09"
-	                    	
-	                    	var year_start = parseInt(start_date.substring(0, 4), 10);
-	                        var month_start = parseInt(start_date.substring(5, 7), 10) - 1;
-	                        var day_start = parseInt(start_date.substring(8, 10), 10); 
-	                    	var minDate = new Date(year_start, month_start, day_start);
-	                    	
-	                    	var year_end = parseInt(end_date.substring(0, 4), 10);
-	                    	var month_end = parseInt(end_date.substring(5, 7), 10) - 1;
-	                    	var day_end = parseInt(end_date.substring(8, 10), 10);
-	                    	var maxDate = new Date(year_end, month_end, day_end);
-	                        
-	                    	$("#datepicker").datepicker({ 
-	                            changeMonth: true, 
-	                            changeYear: true, 
-	                            nextText: '다음 달',
-	                            prevText: '이전 달', 
-	                            dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-	                            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-	                            monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	                            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	                            dateFormat: "yy-mm-dd",
-	                            showButtonPanel: true, 
-	                            yearRange: "c-99:c+99", 
-	                            minDate: minDate,
-	                            maxDate: maxDate,
-	                            autoclose: false,
-	                            defaultDate: minDate,
-	                            onSelect: function(dateText, inst) {
-	                                var date = $.datepicker.formatDate("yy-mm-dd", $("#datepicker").datepicker("getDate"));
-	                                alert(date);
-	                                $("#selectedDate").val(date);
-	                              }
-	                        }); 
-	                    }); 
-	                </script> 
+                       $(function(){ 
+                          var dateRange = "${event.eventDate}".split("~");
+                          var start_date = dateRange[0]; // "2023-06-28"
+                          var end_date = dateRange[1]; // "2023-07-09"
+                          
+                          var year_start = parseInt(start_date.substring(0, 4), 10);
+                           var month_start = parseInt(start_date.substring(5, 7), 10) - 1;
+                           var day_start = parseInt(start_date.substring(8, 10), 10); 
+                          var minDate = new Date(year_start, month_start, day_start);
+                          
+                          var year_end = parseInt(end_date.substring(0, 4), 10);
+                          var month_end = parseInt(end_date.substring(5, 7), 10) - 1;
+                          var day_end = parseInt(end_date.substring(8, 10), 10);
+                          var maxDate = new Date(year_end, month_end, day_end);
+                           
+                          $("#datepicker").datepicker({ 
+                               changeMonth: true, 
+                               changeYear: true, 
+                               nextText: '다음 달',
+                               prevText: '이전 달', 
+                               dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                               dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                               monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                               monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                               dateFormat: "yy-mm-dd",
+                               showButtonPanel: true, 
+                               yearRange: "c-99:c+99", 
+                               minDate: new Date(),
+                               maxDate: maxDate,
+                               autoclose: false,
+                               defaultDate: new Date(),
+                               onSelect: function(dateText, inst) {
+                                   var date = $.datepicker.formatDate("yy-mm-dd", $("#datepicker").datepicker("getDate"));
+                                   alert(date);
+                                   $("#selectedDate").val(date);
+                                 }
+                           }); 
+                       }); 
+                   </script> 
 	                <div style="width:110px;" id="datepicker"></div>
 				</div>
 				<div>티켓매수(최대 5매 선택가능)</div>
@@ -153,10 +153,10 @@
             <tr class="reviewRow" id="reviewRow" style="display: none;">
               <td id="tb_num1">${review.rw_rating}/5</td>
               <th id="tb_num2">
-	              <div>
+	              <div style="cursor:pointer;" onclick="script:window.location.href='reviewView?rw_idx=${review.rw_idx}'">
 	                <c:choose>
-	                  <c:when test="${fn:length(review.rw_content) gt 22}">
-	                    ${fn:substring(review.rw_content, 0, 21)}...
+	                  <c:when test="${fn:length(review.rw_content) gt 18}">
+	                    ${fn:substring(review.rw_content, 0, 17)}...
 	                  </c:when>
 	                  <c:otherwise>
 	                    ${review.rw_content}

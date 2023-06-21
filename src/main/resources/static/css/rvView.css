@@ -100,12 +100,12 @@ input[type="submit"]:hover, #adminBtn:hover {
 
 #tb_num1 {
 	padding-left: 15px;
-	width: 10%;
+	width: 15%;
 }
 
 #tb_num2 {
 	text-align: left;
-	width: 40%;
+	width: 35%;
 }
 
 #tb_num3 {
