@@ -19,7 +19,7 @@
 	<div class="container">
 		<div class="container_1">
 		<div id="csBoard_page_form">
-		<h2 class="csBoardTitle">문의하기</h2>
+		<h2 class="csBoardTitle">Q&A</h2>
 			<form action="qaBoardWriteOk" name="qaform">
 				<div class="input-group mt-3">
 					<span class="input-group-text" id="basic-addon1">제목</span>

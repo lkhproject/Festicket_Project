@@ -23,7 +23,7 @@
     <div class="container">
         <div class="container_1">
             <div id="csBoard_page_form">
-                <h2 class="csBoardTitle">QA 게시판</h2>
+                <h2 class="csBoardTitle">Q&A</h2>
                 <h5 style="float: right;">${event.title }</h5>
                 <table class="table table-hover" id="csListTable">
                     <thead>

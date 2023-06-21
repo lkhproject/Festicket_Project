@@ -237,7 +237,7 @@
 		</c:choose>
 	  </tbody>
 	</table>
-	<input type="button" value="QA 목록" id="moreQAbtn" onclick="script:window.location.href='qaBoardList?eventNum=${event.eventNum}'">
+	<input type="button" value="Q&A 목록" id="moreQAbtn" onclick="script:window.location.href='qaBoardList?eventNum=${event.eventNum}'">
 	<c:if test="${sessionId != null && sessionId ne 'admin'}">
 		<input type="button" value="문의하기" id="inquiry" onclick="script:window.location.href='qaBoardWrite?eventNum=${event.eventNum}'">
 	</c:if>
