@@ -43,7 +43,7 @@
 				<div class="button_area">
 					<div class="button_submit">
 						<input type="hidden" name="eventNum" value="${eventNum}">
-						<input type="submit" class="btn" id="button_submit" value="등록" onclick="validateCheck()">
+						<input type="submit" class="btn" id="button_submit" value="등록" onclick="return validateCheck()">
 					</div>
 					<div class="button_cancel">
 						<input type="button" class="btn" id="button_cancel" onclick="window.history.back();" value="취소">
@@ -65,7 +65,7 @@
 	<!-- 글쓰기 폼 유효성 검사 -->
 	function validateCheck() {
 	  var title = document.getElementById("q_title").value;
-	  var content = document.getElementById("q_title").value;
+	  var content = document.getElementById("q_content").value;
 
 	  var titleError = document.getElementById("title_error");
 	  var contentError = document.getElementById("content_error");

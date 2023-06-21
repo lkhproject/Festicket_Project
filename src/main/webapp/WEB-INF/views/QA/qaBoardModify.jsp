@@ -25,23 +25,25 @@
                 <form action="qaBoardModifyOk" method="post" id="detail_form">
                		<input type="hidden" name="selectedQA" value="${qaDto.q_idx }">
                     <input type="hidden" name="q_userId" value="${qaDto.q_userId }">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">제목</span> <input type="text" class="form-control" aria-describedby="basic-addon1" value="${qaDto.q_title }" name="q_title">
+                    <div class="input-group mt-3">
+                        <span class="input-group-text" id="basic-addon1">제목</span> <input type="text" class="form-control" aria-describedby="basic-addon1" value="${qaDto.q_title }" name="q_title" id="q_title">
                     </div>
+                    <div id="title_error" class="error"></div>
 
-                    <div class="input-group mb-3">
+                    <div class="input-group mt-3">
                         <span class="input-group-text" id="basic-addon1">작성자</span> <input type="text" class="form-control" aria-describedby="basic-addon1" value="${qaDto.q_userId }" name="q_userId" readonly="readonly">
                     </div>
 
-                    <div class="input-group">
-                        <textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" name="q_content">${qaDto.q_content }</textarea>
+                    <div class="input-group mt-3">
+                        <textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" name="q_content" id="q_content">${qaDto.q_content }</textarea>
                     </div>
+                    <div id="content_error" class="error"></div>
 
                     <!-- 수정, 취소 버튼 -->
                     <div class="container" style="padding-top: 10px">
                         <div class="button_area">
                             <div class="button_submit">
-                                <input type="submit" class="btn" id="button_submit" value="수정">
+                                <input type="submit" class="btn" id="button_submit" value="수정" onclick="return validateCheck()">
                             </div>
                             <div class="button_cancel">
                                 <input type="button" class="btn" id="button_cancel" onclick="script:window.location.href='qaBoardList'" value="취소">
@@ -58,6 +60,35 @@
     <!-- 푸터 -->
     <%@ include file="../include/footer.jsp"%>
     <!-- 푸터 끝 -->
+    
+	<script>
+	<!-- 글쓰기 폼 유효성 검사 -->
+	function validateCheck() {
+	  var title = document.getElementById("q_title").value;
+	  var content = document.getElementById("q_content").value;
+
+	  var titleError = document.getElementById("title_error");
+	  var contentError = document.getElementById("content_error");
+
+	  titleError.innerHTML = "";
+	  contentError.innerHTML = "";
+
+	  if (title.trim().length === 0) {
+	    titleError.innerHTML = "※ 제목을 입력해주세요.";
+	    return false;
+	  } else if (title.trim().length > 50) {
+	    titleError.innerHTML = "※ 제목은 50글자 이하여야 합니다.";
+	    return false;
+	  }
+
+	  if (content.trim().length < 10) {
+	    contentError.innerHTML = "※ 내용은 10글자 이상이어야 합니다.";
+	    return false;
+	  }
+
+	  document.qaform.submit();
+	}
+	</script>
 </body>
 
 </html>
