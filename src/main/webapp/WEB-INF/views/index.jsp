@@ -29,13 +29,19 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/resources/img/rolling_banner_01.jpg" class="d-block w-100">
+            	<a href="rvView?selectedEvent=891">
+                	<img src="/resources/img/rolling_banner_01.jpg" class="d-block w-100">
+                </a>
             </div>
             <div class="carousel-item">
-                <img src="/resources/img/rolling_banner_02.jpg" class="d-block w-100">
+            	<a href="rvView?selectedEvent=898">
+                	<img src="/resources/img/rolling_banner_02.jpg" class="d-block w-100">
+                </a>
             </div>
             <div class="carousel-item">
-                <img src="/resources/img/rolling_banner_03.jpg" class="d-block w-100">
+            	<a href="rvView?selectedEvent=706">
+                	<img src="/resources/img/rolling_banner_03.jpg" class="d-block w-100">
+                </a>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
