@@ -35,6 +35,7 @@
 					<input type="radio" name="reviewStar" value="1" id="rate5">
 						<label for="rate5">★</label>
 				</fieldset>
+				<div id="rating_error" class="error"></div>
 			</form>
 			<!-- 별점 기능 끝 -->
 			
@@ -43,6 +44,7 @@
 				<div class="input-group mt-3">
 	  				<textarea class="form-control" placeholder="최소 10자 이상 입력해주세요." aria-label="With textarea" name="rw_content" id="rw_content">${reviewDto.rw_content }</textarea>
 				</div>
+				<div id="content_error" class="error"></div>
 				
 				<!-- 등록, 취소 버튼 -->
 				<div class="container" style="padding-top: 10px">
@@ -70,49 +72,70 @@
 	<!-- 푸터 끝 -->
 	
 	<script>
-	<!-- 별점에 rw_rating 값 적용 -->
-	var rwRating = "${reviewDto.rw_rating}";
-	var rateButtons = document.getElementsByName("reviewStar");
+    // 별점에 rw_rating 값 적용
+    var rwRating = "${reviewDto.rw_rating}";
+    var rateButtons = document.getElementsByName("reviewStar");
 
-	// 기존 값을 선택
-	for (var i = 0; i < rateButtons.length; i++) {
-	    if (rateButtons[i].value == rwRating) {
-	        rateButtons[i].checked = true;
-	        break;
-	    }
-	}
+    // 기존 값을 선택
+    for (var i = 0; i < rateButtons.length; i++) {
+        if (rateButtons[i].value == rwRating) {
+            rateButtons[i].checked = true;
+            break;
+        }
+    }
 
-	// 별점 클릭 시 선택된 값을 저장
-	for (var i = 0; i < rateButtons.length; i++) {
-	    rateButtons[i].addEventListener("click", function() {
-	        if (this.checked) {
-	            rwRating = this.value;
-	        }
-	    });
-	}
+    // 별점 클릭 시 선택된 값을 저장
+    for (var i = 0; i < rateButtons.length; i++) {
+        rateButtons[i].addEventListener("click", function() {
+            if (this.checked) {
+                rwRating = this.value;
+                document.getElementById("rating_error").innerHTML = ""; // 선택 시 에러 메시지 초기화
+            }
+        });
+    }
 
-	// 폼 제출 시 선택된 별점 값 전달
-	document.getElementById("detail_form").addEventListener("submit", function() {
-	    document.getElementById("rw_rating").value = rwRating;
-	});
-	
-	<!-- 글쓰기 폼 유효성 검사 -->
-	function validateCheck() {
-	  var content = document.getElementById("rw_content").value;
+    // 폼 제출 시 선택된 별점 값 전달
+    document.getElementById("detail_form").addEventListener("submit", function() {
+        document.getElementById("rw_rating").value = rwRating;
+        if (rwRating === "") {
+            alert("별점을 선택해주세요.");
+            return false; // 폼 제출 취소
+        }
+    });
 
-	  var contentError = document.getElementById("content_error");
+    // 글쓰기 폼 유효성 검사
+    function validateCheck() {
+        var content = document.getElementById("rw_content").value;
 
-	  contentError.innerHTML = "";
+        var contentError = document.getElementById("content_error");
 
-	  var isValid = true;
+        contentError.innerHTML = "";
 
-	  if (content.trim().length < 10) {
-	    contentError.innerHTML = "※ 내용은 10글자 이상이어야 합니다.";
-	    isValid = false;
-	  }
+        var isValid = true;
 
-	  return isValid;
-	}
+        if (content.trim().length < 10) {
+            contentError.innerHTML = "※ 내용은 10글자 이상이어야 합니다.";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    // 페이지 로드 시 별점 선택 여부 확인
+    window.addEventListener("load", function() {
+        var isChecked = false;
+
+        for (var i = 0; i < rateButtons.length; i++) {
+            if (rateButtons[i].checked) {
+                isChecked = true;
+                break;
+            }
+        }
+
+        if (!isChecked && rwRating === "") {
+            alert("별점을 선택해주세요.");
+        }
+    });
 	</script>
 	
 </body>
