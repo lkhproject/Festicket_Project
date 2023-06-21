@@ -20,7 +20,7 @@
 	<div class="container">
 		<div class="container_1">
 		<div id="rvWrite_page_form">
-		<h2 class="rvWriteTitle">작성 후기</h2>
+		<h2 class="rvWriteTitle">후기 내용</h2>
 			<!-- 별점 기능 -->
 		 	<form class="mb-1" name="myform" id="myform" method="post">
 				<fieldset>
