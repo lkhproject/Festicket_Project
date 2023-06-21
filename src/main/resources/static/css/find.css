@@ -1,9 +1,16 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@300&display=swap');
+
 body {
 	margin: 0;
 	padding: 0;
 	background: #eeeeee;
+}
+
+div.container {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px;
+	height: auto;
 }
 
 a:hover {
@@ -13,7 +20,7 @@ a:hover {
 }
 
 input.login_box {
-	width:500px;
+	width:400px;
 	height:65px;  
 	padding:0 20px;
 	margin: 10px;
@@ -22,12 +29,12 @@ input.login_box {
 	outline: none;
 	font-size:15px;
 	color:#999;
-	display: flex;	
+	display: flex;
 }	
 
 input.IDPWbutton {
-    width:245px;
-	height:65px;  
+    width:195px;
+	height:55px;  
 	padding:0 20px;
 	margin: 1px;
 	border:1px solid #6800b8;
@@ -37,12 +44,11 @@ input.IDPWbutton {
 	color:#ffffff;
 	background: #6800b8;
 	font-family: 'Noto Sans KR', sans-serif;
-	
     }
     
 input.IDPWbutton01 {
-    width:245px;
-	height:65px;  
+    width:195px;
+	height:55px;  
 	padding:0 20px;
 	margin: 1px;
 	border:1px solid #999;;
@@ -69,4 +75,14 @@ div.joinpage {
 	margin: 1px;
 	padding: 10px;
 	display: inline-block;
+}
+
+div.joinpage_cover {
+	width: 400px;
+	display: flex;
+    justify-content: space-between;
+}
+
+#logo {
+	margin-bottom: 20px;
 }

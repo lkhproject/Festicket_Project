@@ -9,34 +9,36 @@
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
-<br><Br>
+<br><br><br>
 <center>
-  <table border="0" cellspacing="0" cellpadding="20" width="75%">		
+  <table border="0" cellspacing="0" cellpadding="20" width="70%">		
     <tr>
       <td>
         <center>
-          <table border="0" cellspacing="0" cellpadding="10" width="60%">
+          <table border="0" cellspacing="0" cellpadding="10" width="70%">
             <tr>
               <td class="contentbox">
                 <center>
                   <table border="0" cellspacing="0" cellpadding="10">
-                    <img src="/resources/img/festicket_logo.png" width="25%">
+                    <img id="logo" src="/resources/img/festicket_logo.png" width="30%">
                    <form action="findPw_result" method="post" name="findPw_result_frm" onsubmit="return validateForm()">
                    <tr>
-						<input class="login_box" type="text" name="userId" placeholder="아이디" >
+						<input class="login_box" type="text" name="userId" placeholder="아이디" onfocus="this.placeholder = ''">
 					</tr>
 					<tr>
-						<input class="login_box" type="text" name="email" placeholder="이메일">
+						<input class="login_box" type="text" name="email" placeholder="이메일" onfocus="this.placeholder = ''">
 					</tr>
 					<tr>
-						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호" >
+						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호" onfocus="this.placeholder = ''">
 					</tr>
                     <input class="IDPWbutton" type="submit" value="비밀번호 찾기"></input>
                     <input class="IDPWbutton01" type="button" value="취소" onclick="script:window.location.href='login'"></input>
              	    </form>
                     <br>
-                    <div class="joinpage"><a href="findId"><b>아이디 찾기</b></a></div>
-					<div class="joinpage"><a href="join"><b>회원가입</b></a></div>
+                    <div class="joinpage_cover">
+	                    <div class="joinpage"><a href="findId"><b>아이디 찾기</b></a></div>
+						<div class="joinpage"><a href="join"><b>회원가입</b></a></div>
+					</div>
                     </table>
                 </center>
               </td>

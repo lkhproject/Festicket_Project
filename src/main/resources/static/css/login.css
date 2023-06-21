@@ -8,7 +8,7 @@ body {
 }
 
 input.login_box {
-	width:500px;
+	width:400px;
 	height:65px;  
 	padding:0 20px;
 	margin: 10px;
@@ -21,7 +21,7 @@ input.login_box {
 }	
 
 input.login-button {
-    width:500px;
+    width:400px;
 	height:65px;  
 	padding:0 20px;
 	margin: 1px;
@@ -42,7 +42,7 @@ td.contentbox {
 }
 
 div.joinpage_cover {
-	width: 500px;
+	width: 400px;
 	display: flex;
     justify-content: space-between;
 }

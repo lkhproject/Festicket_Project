@@ -14,14 +14,14 @@
 
     <%@ include file="include/header.jsp" %>
     
-    <br><Br>
+    <br><br>
     <center>
     	<div class="container">
         <table border="0" cellspacing="0" cellpadding="20" width="75%">
             <tr>
                 <td>
                     <center>
-                        <table border="0" cellspacing="0" cellpadding="10" width="60%">
+                        <table border="0" cellspacing="0" cellpadding="10" width="70%">
                             <tr>
                                 <td class="contentbox">
                                     <center>

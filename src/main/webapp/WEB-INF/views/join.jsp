@@ -12,7 +12,7 @@
 	<%@ include file="include/header.jsp" %>
 	<center>
 		<div class="container">
-		<table border="0" cellspacing="0" cellpadding="20" width="40%">	
+		<table border="0" cellspacing="0" cellpadding="20" width="50%">	
 			<tr>
 				<br><br>
 				<td class="contentbox">
