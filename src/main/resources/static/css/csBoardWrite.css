@@ -107,18 +107,3 @@ div.error {
 textarea.form-control {
 	height: 300px;
 }
-
-.form-control:focus {
-	box-shadow: none;
-	border-color: #ced4da;
-}
-
-.star {
-  font-size: 24px;
-  color: gray;
-  cursor: pointer;
-}
-
-.star.selected {
-  color: gold;
-}
