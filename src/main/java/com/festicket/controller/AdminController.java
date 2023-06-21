@@ -57,11 +57,11 @@ public class AdminController {
 			criteria.setPageNum(pageNum);
 		}
 		
-		int totalCount = dao.totalEventCountDao();
+		int totalCount = dao.adminTotalEventCountDao();
 		
 		PageDto pageDto = new PageDto(criteria, totalCount);
 		
-		List<EventDto> eventListDtos = dao.eventListPagingDao(criteria.getCountList(), pageNum);
+		List<EventDto> eventListDtos = dao.adminEventListPagingDao(criteria.getCountList(), pageNum);
 		
 		request.setAttribute("adminCheck", adminCheck);
 		request.setAttribute("totalCount", totalCount);

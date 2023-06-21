@@ -66,8 +66,23 @@
 			SELECT * FROM event ORDER BY eventNum DESC
 		</select>
 		
+		<select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
+	       SELECT eventNum, gunName, title, eventDate
+	       FROM (
+	           SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
+	           FROM (
+	               SELECT eventNum, gunName, title, eventDate
+	               FROM event
+	               WHERE (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
+	               ORDER BY eventNum DESC
+	           ) A
+	       )
+	       WHERE PAGE=#{param2}
+	    </select>
+		
 		<select id="totalEventCountDao" resultType="int">
 			SELECT COUNT(*) FROM event
+			WHERE (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 		</select>
 		
 		<update id="ticketReservedDao">
@@ -112,8 +127,9 @@
 		        FROM (
 		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
 				 	FROM event
-				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
-				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	WHERE (UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%')
+				 	AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 		        ) A
 		    )
 		    WHERE PAGE=#{param3}
@@ -122,8 +138,9 @@
 		<select id="totalSearchResultCount" resultType="int">
 		    SELECT COUNT(*)
 		    FROM event
-		    WHERE UPPER(title) LIKE '%' || #{param1} || '%'
-		    OR UPPER(type) LIKE '%' || #{param1} || '%'
+		    WHERE (UPPER(title) LIKE '%' || #{param1} || '%'
+		    OR UPPER(type) LIKE '%' || #{param1} || '%')
+		    AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 		</select>
 		
 		<!-- 검색 정렬 -->
@@ -132,10 +149,11 @@
 		    FROM (
 		        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
 		        FROM (
-		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
+				 	SELECT eventNum, main_img, title, place, eventDate, eventPrice 
 				 	FROM event
-				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
-				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	WHERE (UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%')
+	                AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 				 	ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') ASC
 		        ) A
 		    )
@@ -149,8 +167,9 @@
 		        FROM (
 		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
 				 	FROM event
-				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
-				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	WHERE (UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%')
+	                AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 				 	ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') DESC
 		        ) A
 		    )
@@ -164,8 +183,9 @@
 		        FROM (
 		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
 				 	FROM event
-				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
-				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	WHERE (UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%')
+	                AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 				 	ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') ASC
 		        ) A
 		    )
@@ -179,8 +199,9 @@
 		        FROM (
 		            SELECT eventNum, main_img, title, place, eventDate, eventPrice 
 				 	FROM event
-				 	WHERE UPPER(title) LIKE '%' || #{param1} || '%'
-				 	OR UPPER(type) LIKE '%' || #{param1} || '%'
+				 	WHERE (UPPER(title) LIKE '%' || #{param1} || '%'
+				 	OR UPPER(type) LIKE '%' || #{param1} || '%')
+	                AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 				 	ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
 		        ) A
 		    )
@@ -196,6 +217,7 @@
 			    FROM event e
 			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
 			    WHERE e.type LIKE '%페스티벌%'
+			    AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 			)
 			WHERE rnk <![CDATA[<=]]> 5
@@ -210,6 +232,7 @@
 			    FROM event e
 			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
 			    WHERE e.type LIKE '%전시%'
+			    AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
 			)
 			WHERE rnk <![CDATA[<=]]> 5
@@ -481,6 +504,7 @@
 			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) DESC, e.ticketCount ASC) AS rnk
 			    FROM event e
 			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+			    WHERE (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			    GROUP BY e.eventNum, e.main_img, e.title, e.eventDate, e.ticketCount
 			)
 			WHERE rnk <![CDATA[<]]>= 5
@@ -502,7 +526,7 @@
 	
 
 	<!-- *** 관리자(admin) 관련 *** -->
-	    <select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
+	    <select id="adminEventListPagingDao" resultType="com.festicket.dto.EventDto">
 	       SELECT eventNum, gunName, title, eventDate
 	       FROM (
 	           SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
@@ -514,6 +538,10 @@
 	       )
 	       WHERE PAGE=#{param2}
 	    </select>
+	    
+	    <select id="adminTotalEventCountDao" resultType="int">
+			SELECT COUNT(*) FROM event
+		</select>
 	    
 	    <insert id="eventAddDao">
 	       INSERT INTO event(eventNum, type, gunName, title, eventDate, place, org_name, use_trgt, player, program, org_link, main_img,
@@ -712,6 +740,7 @@
 		            SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		            FROM event
 		            WHERE UPPER(type) LIKE '페스티벌%'
+		            AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 		            ORDER BY eventNum DESC
 		        ) A
 		    )
@@ -719,7 +748,9 @@
 		 </select>
 		 
 		 <select id="totalFestivalCountDao" resultType="int">
-			SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '페스티벌%'
+			SELECT COUNT(*) FROM event
+			WHERE UPPER(type) LIKE '페스티벌%'
+			AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 		</select>
 		
 		<!-- 페스티벌 정렬 시작 -->
@@ -731,6 +762,7 @@
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
 			        WHERE UPPER(type) LIKE '페스티벌%'
+			        AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') ASC
 			    ) A
 			)
@@ -745,6 +777,7 @@
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
 			        WHERE UPPER(type) LIKE '페스티벌%'
+			        AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') DESC
 			    ) A
 			)
@@ -759,6 +792,7 @@
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
 			        WHERE UPPER(type) LIKE '페스티벌%'
+			        AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') ASC
 			    ) A
 			)
@@ -773,6 +807,7 @@
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
 			        WHERE UPPER(type) LIKE '페스티벌%'
+			        AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
 			    ) A
 			)
@@ -789,6 +824,7 @@
 		            SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		            FROM event
 		            WHERE UPPER(type) LIKE '전시%'
+		            AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 		            ORDER BY eventNum DESC
 		        ) A
 		    )
@@ -796,7 +832,9 @@
 		 </select>
 		 
 		 <select id="totalExhibitionCountDao" resultType="int">
-			SELECT COUNT(*) FROM event WHERE UPPER(type) LIKE '전시%'
+			SELECT COUNT(*) FROM event
+			WHERE UPPER(type) LIKE '전시%'
+			AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 		</select>
 		
 		<!-- 전시 정렬 시작 -->
@@ -808,6 +846,7 @@
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
 			        WHERE UPPER(type) LIKE '전시%'
+			        AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') ASC
 			    ) A
 			)
@@ -822,6 +861,7 @@
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
 			        WHERE UPPER(type) LIKE '전시%'
+			        AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 1, 10), 'YYYY-MM-DD') DESC
 			    ) A
 			)
@@ -836,6 +876,7 @@
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
 			        WHERE UPPER(type) LIKE '전시%'
+			        AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') ASC
 			    ) A
 			)
@@ -850,6 +891,7 @@
 			        SELECT eventNum, main_img, title, place, eventDate, eventPrice
 			        FROM event
 			        WHERE UPPER(type) LIKE '전시%'
+			        AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
 			        ORDER BY TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD') DESC
 			    ) A
 			)
