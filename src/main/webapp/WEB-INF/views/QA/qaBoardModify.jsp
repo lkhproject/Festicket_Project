@@ -63,31 +63,34 @@
     
 	<script>
 	<!-- 글쓰기 폼 유효성 검사 -->
-	function validateCheck() {
-	  var title = document.getElementById("q_title").value;
-	  var content = document.getElementById("q_content").value;
+    function validateCheck() {
+        var title = document.getElementById("q_title").value;
+        var content = document.getElementById("q_content").value;
 
-	  var titleError = document.getElementById("title_error");
-	  var contentError = document.getElementById("content_error");
+        var titleError = document.getElementById("title_error");
+        var contentError = document.getElementById("content_error");
 
-	  titleError.innerHTML = "";
-	  contentError.innerHTML = "";
+        titleError.innerHTML = "";
+        contentError.innerHTML = "";
 
-	  if (title.trim().length === 0) {
-	    titleError.innerHTML = "※ 제목을 입력해주세요.";
-	    return false;
-	  } else if (title.trim().length > 50) {
-	    titleError.innerHTML = "※ 제목은 50글자 이하여야 합니다.";
-	    return false;
-	  }
+        var isValid = true;
 
-	  if (content.trim().length < 10) {
-	    contentError.innerHTML = "※ 내용은 10글자 이상이어야 합니다.";
-	    return false;
-	  }
+        if (title.trim().length === 0) {
+            titleError.innerHTML = "※ 제목을 입력해주세요.";
+            isValid = false;
+        } else if (title.trim().length > 50) {
+            titleError.innerHTML = "※ 제목은 50글자 이하여야 합니다.";
+            isValid = false;
+        }
 
-	  document.qaform.submit();
-	}
+        if (content.trim().length < 10) {
+            contentError.innerHTML = "※ 내용은 10글자 이상이어야 합니다.";
+            isValid = false;
+        }
+
+        // 모든 유효성 검사 결과를 확인하고 한꺼번에 반환
+        return isValid;
+    }
 	</script>
 </body>
 
