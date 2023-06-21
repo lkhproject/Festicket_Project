@@ -7,90 +7,81 @@
 <mapper namespace="com.festicket.dao.IDao">
 
 	<!-- *** 로그인 *** -->
-	<select id="checkIdPwDao" resultType="int">
-		SELECT COUNT(*) FROM eventMember WHERE userId=#{param1} AND userPassword=#{param2}
-	</select>
-	
-	<select id="getMemberInfo" resultType="com.festicket.dto.MemberDto">
-		SELECT * FROM eventMember WHERE userId=#{param1}
-	</select>
+		<!-- 아이디와 비밀번호의 일치여부 체크 -->
+		<select id="checkIdPwDao" resultType="int">
+			SELECT COUNT(*) FROM eventMember WHERE userId=#{param1} AND userPassword=#{param2}
+		</select>
+		
+		<!-- 아이디로 조회하여 회원 정보 모두 가져오기 -->
+		<select id="getMemberInfo" resultType="com.festicket.dto.MemberDto">
+			SELECT * FROM eventMember WHERE userId=#{param1}
+		</select>
 	<!-- *** 로그인 끝*** -->
 	
 	
 	<!-- *** 회원가입 *** -->
-	<insert id="joinDao">
-		INSERT INTO eventMember VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
-	</insert>
-	
-	<select id="checkIdDao" resultType="int">
-		SELECT COUNT(*) FROM eventMember WHERE userId = #{param1}
-	</select>
-	
-	<select id="checkEmailDao" resultType="int">
-		SELECT COUNT(*) FROM eventMember WHERE email = #{param1}
-	</select>
+		<!-- 가입하려는 아이디의 존재여부 체크 -->
+		<select id="checkIdDao" resultType="int">
+			SELECT COUNT(*) FROM eventMember WHERE userId = #{param1}
+		</select>
+		
+		<!-- 가입하려는 이메일의 존재여부 체크 -->
+		<select id="checkEmailDao" resultType="int">
+			SELECT COUNT(*) FROM eventMember WHERE email = #{param1}
+		</select>
+		
+		<!-- 회원가입 -->
+		<insert id="joinDao">
+			INSERT INTO eventMember VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6})
+		</insert>
 	<!-- *** 회원가입 끝 *** -->
 	
 	
 	<!-- *** 아이디/비밀번호 찾기 시작 *** -->
-	<select id="findId_result" resultType="String">
-		select USERID from eventMember where name=#{param1} and userPhone=#{param2}
-	</select>
-
-	<select id="findPw_result" resultType="String">
-		select USERPASSWORD from eventMember where userId=#{param1} and email=#{param2} and userPhone=#{param3}
-	</select>
+		<!-- 아이디 찾기 -->
+		<select id="findId_result" resultType="String">
+			select USERID from eventMember where name=#{param1} and userPhone=#{param2}
+		</select>
+		
+		<!-- 비밀번호 찾기 -->
+		<select id="findPw_result" resultType="String">
+			select USERPASSWORD from eventMember where userId=#{param1} and email=#{param2} and userPhone=#{param3}
+		</select>
 	<!-- *** 아이디/비밀번호 찾기 끝 *** -->
 	
 	
 	<!-- *** 회원정보 수정 *** -->
-	<update id="modifyMemberDao">
-    UPDATE eventMember 
-    	SET userPassword=#{param2}, userPhone=#{param3}, email=#{param4}, name=#{param5} 
-			WHERE userId=#{param1}
-	</update>
+		<update id="modifyMemberDao">
+	    UPDATE eventMember 
+	    	SET userPassword=#{param2}, userPhone=#{param3}, email=#{param4}, name=#{param5} 
+				WHERE userId=#{param1}
+		</update>
 	<!-- *** 회원정보 수정 끝 *** -->
 	
 	
 	<!-- *** 회원 탈퇴 *** -->		
-	<delete id="deleteMember">
-		DELETE FROM eventMember
-		WHERE userId = #{param1} 
-		AND userPassword = #{param2}
-	</delete>
+		<delete id="deleteMember">
+			DELETE FROM eventMember
+			WHERE userId = #{param1} 
+			AND userPassword = #{param2}
+		</delete>
 	<!-- *** 회원 탈퇴 끝 *** -->
 	
 	
 	<!-- *** 행사 관련 *** -->
-		<select id="eventListDao" resultType="com.festicket.dto.EventDto">
-			SELECT * FROM event ORDER BY eventNum DESC
+		<!-- 행사 하나만 가져오기 -->
+		<select id="getEventDao" resultType="com.festicket.dto.EventDto">
+			SELECT * FROM event WHERE eventNum=#{param1}
 		</select>
-		
-		<select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
-	       SELECT eventNum, gunName, title, eventDate
-	       FROM (
-	           SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
-	           FROM (
-	               SELECT eventNum, gunName, title, eventDate
-	               FROM event
-	               WHERE (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
-	               ORDER BY eventNum DESC
-	           ) A
-	       )
-	       WHERE PAGE=#{param2}
-	    </select>
-		
-		<select id="totalEventCountDao" resultType="int">
-			SELECT COUNT(*) FROM event
-			WHERE (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
-		</select>
-		
+
+		<!-- 예약 후 티켓 총 개수 감소 -->
 		<update id="ticketReservedDao">
 			UPDATE event
 			SET ticketCount = ticketCount - #{param2}
 			WHERE eventNum = #{param1}
 		</update>
 		
+		<!-- 행사 남은 티켓 수 -->
 		<select id="getTotalTicketDao" resultType="int">
 			SELECT ticketCount
 			FROM event
@@ -109,7 +100,7 @@
 			WHERE eventIdx=#{param1} AND eventLikerId=#{param2}
 		</delete>
 		
-		<!-- 행사 좋아요 int 값으로 있나확인 -->
+		<!-- 행사 좋아요 dto -->
 		<select id="getLikedEvent" resultType="int">
 			SELECT COUNT(*)
 			FROM eventLike
@@ -118,7 +109,7 @@
 	<!-- *** 행사 관련 끝 *** -->
 
 
-	<!-- *** 메인 페이지(index), 검색 기능 *** -->
+	<!-- *** 검색 관련 *** -->
 		<!-- 검색 결과 가져오기 -->
 		<select id="getSearchResult" resultType="com.festicket.dto.EventDto">
 		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
@@ -135,6 +126,7 @@
 		    WHERE PAGE=#{param3}
 		</select>
 		
+		<!-- 검색 결과 개수 -->
 		<select id="totalSearchResultCount" resultType="int">
 		    SELECT COUNT(*)
 		    FROM event
@@ -207,46 +199,16 @@
 		    )
 		    WHERE PAGE=#{param3}
 		</select>
-		
-		<!-- 페스티벌 탑5 리스트 / 예매율 = (예매된 티켓 수 / 전체 좌석 수) * 100-->
-		<select id="top5FestivalListDao" resultType="com.festicket.dto.EventDto">
-			SELECT eventNum, main_img, title, gunName, type
-			FROM (
-			    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type,
-			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) / NULLIF(e.ticketCount, 0) * 100 DESC) AS rnk
-			    FROM event e
-			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
-			    WHERE e.type LIKE '%페스티벌%'
-			    AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
-			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
-			)
-			WHERE rnk <![CDATA[<=]]> 5
-		</select>
-		
-		<!-- 전시 탑5 리스트 -->
-		<select id="top5ExhibitionListDao" resultType="com.festicket.dto.EventDto">
-			SELECT eventNum, main_img, title, gunName, type
-			FROM (
-			    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type,
-			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) / NULLIF(e.ticketCount, 0) * 100 DESC) AS rnk
-			    FROM event e
-			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
-			    WHERE e.type LIKE '%전시%'
-			    AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
-			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
-			)
-			WHERE rnk <![CDATA[<=]]> 5
-		</select>
-	<!-- *** 메인 페이지(index), 검색 기능 끝 *** -->
+	<!-- *** 검색 관련 끝 *** -->
 	
 
 	<!-- *** 예매 관련 *** -->
-		<!-- 예매 페이지 -->
+		<!-- 모든 행사 리스트 -->
 		<select id="eventAllListDao" resultType="com.festicket.dto.EventDto">
 			SELECT * FROM event ORDER BY eventNum DESC
 		</select>
 		
-		<!-- 마이페이지 -->
+		<!-- 예매한 행사 개수 가져오기 -->
 		<select id="getReservationCountDao" resultType="int">
 			SELECT COUNT(*)
 			FROM eventReservation
@@ -259,7 +221,7 @@
 			WHERE re_userId=#{param1} AND re_idx=#{param2}
 		</delete>
 		
-		<!-- 예매 티켓 매수 확인 -->
+		<!-- 예약번호로 티켓 예매 개수 가져오기 -->
 		<select id="getTicketCountByidx" resultType="int">
 			SELECT re_ticketCount
 			FROM eventReservation
@@ -276,97 +238,111 @@
 
 
 	<!-- *** QA *** -->
-	<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
-       SELECT *
-      FROM (
-        SELECT *
-        FROM event_QABoard er
-        LEFT OUTER JOIN event e ON er.q_eventNum = e.eventNum
-        WHERE er.q_eventNum = #{param1}
-        ORDER BY er.q_idx DESC
-      )
-      WHERE ROWNUM <![CDATA[<=]]> 6
-   	</select>
-	
-	<select id="getQAListPagingDao" resultType="com.festicket.dto.QABoardDto">
-		 SELECT *
-	    FROM (
-	        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
-	        FROM (
-	            SELECT *
-				  FROM event_QABoard er
-				  LEFT OUTER JOIN event e
-				    ON er.q_eventNum = e.eventNum
-				 WHERE er.q_eventNum=#{param1}
-				 ORDER BY er.q_idx DESC
-	        ) A
-	    )
-	    WHERE PAGE=#{param3}
-	</select>
-	
-	<select id="totalQAListCountDao" resultType="int">
-		SELECT COUNT(*)
-		  FROM event_QABoard
-		 WHERE q_eventNum=#{param1}
-	</select>
-	
-	<select id="getQaDao" resultType="com.festicket.dto.QABoardDto">
-		SELECT *
-		FROM event_QABoard
-		WHERE q_idx=#{param1}
-	</select>
-	
-	<update id="qaHitDao">
-		UPDATE event_QABoard SET q_hit=q_hit+1 WHERE q_idx=#{param1}
-	</update>
-	
-	<insert id="qaWriteDao">
-		INSERT INTO event_QAboard(q_idx, q_eventNum, q_userId, q_title, q_content, q_writeDate, q_hit)
-		VALUES (eqab_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, 0)
-	</insert>
-	
-	<update id="qaModifyDao">
-		UPDATE event_QAboard SET q_userId=#{param2}, q_title=#{param3}, q_content=#{param4} WHERE q_idx=#{param1}
-	</update>
-	
-	<delete id="qaDeleteDao">
-		DELETE FROM event_QAboard WHERE q_idx=#{param1}
-	</delete>
+		<!-- QA 글 리스트 가져오기 -->
+		<select id="getQAListDao" resultType="com.festicket.dto.QABoardDto">
+	       SELECT *
+	      FROM (
+	        SELECT *
+	        FROM event_QABoard er
+	        LEFT OUTER JOIN event e ON er.q_eventNum = e.eventNum
+	        WHERE er.q_eventNum = #{param1}
+	        ORDER BY er.q_idx DESC
+	      )
+	      WHERE ROWNUM <![CDATA[<=]]> 6
+	   	</select>
+		
+		<!-- QA 글 리스트 가져오기 + 페이징 -->
+		<select id="getQAListPagingDao" resultType="com.festicket.dto.QABoardDto">
+			 SELECT *
+		    FROM (
+		        SELECT A.*, FLOOR(((ROWNUM-1) / #{param2}) + 1) AS PAGE, ROWNUM AS RN
+		        FROM (
+		            SELECT *
+					  FROM event_QABoard er
+					  LEFT OUTER JOIN event e
+					    ON er.q_eventNum = e.eventNum
+					 WHERE er.q_eventNum=#{param1}
+					 ORDER BY er.q_idx DESC
+		        ) A
+		    )
+		    WHERE PAGE=#{param3}
+		</select>
+		
+		<!-- QA 글 하나 가져오기  -->
+		<select id="getQaDao" resultType="com.festicket.dto.QABoardDto">
+			SELECT *
+			FROM event_QABoard
+			WHERE q_idx=#{param1}
+		</select>
+		
+		<!-- QA 개수 가져오기 -->
+		<select id="totalQAListCountDao" resultType="int">
+			SELECT COUNT(*)
+			  FROM event_QABoard
+			 WHERE q_eventNum=#{param1}
+		</select>
+		
+		<!-- 조회수 증가 -->
+		<update id="qaHitDao">
+			UPDATE event_QABoard SET q_hit=q_hit+1 WHERE q_idx=#{param1}
+		</update>
+		
+		<!-- 문의하기 -->
+		<insert id="qaWriteDao">
+			INSERT INTO event_QAboard(q_idx, q_eventNum, q_userId, q_title, q_content, q_writeDate, q_hit)
+			VALUES (eqab_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, 0)
+		</insert>
+		
+		<!-- 게시글 수정 -->
+		<update id="qaModifyDao">
+			UPDATE event_QAboard SET q_userId=#{param2}, q_title=#{param3}, q_content=#{param4} WHERE q_idx=#{param1}
+		</update>
+		
+		<!-- 게시글 삭제 -->
+		<delete id="qaDeleteDao">
+			DELETE FROM event_QAboard WHERE q_idx=#{param1}
+		</delete>
 	<!-- *** QA 끝 *** -->
 	
 	
 	<!-- *** QA 답변 *** -->
-	<insert id="QAreplyWriteDao">
-		INSERT INTO 
-			event_QAanswer(qa_idx, qa_userId, qa_boardNum, qa_content)
-				VALUES
-					(eqaa_seq.nextval, #{param1}, #{param2}, #{param3})
-	</insert>
-	
-	<update id="QAreplyCountDao">
-		UPDATE event_QAboard SET q_replyCount=q_replyCount+1 WHERE q_idx=#{param1}
-	</update>
-	
-	<select id="QAreplyListDao" resultType="com.festicket.dto.QAanswerDto">
-		SELECT * FROM event_QAanswer WHERE qa_boardNum=#{param1} ORDER BY qa_idx ASC
-	</select>
-	
-	<delete id="QAreplyDeleteDao">
-		DELETE FROM event_QAanswer WHERE qa_idx=#{param1}
-	</delete>
-	
-	<update id="QAreplyCountMinusDao">
-		UPDATE event_QAboard SET q_replyCount=q_replyCount-1 WHERE q_idx=#{param1}
-	</update>
-	
-	<delete id="QAboardReplyDeleteDao">
-		DELETE FROM event_QAanswer WHERE qa_boardNum=#{param1}
-	</delete>
+		<!-- QA 댓글 입력  -->
+		<insert id="QAreplyWriteDao">
+			INSERT INTO 
+				event_QAanswer(qa_idx, qa_userId, qa_boardNum, qa_content)
+					VALUES
+						(eqaa_seq.nextval, #{param1}, #{param2}, #{param3})
+		</insert>
+		
+		<!-- QA 댓글이 달린 원글의 댓글 필드 값 +1 -->
+		<update id="QAreplyCountDao">
+			UPDATE event_QAboard SET q_replyCount=q_replyCount+1 WHERE q_idx=#{param1}
+		</update>
+		
+		<!-- 해당 원글에 달린 QA 댓글의 리스트 가져오기 -->
+		<select id="QAreplyListDao" resultType="com.festicket.dto.QAanswerDto">
+			SELECT * FROM event_QAanswer WHERE qa_boardNum=#{param1} ORDER BY qa_idx ASC
+		</select>
+		
+		<!-- QA 댓글 삭제 -->
+		<delete id="QAreplyDeleteDao">
+			DELETE FROM event_QAanswer WHERE qa_idx=#{param1}
+		</delete>
+		
+		<!-- QA 댓글이 달린 원글의 댓글 필드 값 -1 -->
+		<update id="QAreplyCountMinusDao">
+			UPDATE event_QAboard SET q_replyCount=q_replyCount-1 WHERE q_idx=#{param1}
+		</update>
+		
+		<!-- 삭제한 게시글 QA 댓글 모두 삭제 -->
+		<delete id="QAboardReplyDeleteDao">
+			DELETE FROM event_QAanswer WHERE qa_boardNum=#{param1}
+		</delete>
 	<!-- *** QA 답변 끝 *** -->
 	
 	
 	<!-- *** 리뷰 관련 *** -->
-		<!-- 리뷰 리스트 가져오기 -->
+		<!-- 리뷰 글 리스트 가져오기 -->
 		<select id="getReviewListDao" resultType="com.festicket.dto.ReviewDto">
 			SELECT *
 			  FROM eventReview er
@@ -441,7 +417,7 @@
 			WHERE PAGE = #{param3}
 		</select>
 		
-		<!-- 예약확인 -->
+		<!-- 예약번호로 예약 디테일 하나 가져오기 -->
 		<select id="getReservationDao" resultType="com.festicket.dto.ReserveDto">
 			SELECT e.main_img, e.title, e.gunName, e.place, er.*
 			FROM eventReservation er
@@ -449,6 +425,7 @@
 			WHERE er.re_idx = #{param1} AND er.re_userId = #{param2}
 		</select>
 		
+		<!-- 가장 최신 예약 하나 디테일 가져오기 -->
 		<select id="getReservationByRecentDao" resultType="com.festicket.dto.ReserveDto">
 			SELECT *
 			FROM (
@@ -461,7 +438,7 @@
 			WHERE ROWNUM <![CDATA[<]]>= 1
 		</select>
 		
-		<!-- 예약DB에 넣어주기 -->
+		<!-- 예약 디테일 DB에 넣어주기 -->
 		<insert id="reservationConfirmedDao">
 			INSERT INTO eventReservation
 				VALUES (erev_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7})
@@ -485,6 +462,7 @@
 			WHERE PAGE = #{param3}
 		</select>
 		
+		<!-- 오늘부터 15일 전까지의 행사예약일 기준 행사 리스트 개수	 -->
 		<select id="countRevList_days" resultType="int">
 			SELECT COUNT(*)
 		    FROM eventreservation
@@ -496,7 +474,18 @@
 	
 	
 	<!-- *** 랭킹 관련 *** -->
-		<!-- 예매 수가 같을 경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->
+		<!-- 모든 행사 리스트 + 페이징 -->
+		<select id="eventListDao" resultType="com.festicket.dto.EventDto">
+			SELECT * FROM event ORDER BY eventNum DESC
+		</select>
+		
+		<!-- 행사의 총 개수 -->
+		<select id="totalEventCountDao" resultType="int">
+			SELECT COUNT(*) FROM event
+			WHERE (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
+		</select>
+			
+		<!-- 행사 탑5 리스트 - 예매 수가 같을 경우 총 티켓의 수가 적은 순(수정필요)으로 정렬 -->
 		<select id="getTopFiveEventsDao" resultType="com.festicket.dto.EventDto">
 			SELECT eventNum, main_img, title, eventDate
 			FROM (
@@ -510,11 +499,7 @@
 			WHERE rnk <![CDATA[<]]>= 5
 		</select>
 		
-		<select id="getEventDao" resultType="com.festicket.dto.EventDto">
-			SELECT * FROM event WHERE eventNum=#{param1}
-		</select>
-		
-		<!-- 진행중인 이벤트 조회 -->
+		<!-- 진행중인 행사 리스트 -->
 		<select id="getOngoingEventDao" resultType="com.festicket.dto.EventDto">
 			SELECT eventNum, title, place, rgstDate, end_date, gunName
 			  FROM event
@@ -526,7 +511,8 @@
 	
 
 	<!-- *** 관리자(admin) 관련 *** -->
-	    <select id="adminEventListPagingDao" resultType="com.festicket.dto.EventDto">
+		<!-- 모든 행사 리스트 + 페이징 -->
+		<select id="adminEventListPagingDao" resultType="com.festicket.dto.EventDto">
 	       SELECT eventNum, gunName, title, eventDate
 	       FROM (
 	           SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
@@ -539,17 +525,35 @@
 	       WHERE PAGE=#{param2}
 	    </select>
 	    
-	    <select id="adminTotalEventCountDao" resultType="int">
+	    <!-- 행사의 총 개수 -->
+		<select id="adminTotalEventCountDao" resultType="int">
 			SELECT COUNT(*) FROM event
 		</select>
-	    
-	    <insert id="eventAddDao">
+	
+		<!-- 모든 행사 리스트 + 페이징 -->
+		<select id="eventListPagingDao" resultType="com.festicket.dto.EventDto">
+	       SELECT eventNum, gunName, title, eventDate
+	       FROM (
+	           SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
+	           FROM (
+	               SELECT eventNum, gunName, title, eventDate
+	               FROM event
+	               WHERE (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
+	               ORDER BY eventNum DESC
+	           ) A
+	       )
+	       WHERE PAGE=#{param2}
+	    </select>
+
+		<!-- 행사 추가 -->
+		<insert id="eventAddDao">
 	       INSERT INTO event(eventNum, type, gunName, title, eventDate, place, org_name, use_trgt, player, program, org_link, main_img,
 	            start_date, end_date, eventPrice, ticketCount)
 	       VALUES(e_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, 
 	             #{param7}, #{param8}, #{param9}, #{param10}, #{param11}, #{param12}, #{param13}, #{param14}, #{param15})
 	    </insert>
-	    
+
+	    <!-- 행사 수정 -->
 	    <update id="eventUpdateDao">
 			UPDATE event
 	    	SET
@@ -583,23 +587,23 @@
 		 	VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
 	 	</insert>
 	 	
-	 	<!-- 대표 이미지 삭제 -->
-	 	<delete id="deleteMainImg">
-	 		DELETE FROM event_main_img
-	 		WHERE filenum=#{param1}
-	 	</delete>
-	 	
 	 	<!-- main_img Dto 불러오기 -->
 	 	<select id="getMainImgInfo" resultType="com.festicket.dto.MainImgDto">
 	 		SELECT *
 	 		FROM event_main_img
 	 		WHERE filenum=#{param1}
 	 	</select>
+	 	
+	 	<!-- 대표 이미지 삭제 -->
+	 	<delete id="deleteMainImg">
+	 		DELETE FROM event_main_img
+	 		WHERE filenum=#{param1}
+	 	</delete> 	
 	<!-- *** 관리자(admin) 관련 끝 *** -->
 	
 	
-	<!-- *** 고객센터 관련 *** -->
-		<!-- 고객센터 게시판 -->
+	<!-- *** 고객센터 게시판 관련 *** -->
+		<!-- 게시글 리스트 모두 가져오기 -->
 		<select id="csListDao" resultType="com.festicket.dto.CSboardDto">
 			SELECT *
 			FROM (
@@ -612,7 +616,8 @@
 			) B
 			WHERE PAGE = #{param2}
 		</select>
-	
+		
+		<!-- 게시글 쓰기 -->
 		<insert id="csWriteDao">
 			INSERT INTO
 				eventCSboard(c_idx, c_userId, c_title, c_content, c_hit, c_replyCount)
@@ -620,39 +625,50 @@
 						(ecs_seq.nextval, #{param1}, #{param2}, #{param3}, 0, 0)
 	    </insert>
 		
+		<!-- 클릭한 게시글 내용 보기 -->
 		<select id="csViewDao" resultType="com.festicket.dto.CSboardDto">
 			SELECT * FROM eventCSboard WHERE c_idx=#{param1}
 		</select>
 		
+		<!-- 게시글 수정 -->
 		<update id="csModifyDao">
 			UPDATE eventCSboard SET c_userId=#{param2}, c_title=#{param3}, c_content=#{param4} WHERE c_idx=#{param1}
 		</update>
 		
+		<!-- 게시글 삭제 -->
 		<delete id="csDeleteDao">
 			DELETE FROM eventCSboard WHERE c_idx=#{param1}
 		</delete>
 		
+		<!-- 조회수 증가 -->
 		<update id="csHitDao">
 			UPDATE eventCSboard SET c_hit=c_hit+1 WHERE c_idx=#{param1}
 		</update>
 		
+		<!-- 총 게시글 개수 반환 -->
 		<select id="csListTotalCountDao" resultType="int">
 			SELECT COUNT(*) FROM eventCSboard
 		</select>
-		
-		<!-- 고객센터 검색 -->
+	<!-- *** 고객센터 게시판 관련 끝 *** -->
+	
+	
+	<!-- *** 고객센터 검색 관련 *** -->
+		<!-- 타이틀로 CS 검색결과 -->
 		<select id="totalcsSearch_TitleCount" resultType="int">
 		    SELECT COUNT(*) FROM eventCSboard WHERE c_title LIKE '%' || #{param1} || '%'
 		</select>
 		
+		<!-- 아이디로 CS 검색결과 -->
 		<select id="totalcsSearch_IdCount" resultType="int">
 		    SELECT COUNT(*) FROM eventCSboard WHERE c_userId LIKE '%' || #{param1} || '%'
 		</select>
 		
+		<!-- 내용으로 CS 검색결과 -->
 		<select id="totalcsSearch_ContentCount" resultType="int">
 		    SELECT COUNT(*) FROM eventCSboard WHERE c_content LIKE '%' || #{param1} || '%'
 		</select>
 		
+		<!-- 제목으로 검색 -->
 		<select id="csSearchTitleDao" resultType="com.festicket.dto.CSboardDto">
 			SELECT *
 		    FROM (
@@ -668,6 +684,7 @@
 		    WHERE PAGE=#{param3}
 		</select>
 		
+		<!-- 내용으로 검색 -->
 		<select id="csSearchContentDao" resultType="com.festicket.dto.CSboardDto">
 			SELECT *
 		    FROM (
@@ -683,6 +700,7 @@
 		    WHERE PAGE=#{param3}
 		</select>
 		
+		<!-- 아이디로 검색 -->
 		<select id="csSearchWriterDao" resultType="com.festicket.dto.CSboardDto">
 			SELECT *
 		    FROM (
@@ -697,42 +715,48 @@
 		    )
 		    WHERE PAGE=#{param3}
 		</select>
-	<!-- *** 고객센터 관련 끝 *** -->
+	<!-- *** 고객센터 검색 관련 끝 *** -->
 	
 	
 	<!-- *** 고객센터 댓글 관련 *** -->
-	<insert id="replyWriteDao">
-		INSERT INTO 
-			eventCSanswer(ca_idx, ca_userId, ca_content, ca_boardNum)
-				VALUES
-					(ecsa_seq.nextval, #{param1}, #{param2}, #{param3})
-	</insert>
-	
-	<update id="replyCountDao">
-		UPDATE eventCSboard SET c_replyCount=c_replyCount+1 WHERE c_idx=#{param1}
-	</update>
-	
-	<select id="replyListDao" resultType="com.festicket.dto.CSanswerDto">
-		SELECT * FROM eventCSanswer WHERE ca_boardNum=#{param1} ORDER BY ca_idx ASC
-	</select>
-	
-	<delete id="replyDeleteDao">
-		DELETE FROM eventCSanswer WHERE ca_idx=#{param1}
-	</delete>
-	
-	<update id="replyCountMinusDao">
-		UPDATE eventCSboard SET c_replyCount=c_replyCount-1 WHERE c_idx=#{param1}
-	</update>
-	
-	<delete id="boardReplyDeleteDao">
-		DELETE FROM eventCSanswer WHERE ca_boardNum=#{param1}
-	</delete>
+		<!-- 댓글 입력  -->
+		<insert id="replyWriteDao">
+			INSERT INTO 
+				eventCSanswer(ca_idx, ca_userId, ca_content, ca_boardNum)
+					VALUES
+						(ecsa_seq.nextval, #{param1}, #{param2}, #{param3})
+		</insert>
+		
+		<!-- 댓글이 달린 원글의 댓글 필드 값 +1 -->
+		<update id="replyCountDao">
+			UPDATE eventCSboard SET c_replyCount=c_replyCount+1 WHERE c_idx=#{param1}
+		</update>
+		
+		<!-- 해당 원글에 달린 댓글의 리스트 가져오기 -->
+		<select id="replyListDao" resultType="com.festicket.dto.CSanswerDto">
+			SELECT * FROM eventCSanswer WHERE ca_boardNum=#{param1} ORDER BY ca_idx ASC
+		</select>
+		
+		<!-- 댓글 삭제 -->
+		<delete id="replyDeleteDao">
+			DELETE FROM eventCSanswer WHERE ca_idx=#{param1}
+		</delete>
+		
+		<!-- 댓글이 달린 원글의 댓글 필드 값 -1 -->
+		<update id="replyCountMinusDao">
+			UPDATE eventCSboard SET c_replyCount=c_replyCount-1 WHERE c_idx=#{param1}
+		</update>
+		
+		<!-- 삭제한 게시글 댓글 모두 삭제 -->
+		<delete id="boardReplyDeleteDao">
+			DELETE FROM eventCSanswer WHERE ca_boardNum=#{param1}
+		</delete>
 	<!-- *** 고객센터 댓글 관련 끝 *** -->
 
 	
-	<!-- *** 페스티벌, 전시 관련 *** -->
-		 <!-- 페스티벌 페이지 -->
-		 <select id="festivalListDao" resultType="com.festicket.dto.EventDto">
+	<!-- *** 페스티벌 관련 *** -->
+		<!-- 페스티벌 리스트 -->
+		<select id="festivalListDao" resultType="com.festicket.dto.EventDto">
 		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		    FROM (
 		        SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
@@ -746,6 +770,21 @@
 		    )
 		    WHERE PAGE=#{param2}
 		 </select>
+		 
+		<!-- 페스티벌 탑5 리스트 / 예매율 = (예매된 티켓 수 / 전체 좌석 수) * 100-->
+		<select id="top5FestivalListDao" resultType="com.festicket.dto.EventDto">
+			SELECT eventNum, main_img, title, gunName, type
+			FROM (
+			    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type,
+			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) / NULLIF(e.ticketCount, 0) * 100 DESC) AS rnk
+			    FROM event e
+			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+			    WHERE e.type LIKE '%페스티벌%'
+			    AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
+			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
+			)
+			WHERE rnk <![CDATA[<=]]> 5
+		</select>
 		 
 		 <select id="totalFestivalCountDao" resultType="int">
 			SELECT COUNT(*) FROM event
@@ -814,9 +853,12 @@
 			WHERE PAGE=#{param2}
 		</select>
 		<!-- 페스티벌 정렬 끝 -->
-	 
-		<!-- 전시 페이지 -->
-		 <select id="exhibitionListDao" resultType="com.festicket.dto.EventDto">
+	<!-- *** 페스티벌 관련 끝 *** -->
+
+
+	<!-- *** 전시 관련 시작 *** -->	 
+		<!-- 전시 리스트 -->
+		<select id="exhibitionListDao" resultType="com.festicket.dto.EventDto">
 		 	SELECT eventNum, main_img, title, place, eventDate, eventPrice
 		    FROM (
 		        SELECT A.*, FLOOR(((ROWNUM-1) / #{param1}) + 1) AS PAGE, ROWNUM AS RN
@@ -829,9 +871,24 @@
 		        ) A
 		    )
 		    WHERE PAGE=#{param2}
-		 </select>
+		</select>
 		 
-		 <select id="totalExhibitionCountDao" resultType="int">
+		<!-- 전시 탑5 리스트 -->
+		<select id="top5ExhibitionListDao" resultType="com.festicket.dto.EventDto">
+			SELECT eventNum, main_img, title, gunName, type
+			FROM (
+			    SELECT e.eventNum, e.main_img, e.title, e.gunName, e.type,
+			           RANK() OVER (ORDER BY COUNT(er.re_eventNum) / NULLIF(e.ticketCount, 0) * 100 DESC) AS rnk
+			    FROM event e
+			    LEFT JOIN eventreservation er ON er.re_eventNum = e.eventNum
+			    WHERE e.type LIKE '%전시%'
+			    AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
+			    GROUP BY e.eventNum, e.main_img, e.title, e.gunName, e.type, e.ticketCount
+			)
+			WHERE rnk <![CDATA[<=]]> 5
+		</select>
+		 
+		<select id="totalExhibitionCountDao" resultType="int">
 			SELECT COUNT(*) FROM event
 			WHERE UPPER(type) LIKE '전시%'
 			AND (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
@@ -898,6 +955,6 @@
 			WHERE PAGE=#{param2}
 		</select>
 		<!-- 전시 정렬 끝 -->
-	<!-- *** 페스티벌, 전시 관련 끝 *** -->
+	<!-- *** 전시 관련 끝 *** -->
 
 </mapper>
