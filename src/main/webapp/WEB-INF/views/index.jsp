@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/footer_main.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -19,6 +20,11 @@
 
 <!-- 롤링배너 -->
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="margin: 50px 0px 0px">
+  <div class="carousel-indicators">
+       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="/resources/img/rolling_banner_01.jpg" class="d-block w-100" style="height: 500px">
@@ -44,7 +50,7 @@
 <!-- 페스티벌 5개 이미지, 자치구, 행사분류, 행사명 넘김 -->
 	<div class="container" id="card_container">
 <div class="top5">
-	페스티벌
+	페스티벌<div>예매순위 BEST 5</div>
 </div>
 	<div class="card-group center-block" id="cardBox">
 		<div class="row justify-content-center">
@@ -87,7 +93,7 @@
 <!-- 전시 5개 이미지, 자치구, 행사분류, 행사명 넘김 -->
 	<div class="container" id="card_container">
 <div class="top5">
-	전시
+	전시<div>예매순위 BEST 5</div>
 </div>
 	<div class="card-group center-block" id="cardBox">
 		<div class="row justify-content-center">
@@ -128,8 +134,13 @@
 <!-- 이미지, 디테일 넘김 끝 -->
 
 <!-- 푸터 -->
-	<%@ include file="include/footer.jsp" %>
-<!-- 푸터 끝 -->
+    <div class="footer_wrap">
+		<footer class="footer">
+			<div class="footerText">(주)페스티켓</div>
+			<div class="footerText">Hosting by Festicket Team | Copyright @ Festicket All Rights Reserved</div>
+		</footer>
+    </div>
+    <!-- 푸터 끝 -->
 
 </body>
 </html>

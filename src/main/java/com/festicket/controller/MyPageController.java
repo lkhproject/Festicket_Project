@@ -110,6 +110,8 @@ public class MyPageController {
 			model.addAttribute("pageMaker", pageDto);
 			model.addAttribute("revListDtos", revListDtos);
 			model.addAttribute("currPage", pageNum);
+			
+			System.out.println(totalCount);
 		}
 
 	    return "myPage/myPageDaysBefore"; // 결과를 보여줄 뷰 이름 반환
@@ -248,6 +250,11 @@ public class MyPageController {
     	int rw_revNum = Integer.parseInt(request.getParameter("re_idx"));
 	    String rw_rating = request.getParameter("rw_rating");
 	    String rw_content = request.getParameter("rw_content");
+	    
+	    System.out.println(rw_eventNum);
+	    System.out.println(rw_revNum);
+	    System.out.println(rw_rating);
+	    System.out.println(rw_content);
 	    
 	    IDao dao = sqlSession.getMapper(IDao.class);
 	    

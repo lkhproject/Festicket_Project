@@ -76,6 +76,12 @@ public interface IDao {
 	public void eventDelete(int eventNum); // 행사 삭제
 	public MainImgDto getMainImgInfo(int filenum); // 이미지 불러오기
 	public void deleteMainImg(int filenum); // 이미지 삭제
+	public void adminReviewDeleteDao(int eventNum); // 행사 지울때 포함된 리뷰 지우기
+	public void adminReservationDeleteDao(int eventNum); // 행사 지울때 포함된 예약 지우기
+	public void adminDeleteEventLike(int eventNum); // 행사 지울때 행사 좋아요 지우기
+	public void adminDeleteReviewLike(int eventNum); // 행사 지울때 리뷰 좋아요 지우기
+	public void adminDeleteQAanswer(int eventNum); // 행사 지울때 QA 지우기
+	public void adminDeleteQA(int eventNum); // 행사 지울때 QA답변 지우기
 	
 	// 페스티벌
 	public List<EventDto> festivalListDao(int countList, int pageNum); // 페스티벌 리스트
@@ -101,7 +107,7 @@ public interface IDao {
 	
 	// 리뷰
 	public List<ReviewDto> getReviewListDao(int eventNum); // 리뷰 글 리스트 가져오기
-	public void reviewWriteDao(String c_userId, int rw_eventNum, int re_revNum, String rw_rating, String rw_content); // 리뷰 쓰기
+	public void reviewWriteDao(String c_userId, int rw_eventNum, int rw_revNum, String rw_rating, String rw_content); // 리뷰 쓰기
 	public void reviewWrittenDao(int rw_idx, int re_reviewNum); // 예매 DB에 리뷰 글번호 넣어주기
 	public ReviewDto reviewViewDao(String rw_idx); // 클릭한 리뷰 내용 보기
 	public void reviewModifyDao(String rw_idx, String rw_userId, String rw_rating, String rw_content); // 리뷰 수정

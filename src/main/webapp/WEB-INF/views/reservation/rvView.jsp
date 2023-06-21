@@ -88,9 +88,10 @@
 	                            dateFormat: "yy-mm-dd",
 	                            showButtonPanel: true, 
 	                            yearRange: "c-99:c+99", 
-	                            minDate: minDate,
+	                            minDate: new Date(),
 	                            maxDate: maxDate,
 	                            autoclose: false,
+	                            defaultDate: new Date(),
 	                            onSelect: function(dateText, inst) {
 	                                var date = $.datepicker.formatDate("yy-mm-dd", $("#datepicker").datepicker("getDate"));
 	                                alert(date);

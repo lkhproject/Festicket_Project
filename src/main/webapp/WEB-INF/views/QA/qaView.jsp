@@ -84,7 +84,7 @@
 				          &nbsp;&nbsp;|&nbsp;&nbsp;${QAreply.qa_answerDate}&nbsp;&nbsp;&nbsp;
 				          <!-- 세션 아이디가 작성자와 같으면 삭제 버튼 보이게 -->
 				          <c:if test="${QAreply.qa_userId eq sessionId}">
-				            <img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${QAreply.qa_idx}', '${qaDto.q_idx}')" style="cursor:pointer">
+				            <img src="/resources/img/btn_del_reply.png" onclick="return replyRemoveCheck('${QAreply.qa_idx}', '${qaDto.q_idx}')" style="cursor:pointer">
 				          </c:if>
 				        </td>
 				      </tr>
@@ -110,7 +110,7 @@
 				                </form>
 				            </div>
 				            <div class="button_delete">
-				                <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
+				                <input type="button" class="btn" id="buttons" value="삭제" onclick="return removeCheck()">
 				            </div>
 				        </c:if>
 				        <div class="button_list">

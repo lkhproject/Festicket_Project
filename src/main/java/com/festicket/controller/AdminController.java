@@ -269,11 +269,16 @@ public class AdminController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		
-		// 파일도 삭제되게 하는 기능 필요
 		int eventNum = Integer.parseInt(request.getParameter("selectedEvent"));
 		
 		dao.eventDelete(eventNum);
 		dao.deleteMainImg(eventNum);
+		dao.adminDeleteReviewLike(eventNum);
+		dao.adminReviewDeleteDao(eventNum);
+		dao.adminReservationDeleteDao(eventNum);
+		dao.adminDeleteEventLike(eventNum);
+		dao.adminDeleteQAanswer(eventNum);
+		dao.adminDeleteQA(eventNum);
 		
 		return "redirect:adminList";
 	}

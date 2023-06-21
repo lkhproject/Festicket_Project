@@ -23,7 +23,7 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="basic-addon1">제목</span>
   				<input type="text" class="form-control" aria-describedby="basic-addon1" 
-  				 value="${qaDto.q_title }" name="q_title" readonly="readonly">
+  				 value="${qaDto.q_title }" name="q_title" id="q_title" readonly="readonly">
 			</div>
 			
 			<div class="input-group mb-3">
@@ -33,7 +33,7 @@
 			</div>
 			
 			<div class="input-group">
-  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" name="q_content" readonly="readonly">${qaDto.q_content }</textarea>
+  				<textarea class="form-control" placeholder="문의사항을 입력해주세요." aria-label="With textarea" name="q_content" id="q_content" readonly="readonly">${qaDto.q_content }</textarea>
 			</div>
 	<!-- 게시글 영역 끝 -->
 			
@@ -61,7 +61,7 @@
 			          <td id="reply_list_id">
 			          	<span style='color:#1e6ec9; font-weight:bold;'>${QAreply.qa_userId }</span>
 				        &nbsp;&nbsp;|&nbsp;&nbsp;${QAreply.qa_answerDate }&nbsp;&nbsp;&nbsp;
-			          	<img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${QAreply.qa_idx}', '${qaDto.q_idx}')" style="cursor:pointer">
+			          	<img src="/resources/img/btn_del_reply.png" onclick="return replyRemoveCheck('${QAreply.qa_idx}', '${qaDto.q_idx}')" style="cursor:pointer">
 			          </td>
 			        </tr>
 			        <tr>
@@ -78,13 +78,13 @@
 			<div class="container" style="padding-top: 10px">
 			<div class="button_area">
 				<div class="button_modify">
-					  <form action="qaBoardModify" method="get">
+					  <form action="qaBoardModify" method="get" onclick="return validateCheck()">
 					    <input type="hidden" name="selectedQA" value="${qaDto.q_idx}">
 					    <input type="submit" class="btn" id="buttons" value="수정">
 					  </form>
 				</div>
 				<div class="button_delete">
-					<input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
+					<input type="button" class="btn" id="buttons" value="삭제" onclick="return removeCheck()">
 				</div>
 				<div class="button_list">
 					<input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='qaBoardList'">
@@ -101,6 +101,34 @@
 	<!-- 푸터 끝 -->
 	
 <script>
+
+<!-- 글쓰기 폼 유효성 검사 -->
+function validateCheck() {
+  var title = document.getElementById("q_title").value;
+  var content = document.getElementById("q_content").value;
+
+  var titleError = document.getElementById("title_error");
+  var contentError = document.getElementById("content_error");
+
+  titleError.innerHTML = "";
+  contentError.innerHTML = "";
+
+  if (title.trim().length === 0) {
+    titleError.innerHTML = "※ 제목을 입력해주세요.";
+    return false;
+  } else if (title.trim().length > 50) {
+    titleError.innerHTML = "※ 제목은 50글자 이하여야 합니다.";
+    return false;
+  }
+
+  if (content.trim().length < 10) {
+    contentError.innerHTML = "※ 내용은 10글자 이상이어야 합니다.";
+    return false;
+  }
+
+  document.qaform.submit();
+}
+
 	<!-- 글 삭제시 경고창 -->
 	function removeCheck() {
 		if (confirm("삭제하시겠습니까?") == true){
