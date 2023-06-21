@@ -7,9 +7,23 @@
 <title>페스티켓</title>
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/joinOk.css">
+<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- 헤더 시작 -->
+<%
+ 	int checkPw = request.getAttribute("checkPw") != null ? Integer.parseInt(request.getAttribute("checkPw").toString()) : 0;
+	
+  	if (checkPw == 1) {
+%>
+	<script type="text/javascript">
+		alert("입력하신 정보는 일치하지 않습니다. 확인해주세요");
+	    history.go(-1);
+	</script>
+<%		
+}
+ %>	
+
+	<!-- 헤더 시작 -->
 	<%@ include file="include/header.jsp" %>
 	<!-- 헤더 끝 -->
 	
