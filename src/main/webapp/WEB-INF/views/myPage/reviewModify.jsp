@@ -12,6 +12,7 @@
 <title>페스티켓</title>
 </head>
 <body>
+
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	<!-- 헤더 끝 -->
