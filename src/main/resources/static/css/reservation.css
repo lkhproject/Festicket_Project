@@ -34,12 +34,6 @@ div.row {
 	margin-left: 0;
 }
 
-div.row {
-	justify-content: center;
-	margin-right: 0;
-	margin-left: 0;
-}
-
 div.card-body {
 	width: 250px;
 	padding: 0;
