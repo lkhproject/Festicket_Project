@@ -94,7 +94,6 @@ public interface IDao {
 	public ReserveDto getReservationDao(int re_idx, String userId); // 예약번호로 예약 디테일 하나 가져오기
 	public ReserveDto getReservationByRecentDao(int eventNum, String userId); // 가장 최신 예약 하나 디테일 가져오기
 	public int reservationConfirmedDao(String userId, int eventNum, String price, Date today, int ticketCount, Date ticketDate, int reviewNum); // 예약 디테일 DB에 넣어주기
-	public int checkDupRevDao(int eventNum); // 같은 행사, 같은 날에 예약된게 있는지 확인
 	public List<ReserveDto> getRevList_days(String userId, int countList, int pageNum, int days); // 오늘부터 15일 전까지의 행사예약일 기준 행사 리스트
 	public int countRevList_days(String userId, int days); // 오늘부터 15일 전까지의 행사예약일 기준 행사 리스트 개수	
 	
