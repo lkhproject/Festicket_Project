@@ -21,17 +21,17 @@
                 <center>
                   <table border="0" cellspacing="0" cellpadding="10">
                     <img src="/resources/img/festicket_logo.png" width="25%">
-                   <form action="findPw_result" method="post"name="findPw_result_frm">
+                   <form action="findPw_result" method="post" name="findPw_result_frm" onsubmit="return validateForm()">
                    <tr>
-						<input class="login_box" type="text" name="userId" placeholder="아이디">
+						<input class="login_box" type="text" name="userId" placeholder="아이디" >
 					</tr>
 					<tr>
 						<input class="login_box" type="text" name="email" placeholder="이메일">
 					</tr>
 					<tr>
-						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호">
+						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호" >
 					</tr>
-                    <input class="IDPWbutton" type="submit" value="비밀번호 찾기"onclick="findPw_result"></input>
+                    <input class="IDPWbutton" type="submit" value="비밀번호 찾기"></input>
                     <input class="IDPWbutton01" type="button" value="취소" onclick="script:window.location.href='login'"></input>
              	    </form>
                     <br>
@@ -48,5 +48,28 @@
   </table>
 </center>
 <%@ include file="include/footer.jsp" %>
+
+<script>
+function validateForm() {
+  var userId = document.forms["findPw_result_frm"]["userId"].value;
+  var email = document.forms["findPw_result_frm"]["email"].value;
+  var userPhone = document.forms["findPw_result_frm"]["userPhone"].value;
+
+  if (userId === "") {
+    alert("아이디를 입력해주세요.");
+    return false;
+  }
+
+  if (email === "") {
+    alert("이메일을 입력해주세요.");
+    return false;
+  }
+
+  if (userPhone === "") {
+    alert("휴대폰번호를 입력해주세요.");
+    return false;
+  }
+}
+</script>
 </body>
 </html>

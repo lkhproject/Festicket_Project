@@ -22,8 +22,7 @@ input.login_box {
 	outline: none;
 	font-size:15px;
 	color:#999;
-	display: flex;
-	
+	display: flex;	
 }	
 
 input.IDPWbutton {
@@ -57,15 +56,14 @@ input.IDPWbutton01 {
     }
     
 td.contentbox {
-	background-color: #ffffff ;
-	height : 500px;
+	background-color: #ffffff;
+	height: 500px;
 	text-align: center;
 	border-radius: 8px;
-	
 }
 
 div.joinpage {
-	font-size:15px;
+	font-size:14px;
 	color:#999;
 	font-family: 'Noto Sans KR', sans-serif;
 	margin: 1px;
