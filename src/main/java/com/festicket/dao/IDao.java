@@ -118,6 +118,12 @@ public interface IDao {
 	public void fileInfoCreateDao(int fileNum, String fileoriname, String destinationFileName, String fileextension, String fileurl); // main_img 파일 저장
 	public MainImgDto getMainImgInfo(int filenum); // 이미지 불러오기
 	public void deleteMainImg(int filenum); // 대표 이미지 삭제
+	public void adminReviewDeleteDao(int eventNum); // 행사 지울때 포함된 리뷰 지우기
+	public void adminReservationDeleteDao(int eventNum); // 행사 지울때 포함된 예약 지우기
+	public void adminDeleteEventLike(int eventNum); // 행사 지울때 행사 좋아요 지우기
+	public void adminDeleteReviewLike(int eventNum); // 행사 지울때 리뷰 좋아요 지우기
+	public void adminDeleteQAanswer(int eventNum); // 행사 지울때 QA 지우기
+	public void adminDeleteQA(int eventNum); // 행사 지울때 QA 답변 지우기
 	
 	// 고객센터 게시판
 	public List<CSboardDto> csListDao(int countList, int pageNum); // 게시글 리스트 모두 가져오기

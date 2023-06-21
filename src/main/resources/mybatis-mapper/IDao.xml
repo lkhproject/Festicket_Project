@@ -598,7 +598,51 @@
 	 	<delete id="deleteMainImg">
 	 		DELETE FROM event_main_img
 	 		WHERE filenum=#{param1}
-	 	</delete> 	
+	 	</delete>
+	 	
+		<!-- 행사 지울때 포함된 리뷰 지우기 -->
+        <delete id="adminReviewDeleteDao">
+           DELETE FROM eventReview
+           WHERE rw_eventNum=#{param1}
+        </delete>
+       
+        <!-- 행사 지울때 포함된 예약 지우기 -->
+        <delete id="adminReservationDeleteDao">
+           DELETE FROM eventReservation
+           WHERE re_eventNum=#{param1}
+        </delete>
+       
+        <!-- 행사 지울때 행사 좋아요 지우기 -->
+        <delete id="adminDeleteEventLike">
+           DELETE FROM eventLike
+           WHERE eventIdx=#{param1}
+        </delete>
+       
+        <!-- 행사 지울때 리뷰 좋아요 지우기 -->
+        <delete id="adminDeleteReviewLike">
+           DELETE FROM eventReviewLike rl
+           WHERE EXISTS (
+           SELECT 1
+           FROM eventReview re
+           WHERE rl.reviewIdx = re.rw_idx
+           AND re.rw_eventNum = ${param1})
+        </delete>
+       
+        <!-- 행사 지울때 QA 지우기 -->
+        <delete id="adminDeleteQA">
+           DELETE FROM event_qaboard
+           WHERE q_eventNum = ${param1}
+        </delete>
+       
+        <!-- 행사 지울때 QA 답변 지우기 -->
+        <delete id="adminDeleteQAanswer">
+           DELETE FROM event_QAanswer qa
+           WHERE EXISTS (
+           SELECT 1
+           FROM event_qaboard qb
+           WHERE qb.q_idx = qa.qa_boardNum
+           AND qb.q_eventNum = ${param1})
+        </delete>	
 	<!-- *** 관리자(admin) 관련 끝 *** -->
 	
 	
