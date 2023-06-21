@@ -501,12 +501,13 @@
 		
 		<!-- 진행중인 행사 리스트 -->
 		<select id="getOngoingEventDao" resultType="com.festicket.dto.EventDto">
-			SELECT eventNum, title, place, rgstDate, end_date, gunName
-			  FROM event
-			WHERE end_date <![CDATA[>]]>= SYSDATE
-			AND start_date <![CDATA[<]]>= SYSDATE
-			AND rgstDate <![CDATA[<]]>= SYSDATE
-		</select>
+	         SELECT eventNum, title, place, rgstDate, end_date, gunName
+	           FROM event
+	         WHERE end_date <![CDATA[>]]>= SYSDATE
+	         AND start_date <![CDATA[<]]>= SYSDATE
+	         AND rgstDate <![CDATA[<]]>= SYSDATE
+	         ORDER BY end_date ASC
+      </select>
 	<!-- *** 랭킹 관련 끝 *** -->
 	
 
