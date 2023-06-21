@@ -63,6 +63,8 @@ public interface IDao {
 	public int getLikedEvent(String userId, String eventNum); // 행사 좋아요 dto
 	
 	// admin
+	public List<EventDto> adminEventListPagingDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징
+	public int adminTotalEventCountDao(); // 행사의 총 개수
 	public List<EventDto> eventListPagingDao(int countList, int pageNum); // 모든 행사 리스트 + 페이징
 	public int eventAddDao(String type, String gunName, String title, String eventDate, String place, String org_name, String use_trgt,
             String player, String program, String org_link, String main_img,
