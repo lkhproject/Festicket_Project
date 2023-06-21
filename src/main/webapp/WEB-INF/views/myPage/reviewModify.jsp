@@ -54,7 +54,7 @@
 						<input type="submit" class="btn" id="button_submit" value="등록">
 					</div>
 					<div class="button_cancel">
-						<input type="button" class="btn" id="button_cancel" onclick="script:window.location.href='myPageReview'" value="취소">
+						<input type="button" class="btn" id="button_cancel" onclick="history.go(-2)" value="취소">
 					</div>
 				</div>
 				</div>

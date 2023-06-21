@@ -48,17 +48,20 @@
 			<!-- 수정, 삭제, 목록 버튼 시작 -->
 			<div class="container" style="padding-top: 10px">
 			    <div class="button_area">
-		            <div class="button_modify">
-		                <form action="reviewModify" method="get">
-		                    <input type="hidden" name="rw_idx" value="${reviewDto.rw_idx}">
-		                    <input type="submit" class="btn" id="buttons" value="수정">
-		                </form>
-		            </div>
-		            <div class="button_delete">
-		                <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
-		            </div>
+			    	<!-- 작성자와 세션 아이디 비교하여 수정, 삭제 버튼 보이기 -->
+			    	<c:if test="${reviewDto.rw_userId eq sessionId}">
+		            	<div class="button_modify">
+			                <form action="reviewModify" method="get">
+			                    <input type="hidden" name="rw_idx" value="${reviewDto.rw_idx}">
+			                    <input type="submit" class="btn" id="buttons" value="수정">
+			                </form>
+			            </div>
+			            <div class="button_delete">
+			                <input type="button" class="btn" id="buttons" value="삭제" onclick="removeCheck()">
+			            </div>
+		            </c:if>
 			        <div class="button_list">
-			            <input type="button" class="btn" id="buttons" value="목록" onclick="script:window.location.href='myPageReview'">
+			            <input type="button" class="btn" id="buttons" value="후기목록" onclick="script:window.location.href='myPageReview'">
 			        </div>
 			    </div>
 			</div>

@@ -155,8 +155,8 @@
               <th id="tb_num2">
 	              <div style="cursor:pointer;" onclick="script:window.location.href='reviewView?rw_idx=${review.rw_idx}'">
 	                <c:choose>
-	                  <c:when test="${fn:length(review.rw_content) gt 18}">
-	                    ${fn:substring(review.rw_content, 0, 17)}...
+	                  <c:when test="${fn:length(review.rw_content) gt 25}">
+	                    ${fn:substring(review.rw_content, 0, 24)}...
 	                  </c:when>
 	                  <c:otherwise>
 	                    ${review.rw_content}
