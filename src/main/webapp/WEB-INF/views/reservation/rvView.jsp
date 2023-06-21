@@ -91,6 +91,7 @@
 	                            minDate: minDate,
 	                            maxDate: maxDate,
 	                            autoclose: false,
+	                            defaultDate: minDate,
 	                            onSelect: function(dateText, inst) {
 	                                var date = $.datepicker.formatDate("yy-mm-dd", $("#datepicker").datepicker("getDate"));
 	                                alert(date);
