@@ -130,18 +130,25 @@ public class HomeController {
 	
 	 @RequestMapping(value = "/findId_result") // 아이디 찾기
 		public String findId_result(HttpServletRequest request, Model model) {
-			
-		 IDao dao = sqlSession.getMapper(IDao.class);
+		
+		String name = request.getParameter("name");
+		String userPhone = request.getParameter("userPhone");
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
 		 
-		 String name = request.getParameter("name");
-		 String userPhone = request.getParameter("userPhone");
-
-		 String findId = dao.findId_result(name, userPhone);
-		 model.addAttribute("findId", findId);
+		String findId = dao.findId_result(name, userPhone);
+		int checkname = 0;
+		
+		if(findId != null) {
+			model.addAttribute("findId", findId);
+		}else {
+			checkname = 1;
+		}
+		model.addAttribute("checkname", checkname);
 
 		 return "findId_result";
 		}
-	 
+		 
 	 
 	 @RequestMapping(value = "/findPw") // 비밀번호 찾기
 		public String findPw() {
@@ -150,15 +157,23 @@ public class HomeController {
 	 
 	 @RequestMapping(value = "/findPw_result") // 비밀번호 찾기
 	 public String findPw_result(HttpServletRequest request, Model model) {
-			
-		 IDao dao = sqlSession.getMapper(IDao.class);
-		 
+		
 		 String userId = request.getParameter("userId");
 		 String email = request.getParameter("email");
 		 String userPhone = request.getParameter("userPhone");
 
+		 IDao dao = sqlSession.getMapper(IDao.class);
+		 
 		 String findPw = dao.findPw_result(userId, email, userPhone);
-		 model.addAttribute("findPw", findPw);
+		 int checkPw = 0;
+		 
+		 if(findPw != null) {
+				model.addAttribute("findPw", findPw);
+			}else {
+				checkPw = 1;
+			}
+			model.addAttribute("checkPw", checkPw);
+
 
 		 return "findPw_result";
 		}

@@ -29,8 +29,10 @@ public interface IDao {
 	// 회원탈퇴
 	public int deleteMember(String userId, String userPassword);
 
-	//아이디,비밀번호 찾기
+	//아이디 찾기
 	public String findId_result(String name, String userPhone);
+	
+	//비밀번호 찾기
 	public String findPw_result(String userId, String email, String userPhone);
 	
 	// 행사
@@ -153,6 +155,8 @@ public interface IDao {
 		
 		public int totalExhibitionCountDao();
 		public List<EventDto> top5ExhibitionListDao(); // 전시 탑5 리스트	
+		
+		
 		
 	
 		
