@@ -49,7 +49,7 @@
 				<!-- 댓글 쓰기 -->
                 <!-- 세션 아이디가 작성자와 같거나 'admin'일 때만 댓글창 보이기 -->
                 <c:if test="${qaDto.q_userId eq sessionId or sessionId eq 'admin'}">
-                <form action="QAreplyWrite" method="post">
+                <form action="QAreplyWrite" method="post" onsubmit="return replyValidateCheck()">
                     <input type="hidden" name="sessionId" value="${sessionId}">
                     <input type="hidden" name="selectedQA" value="${qaDto.q_idx }">
                     <div class="reply_write">
@@ -165,7 +165,7 @@
 	
 	<!-- 댓글 유효성 검사 -->
 	function replyValidateCheck() {
-	    var content = document.gpostlementsByName("qa_content")[0].value;
+	    var content = document.getElementsByName("qa_content")[0].value;
 	    if (content.trim() === "") {
 	        alert("내용을 입력해주세요.");
 	        return false;
