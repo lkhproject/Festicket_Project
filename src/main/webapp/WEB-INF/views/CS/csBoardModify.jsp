@@ -23,7 +23,7 @@
             <div id="csBoard_page_form">
                 <h2 class="csBoardTitle">고객센터</h2>
                 <form action="csBoardModifyOk" method="post" id="detail_form">
-               		<input type="hidden" name="c_idx" value="${csBoardDto.c_idx }">
+                    <input type="hidden" name="c_idx" value="${csBoardDto.c_idx }">
                     <input type="hidden" name="c_userId" value="${csBoardDto.c_userId }">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">제목</span> <input type="text" class="form-control" aria-describedby="basic-addon1" value="${csBoardDto.c_title }" name="c_title">
