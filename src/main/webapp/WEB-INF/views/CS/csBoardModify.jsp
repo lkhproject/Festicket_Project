@@ -26,8 +26,7 @@
                 	<div class="input-group mt-3">
 	                    <input type="hidden" name="c_idx" value="${csBoardDto.c_idx }">
 	                    <input type="hidden" name="c_userId" value="${csBoardDto.c_userId }">
-                        <span class="input-group-text" id="basic-addon1">제목</span>
-                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="${csBoardDto.c_title }" name="c_title" id="c_title">
+                        <span class="input-group-text" id="basic-addon1">제목</span> <input type="text" class="form-control" aria-describedby="basic-addon1" value="${csBoardDto.c_title }" name="c_title" id="c_title">
                     </div>
                     <div id="title_error" class="error"></div>
 
