@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/css/csBoardWrite.css">
-<script src="/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/csBoardWrite.css">
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
 <body>

@@ -8,9 +8,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/csBoardList.css">
-	<script src="/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/csBoardList.css">
+	<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 	<title>페스티켓</title>
 </head>
 
@@ -86,7 +86,7 @@
 	      </div>
 	      <div class="search_board">
 	        <input class="search_board_box" type="text" name="keyword">
-	        <input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색버튼'>
+	        <input class="search_board_img" type="image" src="${pageContext.request.contextPath }/resources/img/search_board_btn.png" alt='검색버튼'>
 	      </div>
 	      <div class="button">
 	        <input type="button" class="btn" onclick="script:window.location.href='csBoardWrite'" value="등록">

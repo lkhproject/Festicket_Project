@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/adminList.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/adminList.css">
 	<script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
@@ -80,7 +80,7 @@
 	 <form class="search" method='get' action='searchResult'>
 		 <div class="search_board">
 		 	<input class="search_board_box" type="text" id="search_word" name="keyword">
-			<input class="search_board_img" type="image" src="/resources/img/search_board_btn.png" alt='검색하기'>
+			<input class="search_board_img" type="image" src="${pageContext.request.contextPath }/resources/img/search_board_btn.png" alt='검색하기'>
 		 </div>
 	 </form>
 	 <div class="button">

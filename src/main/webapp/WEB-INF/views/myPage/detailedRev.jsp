@@ -7,9 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/confirmRev.css">
-<script src="/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/confirmRev.css">
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 
 <title>페스티켓</title>
 </head>
@@ -30,7 +30,7 @@
 			      		<img src="${details.main_img }" class="img-fluid rounded-start" alt="${details.title }">
 			    </c:when>
 				  <c:otherwise>
-						<img src="/resources/upload_main_img/${details.main_img.substring(details.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+						<img src="${pageContext.request.contextPath }/resources/upload_main_img/${details.main_img.substring(details.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 							  class="img-fluid rounded-start" alt="${details.title }">
 				  </c:otherwise>
 				</c:choose>

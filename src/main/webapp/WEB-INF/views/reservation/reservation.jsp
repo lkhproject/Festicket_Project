@@ -5,10 +5,10 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/resources/css/reservation.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/reservation.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <script src="/resources/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
   <title>페스티켓</title>
 </head>
 <body>
@@ -35,7 +35,7 @@
 				      		onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer">
 				    </c:when>
 					  <c:otherwise>
-						<img src="/resources/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+						<img src="${pageContext.request.contextPath }/resources/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 							onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" class="card-img-top" id="card_img" style="cursor:pointer">
 					  </c:otherwise>
 					</c:choose>

@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/join.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/join.css">
 	<script src="/resources/js/join.js"></script>
 </head>
 <body>
@@ -17,7 +17,7 @@
 				<br><br>
 				<td class="contentbox">
 					<center><br>
-					<img src="/resources/img/festicket_logo.png" width="35%"> 
+					<img src="${pageContext.request.contextPath }/resources/img/festicket_logo.png" width="35%"> 
 					<br><br>
 						<h5><b> 회원가입 </b></h5>
 						<form action="joinOk" method="post" name="join_frm">

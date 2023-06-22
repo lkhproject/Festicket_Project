@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/joinOk.css">
-	<script src="/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/joinOk.css">
+	<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<%
@@ -40,7 +40,7 @@
 	<div class="container">
 		<div class="container_1">
 			<div class="joinOk_container"><br>
-				<img src = "/resources/img/festicket_logo.png" id="logoImg"> 
+				<img src = "${pageContext.request.contextPath }/resources/img/festicket_logo.png" id="logoImg"> 
 				
 				<div class="confirm"><b>${memberName}</b>님 회원가입을 축하드립니다!</div>
 				<div class="confirm">가입하신 아이디는 <b>${memberId}</b>입니다.</div>

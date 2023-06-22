@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/adminEventAdd.css">
-	<script type="text/javascript" src="/resources/js/addEvent.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/adminEventAdd.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/addEvent.js"></script>
 	
 <!-- jquery -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  

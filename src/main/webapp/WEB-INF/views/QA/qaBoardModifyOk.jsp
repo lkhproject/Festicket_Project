@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/css/csBoardView.css">
-<script src="/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/csBoardView.css">
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
 <body>
@@ -61,7 +61,7 @@
 			          <td id="reply_list_id">
 			          	<span style='color:#1e6ec9; font-weight:bold;'>${QAreply.qa_userId }</span>
 				        &nbsp;&nbsp;|&nbsp;&nbsp;${QAreply.qa_answerDate }&nbsp;&nbsp;&nbsp;
-			          	<img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${QAreply.qa_idx}', '${qaDto.q_idx}')" style="cursor:pointer">
+			          	<img src="${pageContext.request.contextPath }/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${QAreply.qa_idx}', '${qaDto.q_idx}')" style="cursor:pointer">
 			          </td>
 			        </tr>
 			        <tr>

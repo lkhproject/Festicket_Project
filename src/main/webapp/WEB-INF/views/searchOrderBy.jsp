@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/searchResult.css">
-	<script type="text/javascript" src="/resources/js/festival.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/searchResult.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/festival.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
 <!-- 헤더 -->
@@ -60,7 +60,7 @@
 						    </c:when>
 							  <c:otherwise>
 							    <td scope="row" id="eventImgCell">
-									<img src="/resources/upload_main_img/${search.main_img.substring(search.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+									<img src="${pageContext.request.contextPath }/resources/upload_main_img/${search.main_img.substring(search.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 										onclick="script:window.location.href='rvView?selectedEvent=${search.eventNum }'" class="listImg">
 								</td>
 							  </c:otherwise>

@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/ranking.css">
-	<script src="/resources/js/bootstrap.min.js"></script>
-	<script src="/resources/js/ranking.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/ranking.css">
+	<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/ranking.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
 	<!-- 헤더 -->
@@ -36,7 +36,7 @@
 				      		onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'">
 				    </c:when>
 					  <c:otherwise>
-						<img src="/resources/upload_main_img/${topfiveEvent.main_img.substring(topfiveEvent.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+						<img src="${pageContext.request.contextPath }/resources/upload_main_img/${topfiveEvent.main_img.substring(topfiveEvent.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 							onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'" class="card-img-top" id="cardImg">
 					  </c:otherwise>
 					</c:choose>
@@ -60,7 +60,7 @@
 		<nav class="navbar bg-light">
 		  <div class="container-fluid" id="ongoingEventTitle">
 		    <div class="navbar-brand">
-		      <img src="resources/img/search_board_btn.png" id="search_btn" class="d-inline-block align-text-top">
+		      <img src="${pageContext.request.contextPath }/resources/img/search_board_btn.png" id="search_btn" class="d-inline-block align-text-top">
 		      <div style="float: left;">&nbsp;현재 진행중인 행사</div>
 		    </div>
 		    <div style="float: right;">총 ${fn:length(ongoing) }건</div>

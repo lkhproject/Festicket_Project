@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/myPage.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>

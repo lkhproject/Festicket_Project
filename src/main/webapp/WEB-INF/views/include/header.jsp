@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/header.css">
 <title>페스티켓</title>
 </head>
 <body>
@@ -69,7 +69,7 @@
 		<hr class="line">
 		<div class="categoryline">
 			<ul class="category">
-				<li><a href="index"><img class="logo" src="/resources/img/festicket_logo.png" alt="로고"></a></li>
+				<li><a href="index"><img class="logo" src="${pageContext.request.contextPath }/resources/img/festicket_logo.png" alt="로고"></a></li>
 				<li class="categorytext"><a href="index">홈</a></li>
 				<li class="categorytext"><a href="reservation">전체</a></li>
 				<li class="categorytext"><a href="festival">페스티벌</a></li>
@@ -83,7 +83,7 @@
 			  <div class="search_btn">
 			    <input class="search_box" type="text" name="keyword" placeholder='검색어를 입력하세요.'>
 			    <div class="search_btn_img">
-			      <input type="image" src='/resources/img/search_btn.png' alt='검색하기'>
+			      <input type="image" src='${pageContext.request.contextPath }/resources/img/search_btn.png' alt='검색하기'>
 			    </div>
 			  </div>
 			</form>

@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/find.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/find.css">
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -20,7 +20,7 @@
               <td class="contentbox">
                 <center>
                   <table border="0" cellspacing="0" cellpadding="10">
-                    <img id="logo" src="/resources/img/festicket_logo.png" width="30%">
+                    <img id="logo" src="${pageContext.request.contextPath }/resources/img/festicket_logo.png" width="30%">
                    <form action="findPw_result" method="post" name="findPw_result_frm" onsubmit="return validateForm()">
                    <tr>
 						<input class="login_box" type="text" name="userId" placeholder="아이디" onfocus="this.placeholder = ''">

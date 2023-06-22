@@ -7,9 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/rvView.css">
-<script src="/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/rvView.css">
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 <!-- jquery -->
@@ -18,7 +18,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
-<script type="text/javascript" src="/resources/js/rvView.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/rvView.js"></script>
 
 <title>페스티켓</title>
 </head>
@@ -35,7 +35,7 @@
 				      		<img src="${event.main_img }" class="img-thumbnail" alt="포스터"><br>
 				    </c:when>
 					  <c:otherwise>
-							<img src="/resources/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+							<img src="${pageContext.request.contextPath }/resources/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 								 class="img-thumbnail" alt="포스터"><br>
 					  </c:otherwise>
 					</c:choose>

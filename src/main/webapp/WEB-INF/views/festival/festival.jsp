@@ -7,10 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/festival.css">
-	<script src="/resources/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/resources/js/festival.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/festival.css">
+	<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/festival.js"></script>
 </head>
 <body style="background-color: #eeeeee;">
 <!-- 헤더 -->
@@ -59,7 +59,7 @@
 						    </c:when>
 							  <c:otherwise>
 							    <td scope="row" id="eventImgCell">
-									<img src="/resources/upload_main_img/${festival.main_img.substring(festival.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+									<img src="${pageContext.request.contextPath }/resources/upload_main_img/${festival.main_img.substring(festival.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 										onclick="script:window.location.href='rvView?selectedEvent=${festival.eventNum }'" class="listImg">
 								</td>
 							  </c:otherwise>

@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/css/csBoardView.css">
-<script src="/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/csBoardView.css">
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <title>페스티켓</title>
 </head>
 <body>
@@ -84,7 +84,7 @@
 				          &nbsp;&nbsp;|&nbsp;&nbsp;${QAreply.qa_answerDate}&nbsp;&nbsp;&nbsp;
 				          <!-- 세션 아이디가 작성자와 같으면 삭제 버튼 보이게 -->
 				          <c:if test="${QAreply.qa_userId eq sessionId}">
-				            <img src="/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${QAreply.qa_idx}', '${qaDto.q_idx}')" style="cursor:pointer">
+				            <img src="${pageContext.request.contextPath }/resources/img/btn_del_reply.png" onclick="replyRemoveCheck('${QAreply.qa_idx}', '${qaDto.q_idx}')" style="cursor:pointer">
 				          </c:if>
 				        </td>
 				      </tr>

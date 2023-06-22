@@ -8,11 +8,11 @@
 <head>
     <meta charset="UTF-8">
     <title>페스티켓</title>
-    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/footer_main.css">
-    <script src="/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/footer_main.css">
+    <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -30,17 +30,17 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
             	<a href="rvView?selectedEvent=891">
-                	<img src="/resources/img/rolling_banner_01.jpg" class="d-block w-100">
+                	<img src="${pageContext.request.contextPath }/resources/img/rolling_banner_01.jpg" class="d-block w-100">
                 </a>
             </div>
             <div class="carousel-item">
             	<a href="rvView?selectedEvent=898">
-                	<img src="/resources/img/rolling_banner_02.jpg" class="d-block w-100">
+                	<img src="${pageContext.request.contextPath }/resources/img/rolling_banner_02.jpg" class="d-block w-100">
                 </a>
             </div>
             <div class="carousel-item">
             	<a href="rvView?selectedEvent=706">
-                	<img src="/resources/img/rolling_banner_03.jpg" class="d-block w-100">
+                	<img src="${pageContext.request.contextPath }/resources/img/rolling_banner_03.jpg" class="d-block w-100">
                 </a>
             </div>
         </div>

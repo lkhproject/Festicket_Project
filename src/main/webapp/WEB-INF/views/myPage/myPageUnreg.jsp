@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>페스티켓</title>
-	<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/resources/css/myPageUnreg.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/myPageUnreg.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 	<script>
         function deleteCheck() {
@@ -114,7 +114,7 @@
 			<!-- 가운데 box -->
 			<div class="contentbox">
 				<center>
-					<img id="logo" src="/resources/img/festicket_logo.png" width="25%">
+					<img id="logo" src="${pageContext.request.contextPath }/resources/img/festicket_logo.png" width="25%">
 					<br><br>
 					<h5><b>회원탈퇴</b></h5>
 					<table border="0" cellspacing="0" cellpadding="10">

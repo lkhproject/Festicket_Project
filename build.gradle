@@ -2,10 +2,12 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.12'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'war'
 }
 
 group = 'com.festicket'
 version = '0.0.1-SNAPSHOT'
+apply plugin:'war'
 sourceCompatibility = '11'
 
 configurations {
@@ -34,6 +36,11 @@ dependencies {
 	// file 업로드 관련
 	implementation 'org.apache.commons:commons-lang3:3.0'
     implementation 'commons-io:commons-io:2.5'
+    
+    // 오라클 DB 보안 설정
+   	implementation 'com.oracle.database.security:oraclepki'
+   	implementation 'com.oracle.database.security:osdt_core'
+   	implementation 'com.oracle.database.security:osdt_cert'
 	
 }
 

@@ -8,9 +8,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/csBoardList.css">
-    <script src="/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/csBoardList.css">
+    <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
     <title>페스티켓</title>
 </head>
 
