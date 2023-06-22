@@ -205,7 +205,9 @@
 	<!-- *** 예매 관련 *** -->
 		<!-- 모든 행사 리스트 -->
 		<select id="eventAllListDao" resultType="com.festicket.dto.EventDto">
-			SELECT * FROM event ORDER BY eventNum DESC
+			SELECT * FROM event
+       		WHERE (TO_DATE(SUBSTR(eventDate, 12, 10), 'YYYY-MM-DD')) <![CDATA[>=]]> sysdate
+        	ORDER BY eventNum DESC
 		</select>
 		
 		<!-- 예매한 행사 개수 가져오기 -->
