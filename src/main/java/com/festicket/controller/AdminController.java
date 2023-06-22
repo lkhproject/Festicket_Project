@@ -240,7 +240,7 @@ public class AdminController {
         File destinationFile;
         String destinationFileName; // 실제 서버에 저장된 파일의 변경된 이름이 저장될 변수
         // 첨부된 파일이 저장된 서버의 실제 폴더 경로
-        String fileurl = "${pageContext.request.contextPath }/resources/upload_main_img/";
+        String fileurl = "/var/lib/tomcat9/webapps/upload/";
         
         do {
  			// 알파벳 대소문자+숫자로 이루어진 랜덤 32글자의 문자열 이름으로 된 파일 이름으로 생성 -> 서버에 이 이름으로 저장됨
