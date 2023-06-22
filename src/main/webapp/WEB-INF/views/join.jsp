@@ -6,7 +6,7 @@
 <title>페스티켓</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/join.css">
-	<script src="/resources/js/join.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/join.js"></script>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>

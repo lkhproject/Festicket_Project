@@ -20,8 +20,8 @@
 		window.location.href = document.referrer; // 이전 페이지로 이동
 	</script>	
 <%		
-}
- %>		
+	}
+%>		
 
 	<!-- 헤더 시작 -->
 	<%@ include file="include/header.jsp" %>
