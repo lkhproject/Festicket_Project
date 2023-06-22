@@ -21,18 +21,18 @@
                 <center>
                   <table border="0" cellspacing="0" cellpadding="10">
                     <img id="logo" src="/resources/img/festicket_logo.png" width="30%">
-                   <form action="findPw_result" method="post" name="findPw_result_frm" onsubmit="return validateForm()">
+                   <form action="findPw_result" method="post" name="findPw_result_frm">
                    <tr>
-						<input class="login_box" type="text" name="userId" placeholder="아이디" onfocus="this.placeholder = ''">
+						<input class="login_box" type="text" name="userId" placeholder="아이디">
 					</tr>
 					<tr>
-						<input class="login_box" type="text" name="email" placeholder="이메일" onfocus="this.placeholder = ''">
+						<input class="login_box" type="text" name="email" placeholder="이메일">
 					</tr>
 					<tr>
-						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호" onfocus="this.placeholder = ''">
+						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호">
 					</tr>
                     <input class="IDPWbutton" type="submit" value="비밀번호 찾기"></input>
-                    <input class="IDPWbutton01" type="button" value="취소" onclick="script:window.location.href='login'"></input>
+                    <input class="IDPWbutton01" type="button" value="취소"></input>
              	    </form>
                     <br>
                     <div class="joinpage_cover">

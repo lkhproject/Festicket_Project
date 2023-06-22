@@ -23,12 +23,12 @@
                 <center>
                   <table border="0" cellspacing="0" cellpadding="10">
                     <img id="logo" src="/resources/img/festicket_logo.png" width="30%">
-                    <form action="findId_result" method="post" name="findId_result_frm" onsubmit="return validateForm();">
+                    <form action="findId_result" method="post" name="findId_result_frm">
                      <tr>
-						<input class="login_box" type="text" name="name" placeholder="이름" onfocus="this.placeholder = ''">
+						<input class="login_box" type="text" name="name" placeholder="이름">
 					</tr>
 					<tr>
-						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호" onfocus="this.placeholder = ''">
+						<input class="login_box" type="text" name="userPhone" placeholder="휴대폰번호">
 					</tr>
                     <input class="IDPWbutton" type="submit" value="아이디 찾기"></input>
                     <input class="IDPWbutton01" type="button" value="취소" onclick="script:window.location.href='login'"></input>
