@@ -36,7 +36,7 @@
 				      		onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'">
 				    </c:when>
 					  <c:otherwise>
-						<img src="${pageContext.request.contextPath }/resources/upload_main_img/${topfiveEvent.main_img.substring(topfiveEvent.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+						<img src="${pageContext.request.contextPath }/upload_main_img/${topfiveEvent.main_img.substring(topfiveEvent.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 							onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'" class="card-img-top" id="cardImg">
 					  </c:otherwise>
 					</c:choose>

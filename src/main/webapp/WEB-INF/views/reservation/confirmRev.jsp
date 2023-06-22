@@ -64,7 +64,7 @@
 			      		<img src="${comfirmedRev.main_img }" class="img-fluid rounded-start" alt="${comfirmedRev.title }">
 			    </c:when>
 				  <c:otherwise>
-						<img src="${pageContext.request.contextPath }/resources/upload_main_img/${comfirmedRev.main_img.substring(comfirmedRev.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+						<img src="${pageContext.request.contextPath }/upload_main_img/${comfirmedRev.main_img.substring(comfirmedRev.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 							  class="img-fluid rounded-start" alt="${comfirmedRev.title }">
 				  </c:otherwise>
 				</c:choose>

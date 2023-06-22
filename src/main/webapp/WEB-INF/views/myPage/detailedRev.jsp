@@ -30,7 +30,7 @@
 			      		<img src="${details.main_img }" class="img-fluid rounded-start" alt="${details.title }">
 			    </c:when>
 				  <c:otherwise>
-						<img src="${pageContext.request.contextPath }/resources/upload_main_img/${details.main_img.substring(details.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+						<img src="${pageContext.request.contextPath }/upload_main_img/${details.main_img.substring(details.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 							  class="img-fluid rounded-start" alt="${details.title }">
 				  </c:otherwise>
 				</c:choose>

@@ -58,7 +58,7 @@
 						    </c:when>
 							  <c:otherwise>
 							    <td scope="row" id="eventImgCell">
-									<img src="${pageContext.request.contextPath }/resources/upload_main_img/${exhibition.main_img.substring(exhibition.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+									<img src="${pageContext.request.contextPath }/upload_main_img/${exhibition.main_img.substring(exhibition.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 										onclick="script:window.location.href='rvView?selectedEvent=${exhibition.eventNum }'" class="listImg">
 								</td>
 							  </c:otherwise>

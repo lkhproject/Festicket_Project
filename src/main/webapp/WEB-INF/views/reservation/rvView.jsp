@@ -35,7 +35,7 @@
 				      		<img src="${event.main_img }" class="img-thumbnail" alt="포스터"><br>
 				    </c:when>
 					  <c:otherwise>
-							<img src="${pageContext.request.contextPath }/resources/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+							<img src="${pageContext.request.contextPath }/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 								 class="img-thumbnail" alt="포스터"><br>
 					  </c:otherwise>
 					</c:choose>

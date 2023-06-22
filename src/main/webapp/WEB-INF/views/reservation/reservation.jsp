@@ -35,7 +35,7 @@
 				      		onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" style="cursor:pointer">
 				    </c:when>
 					  <c:otherwise>
-						<img src="${pageContext.request.contextPath }/resources/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
+						<img src="${pageContext.request.contextPath }/upload_main_img/${event.main_img.substring(event.main_img.indexOf('upload_main_img/') + 'upload_main_img/'.length())}"
 							onclick="script:window.location.href='rvView?selectedEvent=${event.eventNum }'" class="card-img-top" id="card_img" style="cursor:pointer">
 					  </c:otherwise>
 					</c:choose>
