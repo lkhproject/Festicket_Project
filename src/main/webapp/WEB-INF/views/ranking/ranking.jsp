@@ -40,7 +40,7 @@
 							onclick="script:window.location.href='rvView?selectedEvent=${topfiveEvent.eventNum }'" class="card-img-top" id="cardImg">
 					  </c:otherwise>
 					</c:choose>
-				      	<div class="card-img-overlay" id="overlayText">
+				      	<div class="card-img-overlay" id="overlayText" >
 				      		<h1 class="rankingCount">${status.count }</h1>
 				      	</div>
 			      <div class="card-body" style="padding: 14px 0px">

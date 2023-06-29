@@ -86,7 +86,7 @@ div.top5 {
   	justify-content: center;
   	width: 41px;
 	height: 60px;
-	background-image: url("${pageContext.request.contextPath }/resources/img/ranking_flag.png");
+	background-image: url("../img/ranking_flag.png");
 	background-size: cover;
 }
 
