@@ -45,5 +45,28 @@ Spring MVC 패턴으로 웹사이트 제작 및 Oracle Could 서버 배포 진�
 
     <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
     <img src="https://img.shields.io/badge/jsp-E64415?style=for-the-badge&logo=jsp&logoColor=black">
-  
 
+#
+## :white_check_mark:주요기능
+
+1. 회원 기능
+   - 회원 가입
+   - 회원 탈퇴
+   - 아이디/비밀번호 찾기
+   - 티켓 예매/취소
+   
+2. 관리자 기능
+   - 행사 등록/삭제
+   - 등록된 행사 조회
+   - 행사 정보 변경
+
+3. 게시판 기능
+   - 행사 관련 Q&A 게시판
+   - 고객 센터 게시판
+
+4. 마이페이지 기능
+   - 예매 확인/취소
+   - 예매한 행사 기간별 조회
+   - 후기 작성
+   - 회원 정보 변경/탈퇴
+   
